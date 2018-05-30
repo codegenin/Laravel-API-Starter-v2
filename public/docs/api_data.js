@@ -60,6 +60,44 @@ define({ "api": [
   },
   {
     "group": "Authentication",
+    "name": "VerifyUser",
+    "type": "get",
+    "url": "/api/auth/verify/{token}",
+    "title": "Verify User",
+    "description": "<p>Verify a user registration</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>the token that was sent to the user</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{ \"status\": \"ok\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Api/V1/Authentication/Controllers/VerificationController.php",
+    "groupTitle": "Authentication"
+  },
+  {
+    "group": "Authentication",
     "name": "loginUser",
     "type": "post",
     "url": "/api/auth/login",
