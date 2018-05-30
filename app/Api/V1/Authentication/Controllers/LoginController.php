@@ -67,7 +67,7 @@ class LoginController extends Controller
                     ->authenticate($token);
         
         if (!$user->is_active) {
-            throw new AccessDeniedHttpException();
+            throw new AccessDeniedHttpException('Account is disabled! please check your email to activate your account.');
         }
         
         return response()
