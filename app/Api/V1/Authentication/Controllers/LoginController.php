@@ -76,7 +76,7 @@ class LoginController extends Controller
                 'expires_in' => Auth::guard()
                                     ->factory()
                                     ->getTTL() * 60,
-                'id'         => $user->id,
+                'id'         => \Vinkla\Hashids\Facades\Hashids::encode($user->id),
                 'name'       => $user->name,
                 'role'       => $user->role,
             ]);
