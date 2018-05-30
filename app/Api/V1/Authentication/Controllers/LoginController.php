@@ -3,6 +3,7 @@
 namespace App\Api\V1\Authentication\Controllers;
 
 use App\Api\V1\Authentication\Requests\LoginRequest;
+use Hashids\Hashids;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
@@ -25,20 +26,21 @@ class LoginController extends Controller
      *
      * @apiSuccessExample {json} Success-Response:
      *                     {
-    "status": "ok",
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnlveW9naS5vby9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTUyNzY3ODg2NiwiZXhwIjoxNTI3NjgyNDY2LCJuYmYiOjE1Mjc2Nzg4NjYsImp0aSI6IklmdlpQbHIwcGJoUGFlcEoiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.xXrwVH9ggT1gx1iir6pXT8Jd0Tyw6Q1PIFK4VICSq8Q",
-    "expires_in": 3600,
-    "id": 3,
-    "name": "test",
-    "role": null
-    }
+     * "status": "ok",
+     * "token":
+     * "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnlveW9naS5vby9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTUyNzY3ODg2NiwiZXhwIjoxNTI3NjgyNDY2LCJuYmYiOjE1Mjc2Nzg4NjYsImp0aSI6IklmdlpQbHIwcGJoUGFlcEoiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.xXrwVH9ggT1gx1iir6pXT8Jd0Tyw6Q1PIFK4VICSq8Q",
+     * "expires_in": 3600,
+     * "id": 3,
+     * "name": "test",
+     * "role": null
+     * }
      *
      * @apiErrorExample {json} Error-Response:
      *                     {
-    "status": "error",
-    "message": "403 Forbidden",
-    "status_code": 403
-    }
+     * "status": "error",
+     * "message": "403 Forbidden",
+     * "status_code": 403
+     * }
      */
     public function login(LoginRequest $request, JWTAuth $JWTAuth)
     {
@@ -69,7 +71,7 @@ class LoginController extends Controller
         
         return response()
             ->json([
-                'status' => 'ok',
+                'status'     => 'ok',
                 'token'      => $token,
                 'expires_in' => Auth::guard()
                                     ->factory()

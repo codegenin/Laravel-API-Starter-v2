@@ -6,6 +6,7 @@ use Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Vinkla\Hashids\Facades\Hashids;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -44,6 +45,11 @@ class User extends Authenticatable implements JWTSubject
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+    
+    public function getIdAttribute($value)
+    {
+        return Hashids::encode($value);
     }
     
     /**
