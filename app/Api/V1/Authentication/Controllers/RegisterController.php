@@ -2,6 +2,7 @@
 
 namespace App\Api\V1\Authentication\Controllers;
 
+use App\Api\V1\Authentication\Repositories\RegisterRepository;
 use App\Api\V1\Authentication\Requests\SignUpRequest;
 use Config;
 use App\User;
@@ -35,13 +36,17 @@ class RegisterController extends Controller
             'is_active' => 1
         ]);
         
-        $user            = new User();
-        $user->name      = $request->name;
-        $user->email     = $request->email;
-        $user->password  = $request->password;
-        $user->is_active = 1; // Remove this when email confirmation is active
+        $userRepo = new RegisterRepository();
         
-        if (!$user->save()) {
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'is_active' => 1
+        ];
+        
+        
+        if (!$user = $userRepo->create($data)) {
             throw new HttpException(500);
         }
         
