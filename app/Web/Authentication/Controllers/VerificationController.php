@@ -16,20 +16,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class VerificationController extends Controller
 {
-    /**
-     * @apiGroup           Authentication
-     * @apiName            VerifyUser
-     * @api                {get} /api/auth/verify/{token} Verify User
-     * @apiDescription     Verify a user registration
-     *
-     * @apiVersion         1.0.0
-     * @apiPermission      none
-     *
-     * @apiParam {String} token the token that was sent to the user
-     *
-     * @apiSuccessExample {json} Success-Response:
-     *                     { "status": "ok"}
-     */
     public function verify($token)
     {
         $userRepo = new UserRepository();
