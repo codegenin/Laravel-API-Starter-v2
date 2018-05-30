@@ -11,6 +11,9 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Auth;
 
+/**
+ * @Resource("Users")
+ */
 class UserController extends Controller
 {
     /**
@@ -26,6 +29,8 @@ class UserController extends Controller
     /**
      * Get the authenticated User
      *
+     * @Get("/api/me")
+     * @Versions({"v1"})
      * @return \Illuminate\Http\JsonResponse
      */
     public function me()
