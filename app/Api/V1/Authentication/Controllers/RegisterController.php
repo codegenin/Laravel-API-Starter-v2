@@ -9,9 +9,26 @@ use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class SignUpController extends Controller
+class RegisterController extends Controller
 {
-    public function signUp(SignUpRequest $request, JWTAuth $JWTAuth)
+    /**
+     * @apiGroup           Authentication
+     * @apiName            RegisterUser
+     * @api                {post} /api/auth/register Register User
+     * @apiDescription     Register a new artist or patron
+     *
+     * @apiVersion         1.0.0
+     * @apiPermission      none
+     *
+     * @apiParam {String} name the complete name of the user
+     * @apiParam {String} email unique email of the user
+     * @apiParam {String} password at least 6 characters
+     * @apiParam {String} role artist | patron
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *                     { "status": "ok"}
+     */
+    public function register(SignUpRequest $request, JWTAuth $JWTAuth)
     {
         $user = new User($request->all());
         

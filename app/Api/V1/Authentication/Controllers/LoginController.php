@@ -13,11 +13,35 @@ use Auth;
 class LoginController extends Controller
 {
     /**
-     * Log the user in
+     * @apiGroup           Authentication
+     * @apiName            loginUser
+     * @api                {post} /api/auth/login Login User (Email)
+     * @apiDescription     Logging in users via api endpoint.
+     
+     * @apiVersion         1.0.0
+     * @apiPermission      none
      *
-     * @param LoginRequest $request
-     * @param JWTAuth      $JWTAuth
-     * @return \Illuminate\Http\JsonResponse
+     * @apiParam {String} email unique email of the user
+     * @apiParam {String} password at least 6 characters
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *                     {
+     * "status": "ok",
+     * "data": {
+     * "token":
+     * "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnlveW9naS5vby9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTUyNzY1NjY5MywiZXhwIjoxNTI3NjYwMjkzLCJuYmYiOjE1Mjc2NTY2OTMsImp0aSI6IkZuRzM4b3E1djBncGtCVVQiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2FTKzqpfH-XPT_FfBUt2RE7PPgXUMDGIcMgInzHwNnI",
+     * "expires_in": 3600
+     * }
+     * }
+     *
+     * @apiErrorExample {json} Error-Response:
+     *                     {
+    "status": "error",
+    "data": {
+    "message": "403 Forbidden",
+    "status_code": 403
+    }
+    }
      */
     public function login(LoginRequest $request, JWTAuth $JWTAuth)
     {
@@ -50,7 +74,7 @@ class LoginController extends Controller
             ->json([
                 'status' => 'ok',
                 'data'   => [
-                    'token' => $token,
+                    'token'      => $token,
                     'expires_in' => Auth::guard()
                                         ->factory()
                                         ->getTTL() * 60

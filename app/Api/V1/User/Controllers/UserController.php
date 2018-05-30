@@ -25,14 +25,7 @@ class UserController extends Controller
     {
         $this->middleware('jwt.auth', []);
     }
-
-    /**
-     * Get the authenticated User
-     *
-     * @Get("/api/me")
-     * @Versions({"v1"})
-     * @return \Illuminate\Http\JsonResponse
-     */
+    
     public function me()
     {
         UserResource::withoutWrapping();

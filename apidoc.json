@@ -1,0 +1,14 @@
+{
+  "name": "YoYoGi App",
+  "version": "1.0.0",
+  "description": "REST API Documentation for YoYoGi APP By Nouvart",
+  "url" : "http://testapi.yoyogi.fr",
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  },
+  "header": {
+    "title": "API Overview",
+    "filename": "public/api-rendered-markdowns/header.md"
+  }
+}
