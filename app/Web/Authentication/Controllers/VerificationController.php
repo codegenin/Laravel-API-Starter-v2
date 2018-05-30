@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\V1\Authentication\Controllers;
+namespace App\Web\Authentication\Controllers;
 
 use App\Api\V1\Authentication\Repositories\RegisterRepository;
 use App\Api\V1\Authentication\Repositories\UserRepository;
@@ -46,10 +46,8 @@ class VerificationController extends Controller
             'is_active'          => 1,
             'verification_token' => null
         ]);
+    
+        return view('Authentication.Views.Verification.EmailConfirmation');
         
-        return response()->json([
-            'status'  => 'ok',
-            'message' => 'Your account is now active!'
-        ], 201);
     }
 }

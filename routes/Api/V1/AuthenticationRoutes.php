@@ -16,8 +16,6 @@ $api->version('v1', function (Router $api) {
         
         $api->post('logout', 'App\\Api\\V1\\Authentication\\Controllers\\LogoutController@logout');
         $api->post('refresh', 'App\\Api\\V1\\Authentication\\Controllers\\RefreshController@refresh');
-        
-        $api->get('verify/{token}', 'App\\Api\\V1\\Authentication\\Controllers\\VerificationController@verify');
     });
     
 });
