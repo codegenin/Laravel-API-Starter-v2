@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Api\V1\Controllers;
+namespace App\Api\V1\Authentication\Controllers;
 
+use App\Api\V1\Authentication\Requests\ForgotPasswordRequest;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
-use App\Api\V1\Requests\ForgotPasswordRequest;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

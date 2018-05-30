@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Api\V1\Controllers;
+namespace App\Api\V1\Authentication\Controllers;
 
+use App\Api\V1\Authentication\Requests\LoginRequest;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
-use App\Api\V1\Requests\LoginRequest;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Auth;
@@ -33,7 +33,14 @@ class LoginController extends Controller
         } catch (JWTException $e) {
             throw new HttpException(500);
         }
-
+    
+        // Checks if user is active
+        $user = Auth::guard()->authenticate($token);
+        
+        if(!$user->is_active) {
+            throw new AccessDeniedHttpException();
+        }
+        
         return response()
             ->json([
                 'status' => 'ok',
