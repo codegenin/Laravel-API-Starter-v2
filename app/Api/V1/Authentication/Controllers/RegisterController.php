@@ -30,7 +30,16 @@ class RegisterController extends Controller
      */
     public function register(SignUpRequest $request, JWTAuth $JWTAuth)
     {
-        $user = new User($request->all());
+        // Remove this once email confirmation is set
+        $request->merge([
+            'is_active' => 1
+        ]);
+        
+        $user            = new User();
+        $user->name      = $request->name;
+        $user->email     = $request->email;
+        $user->password  = $request->password;
+        $user->is_active = 1; // Remove this when email confirmation is active
         
         if (!$user->save()) {
             throw new HttpException(500);

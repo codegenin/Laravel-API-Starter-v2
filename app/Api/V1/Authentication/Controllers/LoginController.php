@@ -17,7 +17,6 @@ class LoginController extends Controller
      * @apiName            loginUser
      * @api                {post} /api/auth/login Login User (Email)
      * @apiDescription     Logging in users via api endpoint.
-     
      * @apiVersion         1.0.0
      * @apiPermission      none
      *
@@ -36,12 +35,12 @@ class LoginController extends Controller
      *
      * @apiErrorExample {json} Error-Response:
      *                     {
-    "status": "error",
-    "data": {
-    "message": "403 Forbidden",
-    "status_code": 403
-    }
-    }
+     * "status": "error",
+     * "data": {
+     * "message": "403 Forbidden",
+     * "status_code": 403
+     * }
+     * }
      */
     public function login(LoginRequest $request, JWTAuth $JWTAuth)
     {
@@ -77,7 +76,10 @@ class LoginController extends Controller
                     'token'      => $token,
                     'expires_in' => Auth::guard()
                                         ->factory()
-                                        ->getTTL() * 60
+                                        ->getTTL() * 60,
+                    'id'         => $user->id,
+                    'name'       => $user->name,
+                    'role'       => $user->role,
                 ]
             ]);
     }
