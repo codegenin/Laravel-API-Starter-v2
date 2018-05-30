@@ -25,22 +25,20 @@ class LoginController extends Controller
      *
      * @apiSuccessExample {json} Success-Response:
      *                     {
-     * "status": "ok",
-     * "data": {
-     * "token":
-     * "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnlveW9naS5vby9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTUyNzY1NjY5MywiZXhwIjoxNTI3NjYwMjkzLCJuYmYiOjE1Mjc2NTY2OTMsImp0aSI6IkZuRzM4b3E1djBncGtCVVQiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2FTKzqpfH-XPT_FfBUt2RE7PPgXUMDGIcMgInzHwNnI",
-     * "expires_in": 3600
-     * }
-     * }
+    "status": "ok",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnlveW9naS5vby9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTUyNzY3ODg2NiwiZXhwIjoxNTI3NjgyNDY2LCJuYmYiOjE1Mjc2Nzg4NjYsImp0aSI6IklmdlpQbHIwcGJoUGFlcEoiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.xXrwVH9ggT1gx1iir6pXT8Jd0Tyw6Q1PIFK4VICSq8Q",
+    "expires_in": 3600,
+    "id": 3,
+    "name": "test",
+    "role": null
+    }
      *
      * @apiErrorExample {json} Error-Response:
      *                     {
-     * "status": "error",
-     * "data": {
-     * "message": "403 Forbidden",
-     * "status_code": 403
-     * }
-     * }
+    "status": "error",
+    "message": "403 Forbidden",
+    "status_code": 403
+    }
      */
     public function login(LoginRequest $request, JWTAuth $JWTAuth)
     {

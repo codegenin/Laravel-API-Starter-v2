@@ -95,7 +95,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "                    {\n\"status\": \"ok\",\n\"data\": {\n\"token\":\n\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnlveW9naS5vby9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTUyNzY1NjY5MywiZXhwIjoxNTI3NjYwMjkzLCJuYmYiOjE1Mjc2NTY2OTMsImp0aSI6IkZuRzM4b3E1djBncGtCVVQiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2FTKzqpfH-XPT_FfBUt2RE7PPgXUMDGIcMgInzHwNnI\",\n\"expires_in\": 3600\n}\n}",
+          "content": "                {\n\"status\": \"ok\",\n\"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnlveW9naS5vby9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTUyNzY3ODg2NiwiZXhwIjoxNTI3NjgyNDY2LCJuYmYiOjE1Mjc2Nzg4NjYsImp0aSI6IklmdlpQbHIwcGJoUGFlcEoiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.xXrwVH9ggT1gx1iir6pXT8Jd0Tyw6Q1PIFK4VICSq8Q\",\n\"expires_in\": 3600,\n\"id\": 3,\n\"name\": \"test\",\n\"role\": null\n}",
           "type": "json"
         }
       ]
@@ -104,7 +104,7 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "                {\n\"status\": \"error\",\n\"data\": {\n\"message\": \"403 Forbidden\",\n\"status_code\": 403\n}\n}",
+          "content": "                {\n\"status\": \"error\",\n\"message\": \"403 Forbidden\",\n\"status_code\": 403\n}",
           "type": "json"
         }
       ]
