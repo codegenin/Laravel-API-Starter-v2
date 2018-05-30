@@ -2,10 +2,10 @@
 
 namespace App\Api\V1\Authentication\Controllers;
 
-use App\Api\V1\Authentication\Repositories\RegisterRepository;
+use App\Api\V1\Authentication\Repositories\UserRepository;
 use App\Api\V1\Authentication\Requests\SignUpRequest;
+use App\Jobs\SendVerificationEmail;
 use Config;
-use App\User;
 use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -36,23 +36,26 @@ class RegisterController extends Controller
             'is_active' => 1
         ]);
         
-        $userRepo = new RegisterRepository();
+        $userRepo = new UserRepository();
         
         $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-            'is_active' => 1
+            'name'               => $request->name,
+            'email'              => $request->email,
+            'password'           => $request->password,
+            'verification_token' => base64_encode($request->email)
         ];
-        
         
         if (!$user = $userRepo->create($data)) {
             throw new HttpException(500);
         }
         
+        // Send verification email
+        dispatch(new SendVerificationEmail($user));
+        
         if (!Config::get('boilerplate.sign_up.release_token')) {
             return response()->json([
-                'status' => 'ok'
+                'status' => 'ok',
+                'message' => 'A verification mail has been sent into your email account!'
             ], 201);
         }
         
