@@ -2,6 +2,7 @@
 
 namespace App\Api\V1\User\Controllers;
 
+use App\Api\V1\User\Resource\UserResource;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
@@ -29,6 +30,7 @@ class UserController extends Controller
      */
     public function me()
     {
-        return response()->json(Auth::guard()->user());
+        UserResource::withoutWrapping();
+        return new UserResource(Auth::guard()->user());
     }
 }
