@@ -1,10 +1,10 @@
 <?php
-namespace App\Api\V1\Authentication\Repositories;
+namespace App\ACME\Api\V1\Authentication\Repositories;
 
 use App\Repositories\AbstractBaseRepository;
 use App\Models\User;
 
-class UserRepository extends AbstractBaseRepository
+class RegisterRepository extends AbstractBaseRepository
 {
     /**
      * RegisterRepository constructor.

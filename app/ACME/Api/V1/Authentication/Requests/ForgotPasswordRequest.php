@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\V1\Authentication\Requests;
+namespace App\ACME\Api\V1\Authentication\Requests;
 
 use Config;
 use Dingo\Api\Http\FormRequest;

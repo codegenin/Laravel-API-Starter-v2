@@ -1,19 +1,12 @@
 <?php
 
-namespace App\Web\Authentication\Controllers;
+namespace App\ACME\Web\Authentication\Controllers;
 
-use App\Api\V1\Authentication\Repositories\RegisterRepository;
-use App\Api\V1\Authentication\Repositories\UserRepository;
-use App\Api\V1\Authentication\Requests\SignUpRequest;
-use App\Jobs\SendVerificationEmail;
+use App\ACME\Api\V1\Authentication\Repositories\UserRepository;
 use Config;
 use App\User;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Translation\Exception\NotFoundResourceException;
-use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-
 class VerificationController extends Controller
 {
     public function verify($token)

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Api\V1\Authentication\Controllers;
+namespace App\ACME\Api\V1\Authentication\Controllers;
 
-use App\Api\V1\Authentication\Requests\LoginRequest;
+use App\ACME\Api\V1\Authentication\Requests\LoginRequest;
 use Hashids\Hashids;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tymon\JWTAuth\JWTAuth;

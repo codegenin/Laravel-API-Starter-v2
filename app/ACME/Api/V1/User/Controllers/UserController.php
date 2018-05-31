@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Api\V1\User\Controllers;
+namespace App\ACME\Api\V1\User\Controllers;
 
-use App\Api\V1\User\Resource\UserResource;
+use App\ACME\Api\V1\User\Resource\UserResource;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
-use App\Api\V1\Authentication\Requests\LoginRequest;
+use App\ACME\Api\V1\Authentication\Requests\LoginRequest;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Auth;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Api\V1\Authentication\Controllers;
+namespace App\ACME\Api\V1\Authentication\Controllers;
 
-use App\Api\V1\Authentication\Requests\ForgotPasswordRequest;
+use App\ACME\Api\V1\Authentication\Requests\ForgotPasswordRequest;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;

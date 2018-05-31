@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Api\V1\Authentication\Controllers;
+namespace App\ACME\Api\V1\Authentication\Controllers;
 
-use App\Api\V1\Authentication\Repositories\UserRepository;
-use App\Api\V1\Authentication\Requests\SignUpRequest;
+use App\ACME\Api\V1\Authentication\Repositories\UserRepository;
+use App\ACME\Api\V1\Authentication\Requests\SignUpRequest;
 use App\Jobs\SendVerificationEmail;
 use Config;
 use Tymon\JWTAuth\JWTAuth;
@@ -14,7 +14,7 @@ class RegisterController extends Controller
 {
     /**
      * @apiGroup           Authentication
-     * @apiName            RegisterUser
+     * @apiName            RegisACME\\terUser
      * @api                {post} /api/auth/register Register User
      * @apiDescription     Register a new artist or patron
      *

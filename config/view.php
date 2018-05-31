@@ -15,8 +15,8 @@ return [
 
     'paths' => [
         realpath(base_path('resources/views')),
-        realpath(base_path('app/Api/V1')),
-        realpath(base_path('app/Web')),
+        realpath(base_path('app/ACME/Api/V1')),
+        realpath(base_path('app/ACME/Web')),
     ],
 
     /*

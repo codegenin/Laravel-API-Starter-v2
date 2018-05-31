@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Api\V1\Authentication\Controllers;
+namespace App\ACME\Api\V1\Authentication\Controllers;
 
-use App\Api\V1\Authentication\Requests\ResetPasswordRequest;
+use App\ACME\Api\V1\Authentication\Requests\ResetPasswordRequest;
 use Config;
 use App\User;
 use Tymon\JWTAuth\JWTAuth;
