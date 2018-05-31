@@ -18,7 +18,7 @@ Route::get('reset_password/{token}', [
     }
 ]);
 
-Route::get('verify/{token}', 'App\\Web\\Authentication\\Controllers\\VerificationController@verify')
+Route::get('verify/{token}', 'App\\ACME\\Web\\Authentication\\Controllers\\VerificationController@verify')
      ->name('verify.user');
 
 Route::get('/', function () {
