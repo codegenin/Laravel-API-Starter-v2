@@ -19,7 +19,6 @@ class RegisterController extends Controller
      * @apiDescription     Register a new artist or patron
      *
      * @apiVersion         1.0.0
-     * @apiPermission      none
      *
      * @apiParam {String} name the complete name of the user
      * @apiParam {String} email unique email of the user

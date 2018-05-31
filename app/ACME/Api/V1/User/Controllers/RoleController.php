@@ -31,7 +31,6 @@ class RoleController extends Controller
      * @api                {post} /api/user/role-update Update Role
      * @apiDescription     Update user role
      * @apiVersion         1.0.0
-     * @apiPermission      none
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *

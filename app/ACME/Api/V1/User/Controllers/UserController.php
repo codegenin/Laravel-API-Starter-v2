@@ -50,7 +50,6 @@ class UserController extends Controller
      * @api                {get} /api/user/{id}/delete Delete User
      * @apiDescription     Delete a user
      * @apiVersion         1.0.0
-     * @apiPermission      none
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *

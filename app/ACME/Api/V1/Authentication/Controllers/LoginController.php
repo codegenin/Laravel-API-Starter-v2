@@ -19,7 +19,6 @@ class LoginController extends Controller
      * @api                {post} /api/auth/login Login User (Email)
      * @apiDescription     Logging in users via api endpoint.
      * @apiVersion         1.0.0
-     * @apiPermission      none
      *
      * @apiParam {String} email unique email of the user
      * @apiParam {String} password at least 6 characters
