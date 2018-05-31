@@ -21,6 +21,7 @@ class RoleController extends Controller
      */
     public function __construct(UserRepository $userRepository)
     {
+        $this->middleware('jwt.auth', []);
         $this->userRepository = $userRepository;
     }
     
