@@ -39,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
         
         $this->mapWebRoutes();
         
+        $this->mapAdminRoutes();
+        
         //
     }
     
@@ -56,8 +58,10 @@ class RouteServiceProvider extends ServiceProvider
             #'namespace'  => $this->namespace,
         ], function ($router) {
             require base_path('routes/web.php');
+            require base_path('routes/admin/AuthenticationRoutes.php');
         });
     }
+    
     
     /**
      * Define the "api" routes for the application.
@@ -74,8 +78,25 @@ class RouteServiceProvider extends ServiceProvider
             'prefix'     => 'api',
         ], function ($router) {
             require base_path('routes/api.php');
-            require base_path('routes/Api/V1/AuthenticationRoutes.php');
-            require base_path('routes/Api/V1/UserRoutes.php');
+            require base_path('routes/api/v1/AuthenticationRoutes.php');
+            require base_path('routes/api/v1/UserRoutes.php');
+        });
+    }
+    
+    /**
+     * Define the "web" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::group([
+            'middleware' => 'web',
+            'prefix'     => 'admin',
+        ], function ($router) {
+            require base_path('routes/admin/AuthenticationRoutes.php');
         });
     }
 }

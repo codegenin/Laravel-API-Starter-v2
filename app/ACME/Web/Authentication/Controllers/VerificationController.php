@@ -26,7 +26,7 @@ class VerificationController extends Controller
             'verification_token' => null
         ]);
     
-        return view('Web.Authentication.Views.Verification.EmailConfirmation');
+        return view('web.authentication.email-confirmation');
         
     }
 }
