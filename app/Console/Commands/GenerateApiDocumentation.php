@@ -37,6 +37,6 @@ class GenerateApiDocumentation extends Command
      */
     public function handle()
     {
-        exec('apidoc -i app/Api/V1 -o public/docs/');
+        exec('apidoc -i app/ACME/Api/V1 -o public/docs/');
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace App\ACME\Api\V1\Authentication\Repositories;
+namespace App\ACME\Api\V1\User\Repositories;
 
 use App\Repositories\AbstractBaseRepository;
 use App\Models\User;
