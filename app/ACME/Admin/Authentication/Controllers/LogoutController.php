@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ACME\Api\V1\Authentication\Controllers;
+namespace App\ACME\Admin\Authentication\Controllers;
 
 use App\Http\Controllers\Controller;
 use Auth;
@@ -14,9 +14,9 @@ class LogoutController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jwt.auth', []);
+        $this->middleware('auth:admin');
     }
-
+    
     /**
      * Log the user out (Invalidate the token)
      *
@@ -24,9 +24,9 @@ class LogoutController extends Controller
      */
     public function logout()
     {
-        Auth::guard()->logout();
-
-        return response()
-            ->json(['message' => 'Successfully logged out']);
+        Auth::guard('admin')
+            ->logout();
+        
+        return redirect()->route('admin.auth.get.login');
     }
 }

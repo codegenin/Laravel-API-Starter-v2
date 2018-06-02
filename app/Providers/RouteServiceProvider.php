@@ -97,6 +97,7 @@ class RouteServiceProvider extends ServiceProvider
             'prefix'     => 'admin',
         ], function ($router) {
             require base_path('routes/admin/AuthenticationRoutes.php');
+            require base_path('routes/admin/AdminRoutes.php');
         });
     }
 }

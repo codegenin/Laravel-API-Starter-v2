@@ -9,9 +9,11 @@ $api->version('v1', function (Router $api) {
     $api->group(['prefix' => 'auth'], function (Router $api) {
         
         $api->post('register', 'App\\ACME\\Api\\V1\\Authentication\\Controllers\\RegisterController@register');
-        $api->post('login', 'App\\ACME\\Api\\V1\\Authentication\\Controllers\\LoginController@login');
+        $api->post('login', 'App\\ACME\\Api\\V1\\Authentication\\Controllers\\LoginController@login')
+            ->name('api.login');
         
-        $api->post('recovery', 'App\\ACME\\Api\\V1\\Authentication\\Controllers\\ForgotPasswordController@sendResetEmail');
+        $api->post('recovery',
+            'App\\ACME\\Api\\V1\\Authentication\\Controllers\\ForgotPasswordController@sendResetEmail');
         $api->post('reset', 'App\\ACME\\Api\\V1\\Authentication\\Controllers\\ResetPasswordController@resetPassword');
         
         $api->post('logout', 'App\\ACME\\Api\\V1\\Authentication\\Controllers\\LogoutController@logout');

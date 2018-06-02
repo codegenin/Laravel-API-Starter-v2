@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ACME\Admin\Authentication\Controllers;
+namespace App\ACME\Admin\Dashboard\Controllers;
 
 use App\Http\Controllers\Controller;
 
@@ -8,11 +8,11 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['admin']);
+        $this->middleware('auth:admin');
     }
     
     public function index()
     {
-        return view('Admin.Dashboard.Views.dashboard');
+        return view('admin.dashboard.index');
     }
 }
