@@ -4,14 +4,8 @@ namespace App\ACME\Api\V1\User\Controllers;
 
 use App\ACME\Api\V1\User\Repositories\UserRepository;
 use App\ACME\Api\V1\User\Resource\UserResource;
-use Dingo\Api\Exception\ResourceException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
-use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
-use App\ACME\Api\V1\Authentication\Requests\LoginRequest;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Auth;
 use Vinkla\Hashids\Facades\Hashids;
 

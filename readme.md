@@ -1,3 +1,2 @@
-## YoYoGi App by Nouvart
-
-REST API
+## API Starter v2 
+Built with Laravel 5.6
