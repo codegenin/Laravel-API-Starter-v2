@@ -14,7 +14,7 @@ class AddIsActiveInUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('is_active')
+            $table->tinyInteger('verified')
                   ->default(0)
                   ->after('password');
         });
@@ -28,7 +28,7 @@ class AddIsActiveInUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_active');
+            $table->dropColumn('verified');
         });
     }
 }

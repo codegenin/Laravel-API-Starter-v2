@@ -16,7 +16,7 @@ class AddVerificationTokenInUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('verification_token')
                   ->nullable()
-                  ->after('remember_token');
+                  ->after('verified');
         });
     }
     
