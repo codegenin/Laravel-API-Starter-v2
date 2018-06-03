@@ -16,14 +16,11 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'status' => 'ok',
-            'data'   => [
-                'identification' => Hashids::encode($this->id),
-                'complete_name'  => $this->name,
-                'email_address'  => $this->email,
-                'group'          => $this->role,
-                'active'         => ($this->is_active == 1) ? 'YES' : 'NO'
-            ]
+            'status'         => 'ok',
+            'identification' => Hashids::encode($this->id),
+            'complete_name'  => $this->name,
+            'email_address'  => $this->email,
+            'type'           => $this->role,
         ];
     }
 }

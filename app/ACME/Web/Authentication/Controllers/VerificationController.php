@@ -7,6 +7,7 @@ use Config;
 use App\User;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Http\Controllers\Controller;
+
 class VerificationController extends Controller
 {
     public function verify($token)
@@ -14,7 +15,7 @@ class VerificationController extends Controller
         $userRepo = new UserRepository();
         
         if (!$user = $userRepo->findByColumnsFirst([
-            'is_active'          => 0,
+            'verified'           => 0,
             'verification_token' => $token
         ])) {
             throw new NotFoundHttpException();
@@ -22,10 +23,10 @@ class VerificationController extends Controller
         
         // Update user record
         $userRepo->update($user->id, [
-            'is_active'          => 1,
+            'verified'           => 1,
             'verification_token' => null
         ]);
-    
+        
         return view('web.authentication.email-confirmation');
         
     }

@@ -30,11 +30,6 @@ class RegisterController extends Controller
      */
     public function register(SignUpRequest $request, JWTAuth $JWTAuth)
     {
-        // Remove this once email confirmation is set
-        $request->merge([
-            'is_active' => 1
-        ]);
-        
         $userRepo = new UserRepository();
         
         $data = [
@@ -53,7 +48,7 @@ class RegisterController extends Controller
         
         if (!Config::get('boilerplate.sign_up.release_token')) {
             return response()->json([
-                'status' => 'ok',
+                'status'  => 'ok',
                 'message' => 'A verification mail has been sent into your email account!'
             ], 201);
         }

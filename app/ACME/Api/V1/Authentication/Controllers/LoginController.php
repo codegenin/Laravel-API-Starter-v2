@@ -64,7 +64,7 @@ class LoginController extends Controller
         $user = Auth::guard()
                     ->authenticate($token);
         
-        if (!$user->is_active) {
+        if (!$user->verified) {
             throw new AccessDeniedHttpException('Account is disabled! please check your email to activate your account.');
         }
         
