@@ -153,6 +153,7 @@ return [
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
+        Nestable\NestableServiceProvider::class,
         
         /*
          * Application Service Providers...
@@ -216,7 +217,8 @@ return [
          */
         'JWTAuth'      => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory'   => Tymon\JWTAuth\Facades\JWTFactory::class,
-        'Hashids'      => Vinkla\Hashids\Facades\Hashids::class
+        'Hashids'      => Vinkla\Hashids\Facades\Hashids::class,
+        'Nestable'     => Nestable\Facades\NestableService::class
     ],
 
 ];

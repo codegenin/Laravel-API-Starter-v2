@@ -80,6 +80,7 @@ class RouteServiceProvider extends ServiceProvider
             require base_path('routes/api.php');
             require base_path('routes/api/v1/AuthenticationRoutes.php');
             require base_path('routes/api/v1/UserRoutes.php');
+            require base_path('routes/api/v1/CategoryRoutes.php');
         });
     }
     
