@@ -190,4 +190,5 @@ abstract class AbstractBaseRepository
         return $this->model->where($column, 'like', '%' . $value . '%')
                            ->get();
     }
+    
 }

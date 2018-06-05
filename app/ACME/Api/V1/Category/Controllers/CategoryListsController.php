@@ -6,6 +6,7 @@ use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\ACME\Api\V1\Category\Resource\CategoryResource;
 use App\ACME\Api\V1\Category\Resource\CategoryResourceCollection;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Auth;
 
 class CategoryListsController extends Controller
@@ -26,29 +27,23 @@ class CategoryListsController extends Controller
     }
     
     /**
-     * @apiGroup           User
-     * @apiName            updateUserRole
-     * @api                {post} /api/user/role-update Update Role
-     * @apiDescription     Update user role
+     * @apiGroup           Category
+     * @apiName            listAllCategories
+     * @api                {get} /api/category/list-all List All Categories
+     * @apiDescription     List all available categories sorted by order field
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {String} role choose between artist or patron role only
-     * @apiParam {String} role choose between artist or patron role only
-     *
-     *
-     * @apiSuccessExample {json} Success-Response:
-     *                     {
-     * "status": "ok",
-     * "message": "Role has been updated successfully!"
-     * }
      *
      */
-    public function all()
+    public function listAll()
     {
-        $categories = $this->categoryRepository->all();
-    
-        return CategoryResource::collection($categories);
+        $categories = Category::nested()->sortable('order')->get();
+        
+        return response()->json([
+            'status' => 'ok',
+            'data' => $categories
+        ]);
     }
 }

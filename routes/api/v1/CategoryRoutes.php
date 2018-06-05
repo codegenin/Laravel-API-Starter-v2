@@ -8,7 +8,7 @@ $api->version('v1', function (Router $api) {
     
     $api->group(['prefix' => 'category'], function (Router $api) {
     
-        $api->get('all', 'App\\ACME\\Api\\V1\\Category\\Controllers\\CategoryListsController@all');
+        $api->get('list-all', 'App\\ACME\\Api\\V1\\Category\\Controllers\\CategoryListsController@listAll');
         
     });
     

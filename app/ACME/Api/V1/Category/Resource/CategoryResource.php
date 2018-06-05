@@ -21,7 +21,8 @@ class CategoryResource extends JsonResource
             'name'        => $this->name,
             'description' => $this->description,
             'public'      => ($this->is_public == 1) ? 'Yes' : 'No',
-            'cover_image' => $this->image_path
+            'cover_image' => $this->image_path,
+            'order'       => $this->order
         ];
     }
 }

@@ -3,11 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 use Nestable\NestableTrait;
 
 class Category extends Model
 {
-    use NestableTrait;
+    use NestableTrait, Sortable;
+    
+    public $sortable = [
+        'id',
+        'name',
+        'order'
+    ];
+    
+    protected $parent = 'parent_id';
     
     /**
      * The attributes that are mass assignable.
