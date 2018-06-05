@@ -7,7 +7,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'App\ACME\Admin\Authentication\Controllers\LoginController@login')
          ->name('admin.auth.post.login');
     
-    Route::post('logout', 'App\ACME\Admin\Authentication\Controllers\LogoutController@logout')
+    Route::get('logout', 'App\ACME\Admin\Authentication\Controllers\LogoutController@logout')
          ->name('admin.auth.post.logout');
     
 });

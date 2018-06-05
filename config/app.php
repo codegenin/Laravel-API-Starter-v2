@@ -153,6 +153,7 @@ return [
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Nestable\NestableServiceProvider::class,
+        JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         
         /*
          * Application Service Providers...
