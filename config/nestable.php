@@ -9,7 +9,8 @@ return [
         'id',
         'name',
         'description',
-        'order'
+        'order',
+        'image_path'
     ],
     'html'         => [
         'label' => 'name',
