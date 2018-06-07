@@ -28,7 +28,7 @@ class MoveCategoryController extends Controller
         Category::find($id)
                 ->up();
         
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.category.index');
     }
     
     /**
@@ -39,7 +39,7 @@ class MoveCategoryController extends Controller
     {
         Category::find($id)
                 ->down();
-        
-        return back();
+    
+        return redirect()->route('admin.category.index');
     }
 }

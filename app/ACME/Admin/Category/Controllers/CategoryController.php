@@ -3,6 +3,7 @@
 namespace App\ACME\Admin\Category\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -16,4 +17,13 @@ class CategoryController extends Controller
         $this->middleware('auth:admin');
     }
     
+    public function index()
+    {
+        $categories = Category::orderBy('seq')
+                              ->renderAsArray();
+        
+        return view('admin.category.index')->with([
+            'categories' => $categories
+        ]);
+    }
 }

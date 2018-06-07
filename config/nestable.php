@@ -8,9 +8,11 @@ return [
     'body'         => [
         'id',
         'name',
+        'slug',
         'description',
         'seq',
-        'image_path'
+        'image_path',
+        'is_public'
     ],
     'html'         => [
         'label' => 'name',
