@@ -33,6 +33,11 @@ class Category extends Model
         'seq'
     ];
     
+    public function setSlugAttribute($value)
+    {
+        $this->attributes['slug'] = str_slug($value);
+    }
+    
     public function sequence()
     {
         return [
