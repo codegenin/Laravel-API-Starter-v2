@@ -23,7 +23,7 @@ class CreateCategoriesTable extends Migration
                   ->nullable();
             $table->boolean('is_public')
                   ->default(0);
-            $table->integer('order')
+            $table->integer('seq')
                   ->default(0);
             $table->string('image_path')
                   ->nullable();

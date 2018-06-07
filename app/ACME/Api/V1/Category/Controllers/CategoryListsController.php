@@ -39,7 +39,7 @@ class CategoryListsController extends Controller
      */
     public function listAll()
     {
-        $categories = Category::nested()->sortable('order')->get();
+        $categories = Category::nested()->sortable('seq')->get();
         
         return response()->json([
             'status' => 'ok',

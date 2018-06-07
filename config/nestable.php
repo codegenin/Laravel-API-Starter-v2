@@ -9,7 +9,7 @@ return [
         'id',
         'name',
         'description',
-        'order',
+        'seq',
         'image_path'
     ],
     'html'         => [

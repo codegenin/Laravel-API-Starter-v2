@@ -19,42 +19,42 @@ class CategoriesTableSeeder extends Seeder
                 'slug'        => 'design',
                 'description' => 'buildings, building, construction, object, works',
                 'is_public'   => 1,
-                'order'       => 1,
+                'seq'         => 1,
             ],
             [
                 'name'        => 'Illustration',
                 'slug'        => 'illustration',
                 'description' => 'drawing, graphics',
                 'is_public'   => 1,
-                'order'       => 3
+                'seq'         => 3
             ],
             [
                 'name'        => 'Mode',
                 'slug'        => 'mode',
                 'description' => 'creation, clothing, jewelry',
                 'is_public'   => 1,
-                'order'       => 2,
+                'seq'         => 2,
             ],
             [
                 'name'        => 'Painting',
                 'slug'        => 'painting',
                 'description' => 'painting, graffiti',
                 'is_public'   => 1,
-                'order'       => 4,
+                'seq'         => 4,
             ],
             [
                 'name'        => 'Company',
                 'slug'        => 'company',
                 'description' => 'people, societal power',
                 'is_public'   => 1,
-                'order'       => 5
+                'seq'         => 5
             ],
             [
                 'name'        => 'Photography',
                 'slug'        => 'photography',
                 'description' => 'artistic photos, nature',
                 'is_public'   => 1,
-                'order'       => 6
+                'seq'         => 6
             ],
         ];
         
