@@ -19,8 +19,7 @@ class CategoryController extends Controller
     
     public function index()
     {
-        $categories = Category::orderBy('seq')
-                              ->renderAsArray();
+        $categories = Category::orderBy('seq')->renderAsArray();
         
         return view('admin.category.index')->with([
             'categories' => $categories
