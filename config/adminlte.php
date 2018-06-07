@@ -114,7 +114,7 @@ return [
             'url'  => 'admin/categories',
             'icon' => 'file',
         ],
-        [
+        /*[
             'text'    => 'Users',
             'icon'    => 'users',
             'submenu' => [
@@ -189,7 +189,7 @@ return [
         [
             'text'       => 'Information',
             'icon_color' => 'aqua',
-        ],
+        ],*/
     ],
     
     /*

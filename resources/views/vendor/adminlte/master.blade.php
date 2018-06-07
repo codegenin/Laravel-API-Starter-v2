@@ -62,6 +62,7 @@
 @endif
 
 @yield('adminlte_js')
+@yield('scripts')
 
 </body>
 </html>

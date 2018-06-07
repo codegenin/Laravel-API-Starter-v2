@@ -76,7 +76,7 @@
     </tbody>
 </table>
 @include('admin.common.delete')
-@section('adminlte_js')
+@section('scripts')
     <script>
         $(function () {
             // Open modal for deleting a record
