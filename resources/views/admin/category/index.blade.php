@@ -12,10 +12,10 @@
             </div>
         </div>
         <div class="card-body">
-            @include('admin.category.common.categories')
+            @include('admin.category.categories')
         </div>
     </div>
 
     <!-- Modals -->
-    @include('admin.category.common.modals')
+    @include('admin.category.modals')
 @endsection
