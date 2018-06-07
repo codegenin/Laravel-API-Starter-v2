@@ -35,7 +35,7 @@ class MoveCategoryController extends Controller
      * @param Category $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function down(Category $id)
+    public function down($id)
     {
         Category::find($id)
                 ->down();
