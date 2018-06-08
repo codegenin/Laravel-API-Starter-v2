@@ -53,14 +53,16 @@ class CategoryController extends Controller
      */
     public function get($id)
     {
-        $category = $this->categoryRepository->find($id);
+        $category   = $this->categoryRepository->find($id);
+        $coverImage = ($category->getMedia('category')
+                                ->first())
+            ? $category->getMedia('category')
+                       ->first()
+                       ->getUrl() : '';
         
         return response()->json([
             'category' => $category,
-            'cover'    => ($category->getMedia('category')
-                                    ->first()) ? $category->getMedia('category')
-                                                          ->first()
-                                                          ->getUrl() : ''
+            'cover'    => $coverImage
         ]);
     }
     
@@ -88,7 +90,12 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $category = $this->categoryRepository->create($this->prepareFields($request));
-        $this->associateMedia($category, $request, 'category');
+        if ($request->has('file') AND $this->associateMedia($category, $request, 'category')) {
+            // Update media id
+            $category->media_id = $category->getMedia('category')
+                                           ->first()->id;
+            $category->save();
+        }
         
         return redirect()
             ->back()
@@ -100,7 +107,10 @@ class CategoryController extends Controller
      */
     public function destroy()
     {
+        $category = $this->categoryRepository->find(request()->id);
+        
         $this->categoryRepository->delete(request()->id);
+        $category->clearMediaCollection('category');
         
         return redirect()
             ->back()
