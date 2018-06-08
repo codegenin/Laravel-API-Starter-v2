@@ -53,6 +53,36 @@ class User extends Authenticatable implements JWTSubject
     }
     
     /**
+     * Automatically transforms name to lower case
+     * @param $value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
+    
+    /**
+     * Automatically transforms name to title case
+     *
+     * @param $value
+     * @return string
+     */
+    public function getNameAttribute($value)
+    {
+        return title_case($value);
+    }
+    
+    /**
+     * Automatically transforms email to lower case
+     *
+     * @param $value
+     */
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+    
+    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed
