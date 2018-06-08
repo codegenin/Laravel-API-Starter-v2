@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'identification' => Hashids::encode($this->id),
             'complete_name'  => $this->name,
             'email_address'  => $this->email,
-            'type'           => $this->role,
+            'role'           => $this->role,
             'about'          => $this->about,
             'birthday'       => $this->birthday,
             'website'        => $this->website,
