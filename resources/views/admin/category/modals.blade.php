@@ -45,10 +45,13 @@
 
                     <!-- Image URL: Form Input -->
                     <div class="form-group">
-                        <label for="image_path">Image URL:</label>
-                        <input type="text" name="image_path" id="image_path" class="form-control"
-                               value="{{ old('image_path') }}">
+                        <label for="media_id">Cover Image</label>
+                        <div class="input-group">
+                            <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
+                            <span class="input-group-addon" id="basic-addon2">Browse</span>
+                        </div>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -62,11 +65,11 @@
 </div>
 <!-- /.modal -->
 
-<!-- Category Modal -->
+<!-- Edit Category Modal -->
 <div class="modal fade" id="modal-edit-category">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{route('admin.category.update')}}" method="post">
+            <form action="{{route('admin.category.update')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -110,9 +113,15 @@
 
                     <!-- Image URL: Form Input -->
                     <div class="form-group">
-                        <label for="image_path">Image URL:</label>
-                        <input type="text" name="image_path" id="edit-image_path" class="form-control"
-                               value="{{ old('image_path') }}">
+                        <label for="media_id">Cover Image</label>
+                        <div class="input-group">
+                            <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
+                            <span class="input-group-addon" id="basic-addon2">Browse</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <img src="" id="cover-image" alt="">
                     </div>
                 </div>
                 <div class="modal-footer">

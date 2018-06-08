@@ -25,7 +25,7 @@ class CreateCategoriesTable extends Migration
                   ->default(0);
             $table->integer('seq')
                   ->default(0);
-            $table->string('image_path')
+            $table->string('media_id')
                   ->nullable();
             $table->timestamps();
         });

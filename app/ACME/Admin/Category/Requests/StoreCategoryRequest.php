@@ -16,6 +16,19 @@ class StoreCategoryRequest extends FormRequest
         return [
             'name'        => 'required',
             'description' => 'required',
+            'file'        => 'nullable|mimes:jpeg,png',
+        ];
+    }
+    
+    /**
+     * Display custom validation messages
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'file.mimes' => 'Only jpg and png are allowed!'
         ];
     }
     

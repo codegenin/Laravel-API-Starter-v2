@@ -6,10 +6,13 @@ use HighSolutions\EloquentSequence\Sequence;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Nestable\NestableTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
-class Category extends Model
+class Category extends Model implements HasMedia
 {
-    use NestableTrait, Sortable, Sequence;
+    use NestableTrait, Sortable, Sequence, HasMediaTrait;
     
     public $sortable = [
         'id',
@@ -23,14 +26,10 @@ class Category extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'parent_id',
-        'slug',
-        'name',
-        'description',
-        'image_path',
-        'is_public',
-        'seq'
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
     ];
     
     public function setSlugAttribute($value)
@@ -45,4 +44,19 @@ class Category extends Model
         ];
     }
     
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('category')
+             ->singleFile();
+    }
+    
+    public function cover()
+    {
+        return $this->hasOne(Media::class, 'id', 'media_id');
+    }
+    
+    public function getCoverUrlAttribute()
+    {
+        return $this->cover->getUrl();
+    }
 }

@@ -3,13 +3,17 @@
 namespace App\ACME\Admin\Category\Controllers;
 
 use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
+use App\ACME\Admin\Category\Requests\UploadCoverImageRequest;
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Traits\MediaTraits;
 use Symfony\Component\Debug\Exception\FatalErrorException;
 
 class CategoryController extends Controller
 {
+    use MediaTraits;
+    
     /**
      * @var CategoryRepository
      */
@@ -52,13 +56,25 @@ class CategoryController extends Controller
         $category = $this->categoryRepository->find($id);
         
         return response()->json([
-            'category' => $category
+            'category' => $category,
+            'cover'    => ($category->getMedia('category')
+                                    ->first()) ? $category->getMedia('category')
+                                                          ->first()
+                                                          ->getUrl() : ''
         ]);
     }
     
     public function update(StoreCategoryRequest $request)
     {
+        $category = $this->categoryRepository->find($request->id);
         $this->categoryRepository->update($request->id, $this->prepareFields($request));
+        
+        if ($request->has('file') AND $this->associateMedia($category, $request, 'category')) {
+            // Update media id
+            $category->media_id = $category->getMedia('category')
+                                           ->first()->id;
+            $category->save();
+        }
         
         return redirect()
             ->back()
@@ -71,7 +87,8 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $this->categoryRepository->create($this->prepareFields($request));
+        $category = $this->categoryRepository->create($this->prepareFields($request));
+        $this->associateMedia($category, $request, 'category');
         
         return redirect()
             ->back()
@@ -102,7 +119,6 @@ class CategoryController extends Controller
             'description' => $request->description,
             'is_public'   => $request->is_public,
             'parent_id'   => $request->parent_id,
-            'image_path'  => $request->image_path
         ];
     }
 }
