@@ -2,11 +2,14 @@
 
 namespace App\ACME\Api\V1\Collection\Resource;
 
+use App\Traits\MediaTraits;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Vinkla\Hashids\Facades\Hashids;
 
 class CollectionResource extends JsonResource
 {
+    use MediaTraits;
+    
     /**
      * Transform the resource into an array.
      *
@@ -16,10 +19,12 @@ class CollectionResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'status' => 'ok',
+            'identifier'  => Hashids::encode($this->id),
             'slug'        => $this->slug,
             'title'       => $this->title,
             'description' => $this->description,
-            'cover'      => $this->getMedia($this->slug)->first()->getUrl('large')
+            'covers'      => $this->getMedialUrls($this, $this->slug),
         ];
     }
 }

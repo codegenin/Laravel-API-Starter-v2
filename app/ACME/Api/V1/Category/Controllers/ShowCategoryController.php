@@ -7,8 +7,9 @@ use App\ACME\Api\V1\Category\Resource\CategoryResource;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Auth;
+use Hashids\Hashids;
 
-class CategoryController extends Controller
+class ShowCategoryController extends Controller
 {
     private $categoryRepository;
     
@@ -25,7 +26,7 @@ class CategoryController extends Controller
     /**
      * @apiGroup           Category
      * @apiName            showCategory
-     * @api                {get} /api/category/{id}/show Show Category Information
+     * @api                {get} /api/category/show/{id} Show Category Information
      * @apiDescription     Retrieve the category information
      * @apiVersion         1.0.0
      *
@@ -35,8 +36,10 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $collections = $this->categoryRepository->find($id, ['collections']);
+        $id       = \Vinkla\Hashids\Facades\Hashids::decode($id);
+        $category = $this->categoryRepository->find($id);
+        $category = new CategoryResource($category);
         
-        return new CategoryResource($collections);
+        return response()->json(array_merge(['status' => 'ok'], $category->toArray($id)));
     }
 }

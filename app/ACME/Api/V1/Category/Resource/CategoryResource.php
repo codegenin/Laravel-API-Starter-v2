@@ -20,13 +20,13 @@ class CategoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'status'      => 'ok',
+            'id'          => Hashids::encode($this->id),
             'slug'        => $this->slug,
             'name'        => $this->name,
             'description' => $this->description,
             'public'      => ($this->is_public == 1) ? 'Yes' : 'No',
             'covers'      => $this->getMedialUrls($this, 'category'),
-            'collections' => CollectionResource::collection($this->whenLoaded('collections'))
+            #'collections' => CollectionResource::collection($this->whenLoaded('collections'))
         ];
     }
 }
