@@ -67,8 +67,8 @@ class CategoryController extends Controller
         $category = $this->categoryRepository->find($request->id);
         $this->categoryRepository->update($request->id, $this->prepareFields($request));
         
-        if ($request->has('file') AND $this->associateMedia($category, $request, 'category')) {
-            // Update media id
+        if ($request->has('file')) {
+            $this->associateMedia($category, $request, 'category');
             $category->media_id = $category->getMedia('category')
                                            ->first()->id;
             $category->save();
@@ -86,8 +86,8 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $category = $this->categoryRepository->create($this->prepareFields($request));
-        if ($request->has('file') AND $this->associateMedia($category, $request, 'category')) {
-            // Update media id
+        if ($request->has('file')) {
+            $this->associateMedia($category, $request, 'category');
             $category->media_id = $category->getMedia('category')
                                            ->first()->id;
             $category->save();

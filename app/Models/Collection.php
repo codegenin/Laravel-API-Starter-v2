@@ -44,4 +44,9 @@ class Collection extends Model implements HasMedia
     {
         return $this->hasMany(Media::class, 'model_id', 'id');
     }
+    
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

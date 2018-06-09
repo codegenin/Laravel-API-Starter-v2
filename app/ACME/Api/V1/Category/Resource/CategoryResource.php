@@ -2,11 +2,15 @@
 
 namespace App\ACME\Api\V1\Category\Resource;
 
+use App\ACME\Api\V1\Collection\Resource\CollectionResource;
+use App\Traits\MediaTraits;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Vinkla\Hashids\Facades\Hashids;
 
 class CategoryResource extends JsonResource
 {
+    use MediaTraits;
+    
     /**
      * Transform the resource into an array.
      *
@@ -21,8 +25,8 @@ class CategoryResource extends JsonResource
             'name'        => $this->name,
             'description' => $this->description,
             'public'      => ($this->is_public == 1) ? 'Yes' : 'No',
-            'cover_image' => $this->image_path,
-            'order'       => $this->order
+            'covers'      => $this->getMedialUrls($this, 'category'),
+            'collections' => CollectionResource::collection($this->whenLoaded('collections'))
         ];
     }
 }

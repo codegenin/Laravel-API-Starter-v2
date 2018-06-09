@@ -33,6 +33,7 @@ class CreateCollectionController extends Controller
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
+     * @apiParam {int} category_id the id of the category the collection belongs
      * @apiParam {String} title the collection title
      * @apiParam {String} description all about the collection
      *
@@ -53,6 +54,7 @@ class CreateCollectionController extends Controller
         
         $this->collectionRepository->create([
             'user_id'     => auth()->user()->id,
+            'category_id' => $request->category_id,
             'title'       => $request->title,
             'slug'        => $request->title,
             'description' => $request->description,

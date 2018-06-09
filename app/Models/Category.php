@@ -70,4 +70,9 @@ class Category extends Model implements HasMedia
     {
         return $this->cover->getUrl();
     }
+    
+    public function collections()
+    {
+        return $this->hasMany(Collection::class);
+    }
 }

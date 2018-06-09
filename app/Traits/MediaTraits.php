@@ -38,15 +38,15 @@ trait MediaTraits
      * @param $collection
      * @return bool
      */
-    public function associateMedia($model, $request, $collection): bool
+    public function associateMedia($model, $request, $collection)
     {
         try {
-            $model->addMedia($request->file)
-                  ->toMediaCollection($collection);
+            $media = $model->addMedia($request->file)
+                           ->toMediaCollection($collection);
         } catch (\Exception $e) {
             throw new FileException($e);
         }
         
-        return true;
+        return $media;
     }
 }

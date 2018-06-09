@@ -9,7 +9,8 @@ class CreateCollectionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'category_id' => 'required',
+            'title'       => 'required',
         ];
     }
     
