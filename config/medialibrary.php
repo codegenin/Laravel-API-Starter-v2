@@ -23,7 +23,8 @@ return [
     /*
      * The class names of the models that should be used.
      */
-    'media_model'        => Spatie\MediaLibrary\Models\Media::class,
+    #'media_model'        => Spatie\MediaLibrary\Models\Media::class,
+    'media_model'        => App\Models\Media::class,
     
     's3' => [
         /*

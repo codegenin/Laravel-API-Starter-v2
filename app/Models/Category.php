@@ -47,7 +47,12 @@ class Category extends Model implements HasMedia
     public function registerMediaCollections()
     {
         $this->addMediaCollection('category')
-             ->singleFile();
+             ->singleFile()
+             ->registerMediaConversions(function (Media $media) {
+                 $this->addMediaConversion('large')
+                      ->width(500)
+                      ->height(500);
+             });
     }
     
     public function cover()

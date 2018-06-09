@@ -58,7 +58,7 @@ class CategoryController extends Controller
                                 ->first())
             ? $category->getMedia('category')
                        ->first()
-                       ->getUrl() : '';
+                       ->getUrl('large') : '';
         
         return response()->json([
             'category' => $category,
