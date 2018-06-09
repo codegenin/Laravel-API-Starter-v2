@@ -53,16 +53,12 @@ class CategoryController extends Controller
      */
     public function get($id)
     {
-        $category   = $this->categoryRepository->find($id);
-        $coverImage = ($category->getMedia('category')
-                                ->first())
-            ? $category->getMedia('category')
-                       ->first()
-                       ->getUrl('large') : '';
+        $category = $this->categoryRepository->find($id);
+        $covers   = $this->getMedialUrls($category, 'category');
         
         return response()->json([
             'category' => $category,
-            'cover'    => $coverImage
+            'covers'   => $covers
         ]);
     }
     

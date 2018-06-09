@@ -108,7 +108,7 @@
                     $('#edit-is-public').val(data.category.is_public);
                     $('#edit-image_path').val(data.category.image_path);
                     $('#modal-edit-category').modal('show');
-                    $('#cover-image').attr('src', data.cover);
+                    $('#cover-image').attr('src', data.covers.large);
                 });
 
                 //$('#deleteId').val(id);

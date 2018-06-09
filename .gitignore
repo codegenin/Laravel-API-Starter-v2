@@ -3,6 +3,7 @@
 /public/storage
 /public/docs/
 /storage/*.key
+/storage/medialibrary
 /vendor
 /.idea
 /.vscode

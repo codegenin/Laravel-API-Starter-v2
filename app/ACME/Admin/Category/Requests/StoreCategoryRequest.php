@@ -16,7 +16,7 @@ class StoreCategoryRequest extends FormRequest
         return [
             'name'        => 'required',
             'description' => 'required',
-            'file'        => 'nullable|mimes:jpeg,png',
+            'file'        => 'nullable|mimes:jpeg',
         ];
     }
     
@@ -28,7 +28,7 @@ class StoreCategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'file.mimes' => 'Only jpg and png are allowed!'
+            'file.mimes' => 'Only .jpg image extension is allowed!'
         ];
     }
     
