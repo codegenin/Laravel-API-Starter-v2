@@ -97,6 +97,7 @@
                 $.ajax({
                     url: "categories/"+id+"/get",
                     beforeSend: function (xhr) {
+                        $('#cover-image').attr('src', '');
                         edit.html('<i class="fa fa-refresh fa-spin"></i>');
                     }
                 }).done(function (data) {
