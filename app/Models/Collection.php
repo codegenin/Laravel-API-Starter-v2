@@ -17,22 +17,31 @@ class Collection extends Model implements HasMedia
         'updated_at'
     ];
     
-    public function registerMediaConversions(Media $media = null)
+    public function setSlugAttribute($value)
     {
-        $this->addMediaConversion('thumb')
-             ->width(368)
-             ->height(232)
-             ->sharpen(10);
+        $this->attributes['slug'] = str_slug($value);
     }
     
-    public function registerMediaCollections()
+    public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaCollection('category')
-             ->singleFile();
+        $this->addMediaConversion('large')
+             ->width(500)
+             ->height(500);
+        $this->addMediaConversion('medium')
+             ->width(300)
+             ->height(300);
+        $this->addMediaConversion('small')
+             ->width(100)
+             ->height(100);
     }
     
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    
+    public function images()
+    {
+        return $this->hasMany(Media::class, 'model_id', 'id');
     }
 }

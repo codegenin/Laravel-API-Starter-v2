@@ -19,7 +19,7 @@ class CreateCollectionsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description')
-                  ->nullbale();
+                  ->nullable();
             $table->integer('score')
                   ->default(0);
             $table->integer('media_count')

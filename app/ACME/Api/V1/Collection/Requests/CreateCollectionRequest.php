@@ -9,8 +9,7 @@ class CreateCollectionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'   => 'required',
-            'user_id' => 'required|numeric'
+            'title' => 'required',
         ];
     }
     

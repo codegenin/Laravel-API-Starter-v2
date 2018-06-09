@@ -3,17 +3,12 @@
 namespace App\ACME\Api\V1\Category\Controllers;
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
-use App\ACME\Api\V1\Category\Resource\CategoryResource;
-use App\ACME\Api\V1\Category\Resource\CategoryResourceCollection;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Auth;
 
 class CategoryListsController extends Controller
 {
-    /**
-     * @var CategoryRepository
-     */
     private $categoryRepository;
     
     /**
@@ -39,11 +34,13 @@ class CategoryListsController extends Controller
      */
     public function listAll()
     {
-        $categories = Category::nested()->sortable('seq')->get();
+        $categories = Category::nested()
+                              ->sortable('seq')
+                              ->get();
         
         return response()->json([
             'status' => 'ok',
-            'data' => $categories
+            'data'   => $categories
         ]);
     }
 }

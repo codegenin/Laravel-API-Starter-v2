@@ -95,4 +95,9 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     {
         return [];
     }
+    
+    public function collections()
+    {
+        return $this->hasMany(Collection::class);
+    }
 }
