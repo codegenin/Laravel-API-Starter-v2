@@ -97,7 +97,7 @@
                 $.ajax({
                     url: "categories/"+id+"/get",
                     beforeSend: function (xhr) {
-                        $('#cover-image').attr('src', '');
+                        $('#cover-image').attr('src', 'loading cover image, please wait...');
                         edit.html('<i class="fa fa-refresh fa-spin"></i>');
                     }
                 }).done(function (data) {
@@ -109,6 +109,7 @@
                     $('#edit-is-public').val(data.category.is_public);
                     $('#edit-image_path').val(data.category.image_path);
                     $('#modal-edit-category').modal('show');
+                    $('#cover-image').attr('src', '');
                     $('#cover-image').attr('src', data.covers.large);
                 });
 
