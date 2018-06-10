@@ -49,4 +49,25 @@ trait MediaTraits
         
         return $media;
     }
+    
+    /**
+     * Insert additional media information
+     * @param $media
+     * @param $request
+     * @return bool
+     */
+    public function addMediaInformation($media, $request) : bool
+    {
+        try {
+            $media->title    = $request->title;
+            $media->location = $request->location;
+            $media->during   = $request->during;
+            $media->user_id  = auth()->user()->id;
+            $media->save();
+        } catch (\Exception $e) {
+            return false;
+        }
+        
+        return true;
+    }
 }

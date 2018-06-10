@@ -14,9 +14,12 @@ class UpdateMediaTable extends Migration
     public function up()
     {
         Schema::table('media', function (Blueprint $table) {
-            $table->string('title')
+            $table->unsignedInteger('user_id')
                   ->nullable()
                   ->after('id');
+            $table->string('title')
+                  ->nullable()
+                  ->after('user_id');
             $table->string('location')
                   ->nullable()
                   ->after('title');

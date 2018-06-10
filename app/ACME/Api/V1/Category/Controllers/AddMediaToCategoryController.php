@@ -53,11 +53,10 @@ class AddMediaToCategoryController extends ApiResponseController
         $category = $this->categoryRepository->find($id);
         
         if ($request->has('file')) {
-            $media           = $this->associateMedia($category, $request, $category->slug);
-            $media->title    = $request->title;
-            $media->location = $request->location;
-            $media->during   = $request->during;
-            $media->save();
+            $media = $this->associateMedia($category, $request, $category->slug);
+            if (!$this->addMediaInformation($media, $request)) {
+                return $this->responseWithError(trans('common.media.information.error'));
+            }
         }
         
         return $this->responseWithSuccess(trans('category.add.media.success'));
