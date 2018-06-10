@@ -1,18 +1,18 @@
 <?php
 
-namespace App\ACME\Api\V1\Collection\Requests;
+namespace App\ACME\Api\V1\Category\Requests;
 
 use Dingo\Api\Http\FormRequest;
 
-class AddMediaToCollectionRequest extends FormRequest
+class AddMediaToCategoryRequest extends FormRequest
 {
     public function rules()
     {
         return [
-            'collection_id' => 'required',
-            'title'         => 'required',
-            'during'        => 'required',
-            'file'          => 'required|mimes:jpeg',
+            'category_id' => 'required',
+            'title'       => 'required',
+            'during'      => 'required',
+            'file'        => 'required|mimes:jpeg',
         ];
     }
     
