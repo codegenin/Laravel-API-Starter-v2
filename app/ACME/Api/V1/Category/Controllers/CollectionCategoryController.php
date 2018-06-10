@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Collection;
 use Auth;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
+use Vinkla\Hashids\Facades\Hashids;
 
 class CollectionCategoryController extends ApiResponseController
 {
@@ -33,15 +34,13 @@ class CollectionCategoryController extends ApiResponseController
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {string} id identifier code of the category
+     * @apiParam {string} id the encoded category id
      * @apiParam {int} [page] the page number
      */
     public function run($id)
     {
-        $id          = \Vinkla\Hashids\Facades\Hashids::decode($id);
-        
         try {
-            $collections = Collection::where('category_id', $id)
+            $collections = Collection::where('category_id', Hashids::decode($id))
                                      ->sortable()
                                      ->paginate(10);
         } catch (\Exception $e) {

@@ -51,11 +51,10 @@ class AddMediaToCollectionController extends ApiResponseController
         $collection = $this->collectionRepository->find($id);
         
         if ($request->has('file')) {
-            $media               = $this->associateMedia($collection, $request, $collection->slug);
-            $media->title        = $request->title;
-            $media->location     = $request->location;
-            $media->during       = $request->during;
-            $media->order_column = 1;
+            $media           = $this->associateMedia($collection, $request, $collection->slug);
+            $media->title    = $request->title;
+            $media->location = $request->location;
+            $media->during   = $request->during;
             $media->save();
         }
         

@@ -33,12 +33,11 @@ class ShowCategoryController extends ApiResponseController
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {int} id the category id
+     * @apiParam {int} id the encoded category id
      */
     public function run($id)
     {
-        $id       = Hashids::decode($id);
-        $category = $this->categoryRepository->find($id);
+        $category = $this->categoryRepository->find(Hashids::decode($id));
         $category = collect(new CategoryResource($category));
         
         return $this->responseWithResource($category->toArray());
