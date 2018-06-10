@@ -3,10 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media as BaseMedia;
 
-class Media extends BaseMedia
+class Media extends BaseMedia implements HasMedia
 {
+    use HasMediaTrait, Sortable;
+    
+    public $sortable = [
+        'id',
+        'order_column',
+        'created_at'
+    ];
+    
     public function collection()
     {
         return $this->belongsTo(Collection::class, 'id', 'model_id');

@@ -19,11 +19,13 @@ class MediaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'identifier' => Hashids::encode($this->id),
-            'title'      => $this->title,
-            'location'   => $this->location,
-            'during'     => $this->during,
-            'images' => $this->getMedialUrls($this, $this->collection_name),
+            'id'       => Hashids::encode($this->id),
+            'title'    => $this->title,
+            'location' => $this->location,
+            'during'   => $this->during,
+            'images'   => $this->getMedialUrls($this, $this->collection_name),
+            'created'  => $this->created_at
+        
         ];
     }
 }
