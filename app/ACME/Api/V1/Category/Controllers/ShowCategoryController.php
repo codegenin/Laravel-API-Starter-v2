@@ -26,7 +26,7 @@ class ShowCategoryController extends Controller
     /**
      * @apiGroup           Category
      * @apiName            showCategory
-     * @api                {get} /api/category/{id}/show Show Category Information
+     * @api                {get} /api/category/{id}/show Show Category
      * @apiDescription     Retrieve the category information
      * @apiVersion         1.0.0
      *

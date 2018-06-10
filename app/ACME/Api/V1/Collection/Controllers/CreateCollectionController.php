@@ -27,7 +27,7 @@ class CreateCollectionController extends Controller
     /**
      * @apiGroup           Collection
      * @apiName            newCollection
-     * @api                {post} /api/collection/new Add A New Collection
+     * @api                {post} /api/collection/new New Collection
      * @apiDescription     Store a new collection
      * @apiVersion         1.0.0
      *

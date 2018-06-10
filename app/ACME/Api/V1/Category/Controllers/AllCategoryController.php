@@ -25,8 +25,8 @@ class AllCategoryController extends Controller
     
     /**
      * @apiGroup           Category
-     * @apiName            listAllCategories
-     * @api                {get} /api/category/list-all List All Categories
+     * @apiName            allCategories
+     * @api                {get} /api/category/list-all All Categories
      * @apiDescription     List all available categories sorted by order field
      * @apiVersion         1.0.0
      *

@@ -26,13 +26,13 @@ class CollectionCategoryController extends Controller
     /**
      * @apiGroup           Category
      * @apiName            categoryCollections
-     * @api                {get} /api/category/{id}/collections
+     * @api                {get} /api/category/{id}/collections Category Collections
      * @apiDescription     Retrieve all collections of a category
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {string} encoded id of the category
+     * @apiParam {string} id identifier code of the category
      * @apiParam {int} [page] the page number
      */
     public function run($id)
