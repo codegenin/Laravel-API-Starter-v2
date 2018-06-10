@@ -12,6 +12,9 @@ $api->version('v1', function (Router $api) {
         $api->post('upload-image', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\AddMediaToCollectionController@run');
         $api->get('{id}/images', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\AllImagesInCollectionController@run');
         
+        ############# INCREMENT / DECREMENT #######################
+        $api->post('increment', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\IncrementScoreCollectionController@run');
+        
     });
     
 });
