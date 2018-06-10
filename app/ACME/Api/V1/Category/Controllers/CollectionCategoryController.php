@@ -42,7 +42,7 @@ class CollectionCategoryController extends Controller
         try {
             $collections = Collection::where('category_id', $id)
                                      ->sortable()
-                                     ->paginate(2);
+                                     ->paginate();
         } catch (\Exception $e) {
             throw new NotFoundResourceException(trans('common.not.found'));
         }
