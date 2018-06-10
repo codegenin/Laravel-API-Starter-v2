@@ -38,7 +38,7 @@ class CreateCollectionController extends Controller
      * @apiParam {String} description all about the collection
      *
      */
-    public function store(CreateCollectionRequest $request)
+    public function run(CreateCollectionRequest $request)
     {
         $collection = $this->collectionRepository->findByColumnsFirst([
             'slug'    => str_slug($request->title),

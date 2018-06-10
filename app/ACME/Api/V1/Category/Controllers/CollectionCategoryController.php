@@ -3,13 +3,12 @@
 namespace App\ACME\Api\V1\Category\Controllers;
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
-use App\ACME\Api\V1\Category\Resource\CategoryResource;
+use App\ACME\Api\V1\Collection\Resource\CollectionResourceCollection;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Collection;
 use Auth;
-use Hashids\Hashids;
 
-class ShowCategoryController extends Controller
+class CollectionCategoryController extends Controller
 {
     private $categoryRepository;
     
@@ -25,21 +24,23 @@ class ShowCategoryController extends Controller
     
     /**
      * @apiGroup           Category
-     * @apiName            showCategory
-     * @api                {get} /api/category/{id}/show Show Category Information
-     * @apiDescription     Retrieve the category information
+     * @apiName            categoryCollections
+     * @api                {get} /api/category/{id}/collections
+     * @apiDescription     Retrieve all collections of a category
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {int} id the category id
+     * @apiParam {string} encoded id of the category
+     * @apiParam {int} [page] the page number
      */
     public function run($id)
     {
-        $id       = \Vinkla\Hashids\Facades\Hashids::decode($id);
-        $category = $this->categoryRepository->find($id);
-        $category = new CategoryResource($category);
+        $id          = \Vinkla\Hashids\Facades\Hashids::decode($id);
+        $collections = Collection::where('category_id', $id)
+                                 ->sortable()
+                                 ->paginate(2);
         
-        return response()->json(array_merge(['status' => 'ok'], $category->toArray($id)));
+        return new CollectionResourceCollection($collections);
     }
 }

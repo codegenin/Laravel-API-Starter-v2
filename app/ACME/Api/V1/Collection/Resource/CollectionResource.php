@@ -19,7 +19,6 @@ class CollectionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'status' => 'ok',
             'identifier'  => Hashids::encode($this->id),
             'slug'        => $this->slug,
             'title'       => $this->title,

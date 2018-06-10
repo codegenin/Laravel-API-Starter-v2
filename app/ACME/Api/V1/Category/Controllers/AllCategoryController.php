@@ -33,7 +33,7 @@ class AllCategoryController extends Controller
      *
      *
      */
-    public function listAll()
+    public function run()
     {
         $categories = Category::sortable('seq')
                               ->get();

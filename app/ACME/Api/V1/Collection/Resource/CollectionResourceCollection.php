@@ -14,10 +14,13 @@ class CollectionResourceCollection extends ResourceCollection
      */
     public function toArray($request)
     {
+        return ['data' => $this->collection];
+    }
+    
+    public function with($request)
+    {
         return [
-            'slug'        => $this->slug,
-            'name'        => $this->name,
-            'description' => $this->description,
+            'status' => 'ok'
         ];
     }
 }
