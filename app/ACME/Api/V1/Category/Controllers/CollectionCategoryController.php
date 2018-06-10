@@ -7,6 +7,7 @@ use App\ACME\Api\V1\Collection\Resource\CollectionResourceCollection;
 use App\Http\Controllers\Controller;
 use App\Models\Collection;
 use Auth;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class CollectionCategoryController extends Controller
 {
@@ -37,9 +38,14 @@ class CollectionCategoryController extends Controller
     public function run($id)
     {
         $id          = \Vinkla\Hashids\Facades\Hashids::decode($id);
-        $collections = Collection::where('category_id', $id)
-                                 ->sortable()
-                                 ->paginate(2);
+        
+        try {
+            $collections = Collection::where('category_id', $id)
+                                     ->sortable()
+                                     ->paginate(2);
+        } catch (\Exception $e) {
+            throw new NotFoundResourceException(trans('common.not.found'));
+        }
         
         return new CollectionResourceCollection($collections);
     }
