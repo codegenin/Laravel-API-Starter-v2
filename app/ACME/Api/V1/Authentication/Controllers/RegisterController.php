@@ -48,7 +48,7 @@ class RegisterController extends Controller
         
         if (!Config::get('boilerplate.sign_up.release_token')) {
             return response()->json([
-                'status'  => 'ok',
+                'status'  => true,
                 'message' => 'A verification mail has been sent into your email account!'
             ], 201);
         }
@@ -56,7 +56,7 @@ class RegisterController extends Controller
         $token = $JWTAuth->fromUser($user);
         
         return response()->json([
-            'status' => 'ok',
+            'status' => true,
             'token'  => $token
         ], 201);
     }

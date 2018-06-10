@@ -14,13 +14,9 @@ class CategoryResourceCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return ['data' => $this->collection];
-    }
-    
-    public function with($request)
-    {
         return [
-            'status' => 'ok'
+            'status' => true,
+            'data'   => $this->collection
         ];
     }
 }

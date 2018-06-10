@@ -6,11 +6,12 @@ namespace App\ACME\Api\V1\Collection\Controllers;
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\ACME\Api\V1\Collection\Requests\AddMediaToCollectionRequest;
 use App\ACME\Api\V1\Collection\Requests\IncrementDecrementScoreRequest;
+use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
 use App\Traits\MediaTraits;
 use Vinkla\Hashids\Facades\Hashids;
 
-class IncrementScoreCollectionController extends Controller
+class IncrementScoreCollectionController extends ApiResponseController
 {
     /**
      * @var CollectionRepository
@@ -45,15 +46,9 @@ class IncrementScoreCollectionController extends Controller
         try {
             $this->collectionRepository->increment($request->collection_id, $request->score);
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => trans('common.not.found')
-            ]);
+            return $this->responseWithError(trans('common.not.found'));
         }
         
-        return response()->json([
-            'status'  => 'ok',
-            'message' => trans('collection.increment.success')
-        ]);
+        return $this->responseWithSuccess(trans('collection.increment.success'));
     }
 }

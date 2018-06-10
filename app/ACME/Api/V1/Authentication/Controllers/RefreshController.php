@@ -19,14 +19,15 @@ class RefreshController extends Controller
      */
     public function refresh()
     {
-        $token = Auth::guard()->refresh();
-
+        $token = Auth::guard()
+                     ->refresh();
+        
         return response()->json([
-            'status' => 'ok',
-            'data' => [
-                'token' => $token,
-                'expires_in' => Auth::guard()->factory()->getTTL() * 60
-            ]
+            'status'     => true,
+            'token'      => $token,
+            'expires_in' => Auth::guard()
+                                ->factory()
+                                ->getTTL() * 60
         ]);
     }
 }

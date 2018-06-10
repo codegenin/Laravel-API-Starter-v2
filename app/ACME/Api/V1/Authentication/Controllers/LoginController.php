@@ -70,7 +70,7 @@ class LoginController extends Controller
         
         return response()
             ->json([
-                'status'     => 'ok',
+                'status'     => true,
                 'token'      => $token,
                 'expires_in' => Auth::guard()
                                     ->factory()

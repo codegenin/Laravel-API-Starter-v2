@@ -4,12 +4,13 @@ namespace App\ACME\Api\V1\Category\Controllers;
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\ACME\Api\V1\Collection\Resource\CollectionResourceCollection;
+use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
 use App\Models\Collection;
 use Auth;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
-class CollectionCategoryController extends Controller
+class CollectionCategoryController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -42,7 +43,7 @@ class CollectionCategoryController extends Controller
         try {
             $collections = Collection::where('category_id', $id)
                                      ->sortable()
-                                     ->paginate();
+                                     ->paginate(10);
         } catch (\Exception $e) {
             throw new NotFoundResourceException(trans('common.not.found'));
         }

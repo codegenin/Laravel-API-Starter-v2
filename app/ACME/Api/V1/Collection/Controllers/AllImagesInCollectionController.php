@@ -6,11 +6,12 @@ namespace App\ACME\Api\V1\Collection\Controllers;
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\ACME\Api\V1\Collection\Requests\CreateCollectionRequest;
 use App\ACME\Api\V1\Media\Resource\MediaResourceCollection;
+use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
 use App\Traits\MediaTraits;
 use Vinkla\Hashids\Facades\Hashids;
 
-class AllImagesInCollectionController extends Controller
+class AllImagesInCollectionController extends ApiResponseController
 {
     use MediaTraits;
     
@@ -43,10 +44,12 @@ class AllImagesInCollectionController extends Controller
      */
     public function run($id)
     {
-        $id         = Hashids::decode($id);
-        $collection = $this->collectionRepository->find($id);
-        $images     = $collection->getMedia($collection->slug);
-        $media      = [];
+        if (!$collection = $this->collectionRepository->find(Hashids::decode($id))) {
+            return $this->responseWithError(trans('common.not.found'));
+        }
+        
+        $images = $collection->getMedia($collection->slug);
+        $media  = [];
         
         foreach ($images as $key => $image) {
             $media[$key]['id']       = Hashids::encode($image->id);
@@ -54,11 +57,11 @@ class AllImagesInCollectionController extends Controller
             $media[$key]['location'] = $image->location;
             $media[$key]['during']   = $image->during;
             $media[$key]['images']   = $this->getMedialUrls($collection, $image->collection_name);
+            $media[$key]['created']  = $image->created_at;
         }
         
-        return response()->json([
-            'data'   => $media,
-            'status' => 'ok'
+        return $this->responseWithCollection([
+            'data' => $media
         ]);
     }
 }

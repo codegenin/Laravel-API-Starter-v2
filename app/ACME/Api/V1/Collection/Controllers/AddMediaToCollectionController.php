@@ -5,11 +5,12 @@ namespace App\ACME\Api\V1\Collection\Controllers;
 
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\ACME\Api\V1\Collection\Requests\AddMediaToCollectionRequest;
+use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
 use App\Traits\MediaTraits;
 use Vinkla\Hashids\Facades\Hashids;
 
-class AddMediaToCollectionController extends Controller
+class AddMediaToCollectionController extends ApiResponseController
 {
     use MediaTraits;
     
@@ -50,16 +51,14 @@ class AddMediaToCollectionController extends Controller
         $collection = $this->collectionRepository->find($id);
         
         if ($request->has('file')) {
-            $media           = $this->associateMedia($collection, $request, $collection->slug);
-            $media->title    = $request->title;
-            $media->location = $request->location;
-            $media->during   = $request->during;
+            $media               = $this->associateMedia($collection, $request, $collection->slug);
+            $media->title        = $request->title;
+            $media->location     = $request->location;
+            $media->during       = $request->during;
+            $media->order_column = 1;
             $media->save();
         }
         
-        return response()->json([
-            'status'  => 'ok',
-            'message' => trans('collection.add.media.success')
-        ]);
+        return $this->responseWithSuccess(trans('collection.add.media.success'));
     }
 }
