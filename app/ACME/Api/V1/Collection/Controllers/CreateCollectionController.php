@@ -3,9 +3,12 @@
 namespace App\ACME\Api\V1\Collection\Controllers;
 
 
+use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\ACME\Api\V1\Collection\Requests\CreateCollectionRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use Vinkla\Hashids\Facades\Hashids;
 
 class CreateCollectionController extends Controller
 {
@@ -13,15 +16,22 @@ class CreateCollectionController extends Controller
      * @var CollectionRepository
      */
     private $collectionRepository;
+    /**
+     * @var CategoryRepository
+     */
+    private $categoryRepository;
     
     /**
      * CreateCollectionController constructor.
      * @param CollectionRepository $collectionRepository
+     * @param CategoryRepository   $categoryRepository
      */
-    public function __construct(CollectionRepository $collectionRepository)
+    public function __construct(CollectionRepository $collectionRepository,
+        CategoryRepository $categoryRepository)
     {
         $this->middleware('jwt.auth', []);
         $this->collectionRepository = $collectionRepository;
+        $this->categoryRepository   = $categoryRepository;
     }
     
     /**
@@ -33,13 +43,23 @@ class CreateCollectionController extends Controller
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {int} category_id the id of the category the collection belongs
+     * @apiParam {int} category_id the encoded id of the category
      * @apiParam {String} title the collection title
      * @apiParam {String} description all about the collection
      *
      */
     public function run(CreateCollectionRequest $request)
     {
+        // Make sure category exist in the table
+        try {
+            $this->categoryRepository->find(Hashids::decode($request->category_id));
+        } catch (\Exception $e) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => trans('category.not.found.error')
+            ]);
+        }
+        
         $collection = $this->collectionRepository->findByColumnsFirst([
             'slug'    => str_slug($request->title),
             'user_id' => auth()->user()->id
@@ -54,7 +74,7 @@ class CreateCollectionController extends Controller
         
         $this->collectionRepository->create([
             'user_id'     => auth()->user()->id,
-            'category_id' => $request->category_id,
+            'category_id' => Hashids::decode($request->category_id),
             'title'       => $request->title,
             'slug'        => $request->title,
             'description' => $request->description,

@@ -7,7 +7,7 @@ use App\ACME\Api\V1\Category\Resource\CategoryResource;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Auth;
-use Hashids\Hashids;
+use Vinkla\Hashids\Facades\Hashids;
 
 class ShowCategoryController extends Controller
 {
@@ -36,7 +36,7 @@ class ShowCategoryController extends Controller
      */
     public function run($id)
     {
-        $id       = \Vinkla\Hashids\Facades\Hashids::decode($id);
+        $id       = Hashids::decode($id);
         $category = $this->categoryRepository->find($id);
         $category = new CategoryResource($category);
         
