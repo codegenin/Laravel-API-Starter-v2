@@ -95,7 +95,7 @@ class CategoryController extends Controller
         
         return redirect()
             ->back()
-            ->with('success', 'Request successfully processed!');;
+            ->with('success', 'Request successfully processed!');
     }
     
     /**
