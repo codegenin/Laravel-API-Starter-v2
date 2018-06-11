@@ -23,8 +23,8 @@ $factory->define(\App\Models\Collection::class, function (\Faker\Generator $fake
         'slug'        => str_slug($faker->word),
         'score'       => $faker->numberBetween(1, 50000),
         'description' => $faker->paragraph,
-        'created_at'  => $faker->dateTimeBetween('-2 weeks', '+1 month'),
-        'updated_at'  => $faker->dateTimeBetween('-2 weeks', '+1 month')
+        'created_at'  => $faker->dateTimeBetween('-1 week', 'now'),
+        'updated_at'  => $faker->dateTimeBetween('-1 week', 'now')
     ];
     
 });
