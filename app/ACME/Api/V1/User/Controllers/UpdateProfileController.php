@@ -48,7 +48,6 @@ class UpdateProfileController extends ApiResponseController
      * @apiParam {File} [file] the image to be uploaded for the avatar
      * @apiParam {String} name the complete name of the user
      * @apiParam {String} [contact_email] the contact email of the user
-     * @apiParam {String} [about] introduction about the user
      * @apiParam {Date} [birthday] the birthday of the user formatted by YYY-MM-DD
      * @apiParam {String} [website] users website format: http://domain.com
      * @apiParam {String} location the locaton of the user e.g. paris
@@ -60,7 +59,6 @@ class UpdateProfileController extends ApiResponseController
         $this->userRepository->update(auth()->user()->id, [
             'name'          => $request->name,
             'contact_email' => $request->contact_email,
-            'about'         => $request->about,
             'birthday'      => $request->birthday,
             'location'      => $request->location,
             'website'       => $request->website,
