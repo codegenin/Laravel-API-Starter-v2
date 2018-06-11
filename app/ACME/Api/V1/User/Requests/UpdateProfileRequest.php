@@ -19,7 +19,7 @@ class UpdateProfileRequest extends FormRequest
             'contact_email' => 'nullable|email',
             'location'      => 'required',
             'birthday'      => 'nullable|date',
-            'website'       => 'nullable|url',
+            'website'       => 'nullable|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
             'file'          => 'nullable|mimes:jpeg'
         ];
     }
