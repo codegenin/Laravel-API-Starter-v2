@@ -19,7 +19,6 @@ class UserResourceLimited extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'       => Hashids::encode($this->id),
             'name'     => $this->name,
             'location' => $this->location,
             'avatar'   => $this->getMedialUrls($this, 'avatar'),

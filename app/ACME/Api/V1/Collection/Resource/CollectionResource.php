@@ -25,9 +25,8 @@ class CollectionResource extends JsonResource
             'slug'        => $this->slug,
             'title'       => $this->title,
             'description' => $this->description,
+            'years'        => $this->year_start . '-' . $this->year_end,
             'score'       => $this->score,
-            'created'     => $this->created_at,
-            'updated'     => $this->updated_at,
             'user'        => new UserResourceLimited($this->user),
             'covers'      => $this->getMedialUrls($this, $this->slug),
         ];
