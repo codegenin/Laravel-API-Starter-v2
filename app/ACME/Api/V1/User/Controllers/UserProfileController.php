@@ -46,9 +46,9 @@ class UserProfileController extends ApiResponseController
     public function run()
     {
         UserResource::withoutWrapping();
-    
-        return new UserResource(Auth::guard()
-                                    ->user());
+        $user  = collect(new UserResource(Auth::guard()
+                                              ->user()));
+        return $this->responseWithResource($user->toArray());
     }
     
 }
