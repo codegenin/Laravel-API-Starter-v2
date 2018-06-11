@@ -47,6 +47,7 @@ class UpdateProfileController extends ApiResponseController
      *
      * @apiParam {File} [file] the image to be uploaded for the avatar
      * @apiParam {String} name the complete name of the user
+     * @apiParam {String} [contact_email] the contact email of the user
      * @apiParam {String} [about] introduction about the user
      * @apiParam {Date} [birthday] the birthday of the user formatted by YYY-MM-DD
      * @apiParam {String} [website] users website format: http://domain.com
