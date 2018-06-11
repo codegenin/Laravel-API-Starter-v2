@@ -65,12 +65,6 @@ class UpdateProfileController extends ApiResponseController
             'phone'         => $request->phone
         ]);
         
-        $user = $this->userRepository->find(auth()->user()->id);
-        
-        if ($request->has('file')) {
-            $this->associateMedia($user, $request, 'avatar');
-        }
-        
         return $this->responseWithSuccess(trans('common.update.success'));
     }
     

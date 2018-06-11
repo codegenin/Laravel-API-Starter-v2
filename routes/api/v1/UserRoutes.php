@@ -13,6 +13,7 @@ $api->version('v1', function (Router $api) {
         $api->post('role-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\RoleController@updateUserRole');
         $api->post('profile-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateProfileController@run');
         $api->post('about-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateAboutController@run');
+        $api->post('avatar-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateAvatarController@run');
         
         $api->get('{id}/delete', 'App\\ACME\\Api\\V1\\User\\Controllers\\UserController@delete');
         
