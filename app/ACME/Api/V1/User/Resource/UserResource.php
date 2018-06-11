@@ -2,11 +2,14 @@
 
 namespace App\ACME\Api\V1\User\Resource;
 
+use App\Traits\MediaTraits;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Vinkla\Hashids\Facades\Hashids;
 
 class UserResource extends JsonResource
 {
+    use MediaTraits;
+    
     /**
      * Transform the resource into an array.
      *
@@ -16,14 +19,15 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'identification' => Hashids::encode($this->id),
-            'complete_name'  => $this->name,
-            'email_address'  => $this->email,
-            'role'           => $this->role,
-            'about'          => $this->about,
-            'birthday'       => $this->birthday,
-            'website'        => $this->website,
-            'location'       => $this->location
+            'id'       => Hashids::encode($this->id),
+            'name'     => $this->name,
+            'email'    => $this->email,
+            'role'     => $this->role,
+            'about'    => $this->about,
+            'birthday' => $this->birthday,
+            'website'  => $this->website,
+            'location' => $this->location,
+            'avatar'   => $this->getMedialUrls($this, 'avatar'),
         ];
     }
 }
