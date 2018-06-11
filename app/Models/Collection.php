@@ -12,6 +12,12 @@ class Collection extends Model implements HasMedia
 {
     use HasMediaTrait, Sortable;
     
+    public $sortable = [
+        'id',
+        'score',
+        'title'
+    ];
+    
     protected $guarded = [
         'id',
         'created_at',
