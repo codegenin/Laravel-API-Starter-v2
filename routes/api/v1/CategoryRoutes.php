@@ -22,6 +22,12 @@ $api->version('v1', function (Router $api) {
             'App\\ACME\\Api\\V1\\Category\\Controllers\\WeekCollectionsCategoryController@run');
         $api->get('{id}/collections/month',
             'App\\ACME\\Api\\V1\\Category\\Controllers\\MonthCollectionsCategoryController@run');
+        
+        ################ ARCHIVE OR RECENT ############################
+        $api->get('{id}/archive-images',
+            'App\\ACME\\Api\\V1\\Category\\Controllers\\ArchiveImagesCategoryController@run');
+        $api->get('{id}/recent-images',
+            'App\\ACME\\Api\\V1\\Category\\Controllers\\RecentImagesCategoryController@run');
     });
     
 });

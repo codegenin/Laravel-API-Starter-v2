@@ -42,7 +42,7 @@ class AddMediaToCategoryController extends ApiResponseController
      *
      * @apiParam {String} category_id the encoded id of a category
      * @apiParam {String} title the collection title
-     * @apiParam {String} during the year range of the image taken
+     * @apiParam {String} year the year range of the image taken
      * @apiParam {File} file the image to be uploaded
      * @apiParam {String} location the country or location where the image come from
      *

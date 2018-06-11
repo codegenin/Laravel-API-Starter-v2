@@ -11,7 +11,8 @@ class AddMediaToCollectionRequest extends FormRequest
         return [
             'collection_id' => 'required',
             'title'         => 'required',
-            'during'        => 'required',
+            'year'          => 'required|date_format:Y',
+            'location'      => 'required',
             'file'          => 'required|mimes:jpeg',
         ];
     }

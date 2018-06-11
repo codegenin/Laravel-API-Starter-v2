@@ -2,8 +2,11 @@
 
 namespace App\Traits;
 
+use Mockery\Exception;
+use Psr\Log\InvalidArgumentException;
 use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Vinkla\Hashids\Facades\Hashids;
 
 trait MediaTraits
 {
@@ -56,16 +59,16 @@ trait MediaTraits
      * @param $request
      * @return bool
      */
-    public function addMediaInformation($media, $request) : bool
+    public function addMediaInformation($media, $request): bool
     {
         try {
-            $media->title    = $request->title;
-            $media->location = $request->location;
-            $media->during   = $request->during;
-            $media->user_id  = auth()->user()->id;
+            $media->title       = $request->title;
+            $media->location    = $request->location;
+            $media->year        = $request->year;
+            $media->user_id     = auth()->user()->id;
             $media->save();
         } catch (\Exception $e) {
-            return false;
+            throw new InvalidArgumentException($e);
         }
         
         return true;

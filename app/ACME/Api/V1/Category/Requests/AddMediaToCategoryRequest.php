@@ -11,7 +11,8 @@ class AddMediaToCategoryRequest extends FormRequest
         return [
             'category_id' => 'required',
             'title'       => 'required',
-            'during'      => 'required',
+            'location'    => 'required',
+            'year'        => 'required|date_format:Y',
             'file'        => 'required|mimes:jpeg',
         ];
     }

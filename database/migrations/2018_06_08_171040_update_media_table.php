@@ -36,5 +36,8 @@ class UpdateMediaTable extends Migration
      */
     public function down()
     {
+        Schema::table('media', function (Blueprint $table) {
+        
+        });
     }
 }

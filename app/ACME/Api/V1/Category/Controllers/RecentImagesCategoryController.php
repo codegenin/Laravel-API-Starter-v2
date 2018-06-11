@@ -2,30 +2,27 @@
 
 namespace App\ACME\Api\V1\Category\Controllers;
 
-
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
-use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
-use App\ACME\Api\V1\Collection\Requests\CreateCollectionRequest;
-use App\ACME\Api\V1\Media\Resource\MediaCategoryResource;
+use App\ACME\Api\V1\Category\Resource\CategoryResource;
+use App\ACME\Api\V1\Category\Resource\CategoryResourceCollection;
+use App\ACME\Api\V1\Collection\Resource\CollectionResourceCollection;
 use App\ACME\Api\V1\Media\Resource\MediaResource;
-use App\ACME\Api\V1\Media\Resource\MediaResourceCollection;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Collection;
 use App\Models\Media;
-use App\Traits\MediaTraits;
+use Auth;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class AllImagesInCategoryController extends ApiResponseController
+class RecentImagesCategoryController extends ApiResponseController
 {
-    use MediaTraits;
-    
-    /**
-     * @var CategoryRepository
-     */
     private $categoryRepository;
     
     /**
-     * CreateCollectionController constructor.
+     * CategoryListsController constructor.
      * @param CategoryRepository $categoryRepository
      */
     public function __construct(CategoryRepository $categoryRepository)
@@ -36,15 +33,15 @@ class AllImagesInCategoryController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            categoryImages
-     * @api                {post} /api/category/{id}/images Category Images
-     * @apiDescription     Retrieve all images of a category
+     * @apiName            recentImages
+     * @api                {get} /api/category/{id}/recent-images Recent Images
+     * @apiDescription     Retrieve all recent images in the category
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {int} category_id the encoded id of a category
-     *
+     * @apiParam {string} id the encoded category id
+     * @apiParam {int} [page] the page number
      */
     public function run($id)
     {
@@ -53,9 +50,10 @@ class AllImagesInCategoryController extends ApiResponseController
         }
         
         $images = Media::where('collection_name', $category->slug)
+                       ->where('year', '>', 1945)
                        ->sortable(['order_column' => 'desc'])
                        ->paginate();
         
-        return MediaCategoryResource::collection($images);
+        return MediaResource::collection($images);
     }
 }

@@ -18,8 +18,16 @@ class Media extends BaseMedia implements HasMedia
         'created_at'
     ];
     
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
+    ];
+    
     public function collection()
     {
         return $this->belongsTo(Collection::class, 'id', 'model_id');
     }
+    
+    
 }

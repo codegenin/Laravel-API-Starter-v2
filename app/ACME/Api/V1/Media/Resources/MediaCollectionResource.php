@@ -2,11 +2,13 @@
 
 namespace App\ACME\Api\V1\Media\Resource;
 
+use App\Models\Category;
+use App\Models\Collection;
 use App\Traits\MediaTraits;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Vinkla\Hashids\Facades\Hashids;
 
-class MediaResource extends JsonResource
+class MediaCollectionResource extends JsonResource
 {
     use MediaTraits;
     
@@ -23,7 +25,7 @@ class MediaResource extends JsonResource
             'title'    => $this->title,
             'location' => $this->location,
             'year'     => $this->year,
-            'images'   => $this->getMedialUrls($this, $this->collection_name),
+            'images'   => $this->getMedialUrls(Collection::find($this->model_id), $this->collection_name),
             'created'  => $this->created_at
         
         ];
