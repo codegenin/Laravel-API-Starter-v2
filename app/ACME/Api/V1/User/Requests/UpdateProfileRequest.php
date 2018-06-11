@@ -16,11 +16,9 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name'     => 'required',
-            'about'    => 'required',
-            'birthday' => 'required|date',
-            'location' => 'required',
-            'website'  => 'required|url',
-            'file' => 'nullable|mimes:jpeg'
+            'birthday' => 'nullable|date',
+            'website'  => 'nullable|url',
+            'file'     => 'nullable|mimes:jpeg'
         ];
     }
 }
