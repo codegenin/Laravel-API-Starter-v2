@@ -30,14 +30,6 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
     
-    public function me()
-    {
-        UserResource::withoutWrapping();
-        
-        return new UserResource(Auth::guard()
-                                    ->user());
-    }
-    
     /**
      * @apiGroup           User
      * @apiName            deleteUser
