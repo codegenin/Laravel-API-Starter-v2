@@ -23,4 +23,11 @@ class CollectionRepository extends AbstractBaseRepository
                  ->whereId(Hashids::decode($collectionId))
                  ->increment('score', $value);
     }
+    
+    public function decrement($collectionId, $value)
+    {
+        return DB::table('collections')
+                 ->whereId(Hashids::decode($collectionId))
+                 ->decrement('score', $value);
+    }
 }

@@ -14,6 +14,7 @@ $api->version('v1', function (Router $api) {
         
         ############# INCREMENT / DECREMENT #######################
         $api->post('increment', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\IncrementScoreCollectionController@run');
+        $api->post('decrement', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\DecrementScoreCollectionController@run');
         
     });
     
