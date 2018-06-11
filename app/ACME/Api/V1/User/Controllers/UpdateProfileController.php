@@ -48,9 +48,9 @@ class UpdateProfileController extends ApiResponseController
      * @apiParam {File} file the image to be uploaded for the avatar
      * @apiParam {String} name the complete name of the user
      * @apiParam {String} about introduction about the user
-     * @apiParam {String} birthday the birthday of the user formatted by YYY-MM-DD
+     * @apiParam {Date} birthday the birthday of the user formatted by YYY-MM-DD
      * @apiParam {String} website users website format: http://domain.com
-     * @apiParam {String} location the locaton of the user e.g. paris 
+     * @apiParam {String} location the locaton of the user e.g. paris
      *
      */
     public function run(UpdateProfileRequest $request)
