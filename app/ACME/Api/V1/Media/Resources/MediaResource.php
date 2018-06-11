@@ -23,7 +23,12 @@ class MediaResource extends JsonResource
             'title'    => $this->title,
             'location' => $this->location,
             'year'     => $this->year,
-            'images'   => $this->getMedialUrls($this, $this->collection_name),
+            'images'   => [
+                'original' => $this->getUrl(),
+                'large'    => $this->getUrl('large'),
+                'medium'   => $this->getUrl('medium'),
+                'small'    => $this->getUrl('small'),
+            ],
             'created'  => $this->created_at
         
         ];

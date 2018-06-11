@@ -56,6 +56,6 @@ class AllImagesInCategoryController extends ApiResponseController
                        ->sortable(['order_column' => 'desc'])
                        ->paginate();
         
-        return MediaCategoryResource::collection($images);
+        return MediaResource::collection($images);
     }
 }
