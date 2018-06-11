@@ -24,6 +24,8 @@ class CollectionResource extends JsonResource
             'title'       => $this->title,
             'description' => $this->description,
             'score'       => $this->score,
+            'created'     => $this->created_at,
+            'updated'     => $this->updated_at,
             'covers'      => $this->getMedialUrls($this, $this->slug),
         ];
     }
