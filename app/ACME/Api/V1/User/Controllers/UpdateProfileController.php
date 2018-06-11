@@ -50,19 +50,20 @@ class UpdateProfileController extends ApiResponseController
      * @apiParam {String} [about] introduction about the user
      * @apiParam {Date} [birthday] the birthday of the user formatted by YYY-MM-DD
      * @apiParam {String} [website] users website format: http://domain.com
-     * @apiParam {String} [location] the locaton of the user e.g. paris
+     * @apiParam {String} location the locaton of the user e.g. paris
      * @apiParam {String} [phone] the users phone number
      *
      */
     public function run(UpdateProfileRequest $request)
     {
         $this->userRepository->update(auth()->user()->id, [
-            'name'     => $request->name,
-            'about'    => $request->about,
-            'birthday' => $request->birthday,
-            'location' => $request->location,
-            'website'  => $request->website,
-            'phone'    => $request->phone
+            'name'          => $request->name,
+            'contact_email' => $request->contact_email,
+            'about'         => $request->about,
+            'birthday'      => $request->birthday,
+            'location'      => $request->location,
+            'website'       => $request->website,
+            'phone'         => $request->phone
         ]);
         
         $user = $this->userRepository->find(auth()->user()->id);

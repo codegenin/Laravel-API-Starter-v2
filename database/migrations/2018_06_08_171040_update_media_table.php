@@ -23,7 +23,7 @@ class UpdateMediaTable extends Migration
             $table->string('location')
                   ->nullable()
                   ->after('title');
-            $table->string('during')
+            $table->unsignedInteger('year')
                   ->nullable()
                   ->after('location');
         });
@@ -36,10 +36,5 @@ class UpdateMediaTable extends Migration
      */
     public function down()
     {
-        Schema::table('media', function (Blueprint $table) {
-            $table->dropColumn('title');
-            $table->dropColumn('location');
-            $table->dropColumn('during');
-        });
     }
 }

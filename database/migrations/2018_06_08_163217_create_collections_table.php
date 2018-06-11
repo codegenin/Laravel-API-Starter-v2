@@ -23,8 +23,10 @@ class CreateCollectionsTable extends Migration
                   ->nullable();
             $table->unsignedInteger('score')
                   ->default(0);
-            $table->integer('media_count')
-                  ->default(0);
+            $table->unsignedInteger('year_start')
+                  ->nullable();
+            $table->unsignedInteger('year_end')
+                  ->nullable();
             $table->timestamps();
             
             $table->foreign('user_id')

@@ -19,16 +19,17 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'       => Hashids::encode($this->id),
-            'name'     => $this->name,
-            'email'    => $this->email,
-            'role'     => $this->role,
-            'about'    => $this->about,
-            'birthday' => $this->birthday,
-            'website'  => $this->website,
-            'phone'    => $this->phone,
-            'location' => $this->location,
-            'avatar'   => $this->getMedialUrls($this, 'avatar'),
+            'id'            => Hashids::encode($this->id),
+            'name'          => $this->name,
+            'email'         => $this->email,
+            'contact_email' => $this->contact_email,
+            'role'          => $this->role,
+            'about'         => $this->about,
+            'birthday'      => $this->birthday,
+            'website'       => $this->website,
+            'phone'         => $this->phone,
+            'location'      => $this->location,
+            'avatar'        => $this->getMedialUrls($this, 'avatar'),
         ];
     }
 }

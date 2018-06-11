@@ -15,10 +15,12 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'required',
-            'birthday' => 'nullable|date',
-            'website'  => 'nullable|url',
-            'file'     => 'nullable|mimes:jpeg'
+            'name'          => 'required',
+            'contact_email' => 'nullable|email',
+            'location'      => 'required',
+            'birthday'      => 'nullable|date',
+            'website'       => 'nullable|url',
+            'file'          => 'nullable|mimes:jpeg'
         ];
     }
 }
