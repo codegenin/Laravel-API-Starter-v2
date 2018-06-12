@@ -70,6 +70,8 @@ class CreateCollectionController extends ApiResponseController
             'category_id' => $category->id,
             'title'       => $request->title,
             'slug'        => $request->title,
+            'year_start'  => $request->year_start,
+            'year_end'    => $request->year_end,
             'description' => $request->description,
         ]);
         

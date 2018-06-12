@@ -11,6 +11,8 @@ class CreateCollectionRequest extends FormRequest
         return [
             'category_id' => 'required',
             'title'       => 'required',
+            'year_start'  => 'required|date_format:Y',
+            'year_end'    => 'required|date_format:Y'
         ];
     }
     
