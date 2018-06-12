@@ -47,6 +47,9 @@ class CreateCollectionController extends ApiResponseController
      * @apiParam {int} category_id the encoded id of the category
      * @apiParam {String} title the collection title
      * @apiParam {String} description all about the collection
+     * @apiParam {int} year_start the year the collection started
+     * @apiParam {int} year_end the year the collection ended
+     * @apiParam {String} description all about the collection
      *
      */
     public function run(CreateCollectionRequest $request)
