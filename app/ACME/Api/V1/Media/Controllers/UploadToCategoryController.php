@@ -44,6 +44,7 @@ class UploadToCategoryController extends ApiResponseController
      * @apiParam {String} title the collection title
      * @apiParam {File} file the image to be uploaded
      * @apiParam {String} location the country or location where the image come from
+     * @apiParam {String} tags list of tags separated with comma e.g. Tag1, Tag2, Tag3
      *
      */
     public function run(AddMediaToCategoryRequest $request)
