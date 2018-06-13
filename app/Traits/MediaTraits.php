@@ -64,6 +64,7 @@ trait MediaTraits
         try {
             $media->title    = $request->title;
             $media->location = $request->location;
+            $media->attachTags(explode(',', $request->tags));
             $media->save();
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e);

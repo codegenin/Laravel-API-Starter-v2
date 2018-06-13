@@ -7,10 +7,11 @@ use Kyslik\ColumnSortable\Sortable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media as BaseMedia;
+use Spatie\Tags\HasTags;
 
 class Media extends BaseMedia implements HasMedia
 {
-    use HasMediaTrait, Sortable;
+    use HasMediaTrait, Sortable, HasTags;
     
     public $sortable = [
         'id',
