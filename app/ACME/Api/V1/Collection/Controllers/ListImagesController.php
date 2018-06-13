@@ -15,7 +15,7 @@ use App\Traits\MediaTraits;
 use Spatie\MediaLibrary\MediaCollection\MediaCollection;
 use Vinkla\Hashids\Facades\Hashids;
 
-class AllImagesInCollectionController extends ApiResponseController
+class ListImagesController extends ApiResponseController
 {
     use MediaTraits;
     
