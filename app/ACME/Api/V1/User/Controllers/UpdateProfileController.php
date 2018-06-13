@@ -52,6 +52,7 @@ class UpdateProfileController extends ApiResponseController
      * @apiParam {String} [website] users website format: http://domain.com
      * @apiParam {String} location the locaton of the user e.g. paris
      * @apiParam {String} [phone] the users phone number
+     * @apiParam {String} [password] change user password
      *
      */
     public function run(UpdateProfileRequest $request)
@@ -64,6 +65,12 @@ class UpdateProfileController extends ApiResponseController
             'website'       => $request->website,
             'phone'         => $request->phone
         ]);
+        
+        if ($request->has('password') AND !empty($request->password)) {
+            $user           = User::find(auth()->user()->id);
+            $user->password = $request->password;
+            $user->save();
+        }
         
         return $this->responseWithSuccess(trans('common.update.success'));
     }
