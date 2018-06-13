@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class ImageArchiveController extends ApiResponseController
+class ImagesArchiveController extends ApiResponseController
 {
     private $categoryRepository;
     

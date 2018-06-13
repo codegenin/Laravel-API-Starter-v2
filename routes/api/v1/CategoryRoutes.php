@@ -25,7 +25,7 @@ $api->version('v1', function (Router $api) {
         $api->get('{id}/archive-images',
             'App\\ACME\\Api\\V1\\Category\\Controllers\\ImagesArchiveController@run');
         $api->get('{id}/recent-images',
-            'App\\ACME\\Api\\V1\\Category\\Controllers\\ImageRecentController@run');
+            'App\\ACME\\Api\\V1\\Category\\Controllers\\ImagesRecentController@run');
     });
     
 });
