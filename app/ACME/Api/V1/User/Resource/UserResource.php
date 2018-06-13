@@ -20,15 +20,15 @@ class UserResource extends JsonResource
     {
         return [
             'id'            => Hashids::encode($this->id),
-            'name'          => $this->name,
-            'email'         => $this->email,
-            'contact_email' => $this->contact_email,
-            'role'          => $this->role,
-            'about'         => $this->about,
-            'birthday'      => $this->birthday,
-            'website'       => $this->website,
-            'phone'         => $this->phone,
-            'location'      => $this->location,
+            'name'          => $this->name ?: '',
+            'email'         => $this->email ?: '',
+            'contact_email' => $this->contact_email ?: '',
+            'role'          => $this->role ?: '',
+            'about'         => $this->about ?: '',
+            'birthday'      => $this->birthday ?: '',
+            'website'       => $this->website ?: '',
+            'phone'         => $this->phone ?: '',
+            'location'      => $this->location ?: '',
             'avatar'        => $this->getMedialUrls($this, 'avatar'),
         ];
     }
