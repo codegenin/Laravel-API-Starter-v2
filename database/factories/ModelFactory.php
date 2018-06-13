@@ -21,10 +21,8 @@ $factory->define(\App\Models\Collection::class, function (\Faker\Generator $fake
                                          ->first()->id,
         'category_id' => $faker->numberBetween(1, 6),
         'slug'        => str_slug($faker->word),
-        'score'       => $faker->numberBetween(1, 50000),
         'description' => $faker->paragraph,
-        'year_start'  => $faker->numberBetween(1900, 2000),
-        'year_end'    => $faker->numberBetween(1945, 2018),
+        'time_period' => $faker->numberBetween(1900, 1945) . '-' . $faker->numberBetween(1946, 2018),
         'created_at'  => $faker->dateTimeBetween('-1 week', 'now'),
         'updated_at'  => $faker->dateTimeBetween('-1 week', 'now')
     ];

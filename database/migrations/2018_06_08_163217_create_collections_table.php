@@ -21,12 +21,7 @@ class CreateCollectionsTable extends Migration
             $table->string('slug');
             $table->text('description')
                   ->nullable();
-            $table->unsignedInteger('score')
-                  ->default(0);
-            $table->unsignedInteger('year_start')
-                  ->nullable();
-            $table->unsignedInteger('year_end')
-                  ->nullable();
+            $table->string('time_period');
             $table->timestamps();
             
             $table->foreign('user_id')
