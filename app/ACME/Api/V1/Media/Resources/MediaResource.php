@@ -22,7 +22,7 @@ class MediaResource extends JsonResource
             'id'       => Hashids::encode($this->id),
             'title'    => $this->title,
             'location' => $this->location,
-            'year'     => $this->year,
+            'score'    => $this->score,
             'images'   => [
                 'original' => $this->getUrl(),
                 'large'    => $this->getUrl('large'),

@@ -9,8 +9,8 @@ class IncrementDecrementScoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'collection_id' => 'required',
-            'score'         => 'required|numeric|between:1,10',
+            'media_id' => 'required',
+            'score'    => 'required|numeric|between:1,10',
         ];
     }
     
