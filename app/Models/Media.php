@@ -24,10 +24,4 @@ class Media extends BaseMedia implements HasMedia
         'updated_at'
     ];
     
-    public function collection()
-    {
-        return $this->belongsTo(Collection::class, 'id', 'model_id');
-    }
-    
-    
 }

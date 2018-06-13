@@ -3,7 +3,7 @@
 namespace App\ACME\Api\V1\Collection\Controllers;
 
 
-use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
+use App\ACME\Api\V1\Collection\Repositories\MediaRepository;
 use App\ACME\Api\V1\Collection\Requests\CreateCollectionRequest;
 use App\ACME\Api\V1\Media\Resource\MediaCollectionResource;
 use App\ACME\Api\V1\Media\Resource\MediaResource;
@@ -20,15 +20,15 @@ class AllImagesInCollectionController extends ApiResponseController
     use MediaTraits;
     
     /**
-     * @var CollectionRepository
+     * @var MediaRepository
      */
     private $collectionRepository;
     
     /**
      * CreateCollectionController constructor.
-     * @param CollectionRepository $collectionRepository
+     * @param MediaRepository $collectionRepository
      */
-    public function __construct(CollectionRepository $collectionRepository)
+    public function __construct(MediaRepository $collectionRepository)
     {
         $this->middleware('jwt.auth', []);
         $this->collectionRepository = $collectionRepository;

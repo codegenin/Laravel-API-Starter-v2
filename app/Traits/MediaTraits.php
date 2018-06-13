@@ -62,10 +62,8 @@ trait MediaTraits
     public function addMediaInformation($media, $request): bool
     {
         try {
-            $media->title       = $request->title;
-            $media->location    = $request->location;
-            $media->year        = $request->year;
-            $media->user_id     = auth()->user()->id;
+            $media->title    = $request->title;
+            $media->location = $request->location;
             $media->save();
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e);

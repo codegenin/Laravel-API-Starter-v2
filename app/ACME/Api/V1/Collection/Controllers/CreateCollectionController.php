@@ -4,7 +4,7 @@ namespace App\ACME\Api\V1\Collection\Controllers;
 
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
-use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
+use App\ACME\Api\V1\Collection\Repositories\MediaRepository;
 use App\ACME\Api\V1\Collection\Requests\CreateCollectionRequest;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ use Vinkla\Hashids\Facades\Hashids;
 class CreateCollectionController extends ApiResponseController
 {
     /**
-     * @var CollectionRepository
+     * @var MediaRepository
      */
     private $collectionRepository;
     /**
@@ -24,10 +24,10 @@ class CreateCollectionController extends ApiResponseController
     
     /**
      * CreateCollectionController constructor.
-     * @param CollectionRepository $collectionRepository
-     * @param CategoryRepository   $categoryRepository
+     * @param MediaRepository    $collectionRepository
+     * @param CategoryRepository $categoryRepository
      */
-    public function __construct(CollectionRepository $collectionRepository,
+    public function __construct(MediaRepository $collectionRepository,
         CategoryRepository $categoryRepository)
     {
         $this->middleware('jwt.auth', []);

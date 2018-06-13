@@ -4,7 +4,7 @@ namespace App\ACME\Api\V1\Category\Controllers;
 
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
-use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
+use App\ACME\Api\V1\Collection\Repositories\MediaRepository;
 use App\ACME\Api\V1\Collection\Requests\CreateCollectionRequest;
 use App\ACME\Api\V1\Media\Resource\MediaCategoryResource;
 use App\ACME\Api\V1\Media\Resource\MediaResource;

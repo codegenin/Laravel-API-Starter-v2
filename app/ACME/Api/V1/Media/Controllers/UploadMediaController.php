@@ -1,18 +1,18 @@
 <?php
 
-namespace App\ACME\Api\V1\Category\Controllers;
+namespace App\ACME\Api\V1\Media\Controllers;
 
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\ACME\Api\V1\Category\Requests\AddMediaToCategoryRequest;
-use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
+use App\ACME\Api\V1\Collection\Repositories\MediaRepository;
 use App\ACME\Api\V1\Collection\Requests\AddMediaToCollectionRequest;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
 use App\Traits\MediaTraits;
 use Vinkla\Hashids\Facades\Hashids;
 
-class AddMediaToCategoryController extends ApiResponseController
+class UploadMediaController extends ApiResponseController
 {
     use MediaTraits;
     /**

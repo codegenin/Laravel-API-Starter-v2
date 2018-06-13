@@ -13,8 +13,6 @@ $api->version('v1', function (Router $api) {
         $api->get('{id}/collections', 'App\\ACME\\Api\\V1\\Category\\Controllers\\CollectionCategoryController@run');
         $api->get('{id}/images', 'App\\ACME\\Api\\V1\\Category\\Controllers\\AllImagesInCategoryController@run');
         
-        $api->post('upload-image', 'App\\ACME\\Api\\V1\\Category\\Controllers\\AddMediaToCategoryController@run');
-        
         ################ BY DATE ####################################
         $api->get('{id}/collections/day',
             'App\\ACME\\Api\\V1\\Category\\Controllers\\DayCollectionsCategoryController@run');

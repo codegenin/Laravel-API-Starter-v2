@@ -1,9 +1,9 @@
 <?php
 
-namespace App\ACME\Api\V1\Collection\Controllers;
+namespace App\ACME\Api\V1\Media\Controllers;
 
 
-use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
+use App\ACME\Api\V1\Collection\Repositories\MediaRepository;
 use App\ACME\Api\V1\Collection\Requests\AddMediaToCollectionRequest;
 use App\ACME\Api\V1\Collection\Requests\IncrementDecrementScoreRequest;
 use App\Http\Controllers\ApiResponseController;
@@ -11,44 +11,44 @@ use App\Http\Controllers\Controller;
 use App\Traits\MediaTraits;
 use Vinkla\Hashids\Facades\Hashids;
 
-class IncrementScoreCollectionController extends ApiResponseController
+class IncrementScoreMediaController extends ApiResponseController
 {
     /**
-     * @var CollectionRepository
+     * @var MediaRepository
      */
-    private $collectionRepository;
+    private $mediaRepository;
     
     /**
      * CreateCollectionController constructor.
-     * @param CollectionRepository $collectionRepository
+     * @param MediaRepository $mediaRepository
      */
-    public function __construct(CollectionRepository $collectionRepository)
+    public function __construct(MediaRepository $mediaRepository)
     {
         $this->middleware('jwt.auth', []);
-        $this->collectionRepository = $collectionRepository;
+        $this->mediaRepository = $mediaRepository;
     }
     
     /**
-     * @apiGroup           Collection
+     * @apiGroup           Media
      * @apiName            incrementScore
-     * @api                {post} /api/collection/increment Increment Score
-     * @apiDescription     Increment a collection score
+     * @api                {post} /api/media/increment Increment Score
+     * @apiDescription     Increment a image score
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {String} collection_id the encoded id of the collection
+     * @apiParam {String} media_id the encoded id of the image
      * @apiParam {Int} score score to increment - between 1 to 10
      *
      */
     public function run(IncrementDecrementScoreRequest $request)
     {
         try {
-            $this->collectionRepository->increment($request->collection_id, $request->score);
+            $this->mediaRepository->increment($request->media_id, $request->score);
         } catch (\Exception $e) {
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        return $this->responseWithSuccess(trans('collection.increment.success'));
+        return $this->responseWithSuccess(trans('media.increment.success'));
     }
 }
