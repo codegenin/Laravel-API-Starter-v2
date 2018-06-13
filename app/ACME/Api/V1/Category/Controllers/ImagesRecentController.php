@@ -34,7 +34,7 @@ class ImagesRecentController extends ApiResponseController
     /**
      * @apiGroup           Category
      * @apiName            recentImages
-     * @api                {get} /api/category/{id}/recent-images Recent Images
+     * @api                {get} /api/category/{id}/recent-images Images Recent
      * @apiDescription     Retrieve all recent images in the category
      * @apiVersion         1.0.0
      *

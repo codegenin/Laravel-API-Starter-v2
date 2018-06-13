@@ -35,7 +35,7 @@ class ImagesArchiveController extends ApiResponseController
     /**
      * @apiGroup           Category
      * @apiName            archiveImages
-     * @api                {get} /api/category/{id}/archive-images Archive Images
+     * @api                {get} /api/category/{id}/archive-images Images Archive
      * @apiDescription     Retrieve all archive images in the category
      * @apiVersion         1.0.0
      *

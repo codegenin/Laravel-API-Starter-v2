@@ -37,8 +37,8 @@ class CreateCollectionController extends ApiResponseController
     
     /**
      * @apiGroup           Collection
-     * @apiName            newCollection
-     * @api                {post} /api/collection/new New Collection
+     * @apiName            createCollection
+     * @api                {post} /api/collection/new Create Collection
      * @apiDescription     Store a new collection
      * @apiVersion         1.0.0
      *

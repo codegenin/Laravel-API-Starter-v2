@@ -31,8 +31,8 @@ class AddMediaToCollectionController extends ApiResponseController
     
     /**
      * @apiGroup           Collection
-     * @apiName            uploadImage - (Do Not User)
-     * @api                {post} /api/collection/upload-image Upload Image
+     * @apiName            uploadImage
+     * @api                {post} /api/collection/upload-image Upload Image (Do Not Use)
      * @apiDescription     Upload a image to a collection
      * @apiVersion         1.0.0
      *
