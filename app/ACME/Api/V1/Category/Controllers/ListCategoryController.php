@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Auth;
 
-class AllCategoryController extends ApiResponseController
+class ListCategoryController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -26,8 +26,8 @@ class AllCategoryController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            allCategories
-     * @api                {get} /api/category/list-all All Categories
+     * @apiName            listCategories
+     * @api                {get} /api/category/list-all List Categories
      * @apiDescription     List all available categories sorted by order field
      * @apiVersion         1.0.0
      *

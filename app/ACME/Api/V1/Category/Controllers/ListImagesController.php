@@ -15,7 +15,7 @@ use App\Models\Media;
 use App\Traits\MediaTraits;
 use Vinkla\Hashids\Facades\Hashids;
 
-class AllImagesInCategoryController extends ApiResponseController
+class ListImagesController extends ApiResponseController
 {
     use MediaTraits;
     
@@ -36,8 +36,8 @@ class AllImagesInCategoryController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            categoryImages
-     * @api                {post} /api/category/{id}/images Category Images
+     * @apiName            listImages
+     * @api                {post} /api/category/{id}/images List Images
      * @apiDescription     Retrieve all images of a category
      * @apiVersion         1.0.0
      *

@@ -3,20 +3,15 @@
 namespace App\ACME\Api\V1\Category\Controllers;
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
-use App\ACME\Api\V1\Category\Resource\CategoryResource;
-use App\ACME\Api\V1\Category\Resource\CategoryResourceCollection;
 use App\ACME\Api\V1\Collection\Resource\CollectionResourceCollection;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Collection;
 use Auth;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class MonthCollectionsCategoryController extends ApiResponseController
+class ListCollectionsController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -32,9 +27,9 @@ class MonthCollectionsCategoryController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            monthCollections
-     * @api                {get} /api/category/{id}/collections/month This Month Collections
-     * @apiDescription     Retrieve all collections which has been updated on current month.
+     * @apiName            listCollections
+     * @api                {get} /api/category/{id}/collections List Collections
+     * @apiDescription     Retrieve all collections of a category
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
@@ -46,11 +41,10 @@ class MonthCollectionsCategoryController extends ApiResponseController
     {
         try {
             $collections = Collection::where('category_id', Hashids::decode($id))
-                                     ->whereMonth('updated_at', date('m'))
-                                     ->orderBy('score', 'desc')
-                                     ->paginate();
+                                     ->sortable()
+                                     ->paginate(10);
         } catch (\Exception $e) {
-            throw new \Exception($e);
+            throw new NotFoundResourceException(trans('common.not.found'));
         }
         
         return new CollectionResourceCollection($collections);

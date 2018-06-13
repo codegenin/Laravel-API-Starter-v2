@@ -6,18 +6,16 @@ use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\ACME\Api\V1\Category\Resource\CategoryResource;
 use App\ACME\Api\V1\Category\Resource\CategoryResourceCollection;
 use App\ACME\Api\V1\Collection\Resource\CollectionResourceCollection;
-use App\ACME\Api\V1\Media\Resource\MediaResource;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Collection;
-use App\Models\Media;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class RecentImagesCategoryController extends ApiResponseController
+class FilterCollectionsByDayController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -33,9 +31,9 @@ class RecentImagesCategoryController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            recentImages
-     * @api                {get} /api/category/{id}/recent-images Recent Images
-     * @apiDescription     Retrieve all recent images in the category
+     * @apiName            filterCollectionsByDay
+     * @api                {get} /api/category/{id}/collections/day Filter By Day
+     * @apiDescription     Retrieve all collections on a category filtered by current day.
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
@@ -45,15 +43,15 @@ class RecentImagesCategoryController extends ApiResponseController
      */
     public function run($id)
     {
-        if (!$category = $this->categoryRepository->find(Hashids::decode($id))) {
-            return $this->responseWithError(trans('common.not.found'));
+        try {
+            $collections = Collection::where('category_id', Hashids::decode($id))
+                                     ->whereDate('updated_at', DB::raw('CURDATE()'))
+                                     ->orderBy('score', 'desc')
+                                     ->paginate();
+        } catch (\Exception $e) {
+            throw new \Exception($e);
         }
         
-        $images = Media::where('collection_name', $category->slug)
-                       ->where('year', '>', 1945)
-                       ->sortable(['order_column' => 'desc'])
-                       ->paginate();
-        
-        return MediaResource::collection($images);
+        return new CollectionResourceCollection($collections);
     }
 }

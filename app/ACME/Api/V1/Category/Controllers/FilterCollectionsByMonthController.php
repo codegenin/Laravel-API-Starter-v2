@@ -11,11 +11,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Collection;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class DayCollectionsCategoryController extends ApiResponseController
+class FilterCollectionsByMonthController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -31,9 +32,9 @@ class DayCollectionsCategoryController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            dayCollections
-     * @api                {get} /api/category/{id}/collections/day Today Collections
-     * @apiDescription     Retrieve all collections which has been updated today
+     * @apiName            filterCollectionsByMonth
+     * @api                {get} /api/category/{id}/collections/month Filter By Month
+     * @apiDescription     Retrieve all collections on a category filtered by current month.
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
@@ -45,7 +46,7 @@ class DayCollectionsCategoryController extends ApiResponseController
     {
         try {
             $collections = Collection::where('category_id', Hashids::decode($id))
-                                     ->whereDate('updated_at', DB::raw('CURDATE()'))
+                                     ->whereMonth('updated_at', date('m'))
                                      ->orderBy('score', 'desc')
                                      ->paginate();
         } catch (\Exception $e) {

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class WeekCollectionsCategoryController extends ApiResponseController
+class FilterCollectionsByWeekController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -32,9 +32,9 @@ class WeekCollectionsCategoryController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            weekCollections
-     * @api                {get} /api/category/{id}/collections/week This Week Collections
-     * @apiDescription     Retrieve all collections which has been updated on current week.
+     * @apiName            filterCollectionsByWeek
+     * @api                {get} /api/category/{id}/collections/week Filter By Week
+     * @apiDescription     Retrieve all collections on a category filtered by current week.
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.

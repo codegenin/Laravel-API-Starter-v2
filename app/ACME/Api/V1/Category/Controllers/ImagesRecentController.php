@@ -3,15 +3,21 @@
 namespace App\ACME\Api\V1\Category\Controllers;
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
+use App\ACME\Api\V1\Category\Resource\CategoryResource;
+use App\ACME\Api\V1\Category\Resource\CategoryResourceCollection;
 use App\ACME\Api\V1\Collection\Resource\CollectionResourceCollection;
+use App\ACME\Api\V1\Media\Resource\MediaResource;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Collection;
+use App\Models\Media;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class CollectionCategoryController extends ApiResponseController
+class ImagesRecentController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -27,9 +33,9 @@ class CollectionCategoryController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            categoryCollections
-     * @api                {get} /api/category/{id}/collections Category Collections
-     * @apiDescription     Retrieve all collections of a category
+     * @apiName            recentImages
+     * @api                {get} /api/category/{id}/recent-images Recent Images
+     * @apiDescription     Retrieve all recent images in the category
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
@@ -39,14 +45,15 @@ class CollectionCategoryController extends ApiResponseController
      */
     public function run($id)
     {
-        try {
-            $collections = Collection::where('category_id', Hashids::decode($id))
-                                     ->sortable()
-                                     ->paginate(10);
-        } catch (\Exception $e) {
-            throw new NotFoundResourceException(trans('common.not.found'));
+        if (!$category = $this->categoryRepository->find(Hashids::decode($id))) {
+            return $this->responseWithError(trans('common.not.found'));
         }
         
-        return new CollectionResourceCollection($collections);
+        $images = Media::where('collection_name', $category->slug)
+                       ->where('year', '>', 1945)
+                       ->sortable(['order_column' => 'desc'])
+                       ->paginate();
+        
+        return MediaResource::collection($images);
     }
 }
