@@ -13,8 +13,6 @@ class CreateMediaTable extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id')
-                  ->nullable();
             $table->string('title')
                   ->nullable();
             $table->string('location')

@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Traits\MediaTraits;
 use Vinkla\Hashids\Facades\Hashids;
 
-class IncrementScoreMediaController extends ApiResponseController
+class DecrementScoreController extends ApiResponseController
 {
     /**
      * @var MediaRepository
@@ -30,25 +30,25 @@ class IncrementScoreMediaController extends ApiResponseController
     
     /**
      * @apiGroup           Media
-     * @apiName            incrementScore
-     * @api                {post} /api/media/increment Increment Score
-     * @apiDescription     Increment a image score
+     * @apiName            decrementScore
+     * @api                {post} /api/media/decrement Decrement Score
+     * @apiDescription     Decrement a image score
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
      * @apiParam {String} media_id the encoded id of the image
-     * @apiParam {Int} score score to increment - between 1 to 10
+     * @apiParam {Int} score score to decrement - between 1 to 10
      *
      */
     public function run(IncrementDecrementScoreRequest $request)
     {
         try {
-            $this->mediaRepository->increment($request->media_id, $request->score);
+            $this->mediaRepository->decrement($request->media_id, $request->score);
         } catch (\Exception $e) {
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        return $this->responseWithSuccess(trans('media.increment.success'));
+        return $this->responseWithSuccess(trans('media.decrement.success'));
     }
 }

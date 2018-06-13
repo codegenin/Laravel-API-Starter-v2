@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Traits\MediaTraits;
 use Vinkla\Hashids\Facades\Hashids;
 
-class UploadMediaController extends ApiResponseController
+class UploadToCategoryController extends ApiResponseController
 {
     use MediaTraits;
     /**
@@ -32,9 +32,9 @@ class UploadMediaController extends ApiResponseController
     }
     
     /**
-     * @apiGroup           Category
+     * @apiGroup           Media
      * @apiName            uploadImage
-     * @api                {post} /api/category/upload-image Upload Image
+     * @api                {post} /api/media/upload-image Upload Image
      * @apiDescription     Upload a image to a category
      * @apiVersion         1.0.0
      *
@@ -42,7 +42,6 @@ class UploadMediaController extends ApiResponseController
      *
      * @apiParam {String} category_id the encoded id of a category
      * @apiParam {String} title the collection title
-     * @apiParam {String} year the year range of the image taken
      * @apiParam {File} file the image to be uploaded
      * @apiParam {String} location the country or location where the image come from
      *
