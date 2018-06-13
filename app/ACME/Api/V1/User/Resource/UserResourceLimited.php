@@ -19,8 +19,8 @@ class UserResourceLimited extends JsonResource
     public function toArray($request)
     {
         return [
-            'name'     => $this->name,
-            'location' => $this->location,
+            'name'     => $this->name ?: '',
+            'location' => $this->location ?: '',
             'avatar'   => $this->getMedialUrls($this, 'avatar'),
         ];
     }

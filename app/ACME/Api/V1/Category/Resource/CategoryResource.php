@@ -21,9 +21,9 @@ class CategoryResource extends JsonResource
     {
         return [
             'id'          => Hashids::encode($this->id),
-            'slug'        => $this->slug,
-            'name'        => $this->name,
-            'description' => $this->description,
+            'slug'        => $this->slug ?: '',
+            'name'        => $this->name ?: '',
+            'description' => $this->description ?: '',
             'public'      => ($this->is_public == 1) ? 'Yes' : 'No',
             'covers'      => $this->getMedialUrls($this, 'category'),
             #'collections' => CollectionResource::collection($this->whenLoaded('collections'))

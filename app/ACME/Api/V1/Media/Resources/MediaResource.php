@@ -20,9 +20,9 @@ class MediaResource extends JsonResource
     {
         return [
             'id'       => Hashids::encode($this->id),
-            'title'    => $this->title,
-            'location' => $this->location,
-            'score'    => $this->score,
+            'title'    => $this->title ?: '',
+            'location' => $this->location ?: '',
+            'score'    => $this->score ?: '',
             'images'   => [
                 'original' => $this->getUrl(),
                 'large'    => $this->getUrl('large'),
