@@ -62,8 +62,9 @@ trait MediaTraits
     public function addMediaInformation($media, $request): bool
     {
         try {
-            $media->title    = $request->title;
-            $media->location = $request->location;
+            $media->title       = $request->title;
+            $media->description = $request->description;
+            $media->location    = $request->location;
             $media->attachTags(explode(',', $request->tags));
             $media->save();
         } catch (\Exception $e) {
