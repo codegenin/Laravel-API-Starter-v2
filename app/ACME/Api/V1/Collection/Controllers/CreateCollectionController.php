@@ -4,7 +4,7 @@ namespace App\ACME\Api\V1\Collection\Controllers;
 
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
-use App\ACME\Api\V1\Collection\Repositories\MediaRepository;
+use App\ACME\Api\V1\Media\Repositories\MediaRepository;
 use App\ACME\Api\V1\Collection\Requests\CreateCollectionRequest;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
@@ -38,7 +38,7 @@ class CreateCollectionController extends ApiResponseController
     /**
      * @apiGroup           Collection
      * @apiName            createCollection
-     * @api                {post} /api/collection/new Create Collection
+     * @api                {post} /api/collection/new Create Collection (Disabled)
      * @apiDescription     Store a new collection
      * @apiVersion         1.0.0
      *

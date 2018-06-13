@@ -32,7 +32,7 @@ class AddMediaToCollectionController extends ApiResponseController
     /**
      * @apiGroup           Collection
      * @apiName            uploadImage
-     * @api                {post} /api/collection/upload-image Upload Image (Do Not Use)
+     * @api                {post} /api/collection/upload-image Upload Image (Disabled)
      * @apiDescription     Upload a image to a collection
      * @apiVersion         1.0.0
      *
@@ -47,7 +47,6 @@ class AddMediaToCollectionController extends ApiResponseController
      */
     public function run(AddMediaToCollectionRequest $request)
     {
-        return false; // Disabled for now
         $id         = Hashids::decode($request->collection_id);
         $collection = $this->collectionRepository->find($id);
         
