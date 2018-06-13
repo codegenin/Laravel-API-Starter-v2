@@ -51,10 +51,9 @@ class ImagesArchiveController extends ApiResponseController
         }
         
         $images = Media::where('collection_name', $category->slug)
-                       ->where('year', '<=', 1945)
                        ->sortable(['order_column' => 'desc'])
                        ->paginate();
         
-        return MediaCategoryResource::collection($images);
+        return MediaResource::collection($images);
     }
 }
