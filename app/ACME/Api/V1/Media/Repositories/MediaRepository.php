@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ACME\Api\V1\Collection\Repositories;
+namespace App\ACME\Api\V1\Media\Repositories;
 
 use App\Models\Collection;
 use App\Models\Media;

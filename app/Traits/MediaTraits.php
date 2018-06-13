@@ -62,6 +62,7 @@ trait MediaTraits
     public function addMediaInformation($media, $request): bool
     {
         try {
+            $media->user_id     = auth()->user()->id;
             $media->title       = $request->title;
             $media->description = $request->description;
             $media->location    = $request->location;
