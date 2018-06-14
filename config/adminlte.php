@@ -114,6 +114,11 @@ return [
             'url'  => 'admin/categories',
             'icon' => 'file',
         ],
+        [
+            'text' => 'Collections',
+            'url'  => 'admin/collections',
+            'icon' => 'file',
+        ],
         /*[
             'text'    => 'Users',
             'icon'    => 'users',

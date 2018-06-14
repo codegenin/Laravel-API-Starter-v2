@@ -15,7 +15,6 @@ class CreateCollectionsTable extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id');
             $table->string('title');
             $table->string('slug');
@@ -23,11 +22,6 @@ class CreateCollectionsTable extends Migration
                   ->nullable();
             $table->string('time_period');
             $table->timestamps();
-            
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
         });
     }
     

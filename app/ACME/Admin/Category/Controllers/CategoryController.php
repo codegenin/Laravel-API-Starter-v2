@@ -3,7 +3,6 @@
 namespace App\ACME\Admin\Category\Controllers;
 
 use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
-use App\ACME\Admin\Category\Requests\UploadCoverImageRequest;
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -66,17 +65,17 @@ class CategoryController extends Controller
     {
         $category = $this->categoryRepository->find($request->id);
         $this->categoryRepository->update($request->id, $this->prepareFields($request));
-        
+    
         if ($request->has('file')) {
             $this->associateMedia($category, $request, 'category');
             $category->media_id = $category->getMedia('category')
                                            ->first()->id;
             $category->save();
         }
-        
+    
         return redirect()
             ->back()
-            ->with('success', 'Request successfully processed!');;
+            ->with('success', 'Request successfully processed!');
     }
     
     /**
