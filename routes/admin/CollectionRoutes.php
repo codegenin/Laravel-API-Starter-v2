@@ -7,6 +7,8 @@ Route::group(['prefix' => 'collections'], function () {
          ->name('admin.collection.index');
     Route::get('{id}/get', 'App\ACME\Admin\Collection\Controllers\AjaxGetCollectionController@run')
          ->name('admin.collection.ajax.get');
+    Route::get('{id}/images', 'App\ACME\Admin\Collection\Controllers\CollectionImagesController@run')
+         ->name('admin.collection.images');
     Route::post('update', 'App\ACME\Admin\Collection\Controllers\UpdateController@run')
          ->name('admin.collection.update');
     

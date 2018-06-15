@@ -18,11 +18,14 @@
             <td>{{$collection->time_period}}</td>
             <td>{{$collection->getMedia($collection->slug)->count()}}</td>
             <td>
-                <a class="btn btn-warning edit" data-id="{{$collection->id}}">
+                <a class="btn btn-success" href="{{route('admin.collection.images', $collection->id)}}" title="IMAGES">
+                    <i class="fa fa-picture-o"></i>
+                </a>
+                <a class="btn btn-warning edit" data-id="{{$collection->id}}" title="EDIT">
                     <i class="fa fa-pencil"></i>
                 </a>
                 <a href="#" data-id="{{$collection->id}}"
-                   class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
+                   class="btn btn-danger delete" title="DELETE"><i class="fa fa-remove"></i></a>
             </td>
         </tr>
     @endforeach
