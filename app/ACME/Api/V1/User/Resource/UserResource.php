@@ -29,6 +29,7 @@ class UserResource extends JsonResource
             'website'       => $this->website ?: '',
             'phone'         => $this->phone ?: '',
             'location'      => $this->location ?: '',
+            'remarks'       => $this->remarks ?: '',
             'avatar'        => $this->getMedialUrls($this, 'avatar'),
         ];
     }
