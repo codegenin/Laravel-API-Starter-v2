@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Media;
 use App\Traits\MediaTraits;
 
-class CollectionImagesController extends Controller
+class ImagesCollectionController extends Controller
 {
     use MediaTraits;
     /**
@@ -28,12 +28,13 @@ class CollectionImagesController extends Controller
     
     public function run($id)
     {
-        $collection       = $this->collectionRepository->find($id, ['category']);
-        $collectionImages = Media::where('collection_name', $collection->slug)
-                                 ->get();
+        $collection = $this->collectionRepository->find($id, ['category']);
+        $images     = Media::where('collection_name', $collection->slug)
+                           ->get();
         
         return view('admin.collection.images')->with([
-            'collection' => $collection
+            'collection' => $collection,
+            'images'     => $images
         ]);
     }
 }

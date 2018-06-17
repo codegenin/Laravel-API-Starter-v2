@@ -3,12 +3,12 @@
 namespace App\ACME\Admin\Collection\Controllers;
 
 use App\ACME\Admin\Collection\Requests\StoreCollectionRequest;
+use App\ACME\Admin\Collection\Requests\UploadImageRequest;
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\Http\Controllers\Controller;
-use App\Models\Collection;
 use App\Traits\MediaTraits;
 
-class StoreController extends Controller
+class UploadImageController extends Controller
 {
     use MediaTraits;
     /**
@@ -26,23 +26,18 @@ class StoreController extends Controller
         $this->collectionRepository = $collectionRepository;
     }
     
-    public function run(StoreCollectionRequest $request)
+    public function run(UploadImageRequest $request)
     {
-        if ($this->collectionRepository->findByColumnsFirst([
-            'slug' => str_slug($request->title)
-        ])) {
-            return redirect()->withErrors(trans('collection.store.exists'));
-        }
-        $collection = Collection::create([
-            'category_id' => $request->category_id,
-            'title'       => $request->title,
-            'slug'        => $request->title,
-            'description' => $request->description,
-            'time_period' => $request->time_period
-        ]);
+        $collection = $this->collectionRepository->find($request->id);
         
         if ($request->has('file')) {
-            $this->associateMedia($collection, $request, 'collection');
+            $media = $this->associateMedia($collection, $request, $collection->slug);
+            $media->user_id     = 0;
+            $media->title       = $request->title;
+            $media->description = $request->description;
+            $media->location    = $request->location;
+            $media->attachTags(explode(',', $request->tags));
+            $media->save();
         }
         
         return redirect()
