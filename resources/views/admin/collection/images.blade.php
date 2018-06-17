@@ -25,7 +25,7 @@
                     <h3 class="box-title">{{$image->title}}</h3>
                     <div class="box-tools pull-right">
                         <button type="button" data-toggle="modal"
-                                class="btn btn-box-tool" data-target="#modal-new-collection-image">
+                                class="btn btn-box-tool delete" data-id="{{$image->id}}">
                             <i class="fa fa-remove"></i>
                         </button>
                     </div>
@@ -108,4 +108,23 @@
     </div>
     <!-- /.modal -->
 
+    @include('admin.common.delete')
+
+@endsection
+
+@section('js')
+    <script>
+        $(function () {
+
+            // Open modal for deleting a record
+            $('.wrapper').on('click', '.delete', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#deleteId').val(id);
+                $('#deleteForm').attr('action', "{{route('admin.media.destroy')}}");
+                $('#deleteModal').modal('show');
+            });
+
+        });
+    </script>
 @endsection

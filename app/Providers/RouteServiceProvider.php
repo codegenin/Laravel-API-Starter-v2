@@ -103,6 +103,7 @@ class RouteServiceProvider extends ServiceProvider
             require base_path('routes/admin/AdminRoutes.php');
             require base_path('routes/admin/CategoryRoutes.php');
             require base_path('routes/admin/CollectionRoutes.php');
+            require base_path('routes/admin/MediaRoutes.php');
         });
     }
 }
