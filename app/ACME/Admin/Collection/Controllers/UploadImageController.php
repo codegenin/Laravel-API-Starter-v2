@@ -40,6 +40,8 @@ class UploadImageController extends Controller
             $media->save();
         }
         
+        sleep(2000); // delay the redirect so queue system can work first :D
+        
         return redirect()
             ->back()
             ->with('success', 'Request successfully processed!');
