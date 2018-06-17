@@ -53,7 +53,6 @@ class UpdateProfileController extends ApiResponseController
      * @apiParam {String} location the locaton of the user e.g. paris
      * @apiParam {String} [phone] the users phone number
      * @apiParam {String} [password] change user password
-     * @apiParam {String} [remarks] remarks from the user
      *
      */
     public function run(UpdateProfileRequest $request)
@@ -65,7 +64,6 @@ class UpdateProfileController extends ApiResponseController
             'location'      => $request->location,
             'website'       => $request->website,
             'phone'         => $request->phone,
-            'remarks'       => $request->remarks
         ]);
         
         if ($request->has('password') AND !empty($request->password)) {
