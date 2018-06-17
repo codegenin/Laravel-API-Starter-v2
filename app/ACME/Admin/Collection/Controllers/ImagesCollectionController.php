@@ -7,6 +7,7 @@ use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\Http\Controllers\Controller;
 use App\Models\Media;
 use App\Traits\MediaTraits;
+use Psr\Log\InvalidArgumentException;
 
 class ImagesCollectionController extends Controller
 {
@@ -28,9 +29,13 @@ class ImagesCollectionController extends Controller
     
     public function run($id)
     {
-        $collection = $this->collectionRepository->find($id, ['category']);
-        $images     = Media::where('collection_name', $collection->slug)
-                           ->get();
+        try {
+            $collection = $this->collectionRepository->find($id, ['category']);
+            $images     = Media::where('collection_name', $collection->slug)
+                               ->get();
+        } catch (\Exception $e) {
+            throw new InvalidArgumentException($e);
+        }
         
         return view('admin.collection.images')->with([
             'collection' => $collection,

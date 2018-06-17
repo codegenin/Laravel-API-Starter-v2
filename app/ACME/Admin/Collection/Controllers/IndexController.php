@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Traits\MediaTraits;
+use Psr\Log\InvalidArgumentException;
 use Symfony\Component\Debug\Exception\FatalErrorException;
 
 class IndexController extends Controller
@@ -22,12 +23,17 @@ class IndexController extends Controller
     
     public function run()
     {
-        $collections = Collection::with('category')
-                                 ->orderBy('created_at', 'desc')
-                                 ->get();
-        $categories  = Category::orderBy('seq')
-                               ->where('parent_id', 0)
-                               ->get();
+        try {
+            $collections = Collection::with('category')
+                                     ->orderBy('created_at', 'desc')
+                                     ->get();
+            $categories  = Category::orderBy('seq')
+                                   ->where('parent_id', 0)
+                                   ->get();
+        } catch (\Exception $e) {
+            throw new InvalidArgumentException($e);
+        }
+        
         
         return view('admin.collection.index')->with([
             'categories'  => $categories,
