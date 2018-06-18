@@ -31,12 +31,12 @@ class UploadImageController extends Controller
         $collection = $this->collectionRepository->find($request->id);
         
         if ($request->has('file')) {
-            $media = $this->associateMedia($collection, $request, $collection->slug);
+            $media              = $this->associateMedia($collection, $request, $collection->slug);
             $media->user_id     = 0;
             $media->title       = $request->title;
             $media->description = $request->description;
             $media->location    = $request->location;
-            $media->attachTags(explode(',', $request->tags));
+            $media->syncTags($request->tags);
             $media->save();
         }
         

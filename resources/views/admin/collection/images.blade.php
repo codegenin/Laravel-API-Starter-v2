@@ -89,9 +89,9 @@
                         <div class="form-group">
                             <label>Tags:</label>
                             <select class="form-control select2" multiple="multiple"
-                                    name="tags" style="width: 100%;" id="tags">
+                                    name="tags[]" style="width: 100%;" id="tags">
                                 @foreach($tags as $tag)
-                                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                    <option value="{{$tag->name}}">{{$tag->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -157,7 +157,7 @@
                         <div class="form-group">
                             <label>Tags:</label>
                             <select class="form-control select2" multiple="multiple"
-                                    name="tags" style="width: 100%;" id="edit-tags">
+                                    name="tags[]" style="width: 100%;" id="edit-tags">
                             </select>
                         </div>
 
@@ -229,7 +229,7 @@
                     $('#modal-edit-collection-image').modal('show');
                     $('#cover-image').attr('src', data.media.images.large);
                     $.each(data.tags, function (i, item) {
-                        $('#edit-tags').append($("<option />").val(item.id).text(item.text).attr('selected', item.selected));
+                        $('#edit-tags').append($("<option />").val(item.text).text(item.text).attr('selected', item.selected));
                     });
                 });
             });
