@@ -124,7 +124,7 @@
             <div class="modal-content">
                 <form action="{{route('admin.media.update')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
-                    <input type="hidden" name="media-id">
+                    <input type="hidden" name="id" id="media-id">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
@@ -162,14 +162,14 @@
                         </div>
 
 
-                        <!-- Image URL: Form Input -->
+                        {{--<!-- Image URL: Form Input -->
                         <div class="form-group">
                             <label for="media_id">Image File:</label>
                             <div class="input-group">
                                 <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
                                 <span class="input-group-addon" id="basic-addon2">Browse</span>
                             </div>
-                        </div>
+                        </div>--}}
 
                         <div class="form-group">
                             <img src="" id="cover-image" alt="">

@@ -2,6 +2,7 @@
 
 namespace App\ACME\Admin\Media\Controllers;
 
+use App\ACME\Admin\Collection\Requests\UploadImageRequest;
 use App\ACME\Admin\Media\Requests\DeleteMediaRequest;
 use App\Models\Media;
 use Illuminate\Http\Request;
@@ -15,17 +16,23 @@ class UpdateController extends Controller
         $this->middleware('auth:admin');
     }
     
-    public function run(DeleteMediaRequest $request)
+    public function run(UploadImageRequest $request)
     {
         try {
-            $media = Media::find($request->id);
+            
+            $media              = Media::find($request->id);
+            $media->title       = $request->title;
+            $media->description = $request->description;
+            $media->location    = $request->location;
+            $media->syncTags($request->tags);
+            $media->save();
+            
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e);
         }
         
-        return response()->json([
-            'status' => true,
-            'media'  => $media
-        ]);
+        return redirect()
+            ->back()
+            ->with('success', 'Request successfully processed!');
     }
 }

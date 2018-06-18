@@ -45,7 +45,7 @@ class ImagesCollectionController extends Controller
         return view('admin.collection.images')->with([
             'collection' => $collection,
             'images'     => $images,
-            'tags'       => $tags
+            'tags'       => TagResource::collection($tags)
         ]);
     }
 }
