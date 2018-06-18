@@ -19,3 +19,11 @@
     <!-- Modals -->
     @include('admin.collection.modals')
 @endsection
+
+@section('js')
+    <script>
+        $(function () {
+
+        });
+    </script>
+@endsection
