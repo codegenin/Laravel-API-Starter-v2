@@ -2,6 +2,7 @@
     <tbody>
     <tr style="background: #cccccc;color: #000;font-weight: bold;">
         <td style="width: 10px;">Id</td>
+        <td style="width: 10px;">Cover</td>
         <td style="width: 10px;">Category</td>
         <td style="width: 10px;">Title</td>
         <td style="width: 10px;">Description</td>
@@ -12,6 +13,7 @@
     @foreach($collections as $collection)
         <tr>
             <td>{{$collection->id}}</td>
+            <td><img src="{{$collection->getFirstMediaUrl('collection', 'small')}}" alt=""></td>
             <td>{{$collection->category->name}}</td>
             <td>{{$collection->title}}</td>
             <td>{{$collection->description}}</td>

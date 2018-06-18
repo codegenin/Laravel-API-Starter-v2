@@ -34,7 +34,6 @@ class IndexController extends Controller
             throw new InvalidArgumentException($e);
         }
         
-        
         return view('admin.collection.index')->with([
             'categories'  => $categories,
             'collections' => $collections
