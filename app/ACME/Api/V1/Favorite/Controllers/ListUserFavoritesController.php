@@ -2,16 +2,22 @@
 
 namespace App\ACME\Api\V1\Favorite\Controllers;
 
+use App\ACME\Api\V1\Category\Resource\CategoryResource;
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
+use App\ACME\Api\V1\Collection\Resource\CollectionResource;
+use App\ACME\Api\V1\User\Resource\UserResource;
 use App\Http\Controllers\ApiResponseController;
 use App\Models\Artist;
 use App\Models\Category;
 use App\Models\Collection;
+use App\Traits\MediaTraits;
 use Psr\Log\InvalidArgumentException;
 use Vinkla\Hashids\Facades\Hashids;
 
 class ListUserFavoritesController extends ApiResponseController
 {
+    use MediaTraits;
+    
     /**
      * @var CollectionRepository
      */
@@ -40,41 +46,17 @@ class ListUserFavoritesController extends ApiResponseController
      */
     public function run()
     {
-        $categories = [];
+        $categories = CategoryResource::collection(auth()
+            ->user()
+            ->favorite(Category::class));
         
-        if (count(auth()
-                ->user()
-                ->favorite(Category::class)) > 0) {
-            foreach (auth()
-                ->user()
-                ->favorite(Category::class) as $category) {
-                $categories[] = $category;
-            }
-        }
+        $collections = CollectionResource::collection(auth()
+            ->user()
+            ->favorite(Collection::class));
         
-        $collections = [];
-        
-        if (count(auth()
-                ->user()
-                ->favorite(Collection::class)) > 0) {
-            foreach (auth()
-                ->user()
-                ->favorite(Collection::class) as $collection) {
-                $collections[] = $collection;
-            }
-        }
-        
-        $artists = [];
-        
-        if (count(auth()
-                ->user()
-                ->favorite(Artist::class)) > 0) {
-            foreach (auth()
-                ->user()
-                ->favorite(Artist::class) as $artist) {
-                $artists[] = $artist;
-            }
-        }
+        $artists = UserResource::collection(auth()
+            ->user()
+            ->favorite(Artist::class));
         
         return response()->json([
             'status'      => true,
