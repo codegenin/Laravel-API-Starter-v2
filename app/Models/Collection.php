@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Spatie\MediaLibrary\Models\Media;
@@ -10,7 +11,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Collection extends Model implements HasMedia
 {
-    use HasMediaTrait, Sortable;
+    use HasMediaTrait, Sortable, Favoriteable;
     
     public $sortable = [
         'id',

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
 use Hashids\Hashids;
 use HighSolutions\EloquentSequence\Sequence;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class Category extends Model implements HasMedia
 {
-    use NestableTrait, Sortable, Sequence, HasMediaTrait;
+    use NestableTrait, Sortable, Sequence, HasMediaTrait, Favoriteable;
     
     public $sortable = [
         'id',

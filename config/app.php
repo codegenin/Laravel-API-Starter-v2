@@ -154,6 +154,7 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         Nestable\NestableServiceProvider::class,
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
+        ChristianKuri\LaravelFavorite\FavoriteServiceProvider::class,
         
         /*
          * Application Service Providers...

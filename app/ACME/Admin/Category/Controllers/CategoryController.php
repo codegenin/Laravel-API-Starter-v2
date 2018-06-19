@@ -65,14 +65,14 @@ class CategoryController extends Controller
     {
         $category = $this->categoryRepository->find($request->id);
         $this->categoryRepository->update($request->id, $this->prepareFields($request));
-    
+        
         if ($request->has('file')) {
             $this->associateMedia($category, $request, 'category');
             $category->media_id = $category->getMedia('category')
                                            ->first()->id;
             $category->save();
         }
-    
+        
         return redirect()
             ->back()
             ->with('success', 'Request successfully processed!');
@@ -120,7 +120,7 @@ class CategoryController extends Controller
     {
         return [
             'name'        => $request->name,
-            'slug'        => $request->name,
+            'slug'        => str_slug($request->name),
             'description' => $request->description,
             'is_public'   => $request->is_public,
             'parent_id'   => $request->parent_id,
