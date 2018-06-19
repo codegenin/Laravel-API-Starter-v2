@@ -4,6 +4,7 @@ namespace App\ACME\Api\V1\Favorite\Controllers;
 
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\Http\Controllers\ApiResponseController;
+use App\Models\Artist;
 use App\Models\Category;
 use App\Models\Collection;
 use Psr\Log\InvalidArgumentException;
@@ -63,10 +64,23 @@ class ListUserFavoritesController extends ApiResponseController
             }
         }
         
+        $artists = [];
+        
+        if (count(auth()
+                ->user()
+                ->favorite(Artist::class)) > 0) {
+            foreach (auth()
+                ->user()
+                ->favorite(Artist::class) as $artist) {
+                $artists[] = $artist;
+            }
+        }
+        
         return response()->json([
             'status'      => true,
             'categories'  => $categories,
-            'collections' => $collections
+            'collections' => $collections,
+            'artists'     => $artists
         ]);
         
     }
