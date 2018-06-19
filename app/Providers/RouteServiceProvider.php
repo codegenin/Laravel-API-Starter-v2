@@ -84,6 +84,7 @@ class RouteServiceProvider extends ServiceProvider
             require base_path('routes/api/v1/MediaRoutes.php');
             require base_path('routes/api/v1/CollectionRoutes.php');
             require base_path('routes/api/v1/FavoriteRoutes.php');
+            require base_path('routes/api/v1/SearchRoutes.php');
         });
     }
     

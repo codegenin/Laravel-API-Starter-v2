@@ -8,19 +8,28 @@ use HighSolutions\EloquentSequence\Sequence;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Nestable\NestableTrait;
+use Nicolaslopezj\Searchable\SearchableTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 
 class Category extends Model implements HasMedia
 {
-    use NestableTrait, Sortable, Sequence, HasMediaTrait, Favoriteable;
+    use NestableTrait, Sortable, Sequence, HasMediaTrait, Favoriteable,
+        SearchableTrait;
     
     public $sortable = [
         'id',
         'name',
         'seq'
     ];
+    
+    protected $searchable = [
+        'columns' => [
+            'name' => 10,
+        ],
+    ];
+    
     
     protected $parent = 'parent_id';
     /**

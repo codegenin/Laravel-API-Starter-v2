@@ -5,18 +5,25 @@ namespace App\Models;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use Nicolaslopezj\Searchable\SearchableTrait;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Collection extends Model implements HasMedia
 {
-    use HasMediaTrait, Sortable, Favoriteable;
+    use HasMediaTrait, Sortable, Favoriteable, SearchableTrait;
     
     public $sortable = [
         'id',
         'score',
         'title'
+    ];
+    
+    protected $searchable = [
+        'columns' => [
+            'title'       => 10
+        ],
     ];
     
     protected $guarded = [
