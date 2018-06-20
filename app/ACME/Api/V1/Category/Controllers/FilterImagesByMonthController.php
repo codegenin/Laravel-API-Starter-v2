@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class FilterCollectionsByWeekController extends ApiResponseController
+class FilterImagesByMonthController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -32,9 +32,9 @@ class FilterCollectionsByWeekController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            filterCollectionsByWeek
-     * @api                {get} /api/category/{id}/collections/week Filter By Week
-     * @apiDescription     Retrieve all collections on a category filtered by current week.
+     * @apiName            filterCollectionsByMonth
+     * @api                {get} /api/category/{id}/collections/month Filter By Month
+     * @apiDescription     Retrieve all collections on a category filtered by current month.
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
@@ -44,17 +44,9 @@ class FilterCollectionsByWeekController extends ApiResponseController
      */
     public function run($id)
     {
-        Carbon::setWeekStartsAt(Carbon::SUNDAY);
-        Carbon::setWeekEndsAt(Carbon::SATURDAY);
-        
         try {
             $collections = Collection::where('category_id', Hashids::decode($id))
-                                     ->whereBetween('created_at', [
-                                         Carbon::now()
-                                               ->startOfWeek(),
-                                         Carbon::now()
-                                               ->endOfWeek()
-                                     ])
+                                     ->whereMonth('updated_at', date('m'))
                                      ->orderBy('score', 'desc')
                                      ->paginate();
         } catch (\Exception $e) {

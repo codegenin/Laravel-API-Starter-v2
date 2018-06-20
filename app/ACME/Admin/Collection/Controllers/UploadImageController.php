@@ -32,6 +32,7 @@ class UploadImageController extends Controller
         
         if ($request->has('file')) {
             $media              = $this->associateMedia($collection, $request, $collection->slug);
+            $media->category_id = $collection->category_id;
             $media->user_id     = 0;
             $media->title       = $request->title;
             $media->description = $request->description;

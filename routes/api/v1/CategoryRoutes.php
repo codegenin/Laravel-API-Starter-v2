@@ -14,12 +14,12 @@ $api->version('v1', function (Router $api) {
         $api->get('{id}/images', 'App\\ACME\\Api\\V1\\Category\\Controllers\\ListImagesController@run');
         
         ################ FILTERED BY DATE ####################################
-        $api->get('{id}/collections/day',
-            'App\\ACME\\Api\\V1\\Category\\Controllers\\FilterCollectionsByDayController@run');
-        $api->get('{id}/collections/week',
-            'App\\ACME\\Api\\V1\\Category\\Controllers\\FilterCollectionsByWeekController@run');
-        $api->get('{id}/collections/month',
-            'App\\ACME\\Api\\V1\\Category\\Controllers\\FilterCollectionByMonthController@run');
+        $api->get('{id}/images/day',
+            'App\\ACME\\Api\\V1\\Category\\Controllers\\FilterImagesByDayController@run');
+        $api->get('{id}/images/week',
+            'App\\ACME\\Api\\V1\\Category\\Controllers\\FilterImagesByWeekController@run');
+        $api->get('{id}/images/month',
+            'App\\ACME\\Api\\V1\\Category\\Controllers\\FilteImagesByMonthController@run');
         
         ################ ARCHIVE OR RECENT ############################
         $api->get('{id}/archive-images',

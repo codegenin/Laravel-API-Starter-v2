@@ -11,11 +11,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Collection;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class FilterCollectionsByDayController extends ApiResponseController
+class FilterImagesByWeekController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -31,9 +32,9 @@ class FilterCollectionsByDayController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            filterCollectionsByDay
-     * @api                {get} /api/category/{id}/collections/day Filter By Day
-     * @apiDescription     Retrieve all collections on a category filtered by current day.
+     * @apiName            filterCollectionsByWeek
+     * @api                {get} /api/category/{id}/collections/week Filter By Week
+     * @apiDescription     Retrieve all collections on a category filtered by current week.
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
@@ -43,9 +44,17 @@ class FilterCollectionsByDayController extends ApiResponseController
      */
     public function run($id)
     {
+        Carbon::setWeekStartsAt(Carbon::SUNDAY);
+        Carbon::setWeekEndsAt(Carbon::SATURDAY);
+        
         try {
             $collections = Collection::where('category_id', Hashids::decode($id))
-                                     ->whereDate('updated_at', DB::raw('CURDATE()'))
+                                     ->whereBetween('created_at', [
+                                         Carbon::now()
+                                               ->startOfWeek(),
+                                         Carbon::now()
+                                               ->endOfWeek()
+                                     ])
                                      ->orderBy('score', 'desc')
                                      ->paginate();
         } catch (\Exception $e) {

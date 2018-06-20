@@ -59,9 +59,10 @@ trait MediaTraits
      * @param $request
      * @return bool
      */
-    public function addMediaInformation($media, $request): bool
+    public function addMediaInformation($media, $request, $categoryId = null): bool
     {
         try {
+            $media->category_id = $categoryId;
             $media->user_id     = auth()->user()->id;
             $media->title       = $request->title;
             $media->description = $request->description;

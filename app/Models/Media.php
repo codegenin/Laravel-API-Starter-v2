@@ -34,4 +34,8 @@ class Media extends BaseMedia implements HasMedia
         'updated_at'
     ];
     
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

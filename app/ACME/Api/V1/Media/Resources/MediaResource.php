@@ -2,6 +2,8 @@
 
 namespace App\ACME\Api\V1\Media\Resource;
 
+use App\ACME\Api\V1\User\Resource\UserResource;
+use App\ACME\Api\V1\User\Resource\UserResourceLimited;
 use App\Traits\MediaTraits;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Vinkla\Hashids\Facades\Hashids;
@@ -24,6 +26,7 @@ class MediaResource extends JsonResource
             'description' => $this->description ?: '',
             'location'    => $this->location ?: '',
             'score'       => $this->score ?: '',
+            'user'        => new UserResourceLimited($this->user),
             'images'      => [
                 'original' => $this->getUrl(),
                 'large'    => $this->getUrl('large'),

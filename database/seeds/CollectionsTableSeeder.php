@@ -23,6 +23,7 @@ class CollectionsTableSeeder extends Seeder
                 for ($i = 1; $i <= 3; $i++) {
                     $media              = $collection->addMediaFromUrl('https://s3.amazonaws.com/yyg-test-collections/sample.jpg')
                                                      ->toMediaCollection($collection->slug);
+                    $media->user_id     = 1;
                     $media->title       = 'Sample' . $i;
                     $media->description = 'Sample' . $i;
                     $media->location    = 'Sample' . $i;

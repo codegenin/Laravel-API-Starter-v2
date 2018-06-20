@@ -31,9 +31,10 @@ class ListUserImagesController extends ApiResponseController
      *
      *
      */
-    public function run()
+    public function run($id)
     {
-        $images = Media::where('user_id', auth()->user()->id)
+        $id     = Hashids::decode($id);
+        $images = Media::where('user_id', $id[0])
                        ->sortable(['order_column' => 'desc'])
                        ->paginate();
         
