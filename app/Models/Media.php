@@ -22,7 +22,9 @@ class Media extends BaseMedia implements HasMedia
     
     protected $searchable = [
         'columns' => [
-            'title' => 10,
+            'title'       => 10,
+            'description' => 5,
+            'location'    => 1
         ],
     ];
     
