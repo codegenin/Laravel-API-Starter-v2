@@ -17,6 +17,9 @@ $api->version('v1', function (Router $api) {
         
         $api->get('{id}/delete', 'App\\ACME\\Api\\V1\\User\\Controllers\\UserController@delete');
         
+        ########### ARTIST ROUTES ######################
+        $api->get('artist/{id}/show', 'App\\ACME\\Api\\V1\\User\\Controllers\\ViewArtistController@run');
+        
     });
     
 });

@@ -10,7 +10,7 @@ use App\Models\Category;
 use Auth;
 use Vinkla\Hashids\Facades\Hashids;
 
-class ShowCategoryController extends ApiResponseController
+class ViewCategoryController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -26,8 +26,8 @@ class ShowCategoryController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            showCategory
-     * @api                {get} /api/category/{id}/show Show Category
+     * @apiName            viewCategory
+     * @api                {get} /api/category/{id}/show View Category
      * @apiDescription     Retrieve the category information
      * @apiVersion         1.0.0
      *

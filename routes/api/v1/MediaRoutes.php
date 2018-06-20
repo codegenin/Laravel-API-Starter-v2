@@ -12,6 +12,9 @@ $api->version('v1', function (Router $api) {
             ->middleware('role.artist');
         $api->get('user-images', 'App\\ACME\\Api\\V1\\Media\\Controllers\\ListUserImagesController@run')
             ->middleware('role.artist');
+    
+        $api->get('{id}/show', 'App\\ACME\\Api\\V1\\Media\\Controllers\\ViewImageController@run');
+    
         
         ############# INCREMENT / DECREMENT #######################
         $api->post('increment', 'App\\ACME\\Api\\V1\\Media\\Controllers\\ScoreIncrementController@run');
