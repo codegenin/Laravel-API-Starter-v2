@@ -19,7 +19,7 @@
             <td>{{$collection->description}}</td>
             <td>{{$collection->time_period}}</td>
             <td>{{$collection->getMedia($collection->slug)->count()}}</td>
-            <td>
+            <td style="width: 100px;">
                 <a class="btn btn-success" href="{{route('admin.collection.images', $collection->id)}}" title="IMAGES">
                     <i class="fa fa-picture-o"></i>
                 </a>
@@ -33,6 +33,10 @@
     @endforeach
     </tbody>
 </table>
+
+<div id="paginate" class="pull-right">
+    {{$collections->links()}}
+</div>
 @include('admin.common.delete')
 @section('scripts')
     <script>

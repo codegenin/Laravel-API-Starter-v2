@@ -11,6 +11,14 @@
 |
 */
 
+use Illuminate\Http\UploadedFile;
+
+/*Route::get('test', function() {
+    $faker = \Faker\Factory::create();
+    $image = $faker->imageUrl(500, 500, 'cats', true, 'SAMPLE ONLY');
+    echo $image;
+});*/
+
 Route::get('reset_password/{token}', [
     'as' => 'password.reset',
     function ($token) {

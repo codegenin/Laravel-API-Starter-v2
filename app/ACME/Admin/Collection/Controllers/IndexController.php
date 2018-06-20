@@ -26,7 +26,7 @@ class IndexController extends Controller
         try {
             $collections = Collection::with('category')
                                      ->orderBy('created_at', 'desc')
-                                     ->get();
+                                     ->paginate(10);
             $categories  = Category::orderBy('seq')
                                    ->where('parent_id', 0)
                                    ->get();

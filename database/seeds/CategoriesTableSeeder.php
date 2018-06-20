@@ -60,6 +60,10 @@ class CategoriesTableSeeder extends Seeder
         
         foreach ($categories as $item) {
             $category->create($item);
+            
+            // Create sample cover
+            $item->addMediaFromUrl('https://s3.amazonaws.com/yyg-test-collections/sample.jpg')
+                     ->toMediaCollection('category');
         }
     }
 }
