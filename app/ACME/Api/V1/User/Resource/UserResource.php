@@ -30,7 +30,6 @@ class UserResource extends JsonResource
             'phone'         => $this->phone ?: '',
             'location'      => $this->location ?: '',
             'remarks'       => $this->remarks ?: '',
-            'isFavorite'    => ($this->isFavorited(auth()->user()->d)) ? 'Yes' : 'No',
             'avatar'        => $this->getMedialUrls($this, 'avatar'),
         ];
     }
