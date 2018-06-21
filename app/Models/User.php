@@ -7,6 +7,7 @@ use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
 use Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Nicolaslopezj\Searchable\SearchableTrait;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -14,7 +15,7 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class User extends Authenticatable implements JWTSubject, HasMedia
 {
-    use Notifiable, HasMediaTrait, Favoriteability;
+    use Notifiable, HasMediaTrait, Favoriteability, SearchableTrait;
     
     /**
      * The attributes that are mass assignable.
@@ -25,6 +26,12 @@ class User extends Authenticatable implements JWTSubject, HasMedia
         'id',
         'created_at',
         'updated_at'
+    ];
+    
+    protected $searchable = [
+        'columns' => [
+            'name' => 10
+        ],
     ];
     
     /**
