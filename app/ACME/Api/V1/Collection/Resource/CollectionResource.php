@@ -28,6 +28,7 @@ class CollectionResource extends JsonResource
             'time_period' => $this->time_period ?: '',
             'score'       => $this->score ?: '',
             'user'        => new UserResourceLimited($this->user),
+            'isFavorite' => ($this->isFavorited(auth()->user()->d)) ? 'Yes' : 'No',
             'covers'      => $this->getMedialUrls($this, $this->slug),
         ];
     }

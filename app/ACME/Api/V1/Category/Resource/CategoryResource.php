@@ -25,6 +25,7 @@ class CategoryResource extends JsonResource
             'name'        => $this->name ?: '',
             'description' => $this->description ?: '',
             'public'      => ($this->is_public == 1) ? 'Yes' : 'No',
+            'isFavorite' => ($this->isFavorited(auth()->user()->d)) ? 'Yes' : 'No',
             'covers'      => $this->getMedialUrls($this, 'category'),
             #'collections' => CollectionResource::collection($this->whenLoaded('collections'))
         ];

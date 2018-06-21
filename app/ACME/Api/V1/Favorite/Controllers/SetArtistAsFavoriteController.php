@@ -9,7 +9,7 @@ use App\Models\User;
 use Psr\Log\InvalidArgumentException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class SetUserAsFavoriteController extends ApiResponseController
+class SetArtistAsFavoriteController extends ApiResponseController
 {
     /**
      * @var UserRepository
@@ -28,22 +28,22 @@ class SetUserAsFavoriteController extends ApiResponseController
     
     /**
      * @apiGroup           Favorite
-     * @apiName            setUserAsFavorite
-     * @api                {get} /api/favorite/{id}/user Set User As Favorite
-     * @apiDescription     Set a user as user favorite
+     * @apiName            setArtistAsFavorite
+     * @api                {get} /api/favorite/{id}/artist Set Artist As Favorite
+     * @apiDescription     Set a artist as user favorite
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {String} id the encoded user id
+     * @apiParam {String} id the encoded artist id
      *
      */
     public function run($id)
     {
-        $artist = new Artist();
-        
         try {
-            $artist = $artist->find(Hashids::decode($id));
+            $artist = Artist::where('id', Hashids::decode($id))
+                            ->where('role', 'artist')
+                            ->first();
             auth()
                 ->user()
                 ->toggleFavorite($artist);

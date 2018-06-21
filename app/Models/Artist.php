@@ -16,7 +16,7 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class Artist extends Model implements HasMedia
 {
-    use HasMediaTrait, Favoriteable, SearchableTrait;
+    use HasMediaTrait, SearchableTrait, Favoriteable;
     
     protected $table = 'users';
     
