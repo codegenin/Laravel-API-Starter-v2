@@ -36,7 +36,7 @@ class ListUserImagesController extends ApiResponseController
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     *
+     * @apiParam {string} id the encoded user/artist id
      */
     public function run($id)
     {
