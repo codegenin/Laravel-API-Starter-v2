@@ -12,6 +12,7 @@ $api->version('v1', function (Router $api) {
         $api->get('{id}/show', 'App\\ACME\\Api\\V1\\Category\\Controllers\\ViewCategoryController@run');
         $api->get('{id}/collections', 'App\\ACME\\Api\\V1\\Category\\Controllers\\ListCollectionsController@run');
         $api->get('{id}/images', 'App\\ACME\\Api\\V1\\Category\\Controllers\\ListImagesController@run');
+        $api->get('{id}/is-user-favorite', 'App\\ACME\\Api\\V1\\Category\\Controllers\\IsUserFavoriteController@run');
         
         ################ FILTERED BY DATE ####################################
         $api->get('{id}/images/day',
