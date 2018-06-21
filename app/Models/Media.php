@@ -17,6 +17,7 @@ class Media extends BaseMedia implements HasMedia
     public $sortable = [
         'id',
         'order_column',
+        'score',
         'created_at'
     ];
     
