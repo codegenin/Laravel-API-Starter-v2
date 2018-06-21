@@ -41,7 +41,7 @@ class IsUserFavoriteController extends ApiResponseController
         
         return response()->json([
             'status'     => true,
-            'isFavorite' => ($category->isFavorited(auth()->user()->id)) ? 'Yes' : 'No'
+            'isFavorite' => $category->isFavorited(auth()->user()->id)
         ]);
     }
 }
