@@ -12,6 +12,7 @@ use App\Models\Artist;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Media;
+use App\Models\User;
 
 class SearchAllController extends ApiResponseController
 {
@@ -40,7 +41,7 @@ class SearchAllController extends ApiResponseController
         $collections = Collection::search($term)
                                  ->get();
         
-        $artist = Artist::search($term)
+        $artist = User::search($term)
                         ->where('role', 'artist')
                         ->get();
         
