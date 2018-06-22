@@ -1,22 +1,24 @@
 <table class="table table-responsive table-striped">
     <tbody>
     <tr style="background: #cccccc;color: #000;font-weight: bold;">
-        <td style="width: 10px;">Order</td>
+        <td style="width: 10px;">Id</td>
         <td style="width: 10px;">Cover</td>
         <td style="width: 10px;">Name</td>
         <td style="width: 10px;">Slug</td>
         <td style="width: 20px;">Description</td>
+        <td style="width: 10px;">Seq</td>
         <td style="width: 5px;">isPublic</td>
         <td style="width: 5px;">Images</td>
         <td style="width: 20px;">Action</td>
     </tr>
     @foreach($categories as $category)
         <tr>
-            <td>{{$category->seq}}</td>
+            <td>{{$category->id}}</td>
             <td><img src="{{$category->getFirstMediaUrl('category', 'small')}}" alt=""></td>
             <td>{{$category->name}}</td>
             <td>{{$category->slug}}</td>
             <td>{{$category->description}}</td>
+            <td>{{$category->seq}}</td>
             <td>{{($category->is_public == 1) ? 'YES' : 'NO'}}</td>
             <td>{{$category->images->count()}}</td>
             <td>
