@@ -20,4 +20,9 @@ Route::group(['prefix' => 'categories'], function () {
     Route::get('{id}/move-down', 'App\ACME\Admin\Category\Controllers\MoveCategoryController@down')
          ->name('admin.category.move.down');
     
+    ############## Images Routes ##############################
+    Route::get('{id}/images', 'App\ACME\Admin\Category\Controllers\ListImagesController@run')
+         ->name('admin.category.images');
+    Route::post('upload', 'App\ACME\Admin\Category\Controllers\UploadImageController@update')
+         ->name('admin.category.upload');
 });

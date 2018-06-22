@@ -99,4 +99,9 @@ class Category extends Model implements HasMedia
     {
         return $this->hasMany(Collection::class);
     }
+    
+    public function images()
+    {
+        return $this->hasMany(Media::class);
+    }
 }

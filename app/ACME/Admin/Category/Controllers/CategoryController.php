@@ -34,8 +34,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories    = Category::orderBy('seq')
-                                 ->renderAsArray();
+        $categories   = Category::orderBy('seq', 'desc')
+                                 ->paginate(10);
         $allCategories = Category::orderBy('seq')
                                  ->where('parent_id', 0)
                                  ->get();

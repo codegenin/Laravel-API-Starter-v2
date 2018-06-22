@@ -1,10 +1,10 @@
 <?php
 
-namespace App\ACME\Admin\Collection\Controllers;
+namespace App\ACME\Admin\Category\Controllers;
 
-use App\ACME\Admin\Collection\Requests\StoreCollectionRequest;
-use App\ACME\Admin\Collection\Requests\UploadImageRequest;
-use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
+use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
+use App\ACME\Admin\Category\Requests\UploadImageRequest;
+use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
 use App\Traits\MediaTraits;
 
@@ -12,15 +12,15 @@ class UploadImageController extends Controller
 {
     use MediaTraits;
     /**
-     * @var CollectionRepository
+     * @var CategoryRepository
      */
     private $collectionRepository;
     
     /**
      * StoreController constructor.
-     * @param CollectionRepository $collectionRepository
+     * @param CategoryRepository $collectionRepository
      */
-    public function __construct(CollectionRepository $collectionRepository)
+    public function __construct(CategoryRepository $collectionRepository)
     {
         $this->middleware('auth:admin');
         $this->collectionRepository = $collectionRepository;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ACME\Admin\Collection\Requests;
+namespace App\ACME\Admin\Media\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

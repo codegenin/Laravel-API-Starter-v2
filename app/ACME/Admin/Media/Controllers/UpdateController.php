@@ -2,7 +2,7 @@
 
 namespace App\ACME\Admin\Media\Controllers;
 
-use App\ACME\Admin\Collection\Requests\UploadImageRequest;
+use App\ACME\Admin\Media\Requests\UploadImageRequest;
 use App\ACME\Admin\Media\Requests\DeleteMediaRequest;
 use App\Models\Media;
 use Illuminate\Http\Request;

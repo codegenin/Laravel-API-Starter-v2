@@ -7,7 +7,7 @@
         <td style="width: 10px;">Title</td>
         <td style="width: 10px;">Description</td>
         <td style="width: 10px;">Time Period</td>
-        <td style="width: 10px;">Image Count</td>
+        <td style="width: 10px;">Images</td>
         <td style="width: 20px;">Action</td>
     </tr>
     @foreach($collections as $collection)
