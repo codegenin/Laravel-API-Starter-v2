@@ -108,7 +108,7 @@ return [
     */
     
     'menu' => [
-        'MAIN NAVIGATION',
+        /*'MAIN NAVIGATION',
         [
             'text' => 'Categories',
             'url'  => 'admin/categories',
@@ -118,7 +118,7 @@ return [
             'text' => 'Collections',
             'url'  => 'admin/collections',
             'icon' => 'file',
-        ],
+        ],*/
         /*[
             'text'    => 'Users',
             'icon'    => 'users',

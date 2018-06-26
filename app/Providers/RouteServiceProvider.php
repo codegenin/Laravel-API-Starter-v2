@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -98,8 +99,13 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminRoutes()
     {
         Route::group([
-            'middleware' => 'web',
-            'prefix'     => 'admin',
+            'middleware' => [
+                'web',
+                'localeSessionRedirect',
+                'localizationRedirect',
+                'localeViewPath'
+            ],
+            'prefix'     => LaravelLocalization::setLocale() . '/admin',
         ], function ($router) {
             require base_path('routes/admin/AuthenticationRoutes.php');
             require base_path('routes/admin/AdminRoutes.php');

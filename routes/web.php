@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Http\UploadedFile;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*Route::get('test', function() {
     $faker = \Faker\Factory::create();

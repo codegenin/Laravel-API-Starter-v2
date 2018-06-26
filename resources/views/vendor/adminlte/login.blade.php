@@ -15,8 +15,20 @@
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
+            <p class="login-box-msg">
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    <a rel="alternate" hreflang="{{ $localeCode }}"
+                       href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        @if($localeCode == 'en')
+                            <img src="{{asset('images/en.png')}}" alt="English"> |
+                        @else
+                            <img src="{{asset('images/fr.png')}}" alt="English">
+                        @endif
+                    </a>
+                @endforeach
+            </p>
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
-            <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
+            <form action="{{ route('admin.auth.post.login') }}" method="post">
                 {!! csrf_field() !!}
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
