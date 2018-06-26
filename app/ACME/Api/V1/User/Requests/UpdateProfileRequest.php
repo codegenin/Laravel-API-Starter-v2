@@ -16,11 +16,11 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name'          => 'required',
+            'password'      => 'nullable|min:6',
             'contact_email' => 'nullable|email',
             'location'      => 'required',
             'birthday'      => 'nullable|date',
             'website'       => 'nullable|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-            'file'          => 'nullable|mimes:jpeg'
         ];
     }
 }

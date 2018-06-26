@@ -57,20 +57,22 @@ class UpdateProfileController extends ApiResponseController
      */
     public function run(UpdateProfileRequest $request)
     {
-        $this->userRepository->update(auth()->user()->id, [
-            'name'          => $request->name,
-            'contact_email' => $request->contact_email,
-            'birthday'      => $request->birthday,
-            'location'      => $request->location,
-            'website'       => $request->website,
-            'phone'         => $request->phone,
-        ]);
+        $user                     = User::find(auth()->user()->id);
+        $user->name               = $request->name;
+        $details                  = $user->details;
+        $details['contact_email'] = isset($request->contact_email) ? $request->contact_email : '';
+        $details['contact_email'] = isset($request->contact_email) ? $request->contact_email : '';
+        $details['birthday']      = isset($request->birthday) ? $request->birthday : '';
+        $details['location']      = isset($request->location) ? $request->location : '';
+        $details['website']       = isset($request->website) ? $request->website : '';
+        $details['phone']         = isset($request->phone) ? $request->phone : '';
+        $user->details            = $details;
         
         if ($request->has('password') AND !empty($request->password)) {
-            $user           = User::find(auth()->user()->id);
             $user->password = $request->password;
-            $user->save();
         }
+        
+        $user->save();
         
         return $this->responseWithSuccess(trans('common.update.success'));
     }
