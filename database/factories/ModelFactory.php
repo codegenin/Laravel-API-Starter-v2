@@ -21,6 +21,8 @@ $factory->define(\App\Models\Collection::class, function (\Faker\Generator $fake
         'slug'        => str_slug($faker->word),
         'description' => $faker->paragraph,
         'time_period' => $faker->numberBetween(1900, 1945) . '-' . $faker->numberBetween(1946, 2018),
+        'points'      => $faker->numberBetween(0, 1000),
+        'artist'      => $faker->name,
         'created_at'  => $faker->dateTimeBetween('-1 week', 'now'),
         'updated_at'  => $faker->dateTimeBetween('-1 week', 'now')
     ];

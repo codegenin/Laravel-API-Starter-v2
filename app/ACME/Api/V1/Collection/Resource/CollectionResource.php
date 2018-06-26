@@ -22,11 +22,13 @@ class CollectionResource extends JsonResource
     {
         return [
             'id'          => Hashids::encode($this->id),
-            'slug'        => $this->slug ?: '',
-            'title'       => $this->title ?: '',
-            'description' => $this->description ?: '',
-            'time_period' => $this->time_period ?: '',
-            'score'       => $this->score ?: '',
+            'slug'        => $this->slug,
+            'title'       => $this->title,
+            'description' => isset($this->description) ? $this->description : '',
+            'time_period' => isset($this->time_period) ? $this->time_period : '',
+            'score'       => isset($this->score) ? $this->score : 0,
+            'points'      => isset($this->points) ? $this->points : 0,
+            'artist'      => isset($this->artist) ? $this->artist : '',
             'user'        => new UserResourceLimited($this->user),
             'covers'      => $this->getMedialUrls($this, $this->slug),
         ];

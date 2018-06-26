@@ -33,6 +33,9 @@ class ViewCollectionController extends ApiResponseController
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
      * @apiParam {int} id the encoded collection id
+     *
+     * @apiSuccessExample {json} Success-Response:
+     * {"status":true,"id":"Yx3WVBlkw697rJjZznqg2oab","slug":"quia","title":"sunt","description":"Et et quo ducimus ipsa ea. Porro ut ut temporibus aut pariatur quia vel. Ipsam id deleniti laudantium laboriosam.","time_period":"1908-1960","score":0,"points":0,"artist":"David Copper Field","user":null,"covers":{"original":"https:\/\/yyg-test-collections.s3.amazonaws.com\/9\/sample.jpg","large":"https:\/\/yyg-test-collections.s3.amazonaws.com\/9\/conversions\/sample-large.jpg","medium":"https:\/\/yyg-test-collections.s3.amazonaws.com\/9\/conversions\/sample-medium.jpg","small":"https:\/\/yyg-test-collections.s3.amazonaws.com\/9\/conversions\/sample-small.jpg"}}
      */
     public function run($id)
     {
