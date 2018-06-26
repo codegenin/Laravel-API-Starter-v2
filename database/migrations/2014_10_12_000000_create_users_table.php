@@ -18,9 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')
                   ->unique();
-            $table->string('contact_email')
-                  ->nullable();
             $table->string('password');
+            /*$table->string('contact_email')
+                  ->nullable();
             $table->string('phone')
                   ->nullable();
             $table->text('about')
@@ -31,6 +31,20 @@ class CreateUsersTable extends Migration
                   ->default('paris');
             $table->string('website')
                   ->nullable();
+            $table->string('avatar')
+                  ->after('social_id')
+                  ->nullable();
+            $table->string('avatar_original')
+                  ->after('avatar')
+                  ->nullable();
+            $table->string('social_profile_url')
+                  ->after('avatar_original')
+                  ->nullable();
+            */
+            $table->text('details')
+                  ->nullable();
+            $table->unsignedInteger('points')
+                  ->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

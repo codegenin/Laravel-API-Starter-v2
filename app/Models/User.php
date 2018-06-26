@@ -28,6 +28,10 @@ class User extends Authenticatable implements JWTSubject, HasMedia
         'updated_at'
     ];
     
+    protected $casts = [
+        'details' => 'array'
+    ];
+    
     protected $searchable = [
         'columns' => [
             'name' => 10

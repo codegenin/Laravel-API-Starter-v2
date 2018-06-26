@@ -20,15 +20,6 @@ class AddSocialFieldsInUsersTable extends Migration
             $table->string('social_id')
                   ->after('provider')
                   ->nullable();
-            $table->string('avatar')
-                  ->after('social_id')
-                  ->nullable();
-            $table->string('avatar_original')
-                  ->after('avatar')
-                  ->nullable();
-            $table->string('social_profile_url')
-                  ->after('avatar_original')
-                  ->nullable();
         });
     }
     
@@ -42,9 +33,9 @@ class AddSocialFieldsInUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('provider');
             $table->dropColumn('social_id');
-            $table->dropColumn('avatar');
+            /*$table->dropColumn('avatar');
             $table->dropColumn('avatar_original');
-            $table->dropColumn('social_profile_url');
+            $table->dropColumn('social_profile_url');*/
         });
     }
 }

@@ -19,18 +19,20 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'            => Hashids::encode($this->id),
-            'name'          => $this->name ?: '',
-            'email'         => $this->email ?: '',
-            'contact_email' => $this->contact_email ?: '',
-            'role'          => $this->role ?: '',
-            'about'         => $this->about ?: '',
-            'birthday'      => $this->birthday ?: '',
-            'website'       => $this->website ?: '',
-            'phone'         => $this->phone ?: '',
-            'location'      => $this->location ?: '',
-            'remarks'       => $this->remarks ?: '',
-            'avatar'        => $this->getMedialUrls($this, 'avatar'),
+            'id'      => Hashids::encode($this->id),
+            'name'    => $this->name ?: '',
+            'email'   => $this->email ?: '',
+            'role'    => $this->role ?: '',
+            'details' => [
+                'contact_email' => isset($this->details['contact_email']) ? $this->details['contact_email'] : '',
+                'about'         => isset($this->details['about']) ? $this->details['about'] : '',
+                'birthday'      => isset($this->details['birthday']) ? $this->details['birthday'] : '',
+                'website'       => isset($this->details['website']) ? $this->details['website'] : '',
+                'phone'         => isset($this->details['phone']) ? $this->details['phone'] : '',
+                'location'      => isset($this->details['location']) ? $this->details['location'] : '',
+                'remarks'       => isset($this->details['remarks']) ? $this->details['remarks'] : '',
+            ],
+            'avatar'  => $this->getMedialUrls($this, 'avatar'),
         ];
     }
 }

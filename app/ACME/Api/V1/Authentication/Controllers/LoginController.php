@@ -78,10 +78,6 @@ class LoginController extends Controller
                 'id'         => \Vinkla\Hashids\Facades\Hashids::encode($user->id),
                 'name'       => $user->name,
                 'role'       => $user->role,
-                'about'      => $user->about,
-                'birthday'   => $user->birthday,
-                'website'    => $user->website,
-                'location'   => $user->location
             ]);
     }
 }

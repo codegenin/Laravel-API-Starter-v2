@@ -18,24 +18,30 @@ class UsersTableSeeder extends Seeder
         
         $users = [
             [
-                'name'     => 'The Artist',
-                'email'    => 'artist@artist.com',
-                'password' => '123456',
-                'verified' => 1,
-                'role'     => 'artist',
-                'about'    => $faker->paragraph,
-                'birthday' => $faker->date('Y-m-d'),
-                'website'  => $faker->url
-            ],
-            [
-                'name'     => 'The Patron',
+                'name'     => 'The First Patron',
                 'email'    => 'patron@patron.com',
                 'password' => '123456',
                 'verified' => 1,
                 'role'     => 'patron',
-                'about'    => $faker->paragraph,
-                'birthday' => $faker->date('Y-m-d'),
-                'website'  => $faker->url
+                'details'  => [
+                    'about'    => $faker->paragraph,
+                    'birthday' => $faker->date('Y-m-d'),
+                    'website'  => $faker->url,
+                    'location' => 'paris'
+                ]
+            ],
+            [
+                'name'     => 'The Second Patron',
+                'email'    => 'patron2@patron.com',
+                'password' => '123456',
+                'verified' => 1,
+                'role'     => 'patron',
+                'details'  => [
+                    'about'    => $faker->paragraph,
+                    'birthday' => $faker->date('Y-m-d'),
+                    'website'  => $faker->url,
+                    'location' => 'paris'
+                ]
             ],
         ];
         

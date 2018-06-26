@@ -36,7 +36,7 @@ class RegisterController extends Controller
             'name'               => $request->name,
             'email'              => $request->email,
             'password'           => $request->password,
-            'verification_token' => base64_encode($request->email)
+            'verification_token' => base64_encode($request->email),
         ];
         
         if (!$user = $userRepo->create($data)) {

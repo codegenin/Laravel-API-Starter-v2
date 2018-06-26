@@ -20,6 +20,10 @@ class CreateCollectionsTable extends Migration
             $table->string('slug');
             $table->text('description')
                   ->nullable();
+            $table->string('artist')
+                  ->nullable();
+            $table->unsignedInteger('points')
+                  ->default(0);
             $table->string('time_period');
             $table->timestamps();
         });

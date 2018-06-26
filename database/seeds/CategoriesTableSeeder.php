@@ -15,47 +15,40 @@ class CategoriesTableSeeder extends Seeder
         
         $categories = [
             [
-                'name'        => 'Design',
-                'slug'        => 'design',
-                'description' => 'buildings, building, construction, object, works',
+                'name'        => 'Art Graphique',
+                'slug'        => 'art-graphique',
+                'description' => 'Art Graphique',
                 'is_public'   => 1,
                 'seq'         => 1,
             ],
             [
-                'name'        => 'Illustration',
-                'slug'        => 'illustration',
-                'description' => 'drawing, graphics',
+                'name'        => 'Habillement',
+                'slug'        => 'habillement',
+                'description' => 'Habillement',
                 'is_public'   => 1,
                 'seq'         => 3
             ],
             [
-                'name'        => 'Mode',
-                'slug'        => 'mode',
-                'description' => 'creation, clothing, jewelry',
+                'name'        => 'Peinture',
+                'slug'        => 'Peinture',
+                'description' => 'Paienture',
                 'is_public'   => 1,
                 'seq'         => 2,
             ],
             [
-                'name'        => 'Painting',
-                'slug'        => 'painting',
-                'description' => 'painting, graffiti',
+                'name'        => 'Photograhie',
+                'slug'        => 'photographie',
+                'description' => 'Photographie',
                 'is_public'   => 1,
                 'seq'         => 4,
             ],
             [
-                'name'        => 'Company',
-                'slug'        => 'company',
-                'description' => 'people, societal power',
+                'name'        => 'Sculpture',
+                'slug'        => 'sculpture',
+                'description' => 'Sculpture',
                 'is_public'   => 1,
                 'seq'         => 5
-            ],
-            [
-                'name'        => 'Photography',
-                'slug'        => 'photography',
-                'description' => 'artistic photos, nature',
-                'is_public'   => 1,
-                'seq'         => 6
-            ],
+            ]
         ];
         
         foreach ($categories as $item) {
