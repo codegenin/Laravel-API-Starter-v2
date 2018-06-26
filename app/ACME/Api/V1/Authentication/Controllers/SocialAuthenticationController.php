@@ -35,8 +35,6 @@ class SocialAuthenticationController extends Controller
      * @apiParam {String} social_id the id of the user from the provider
      * @apiParam {String} provider default to 'app' or choose between facebook and google
      * @apiParam {String} name name of the user
-     * @apiParam {String} [avatar] avatar url of the user from the social provider
-     * @apiParam {String} [social_profile] profile url of the user from the social provider
      *
      * @apiSuccessExample {json} Success-Response:
      *{
@@ -79,9 +77,9 @@ class SocialAuthenticationController extends Controller
                 'password'           => bcrypt($request->email . '123'),
                 'social_id'          => $request->social_id,
                 'provider'           => $request->provider,
-                'avatar'             => $request->avatar,
+                /*'avatar'             => $request->avatar,
                 'avatar_original'    => $request->avata,
-                'social_profile_url' => $request->social_profile,
+                'social_profile_url' => $request->social_profile,*/
                 'verified'           => 1
             ]);
         }
