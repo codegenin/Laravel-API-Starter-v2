@@ -21,4 +21,8 @@ return array (
   array (
     'success' => 'The score has been subtracted',
   ),
+  'label' => 
+  array (
+    'collections' => 'Collections',
+  ),
 );

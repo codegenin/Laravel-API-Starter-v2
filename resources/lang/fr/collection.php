@@ -21,4 +21,8 @@ return array (
     'exists' => 'Collection existe déjà, essayez un titre différent!',
     'success' => 'La collection a été ajoutée avec succès!',
   ),
+  'label' => 
+  array (
+    'collections' => 'Collections',
+  ),
 );

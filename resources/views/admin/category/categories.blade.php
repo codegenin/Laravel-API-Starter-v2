@@ -1,15 +1,15 @@
 <table class="table table-responsive table-striped">
     <tbody>
     <tr style="background: #cccccc;color: #000;font-weight: bold;">
-        <td style="width: 10px;">Id</td>
-        <td style="width: 10px;">Cover</td>
-        <td style="width: 10px;">Name</td>
-        <td style="width: 10px;">Slug</td>
-        <td style="width: 20px;">Description</td>
-        <td style="width: 10px;">Seq</td>
-        <td style="width: 5px;">isPublic</td>
-        <td style="width: 5px;">Images</td>
-        <td style="width: 20px;">Action</td>
+        <td style="width: 10px;">{{__('category.label.id')}}</td>
+        <td style="width: 10px;">{{__('category.label.cover')}}</td>
+        <td style="width: 10px;">{{__('category.label.name')}}</td>
+        <td style="width: 10px;">{{__('category.label.slug')}}</td>
+        <td style="width: 20px;">{{__('category.label.description')}}</td>
+        <td style="width: 10px;">{{__('category.label.seq')}}</td>
+        <td style="width: 5px;">{{__('category.label.public')}}</td>
+        <td style="width: 5px;">{{__('category.label.images')}}</td>
+        <td style="width: 20px;">{{__('category.label.actions')}}</td>
     </tr>
     @foreach($categories as $category)
         <tr>
