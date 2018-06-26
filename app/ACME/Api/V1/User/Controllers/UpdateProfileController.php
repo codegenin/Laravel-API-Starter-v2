@@ -45,7 +45,6 @@ class UpdateProfileController extends ApiResponseController
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {File} [file] the image to be uploaded for the avatar
      * @apiParam {String} name the complete name of the user
      * @apiParam {String} [contact_email] the contact email of the user
      * @apiParam {Date} [birthday] the birthday of the user formatted by YYY-MM-DD
