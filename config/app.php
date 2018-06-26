@@ -155,7 +155,7 @@ return [
         Nestable\NestableServiceProvider::class,
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         ChristianKuri\LaravelFavorite\FavoriteServiceProvider::class,
-        
+        Barryvdh\TranslationManager\ManagerServiceProvider::class,
         /*
          * Application Service Providers...
          */
