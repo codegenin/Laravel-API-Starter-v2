@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
+use Dimsav\Translatable\Translatable;
 use Hashids\Hashids;
 use HighSolutions\EloquentSequence\Sequence;
 use Illuminate\Database\Eloquent\Model;
@@ -12,11 +13,17 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 class Category extends Model implements HasMedia
 {
     use NestableTrait, Sortable, Sequence, HasMediaTrait, Favoriteable,
-        SearchableTrait;
+        SearchableTrait, Translatable;
+    
+    public $translatedAttributes = [
+        'name',
+        'description'
+    ];
     
     public $sortable = [
         'id',
@@ -30,8 +37,8 @@ class Category extends Model implements HasMedia
         ],
     ];
     
-    
     protected $parent = 'parent_id';
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -42,6 +49,7 @@ class Category extends Model implements HasMedia
         'created_at',
         'updated_at'
     ];
+    
     
     public function setSlugAttribute($value)
     {

@@ -3,6 +3,7 @@
 namespace App\ACME\Admin\Category\Controllers;
 
 use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
+use App\ACME\Admin\Category\Resource\AdminCategoryResource;
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -34,7 +35,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories   = Category::orderBy('seq', 'desc')
+        $categories    = Category::orderBy('seq', 'desc')
                                  ->paginate(10);
         $allCategories = Category::orderBy('seq')
                                  ->where('parent_id', 0)
@@ -53,48 +54,11 @@ class CategoryController extends Controller
     public function get($id)
     {
         $category = $this->categoryRepository->find($id);
-        $covers   = $this->getMedialUrls($category, 'category');
         
         return response()->json([
-            'category' => $category,
-            'covers'   => $covers
+            'status'   => true,
+            'category' => new AdminCategoryResource($category)
         ]);
-    }
-    
-    public function update(StoreCategoryRequest $request)
-    {
-        $category = $this->categoryRepository->find($request->id);
-        $this->categoryRepository->update($request->id, $this->prepareFields($request));
-        
-        if ($request->has('file')) {
-            $this->associateMedia($category, $request, 'category');
-            $category->media_id = $category->getMedia('category')
-                                           ->first()->id;
-            $category->save();
-        }
-        
-        return redirect()
-            ->back()
-            ->with('success', 'Request successfully processed!');
-    }
-    
-    /**
-     * @param StoreCategoryRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(StoreCategoryRequest $request)
-    {
-        $category = $this->categoryRepository->create($this->prepareFields($request));
-        if ($request->has('file')) {
-            $this->associateMedia($category, $request, 'category');
-            $category->media_id = $category->getMedia('category')
-                                           ->first()->id;
-            $category->save();
-        }
-        
-        return redirect()
-            ->back()
-            ->with('success', 'Request successfully processed!');
     }
     
     /**

@@ -5,13 +5,13 @@ Route::group(['prefix' => 'categories'], function () {
     ############## Admin Routes ###########################
     Route::get('/', 'App\ACME\Admin\Category\Controllers\CategoryController@index')
          ->name('admin.category.index');
-    Route::post('new', 'App\ACME\Admin\Category\Controllers\CategoryController@store')
+    Route::post('new', 'App\ACME\Admin\Category\Controllers\StoreCategoryController@run')
          ->name('admin.category.store');
     Route::post('delete', 'App\ACME\Admin\Category\Controllers\CategoryController@destroy')
          ->name('admin.category.destroy');
     Route::get('{id}/get', 'App\ACME\Admin\Category\Controllers\CategoryController@get')
          ->name('admin.category.get');
-    Route::post('update', 'App\ACME\Admin\Category\Controllers\CategoryController@update')
+    Route::post('update', 'App\ACME\Admin\Category\Controllers\UpdateCategoryController@run')
          ->name('admin.category.update');
     
     ############## Moving Sequence ###########################

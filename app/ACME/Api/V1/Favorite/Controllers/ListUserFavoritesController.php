@@ -2,7 +2,7 @@
 
 namespace App\ACME\Api\V1\Favorite\Controllers;
 
-use App\ACME\Api\V1\Category\Resource\CategoryResource;
+use App\ACME\Api\V1\Category\Resource\AdminCategoryResource;
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\ACME\Api\V1\Collection\Resource\CollectionResource;
 use App\ACME\Api\V1\User\Resource\UserResource;
@@ -46,7 +46,7 @@ class ListUserFavoritesController extends ApiResponseController
      */
     public function run()
     {
-        $categories = CategoryResource::collection(auth()
+        $categories = AdminCategoryResource::collection(auth()
             ->user()
             ->favorite(Category::class));
         

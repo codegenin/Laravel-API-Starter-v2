@@ -113,13 +113,15 @@
                 }).done(function (data) {
                     edit.html('<i class="fa fa-pencil"></i>');
                     $('#edit-id').val(data.category.id);
-                    $('#edit-name').val(data.category.name);
-                    $('#edit-description').val(data.category.description);
+                    $('#edit-name').val(data.category.en_name);
+                    $('#edit-fr_name').val(data.category.fr_name);
+                    $('#edit-description').val(data.category.en_description);
+                    $('#edit-fr_description').val(data.category.fr_description);
                     $('#edit-parent-id').val(data.category.parent_id);
                     $('#edit-is-public').val(data.category.is_public);
                     $('#edit-image_path').val(data.category.image_path);
                     $('#modal-edit-category').modal('show');
-                    $('#cover-image').attr('src', data.covers.large);
+                    $('#cover-image').attr('src', data.category.covers.large);
                 });
 
                 //$('#deleteId').val(id);

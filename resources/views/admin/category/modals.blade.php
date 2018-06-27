@@ -13,14 +13,39 @@
                     <!-- Name: Form Input -->
                     <div class="form-group">
                         <label for="name">{{__('label.name')}}:</label>
-                        <input type="text" name="name" id="name"
-                               class="form-control" value="{{ old('name') }}">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="english">
+                        </span>
+                            <input type="text" name="name" id="name"
+                                   class="form-control" value="{{ old('name') }}">
+                        </div>
+                        <!-- Translation -->
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="fr_name" id="fr_name"
+                                   class="form-control" value="{{ old('name') }}">
+                        </div>
                     </div>
                     <!-- Description: Form Input -->
                     <div class="form-group">
                         <label for="description">{{__('label.description')}}:</label>
-                        <input type="text" name="description" id="description"
-                               class="form-control" value="{{ old('description') }}">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="description" id="description"
+                                   class="form-control" value="{{ old('description') }}">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="fr_description" id="fr_description"
+                                   class="form-control" value="{{ old('description') }}">
+                        </div>
                     </div>
 
                     <!-- Parent Category: Form Input -->
@@ -54,7 +79,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('button.close')}}</button>
+                    <button type="button" class="btn btn-default pull-left"
+                            data-dismiss="modal">{{__('button.close')}}</button>
                     <button type="submit" class="btn btn-primary">{{__('button.save_changes')}}</button>
                 </div>
             </form>
@@ -81,14 +107,39 @@
                     <!-- Name: Form Input -->
                     <div class="form-group">
                         <label for="name">{{__('label.name')}}:</label>
-                        <input type="text" name="name" id="edit-name"
-                               class="form-control" value="{{ old('name') }}">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="english">
+                        </span>
+                            <input type="text" name="name" id="edit-name"
+                                   class="form-control" value="{{ old('name') }}">
+                        </div>
+                        <!-- Translation -->
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="fr_name" id="edit-fr_name"
+                                   class="form-control" value="{{ old('fr_name') }}">
+                        </div>
                     </div>
                     <!-- Description: Form Input -->
                     <div class="form-group">
                         <label for="description">{{__('label.description')}}:</label>
-                        <input type="text" name="description" id="edit-description"
-                               class="form-control" value="{{ old('description') }}">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="description" id="edit-description"
+                                   class="form-control" value="{{ old('description') }}">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="fr_description" id="edit-fr_description"
+                                   class="form-control" value="{{ old('fr_description') }}">
+                        </div>
                     </div>
 
                     <!-- Parent Category: Form Input -->
@@ -106,8 +157,8 @@
                     <div class="form-group">
                         <label for="is_public">{{__('label.set_public')}}</label>
                         <select name="is_public" id="edit-is-public" class="form-control">
-                            <option value="0">NO</option>
                             <option value="1">YES</option>
+                            <option value="0">NO</option>
                         </select>
                     </div>
 
@@ -125,7 +176,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('button.close')}}</button>
+                    <button type="button" class="btn btn-default pull-left"
+                            data-dismiss="modal">{{__('button.close')}}</button>
                     <button type="submit" class="btn btn-primary">{{__('button.save_changes')}}</button>
                 </div>
             </form>

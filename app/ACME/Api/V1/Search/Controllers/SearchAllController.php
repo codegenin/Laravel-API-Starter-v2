@@ -2,7 +2,7 @@
 
 namespace App\ACME\Api\V1\Search\Controllers;
 
-use App\ACME\Api\V1\Category\Resource\CategoryResource;
+use App\ACME\Api\V1\Category\Resource\AdminCategoryResource;
 use App\ACME\Api\V1\Collection\Resource\CollectionResource;
 use App\ACME\Api\V1\Media\Resource\MediaResource;
 use App\ACME\Api\V1\Search\Requests\SearchRequest;
@@ -50,7 +50,7 @@ class SearchAllController extends ApiResponseController
         
         return response()->json([
             'status'      => true,
-            'categories'  => CategoryResource::collection($categories),
+            'categories'  => AdminCategoryResource::collection($categories),
             'collections' => CollectionResource::collection($collections),
             'artists'     => UserResource::collection($artist),
             'medias'      => MediaResource::collection($media)
