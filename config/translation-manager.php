@@ -37,7 +37,10 @@ return [
      *        'validation',
      *    )
      */
-    'exclude_groups' => [],
+    'exclude_groups' => [
+        '_json',
+        'vendor/apidoc'
+    ],
 
     /**
      * Exclude specific languages from Laravel Translation Manager.

@@ -7,12 +7,12 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="category-modal-title">Add New Category</h4>
+                    <h4 class="modal-title" id="category-modal-title">{{__('category.label.new_category')}}</h4>
                 </div>
                 <div class="modal-body">
                     <!-- Name: Form Input -->
                     <div class="form-group">
-                        <label for="name">Name:</label>
+                        <label for="name">{{__('category.label.name')}}:</label>
                         <input type="text" name="name" id="name"
                                class="form-control" value="{{ old('name') }}">
                     </div>
