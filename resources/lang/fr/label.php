@@ -21,4 +21,9 @@ return array (
 ',
   'slug' => 'Limace',
   'update_category' => 'Catégorie de mise à jour',
+  'time_period' => 'Période de temps',
+  'title' => 'Titre',
+  'category' => 'Catégorie',
+  'new_collection' => 'Nouvelle Collection',
+  'update_collection' => 'Update Collection',
 );

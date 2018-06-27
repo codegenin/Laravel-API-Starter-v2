@@ -7,13 +7,13 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="collection-modal-title">Add New Collection</h4>
+                    <h4 class="modal-title" id="collection-modal-title">{{trans('label.new_collection')}}</h4>
                 </div>
                 <div class="modal-body">
 
                     <!-- Category: Form Input -->
                     <div class="form-group">
-                        <label for="parent">Category:</label>
+                        <label for="parent">{{trans('label.category')}}:</label>
                         <select name="category_id" id="category-id" class="form-control">
                             @foreach($categories as $collection)
                                 <option value="{{$collection->id}}">{{$collection->name}}</option>
@@ -23,28 +23,28 @@
 
                     <!-- Title: Form Input -->
                     <div class="form-group">
-                        <label for="title">Title:</label>
+                        <label for="title">{{trans('label.title')}}:</label>
                         <input type="text" name="title" id="title"
                                class="form-control" value="{{ old('title') }}">
                     </div>
 
                     <!-- Description: Form Input -->
                     <div class="form-group">
-                        <label for="description">Description:</label>
+                        <label for="description">{{trans('label.description')}}:</label>
                         <input type="text" name="description" id="description"
                                class="form-control" value="{{ old('description') }}">
                     </div>
 
                     <!-- Time Period: Form Input -->
                     <div class="form-group">
-                        <label for="time-period">Time Period:</label>
+                        <label for="time-period">{{trans('label.time_period')}}:</label>
                         <input type="text" name="time_period" id="time-period"
                                class="form-control" value="{{ old('time-period') }}">
                     </div>
 
                     <!-- Image URL: Form Input -->
                     <div class="form-group">
-                        <label for="media_id">Cover Image</label>
+                        <label for="media_id">{{trans('label.cover_image')}}</label>
                         <div class="input-group">
                             <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
                             <span class="input-group-addon" id="basic-addon2">Browse</span>
@@ -53,8 +53,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{trans('button.close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{trans('button.save_changes')}}</button>
                 </div>
             </form>
         </div>
@@ -73,14 +73,14 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="collection-modal-title">Update Collection</h4>
+                    <h4 class="modal-title" id="collection-modal-title">{{trans('label.update_collection')}}</h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="id" id="edit-id">
 
                     <!-- Category: Form Input -->
                     <div class="form-group">
-                        <label for="parent">Category:</label>
+                        <label for="parent">{{trans('label.category')}}:</label>
                         <select name="category_id" id="edit-category-id" class="form-control">
                             @foreach($categories as $collection)
                                 <option value="{{$collection->id}}">{{$collection->name}}</option>
@@ -90,28 +90,28 @@
 
                     <!-- Title: Form Input -->
                     <div class="form-group">
-                        <label for="edit-title">Title:</label>
+                        <label for="edit-title">{{trans('label.title')}}:</label>
                         <input type="text" name="title" id="edit-title"
                                class="form-control" value="{{ old('title') }}">
                     </div>
 
                     <!-- Description: Form Input -->
                     <div class="form-group">
-                        <label for="edit-description">Description:</label>
+                        <label for="edit-description">{{trans('label.description')}}:</label>
                         <input type="text" name="description" id="edit-description"
                                class="form-control" value="{{ old('description') }}">
                     </div>
 
                     <!-- Time Period: Form Input -->
                     <div class="form-group">
-                        <label for="edit-time-period">Time Period:</label>
+                        <label for="edit-time-period">{{trans('label.time_period')}}:</label>
                         <input type="text" name="time_period" id="edit-time-period"
                                class="form-control" value="{{ old('time-period') }}">
                     </div>
 
                     <!-- Image URL: Form Input -->
                     <div class="form-group">
-                        <label for="media_id">Cover Image</label>
+                        <label for="media_id">{{trans('label.cover_image')}}</label>
                         <div class="input-group">
                             <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
                             <span class="input-group-addon" id="basic-addon2">Browse</span>
@@ -123,8 +123,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{trans('button.close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{trans('button.save_changes')}}</button>
                 </div>
             </form>
         </div>

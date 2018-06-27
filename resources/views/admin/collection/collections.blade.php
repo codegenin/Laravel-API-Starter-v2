@@ -1,14 +1,14 @@
 <table class="table table-responsive table-striped">
     <tbody>
     <tr style="background: #cccccc;color: #000;font-weight: bold;">
-        <td style="width: 10px;">Id</td>
-        <td style="width: 10px;">Cover</td>
-        <td style="width: 10px;">Category</td>
-        <td style="width: 10px;">Title</td>
-        <td style="width: 10px;">Description</td>
-        <td style="width: 10px;">Time Period</td>
-        <td style="width: 10px;">Images</td>
-        <td style="width: 20px;">Action</td>
+        <td style="width: 10px;">{{trans('label.id')}}</td>
+        <td style="width: 10px;">{{trans('label.cover')}}</td>
+        <td style="width: 10px;">{{trans('label.category')}}</td>
+        <td style="width: 10px;">{{trans('label.title')}}</td>
+        <td style="width: 10px;">{{trans('label.description')}}</td>
+        <td style="width: 10px;">{{trans('label.time_period')}}</td>
+        <td style="width: 10px;">{{trans('label.images')}}</td>
+        <td style="width: 20px;">{{trans('label.actions')}}</td>
     </tr>
     @foreach($collections as $collection)
         <tr>

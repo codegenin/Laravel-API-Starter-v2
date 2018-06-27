@@ -9,7 +9,7 @@
         <li>
             <button type="button" data-toggle="modal" title="Upload Image"
                     class="btn btn-success" data-target="#modal-new-collection">
-                <i class="fa fa-plus-circle"></i> NEW COLLECTION
+                <i class="fa fa-plus-circle"></i> {{trans('label.new_collection')}}
             </button>
         </li>
     </ol>

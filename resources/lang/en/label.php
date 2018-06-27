@@ -18,4 +18,9 @@ return array (
   'set_public' => 'Set As Public',
   'cover_image' => 'Cover Image',
   'update_category' => 'Update Category',
+  'time_period' => 'Time Period',
+  'title' => 'Title',
+  'category' => 'Category',
+  'new_collection' => 'New Collection',
+  'update_collection' => 'Update Collection',
 );
