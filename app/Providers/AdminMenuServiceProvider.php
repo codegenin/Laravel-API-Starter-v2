@@ -18,14 +18,14 @@ class AdminMenuServiceProvider extends ServiceProvider
     public function boot(Dispatcher $events)
     {
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
-            $event->menu->add(trans('menu.main.navigation'));
+            $event->menu->add(trans('label.main_navigation'));
             $event->menu->add([
-                'text' => trans('category.label.categories'),
+                'text' => trans('label.categories'),
                 'url'  => LaravelLocalization::setLocale() . '/admin/categories',
                 'icon' => 'file',
             ]);
             $event->menu->add([
-                'text' => trans('collection.label.collections'),
+                'text' => trans('label.collections'),
                 'url'  => LaravelLocalization::setLocale() . '/admin/collections',
                 'icon' => 'file',
             ]);

@@ -1,15 +1,15 @@
 <table class="table table-responsive table-striped">
     <tbody>
     <tr style="background: #cccccc;color: #000;font-weight: bold;">
-        <td style="width: 10px;">{{__('category.label.id')}}</td>
-        <td style="width: 10px;">{{__('category.label.cover')}}</td>
-        <td style="width: 10px;">{{__('category.label.name')}}</td>
-        <td style="width: 10px;">{{__('category.label.slug')}}</td>
-        <td style="width: 20px;">{{__('category.label.description')}}</td>
-        <td style="width: 10px;">{{__('category.label.seq')}}</td>
-        <td style="width: 5px;">{{__('category.label.public')}}</td>
-        <td style="width: 5px;">{{__('category.label.images')}}</td>
-        <td style="width: 20px;">{{__('category.label.actions')}}</td>
+        <td style="width: 10px;">{{__('label.id')}}</td>
+        <td style="width: 10px;">{{__('label.cover')}}</td>
+        <td style="width: 10px;">{{__('label.name')}}</td>
+        <td style="width: 10px;">{{__('label.slug')}}</td>
+        <td style="width: 20px;">{{__('label.description')}}</td>
+        <td style="width: 10px;">{{__('label.seq')}}</td>
+        <td style="width: 5px;">{{__('label.public')}}</td>
+        <td style="width: 5px;">{{__('label.images')}}</td>
+        <td style="width: 20px;">{{__('label.actions')}}</td>
     </tr>
     @foreach($categories as $category)
         <tr>

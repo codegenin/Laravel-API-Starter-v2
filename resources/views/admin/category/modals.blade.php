@@ -7,25 +7,25 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="category-modal-title">{{__('category.label.new_category')}}</h4>
+                    <h4 class="modal-title" id="category-modal-title">{{__('label.new_category')}}</h4>
                 </div>
                 <div class="modal-body">
                     <!-- Name: Form Input -->
                     <div class="form-group">
-                        <label for="name">{{__('category.label.name')}}:</label>
+                        <label for="name">{{__('label.name')}}:</label>
                         <input type="text" name="name" id="name"
                                class="form-control" value="{{ old('name') }}">
                     </div>
                     <!-- Description: Form Input -->
                     <div class="form-group">
-                        <label for="description">Description:</label>
+                        <label for="description">{{__('label.description')}}:</label>
                         <input type="text" name="description" id="description"
                                class="form-control" value="{{ old('description') }}">
                     </div>
 
                     <!-- Parent Category: Form Input -->
                     <div class="form-group">
-                        <label for="parent">Parent Category:</label>
+                        <label for="parent">{{__('label.parent_category')}}:</label>
                         <select name="parent_id" id="parent-id" class="form-control">
                             <option value="0">-- This is a parent category --</option>
                             @foreach($categoriesDropDown as $category)
@@ -36,7 +36,7 @@
 
                     <!-- Set as public? Form Input -->
                     <div class="form-group">
-                        <label for="is_public">Set As Public?</label>
+                        <label for="is_public">{{__('label.set_public')}}:</label>
                         <select name="is_public" id="is-public" class="form-control">
                             <option value="0">NO</option>
                             <option value="1">YES</option>
@@ -45,7 +45,7 @@
 
                     <!-- Image URL: Form Input -->
                     <div class="form-group">
-                        <label for="media_id">Cover Image</label>
+                        <label for="media_id">{{__('label.cover_image')}}:</label>
                         <div class="input-group">
                             <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
                             <span class="input-group-addon" id="basic-addon2">Browse</span>
@@ -54,8 +54,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('button.close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{__('button.save_changes')}}</button>
                 </div>
             </form>
         </div>
@@ -74,26 +74,26 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="category-modal-title">Update Category</h4>
+                    <h4 class="modal-title" id="category-modal-title">{{__('label.update_category')}}</h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="id" id="edit-id">
                     <!-- Name: Form Input -->
                     <div class="form-group">
-                        <label for="name">Name:</label>
+                        <label for="name">{{__('label.name')}}:</label>
                         <input type="text" name="name" id="edit-name"
                                class="form-control" value="{{ old('name') }}">
                     </div>
                     <!-- Description: Form Input -->
                     <div class="form-group">
-                        <label for="description">Description:</label>
+                        <label for="description">{{__('label.description')}}:</label>
                         <input type="text" name="description" id="edit-description"
                                class="form-control" value="{{ old('description') }}">
                     </div>
 
                     <!-- Parent Category: Form Input -->
                     <div class="form-group">
-                        <label for="parent">Parent Category:</label>
+                        <label for="parent">{{__('label.parent_category')}}:</label>
                         <select name="parent_id" id="edit-parent-id" class="form-control">
                             <option value="0">-- This is a parent category --</option>
                             @foreach($categoriesDropDown as $category)
@@ -104,7 +104,7 @@
 
                     <!-- Set as public? Form Input -->
                     <div class="form-group">
-                        <label for="is_public">Set As Public?</label>
+                        <label for="is_public">{{__('label.set_public')}}</label>
                         <select name="is_public" id="edit-is-public" class="form-control">
                             <option value="0">NO</option>
                             <option value="1">YES</option>
@@ -113,7 +113,7 @@
 
                     <!-- Image URL: Form Input -->
                     <div class="form-group">
-                        <label for="media_id">Cover Image</label>
+                        <label for="media_id">{{__('label.cover_image')}}</label>
                         <div class="input-group">
                             <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
                             <span class="input-group-addon" id="basic-addon2">Browse</span>
@@ -125,8 +125,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('button.close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{__('button.save_changes')}}</button>
                 </div>
             </form>
         </div>
