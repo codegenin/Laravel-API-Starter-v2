@@ -2,12 +2,16 @@
 
 Route::group(['prefix' => 'categories'], function () {
     
-    ############## Admin Routes ###########################
+    ############## Default Routes ########################
     Route::get('/', 'App\ACME\Admin\Category\Controllers\CategoryController@index')
          ->name('admin.category.index');
+    Route::get('{id}/collections', 'App\ACME\Admin\Category\Controllers\ListCollectionsController@run')
+         ->name('admin.category.collections');
+    
+    ############## CRUD Routes ###########################
     Route::post('new', 'App\ACME\Admin\Category\Controllers\StoreCategoryController@run')
          ->name('admin.category.store');
-    Route::post('delete', 'App\ACME\Admin\Category\Controllers\CategoryController@destroy')
+    Route::post('delete', 'App\ACME\Admin\Category\Controllers\Destroy  Controller@destroy')
          ->name('admin.category.destroy');
     Route::get('{id}/get', 'App\ACME\Admin\Category\Controllers\CategoryController@get')
          ->name('admin.category.get');
@@ -25,9 +29,4 @@ Route::group(['prefix' => 'categories'], function () {
          ->name('admin.category.images');
     Route::post('upload', 'App\ACME\Admin\Category\Controllers\UploadImageController@run')
          ->name('admin.category.upload');
-    
-    
-    ############## Collections ##################################
-    Route::get('{id}/collections', 'App\ACME\Admin\Category\Controllers\ListCollectionsController@run')
-         ->name('admin.category.collections');
 });

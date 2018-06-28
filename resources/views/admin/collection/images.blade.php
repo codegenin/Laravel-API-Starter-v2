@@ -7,9 +7,15 @@
     </h1>
     <ol class="breadcrumb">
         <li>
+            <a href="{{route('admin.category.collections', $collection->category_id)}}"
+               class="btn btn-warning">
+                {{trans('label.return_to_collections')}}
+            </a>
+        </li>
+        <li>
             <button type="button" data-toggle="modal" title="Upload Image"
                     class="btn btn-success" data-target="#modal-new-collection-image">
-                <i class="fa fa-upload"></i> UPLOAD IMAGE
+                UPLOAD IMAGE
             </button>
         </li>
     </ol>

@@ -23,4 +23,6 @@ return array (
   'category' => 'Category',
   'new_collection' => 'New Collection',
   'update_collection' => 'Update Collection',
+  'return_to_categories' => 'Return To Categories',
+  'return_to_collections' => 'Return To Collections',
 );

@@ -7,9 +7,15 @@
     </h1>
     <ol class="breadcrumb">
         <li>
+            <a href="{{route('admin.category.index')}}"
+                    class="btn btn-warning">
+                BACK TO CATEGORIES
+            </a>
+        </li>
+        <li>
             <button type="button" data-toggle="modal" title="Upload Image"
                     class="btn btn-success" data-target="#modal-new-category-image">
-                <i class="fa fa-upload"></i> UPLOAD IMAGE
+               UPLOAD IMAGE
             </button>
         </li>
     </ol>

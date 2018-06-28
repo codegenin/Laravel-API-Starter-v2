@@ -62,29 +62,6 @@ class CategoryController extends Controller
     }
     
     /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy()
-    {
-        $category = $this->categoryRepository->find(request()->id);
-        
-        $this->categoryRepository->delete(request()->id);
-        $category->clearMediaCollection('category');
-        
-        // Delete collection images
-        if ($category->collections->count() > 0) {
-            foreach ($category->collections as $collection) {
-                $collection->delete();
-                $collection->clearMediaCollection($category->slug);
-            }
-        }
-        
-        return redirect()
-            ->back()
-            ->with('success', 'Request successfully processed!');
-    }
-    
-    /**
      * @param StoreCategoryRequest $request
      * @return array
      */
