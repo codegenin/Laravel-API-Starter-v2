@@ -13,33 +13,64 @@
 
                     <!-- Category: Form Input -->
                     <input type="hidden" name="category_id" value="{{$category->id}}">
-                    {{--<div class="form-group">
-                        <label for="parent">{{trans('label.category')}}:</label>
-                        <select name="category_id" id="category-id" class="form-control">
-                            @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>--}}
+                {{--<div class="form-group">
+                    <label for="parent">{{trans('label.category')}}:</label>
+                    <select name="category_id" id="category-id" class="form-control">
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>--}}
 
-                    <!-- Title: Form Input -->
+                <!-- Title: Form Input -->
                     <div class="form-group">
-                        <label for="title">{{trans('label.title')}}:</label>
-                        <input type="text" name="title" id="title"
-                               class="form-control" value="{{ old('title') }}">
+                        <label for="name">{{__('label.title')}}:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="english">
+                        </span>
+                            <input type="text" name="title" id="title" placeholder="Title in english"
+                                   class="form-control" value="{{ old('title') }}">
+                        </div>
+                        <!-- Translation -->
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="fr_title" id="fr_title" placeholder="Title in french"
+                                   class="form-control" value="{{ old('title') }}">
+                        </div>
                     </div>
 
                     <!-- Description: Form Input -->
                     <div class="form-group">
-                        <label for="description">{{trans('label.description')}}:</label>
-                        <input type="text" name="description" id="description"
-                               class="form-control" value="{{ old('description') }}">
+                        <label for="description">{{__('label.description')}}:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="description" id="description" placeholder="Description in english"
+                                   class="form-control" value="{{ old('description') }}">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="fr_description" id="fr_description" placeholder="Description in french"
+                                   class="form-control" value="{{ old('description') }}">
+                        </div>
+                    </div>
+
+                    <!-- Points Value: Form Input -->
+                    <div class="form-group">
+                        <label for="points">Points Value:</label>
+                        <input type="number" name="points" id="points" placeholder="Points required to unlock the collection" class="form-control" value="{{ old('points') }}">
                     </div>
 
                     <!-- Time Period: Form Input -->
                     <div class="form-group">
                         <label for="time-period">{{trans('label.time_period')}}:</label>
-                        <input type="text" name="time_period" id="time-period"
+                        <input type="text" name="time_period" id="time-period" placeholder="Time period of the collection"
                                class="form-control" value="{{ old('time-period') }}">
                     </div>
 
@@ -54,7 +85,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{trans('button.close')}}</button>
+                    <button type="button" class="btn btn-default pull-left"
+                            data-dismiss="modal">{{trans('button.close')}}</button>
                     <button type="submit" class="btn btn-primary">{{trans('button.save_changes')}}</button>
                 </div>
             </form>
@@ -81,16 +113,16 @@
 
                     <!-- Category: Form Input -->
                     <input type="hidden" name="category_id" value="{{$category->id}}">
-                    {{--<div class="form-group">
-                        <label for="parent">{{trans('label.category')}}:</label>
-                        <select name="category_id" id="edit-category-id" class="form-control">
-                            @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>--}}
+                {{--<div class="form-group">
+                    <label for="parent">{{trans('label.category')}}:</label>
+                    <select name="category_id" id="edit-category-id" class="form-control">
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>--}}
 
-                    <!-- Title: Form Input -->
+                <!-- Title: Form Input -->
                     <div class="form-group">
                         <label for="edit-title">{{trans('label.title')}}:</label>
                         <input type="text" name="title" id="edit-title"
@@ -125,7 +157,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{trans('button.close')}}</button>
+                    <button type="button" class="btn btn-default pull-left"
+                            data-dismiss="modal">{{trans('button.close')}}</button>
                     <button type="submit" class="btn btn-primary">{{trans('button.save_changes')}}</button>
                 </div>
             </form>

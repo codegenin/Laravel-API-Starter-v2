@@ -2,7 +2,7 @@
 
 @section('content_header')
     <h1>
-         {{$category->name}} Category
+         {{$category->name}}
         <small>Collections</small>
     </h1>
     <ol class="breadcrumb">

@@ -52,7 +52,6 @@ class Category extends Model implements HasMedia
         'updated_at'
     ];
     
-    
     public function setSlugAttribute($value)
     {
         $this->attributes['slug'] = str_slug($value);

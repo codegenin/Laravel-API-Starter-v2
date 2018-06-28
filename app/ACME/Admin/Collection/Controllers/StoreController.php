@@ -28,18 +28,19 @@ class StoreController extends Controller
     
     public function run(StoreCollectionRequest $request)
     {
-        if ($this->collectionRepository->findByColumnsFirst([
-            'slug' => str_slug($request->title)
-        ])) {
-            return redirect()->withErrors(trans('collection.store.exists'));
-        }
-        $collection = Collection::create([
-            'category_id' => $request->category_id,
-            'title'       => $request->title,
-            'slug'        => $request->title,
-            'description' => $request->description,
-            'time_period' => $request->time_period
-        ]);
+        $collection                                    = new Collection();
+        
+        $collection->translateOrNew('en')->title       = $request->title;
+        $collection->translateOrNew('fr')->title       = $request->fr_title;
+        $collection->translateOrNew('en')->description = $request->description;
+        $collection->translateOrNew('fr')->description = $request->fr_description;
+        
+        $collection->category_id = $request->category_id;
+        $collection->slug        = $request->title;
+        $collection->artist      = $request->artist;
+        $collection->points      = $request->points;
+        $collection->time_period = $request->time_period;
+        $collection->save();
         
         if ($request->has('file')) {
             $this->associateMedia($collection, $request, 'collection');

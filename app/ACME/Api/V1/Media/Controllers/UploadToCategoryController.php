@@ -54,7 +54,7 @@ class UploadToCategoryController extends ApiResponseController
         $category = $this->categoryRepository->find($id);
         
         if ($request->has('file')) {
-            $media = $this->associateMedia($category, $request, $category->slug);
+            $media = $this->associateMedia($category, $request, $category->name);
             if (!$this->addMediaInformation($media, $request, $category->id)) {
                 return $this->responseWithError(trans('common.media.information.error'));
             }
