@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Nicolaslopezj\Searchable\SearchableTrait;
@@ -13,7 +14,16 @@ use Spatie\Translatable\HasTranslations;
 
 class Collection extends Model implements HasMedia
 {
-    use HasMediaTrait, Sortable, Favoriteable, SearchableTrait;
+    use HasMediaTrait, Sortable, Favoriteable, SearchableTrait,
+        Translatable;
+    
+    public $translatedAttributes = [
+        'title',
+        'description'
+    ];
+    
+    protected $with = ['translations'];
+    
     public $sortable = [
         'id',
         'score',

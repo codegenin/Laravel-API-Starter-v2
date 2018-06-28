@@ -1,10 +1,9 @@
 <?php
 
-namespace App\ACME\Admin\Category\Controllers;
+namespace App\ACME\Admin\Collection\Controllers;
 
-use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
-use App\ACME\Admin\Category\Requests\UploadImageRequest;
-use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
+use App\ACME\Admin\Collection\Requests\UploadImageRequest;
+use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\Http\Controllers\Controller;
 use App\Traits\MediaTraits;
 
@@ -12,26 +11,26 @@ class UploadImageController extends Controller
 {
     use MediaTraits;
     /**
-     * @var CategoryRepository
+     * @var CollectionRepository
      */
-    private $categoryRepository;
+    private $collectionRepository;
     
     /**
-     * @param CategoryRepository $categoryRepository
+     * @param CollectionRepository $collectionRepository
      */
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CollectionRepository $collectionRepository)
     {
         $this->middleware('auth:admin');
-        $this->categoryRepository = $categoryRepository;
+        $this->collectionRepository = $collectionRepository;
     }
     
     public function run(UploadImageRequest $request)
     {
-        $category = $this->categoryRepository->find($request->id);
+        $collection = $this->collectionRepository->find($request->id);
         
         if ($request->has('file')) {
-            $media              = $this->associateMedia($category, $request, $category->slug);
-            $media->category_id = $category->id;
+            $media              = $this->associateMedia($collection, $request, $collection->slug);
+            $media->category_id = $collection->category_id;
             $media->user_id     = 0;
             $media->title       = $request->title;
             $media->description = $request->description;

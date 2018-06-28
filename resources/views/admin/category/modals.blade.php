@@ -49,7 +49,8 @@
                     </div>
 
                     <!-- Parent Category: Form Input -->
-                    <div class="form-group">
+                    <input type="hidden" name="parent_id" value="0">
+                    {{--<div class="form-group">
                         <label for="parent">{{__('label.parent_category')}}:</label>
                         <select name="parent_id" id="parent-id" class="form-control">
                             <option value="0">-- This is a parent category --</option>
@@ -57,14 +58,14 @@
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div>--}}
 
                     <!-- Set as public? Form Input -->
                     <div class="form-group">
                         <label for="is_public">{{__('label.set_public')}}:</label>
                         <select name="is_public" id="is-public" class="form-control">
-                            <option value="0">NO</option>
                             <option value="1">YES</option>
+                            <option value="0">NO</option>
                         </select>
                     </div>
 
@@ -143,7 +144,8 @@
                     </div>
 
                     <!-- Parent Category: Form Input -->
-                    <div class="form-group">
+                    <input type="hidden" name="parent_id" value="0">
+                    {{--<div class="form-group">
                         <label for="parent">{{__('label.parent_category')}}:</label>
                         <select name="parent_id" id="edit-parent-id" class="form-control">
                             <option value="0">-- This is a parent category --</option>
@@ -151,7 +153,7 @@
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div>--}}
 
                     <!-- Set as public? Form Input -->
                     <div class="form-group">

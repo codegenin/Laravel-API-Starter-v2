@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryTranslationsTable extends Migration
+class CreateCollectionTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,28 @@ class CreateCategoryTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_translations', function (Blueprint $table) {
+        Schema::create('collection_translations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('category_id');
-            $table->string('name')
+            $table->unsignedInteger('collection_id');
+            $table->string('title')
                   ->nullable();
             $table->text('description')
                   ->nullable();
             $table->string('locale')
                   ->index();
             $table->timestamps();
-            
+    
             $table->unique([
-                'category_id',
+                'collection_id',
                 'locale'
             ]);
-            $table->foreign('category_id')
+            $table->foreign('collection_id')
                   ->references('id')
-                  ->on('categories')
+                  ->on('collections')
                   ->onDelete('cascade');
-            
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -43,6 +42,6 @@ class CreateCategoryTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_translations');
+        Schema::dropIfExists('collection_translations');
     }
 }

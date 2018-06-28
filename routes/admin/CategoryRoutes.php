@@ -23,6 +23,11 @@ Route::group(['prefix' => 'categories'], function () {
     ############## Images Routes ##############################
     Route::get('{id}/images', 'App\ACME\Admin\Category\Controllers\ListImagesController@run')
          ->name('admin.category.images');
-    Route::post('upload', 'App\ACME\Admin\Category\Controllers\UploadImageController@update')
+    Route::post('upload', 'App\ACME\Admin\Category\Controllers\UploadImageController@run')
          ->name('admin.category.upload');
+    
+    
+    ############## Collections ##################################
+    Route::get('{id}/collections', 'App\ACME\Admin\Category\Controllers\ListCollectionsController@run')
+         ->name('admin.category.collections');
 });

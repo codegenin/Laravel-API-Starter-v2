@@ -4,9 +4,9 @@
         <td style="width: 10px;">{{__('label.id')}}</td>
         <td style="width: 10px;">{{__('label.cover')}}</td>
         <td style="width: 10px;">{{__('label.name')}}</td>
-        <td style="width: 10px;">{{__('label.slug')}}</td>
+        {{--<td style="width: 10px;">{{__('label.slug')}}</td>--}}
         <td style="width: 20px;">{{__('label.description')}}</td>
-        <td style="width: 10px;">{{__('label.seq')}}</td>
+        <td style="width: 10px;">{{__('label.collections')}}</td>
         <td style="width: 5px;">{{__('label.public')}}</td>
         <td style="width: 5px;">{{__('label.images')}}</td>
         <td style="width: 20px;">{{__('label.actions')}}</td>
@@ -16,12 +16,15 @@
             <td>{{$category->id}}</td>
             <td><img src="{{$category->getFirstMediaUrl('category', 'small')}}" alt=""></td>
             <td>{{$category->name}}</td>
-            <td>{{$category->slug}}</td>
+            {{--<td>{{$category->slug}}</td>--}}
             <td>{{$category->description}}</td>
-            <td>{{$category->seq}}</td>
+            <td>{{$category->collections->count()}}</td>
             <td>{{($category->is_public == 1) ? 'YES' : 'NO'}}</td>
             <td>{{$category->images->count()}}</td>
             <td>
+                <a class="btn btn-success" href="{{route('admin.category.collections', $category->id)}}" title="COLLECTIONS">
+                    <i class="fa fa-folder-o"></i>
+                </a>
                 <a class="btn btn-success" href="{{route('admin.category.images', $category->id)}}" title="IMAGES">
                     <i class="fa fa-picture-o"></i>
                 </a>

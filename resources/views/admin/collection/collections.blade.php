@@ -3,7 +3,7 @@
     <tr style="background: #cccccc;color: #000;font-weight: bold;">
         <td style="width: 10px;">{{trans('label.id')}}</td>
         <td style="width: 10px;">{{trans('label.cover')}}</td>
-        <td style="width: 10px;">{{trans('label.category')}}</td>
+        {{--<td style="width: 10px;">{{trans('label.category')}}</td>--}}
         <td style="width: 10px;">{{trans('label.title')}}</td>
         <td style="width: 10px;">{{trans('label.description')}}</td>
         <td style="width: 10px;">{{trans('label.time_period')}}</td>
@@ -14,7 +14,7 @@
         <tr>
             <td>{{$collection->id}}</td>
             <td><img src="{{$collection->getFirstMediaUrl('collection', 'small')}}" alt=""></td>
-            <td>{{$collection->category->name}}</td>
+            {{--<td>{{$collection->category->name}}</td>--}}
             <td>{{$collection->title}}</td>
             <td>{{$collection->description}}</td>
             <td>{{$collection->time_period}}</td>

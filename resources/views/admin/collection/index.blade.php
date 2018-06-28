@@ -2,8 +2,8 @@
 
 @section('content_header')
     <h1>
-        Collections
-        <small>list</small>
+         {{$category->name}} Category
+        <small>Collections</small>
     </h1>
     <ol class="breadcrumb">
         <li>

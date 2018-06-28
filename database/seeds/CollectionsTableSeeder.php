@@ -15,6 +15,15 @@ class CollectionsTableSeeder extends Seeder
         factory(\App\Models\Collection::class, 5)
             ->create()
             ->each(function ($collection) {
+                
+                $faker = \Faker\Factory::create();
+                
+                $collection->translateOrNew('en')->title       = $faker->word;
+                $collection->translateOrNew('fr')->title       = $faker->word;
+                $collection->translateOrNew('en')->description = $faker->paragraph;
+                $collection->translateOrNew('fr')->description = $faker->paragraph;
+                $collection->save();
+                
                 // Create sample cover
                 $collection->addMediaFromUrl('https://s3.amazonaws.com/yyg-test-collections/sample.jpg')
                            ->toMediaCollection('collection');

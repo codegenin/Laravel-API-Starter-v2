@@ -16,10 +16,10 @@
 $factory->define(\App\Models\Collection::class, function (\Faker\Generator $faker) {
     
     return [
-        'title'       => $faker->word,
+        #'title'       => $faker->word,
         'category_id' => $faker->numberBetween(1, 6),
         'slug'        => str_slug($faker->word),
-        'description' => $faker->paragraph,
+        #'description' => $faker->paragraph,
         'time_period' => $faker->numberBetween(1900, 1945) . '-' . $faker->numberBetween(1946, 2018),
         'points'      => $faker->numberBetween(0, 1000),
         'artist'      => $faker->name,

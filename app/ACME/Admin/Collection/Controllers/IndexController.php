@@ -24,12 +24,12 @@ class IndexController extends Controller
     public function run()
     {
         try {
-            $collections = Collection::with('category')
-                                     ->orderBy('created_at', 'desc')
+            $collections = Collection::orderBy('created_at', 'desc')
                                      ->paginate(10);
-            $categories  = Category::orderBy('seq')
-                                   ->where('parent_id', 0)
-                                   ->get();
+            
+            $categories = Category::orderBy('seq')
+                                  ->where('parent_id', 0)
+                                  ->get();
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e);
         }

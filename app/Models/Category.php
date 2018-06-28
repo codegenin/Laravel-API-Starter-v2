@@ -25,6 +25,8 @@ class Category extends Model implements HasMedia
         'description'
     ];
     
+    protected $with = ['translations'];
+    
     public $sortable = [
         'id',
         'name',

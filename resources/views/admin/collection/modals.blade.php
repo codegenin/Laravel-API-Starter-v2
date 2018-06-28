@@ -12,14 +12,15 @@
                 <div class="modal-body">
 
                     <!-- Category: Form Input -->
-                    <div class="form-group">
+                    <input type="hidden" name="category_id" value="{{$category->id}}">
+                    {{--<div class="form-group">
                         <label for="parent">{{trans('label.category')}}:</label>
                         <select name="category_id" id="category-id" class="form-control">
-                            @foreach($categories as $collection)
-                                <option value="{{$collection->id}}">{{$collection->name}}</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div>--}}
 
                     <!-- Title: Form Input -->
                     <div class="form-group">
@@ -79,14 +80,15 @@
                     <input type="hidden" name="id" id="edit-id">
 
                     <!-- Category: Form Input -->
-                    <div class="form-group">
+                    <input type="hidden" name="category_id" value="{{$category->id}}">
+                    {{--<div class="form-group">
                         <label for="parent">{{trans('label.category')}}:</label>
                         <select name="category_id" id="edit-category-id" class="form-control">
-                            @foreach($categories as $collection)
-                                <option value="{{$collection->id}}">{{$collection->name}}</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div>--}}
 
                     <!-- Title: Form Input -->
                     <div class="form-group">

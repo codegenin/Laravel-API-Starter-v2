@@ -71,6 +71,14 @@ class CategoryController extends Controller
         $this->categoryRepository->delete(request()->id);
         $category->clearMediaCollection('category');
         
+        // Delete collection images
+        if ($category->collections->count() > 0) {
+            foreach ($category->collections as $collection) {
+                $collection->delete();
+                $collection->clearMediaCollection($category->slug);
+            }
+        }
+        
         return redirect()
             ->back()
             ->with('success', 'Request successfully processed!');
