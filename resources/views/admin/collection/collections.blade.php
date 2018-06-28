@@ -42,6 +42,15 @@
     <script>
         $(function () {
 
+            // Open modal for deleting a record
+            $('.wrapper').on('click', '.delete', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#deleteId').val(id);
+                $('#deleteForm').attr('action', "{{route('admin.collection.destroy')}}");
+                $('#deleteModal').modal('show');
+            });
+
             // Open modal for editing a record
             $('.wrapper').on('click', '.edit', function (e) {
                 e.preventDefault();
