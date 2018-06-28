@@ -11,7 +11,7 @@ Route::group(['prefix' => 'categories'], function () {
     ############## CRUD Routes ###########################
     Route::post('new', 'App\ACME\Admin\Category\Controllers\StoreCategoryController@run')
          ->name('admin.category.store');
-    Route::post('delete', 'App\ACME\Admin\Category\Controllers\DestroyController@run')
+    Route::post('delete', 'App\ACME\Admin\Category\Controllers\DestroyCategoryController@run')
          ->name('admin.category.destroy');
     Route::get('{id}/get', 'App\ACME\Admin\Category\Controllers\CategoryController@get')
          ->name('admin.category.get');
