@@ -49,7 +49,7 @@
                 let edit = $(this);
 
                 $.ajax({
-                    url: "collections/" + id + "/get",
+                    url: "/admin/collections/" + id + "/get",
                     beforeSend: function (xhr) {
                         $('#cover-image').attr('src', '');
                         edit.html('<i class="fa fa-refresh fa-spin"></i>');
@@ -57,9 +57,12 @@
                 }).done(function (data) {
                     edit.html('<i class="fa fa-pencil"></i>');
                     $('#edit-id').val(data.collection.id);
-                    $('#edit-title').val(data.collection.title);
-                    $('#edit-description').val(data.collection.description);
+                    $('#edit-title').val(data.collection.en_title);
+                    $('#edit-fr_title').val(data.collection.fr_title);
+                    $('#edit-description').val(data.collection.en_description);
+                    $('#edit-fr_description').val(data.collection.fr_description);
                     $('#edit-category-id').val(data.collection.category_id);
+                    $('#edit-points').val(data.collection.points);
                     $('#edit-time-period').val(data.collection.time_period);
                     $('#edit-image_path').val(data.collection.image_path);
                     $('#modal-edit-collection').modal('show');

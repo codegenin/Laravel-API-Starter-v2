@@ -7,7 +7,7 @@ use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\Http\Controllers\Controller;
 use App\Traits\MediaTraits;
 
-class UpdateController extends Controller
+class UpdateCollectionController extends Controller
 {
     use MediaTraits;
     /**
@@ -28,13 +28,18 @@ class UpdateController extends Controller
     public function run(StoreCollectionRequest $request)
     {
         $collection = $this->collectionRepository->find($request->id);
-        $this->collectionRepository->update($request->id, [
-            'category_id' => $request->category_id,
-            'title'       => $request->title,
-            'slug'        => $request->title,
-            'description' => $request->description,
-            'time_period' => $request->time_period
-        ]);
+        
+        $collection->translateOrNew('en')->title       = $request->title;
+        $collection->translateOrNew('fr')->title       = $request->fr_title;
+        $collection->translateOrNew('en')->description = $request->description;
+        $collection->translateOrNew('fr')->description = $request->fr_description;
+    
+        $collection->category_id = $request->category_id;
+        $collection->slug        = $request->title;
+        $collection->artist      = $request->artist;
+        $collection->points      = $request->points;
+        $collection->time_period = $request->time_period;
+        $collection->save();
         
         if ($request->has('file')) {
             $this->associateMedia($collection, $request, 'collection');

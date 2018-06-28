@@ -3,6 +3,7 @@
 namespace App\ACME\Admin\Collection\Controllers;
 
 use App\ACME\Admin\Collection\Requests\StoreCollectionRequest;
+use App\ACME\Admin\Collection\Resource\AdminCollectionResource;
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\Http\Controllers\Controller;
 use App\Models\Collection;
@@ -32,7 +33,7 @@ class AjaxGetCollectionController extends Controller
         $covers     = $this->getMedialUrls($collection, 'collection');
         
         return response()->json([
-            'collection' => $collection,
+            'collection' =>new AdminCollectionResource( $collection),
             'covers'     => $covers
         ]);
     }

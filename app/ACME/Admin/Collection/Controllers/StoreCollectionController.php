@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Collection;
 use App\Traits\MediaTraits;
 
-class StoreController extends Controller
+class StoreCollectionController extends Controller
 {
     use MediaTraits;
     /**
