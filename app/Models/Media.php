@@ -16,20 +16,17 @@ class Media extends BaseMedia implements HasMedia
     use HasMediaTrait, Sortable, HasTags, SearchableTrait,
         Translatable;
     
-    protected $table = 'media';
-    
     public $translatedAttributes = [
         'title',
         'description'
     ];
-    
     public $sortable = [
         'id',
         'order_column',
         'score',
         'created_at'
     ];
-    
+    protected $table = 'media';
     protected $searchable = [
         'columns' => [
             'title'       => 10,
@@ -47,5 +44,10 @@ class Media extends BaseMedia implements HasMedia
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    
+    public function translations()
+    {
+        return $this->hasMany(MediaTranslation::class);
     }
 }
