@@ -9,13 +9,13 @@
         <li>
             <a href="{{route('admin.category.index')}}"
                     class="btn btn-warning">
-                BACK TO CATEGORIES
+                {{trans('label.return_to_categories')}}
             </a>
         </li>
         <li>
             <button type="button" data-toggle="modal" title="Upload Image"
                     class="btn btn-success" data-target="#modal-new-category-image">
-               UPLOAD IMAGE
+               {{trans('label.upload_image')}}
             </button>
         </li>
     </ol>

@@ -25,4 +25,13 @@ return array (
   'update_collection' => 'Update Collection',
   'return_to_categories' => 'Return To Categories',
   'return_to_collections' => 'Return To Collections',
+  'return_to_collection' => 'Return to collection',
+  'upload_image' => 'Upload image',
+  'location' => 'Location',
+  'tags' => 'Tags',
+  'image_file' => 'Image file',
+  'close' => 'Close',
+  'upload' => 'Upload
+',
+  'browse' => 'Browse',
 );

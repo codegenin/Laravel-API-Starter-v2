@@ -3,19 +3,19 @@
 @section('content_header')
     <h1>
         {{title_case($collection->title)}}
-        <small>Images</small>
+        <small>{{trans('label.images')}}</small>
     </h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{route('admin.category.collections', $collection->category_id)}}"
                class="btn btn-warning">
-                {{trans('label.return_to_collections')}}
+                {{trans('label.return_to_collection')}}
             </a>
         </li>
         <li>
             <button type="button" data-toggle="modal" title="Upload Image"
                     class="btn btn-success" data-target="#modal-new-collection-image">
-                UPLOAD IMAGE
+                {{trans('label.upload_image')}}
             </button>
         </li>
     </ol>
@@ -66,34 +66,34 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="collection-modal-title">Upload Image</h4>
+                        <h4 class="modal-title" id="collection-modal-title">{{trans('label.upload_image')}}</h4>
                     </div>
                     <div class="modal-body">
 
                         <!-- Title: Form Input -->
                         <div class="form-group">
-                            <label for="title">Image Title:</label>
+                            <label for="title">{{trans('label.title')}}:</label>
                             <input type="text" name="title" id="title"
                                    class="form-control" value="{{ old('title') }}">
                         </div>
 
                         <!-- Description: Form Input -->
                         <div class="form-group">
-                            <label for="description">Image Description:</label>
+                            <label for="description">{{trans('label.description')}}:</label>
                             <input type="text" name="description" id="description"
                                    class="form-control" value="{{ old('description') }}">
                         </div>
 
                         <!-- Time Period: Form Input -->
                         <div class="form-group">
-                            <label for="location">Image Location:</label>
+                            <label for="location">{{trans('label.location')}}:</label>
                             <input type="text" name="location" id="location"
                                    class="form-control" value="{{ old('location') }}">
                         </div>
 
                         <!-- Tags: Form Input -->
                         <div class="form-group">
-                            <label>Tags:</label>
+                            <label>{{trans('label.tags')}}:</label>
                             <select class="form-control select2" multiple="multiple"
                                     name="tags[]" style="width: 100%;" id="tags">
                                 @foreach($tags as $tag)
@@ -105,16 +105,16 @@
 
                         <!-- Image URL: Form Input -->
                         <div class="form-group">
-                            <label for="media_id">Image File:</label>
+                            <label for="media_id">{{trans('label.image_file')}}:</label>
                             <div class="input-group">
                                 <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
-                                <span class="input-group-addon" id="basic-addon2">Browse</span>
+                                <span class="input-group-addon" id="basic-addon2">{{trans('label.browse')}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{trans('label.close')}}</button>
+                        <button type="submit" class="btn btn-primary">{{trans('label.upload')}}</button>
                     </div>
                 </form>
             </div>
