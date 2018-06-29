@@ -48,6 +48,6 @@ class Media extends BaseMedia implements HasMedia
     
     public function translations()
     {
-        return $this->hasMany(MediaTranslation::class);
+        return $this->hasMany(MediaTranslation::class, 'media_id', 'id');
     }
 }
