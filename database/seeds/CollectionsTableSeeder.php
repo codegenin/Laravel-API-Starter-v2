@@ -15,13 +15,14 @@ class CollectionsTableSeeder extends Seeder
         factory(\App\Models\Collection::class, 5)
             ->create()
             ->each(function ($collection) {
+    
+                $fakeEn = \Faker\Factory::create('en_EN');
+                $fakeFr = \Faker\Factory::create('fr_FR');
                 
-                $faker = \Faker\Factory::create();
-                
-                $collection->translateOrNew('en')->title       = $faker->word;
-                $collection->translateOrNew('fr')->title       = $faker->word;
-                $collection->translateOrNew('en')->description = $faker->paragraph;
-                $collection->translateOrNew('fr')->description = $faker->paragraph;
+                $collection->translateOrNew('en')->title       = $fakeEn->word;
+                $collection->translateOrNew('fr')->title       = $fakeFr->word;
+                $collection->translateOrNew('en')->description = $fakeEn->paragraph;
+                $collection->translateOrNew('fr')->description = $fakeFr->paragraph;
                 $collection->save();
                 
                 // Create sample cover
@@ -30,14 +31,17 @@ class CollectionsTableSeeder extends Seeder
                 
                 // Create sample images
                 for ($i = 1; $i <= 3; $i++) {
-                    $media              = $collection->addMediaFromUrl('https://s3.amazonaws.com/yyg-test-collections/sample.jpg')
-                                                     ->toMediaCollection($collection->slug);
-                    $media->category_id = $collection->category_id;
-                    $media->user_id     = 1;
-                    $media->title       = 'Sample' . $i;
-                    $media->description = 'Sample' . $i;
-                    $media->location    = 'Sample' . $i;
-                    $media->score       = rand(0, 50000);
+                    
+                    $media                                    = $collection->addMediaFromUrl('https://s3.amazonaws.com/yyg-test-collections/sample.jpg')
+                                                                           ->toMediaCollection($collection->slug);
+                    $media->category_id                       = $collection->category_id;
+                    $media->user_id                           = 1;
+                    $media->translateOrNew('en')->title        = $fakeEn->word;
+                    $media->translateOrNew('fr')->title        = $fakeFr->word;
+                    $media->translateOrNew('en')->description = $fakeEn->word;
+                    $media->translateOrNew('fr')->description = $fakeFr->paragraph;
+                    $media->location                          = 'Sample' . $i;
+                    $media->score                             = rand(0, 50000);
                     $media->save();
                 }
             });

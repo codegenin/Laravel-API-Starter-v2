@@ -12,9 +12,7 @@ class CreateMediaTable extends Migration
     public function up()
     {
         Schema::create('media', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title')
-                  ->nullable();
+            $table->increments('id');
             $table->string('location')
                   ->nullable();
             $table->unsignedInteger('score')

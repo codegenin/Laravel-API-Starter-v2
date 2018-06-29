@@ -3,6 +3,7 @@
 namespace App\ACME\Admin\Category\Controllers;
 
 use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
+use App\ACME\Admin\Category\Resource\AdminCategoryResource;
 use App\ACME\Admin\Category\Resource\AdminCollectionResource;
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
@@ -57,7 +58,7 @@ class CategoryController extends Controller
         
         return response()->json([
             'status'   => true,
-            'category' => new AdminCollectionResource($category)
+            'category' => new AdminCategoryResource($category)
         ]);
     }
     

@@ -64,7 +64,7 @@
 
                     <!-- Points Value: Form Input -->
                     <div class="form-group">
-                        <label for="points">Points Value:</label>
+                        <label for="points">{{trans('label.points_value')}}:</label>
                         <input type="number" name="points" id="points"
                                placeholder="Points required to unlock the collection" class="form-control"
                                value="{{ old('points') }}">
@@ -83,15 +83,15 @@
                         <label for="media_id">{{trans('label.cover_image')}}</label>
                         <div class="input-group">
                             <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
-                            <span class="input-group-addon" id="basic-addon2">Browse</span>
+                            <span class="input-group-addon" id="basic-addon2">{{trans('label.browse')}}</span>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left"
-                            data-dismiss="modal">{{trans('button.close')}}</button>
-                    <button type="submit" class="btn btn-primary">{{trans('button.save_changes')}}</button>
+                            data-dismiss="modal">{{trans('label.close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{trans('label.save_changes')}}</button>
                 </div>
             </form>
         </div>
@@ -187,7 +187,7 @@
                         <label for="media_id">{{trans('label.cover_image')}}</label>
                         <div class="input-group">
                             <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
-                            <span class="input-group-addon" id="basic-addon2">Browse</span>
+                            <span class="input-group-addon" id="basic-addon2">{{trans('label.browse')}}</span>
                         </div>
                     </div>
 
@@ -197,8 +197,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left"
-                            data-dismiss="modal">{{trans('button.close')}}</button>
-                    <button type="submit" class="btn btn-primary">{{trans('button.save_changes')}}</button>
+                            data-dismiss="modal">{{trans('label.close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{trans('label.save_changes')}}</button>
                 </div>
             </form>
         </div>

@@ -9,7 +9,7 @@
         <li>
             <a href="{{route('admin.category.collections', $collection->category_id)}}"
                class="btn btn-warning">
-                {{trans('label.return_to_collection')}}
+                {{trans('label.return_to_collections')}}
             </a>
         </li>
         <li>

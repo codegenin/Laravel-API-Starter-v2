@@ -17,16 +17,11 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('parent_id')
                   ->default(0);
-            #$table->string('name');
             $table->string('slug');
-            #$table->string('description')
-            #      ->nullable();
             $table->boolean('is_public')
                   ->default(0);
             $table->integer('seq')
                   ->default(0);
-            #$table->string('media_id')
-            #      ->nullable();
             $table->timestamps();
         });
     }

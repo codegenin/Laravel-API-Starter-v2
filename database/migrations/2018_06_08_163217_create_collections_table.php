@@ -16,10 +16,7 @@ class CreateCollectionsTable extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('category_id');
-            #$table->string('title');
             $table->string('slug');
-            #$table->text('description')
-            #     ->nullable();
             $table->string('artist')
                   ->nullable();
             $table->unsignedInteger('points')

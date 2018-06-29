@@ -34,4 +34,5 @@ return array (
   'upload' => 'Upload
 ',
   'browse' => 'Browse',
+  'save_changes' => 'Save Changes',
 );

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Nicolaslopezj\Searchable\SearchableTrait;
@@ -12,7 +13,15 @@ use Spatie\Tags\HasTags;
 
 class Media extends BaseMedia implements HasMedia
 {
-    use HasMediaTrait, Sortable, HasTags, SearchableTrait;
+    use HasMediaTrait, Sortable, HasTags, SearchableTrait,
+        Translatable;
+    
+    protected $table = 'media';
+    
+    public $translatedAttributes = [
+        'title',
+        'description'
+    ];
     
     public $sortable = [
         'id',

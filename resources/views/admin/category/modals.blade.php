@@ -74,15 +74,15 @@
                         <label for="media_id">{{__('label.cover_image')}}:</label>
                         <div class="input-group">
                             <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
-                            <span class="input-group-addon" id="basic-addon2">Browse</span>
+                            <span class="input-group-addon" id="basic-addon2">{{trans('label.browse')}}</span>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left"
-                            data-dismiss="modal">{{__('button.close')}}</button>
-                    <button type="submit" class="btn btn-primary">{{__('button.save_changes')}}</button>
+                            data-dismiss="modal">{{__('label.close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{__('label.save_changes')}}</button>
                 </div>
             </form>
         </div>
@@ -169,7 +169,7 @@
                         <label for="media_id">{{__('label.cover_image')}}</label>
                         <div class="input-group">
                             <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
-                            <span class="input-group-addon" id="basic-addon2">Browse</span>
+                            <span class="input-group-addon" id="basic-addon2">{{trans('label.browse')}}</span>
                         </div>
                     </div>
 
@@ -179,8 +179,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left"
-                            data-dismiss="modal">{{__('button.close')}}</button>
-                    <button type="submit" class="btn btn-primary">{{__('button.save_changes')}}</button>
+                            data-dismiss="modal">{{__('label.close')}}</button>
+                    <button type="submit" class="btn btn-primary">{{__('label.save_changes')}}</button>
                 </div>
             </form>
         </div>
