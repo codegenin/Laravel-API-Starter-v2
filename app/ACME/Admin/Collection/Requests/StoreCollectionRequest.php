@@ -18,7 +18,7 @@ class StoreCollectionRequest extends FormRequest
             'title'       => 'required',
             'time_period' => 'required',
             'description' => 'required',
-            'file'        => 'nullable|mimes:jpeg',
+            'file'        => 'nullable|mimes:jpeg,png',
         ];
     }
     

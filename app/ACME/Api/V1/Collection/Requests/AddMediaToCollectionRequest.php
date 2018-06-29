@@ -13,7 +13,7 @@ class AddMediaToCollectionRequest extends FormRequest
             'title'         => 'required',
             'year'          => 'required|date_format:Y',
             'location'      => 'required',
-            'file'          => 'required|mimes:jpeg',
+            'file'          => 'required|mimes:jpeg,png',
         ];
     }
     

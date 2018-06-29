@@ -12,7 +12,7 @@ class AddMediaToCategoryRequest extends FormRequest
             'category_id' => 'required',
             'title'       => 'required',
             'location'    => 'required',
-            'file'        => 'required|mimes:jpeg',
+            'file'        => 'required|mimes:jpeg,png',
             'tags'        => 'required'
         ];
     }
