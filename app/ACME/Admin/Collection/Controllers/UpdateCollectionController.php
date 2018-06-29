@@ -43,6 +43,7 @@ class UpdateCollectionController extends Controller
         
         if ($request->has('file')) {
             $this->associateMedia($collection, $request, 'collection');
+            sleep(2);
         }
         
         return redirect()

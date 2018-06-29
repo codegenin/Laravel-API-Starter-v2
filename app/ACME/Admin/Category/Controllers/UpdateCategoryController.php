@@ -49,6 +49,8 @@ class UpdateCategoryController extends Controller
             /*$category->media_id = $category->getMedia('category')
                                            ->first()->id;
             $category->save();*/
+            
+            sleep(2);
         }
         
         return redirect()
