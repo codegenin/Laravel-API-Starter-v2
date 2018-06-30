@@ -179,7 +179,6 @@
                     <div class="modal-body">
 
                         <!-- Title: Form Input -->
-                        <!-- Title: Form Input -->
                         <div class="form-group">
                             <label for="edit-media-title">{{__('label.title')}}:</label>
                             <div class="input-group">

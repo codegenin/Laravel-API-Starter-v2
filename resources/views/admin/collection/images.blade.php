@@ -72,16 +72,42 @@
 
                         <!-- Title: Form Input -->
                         <div class="form-group">
-                            <label for="title">{{trans('label.title')}}:</label>
-                            <input type="text" name="title" id="title"
-                                   class="form-control" value="{{ old('title') }}">
+                            <label for="name">{{__('label.title')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="english">
+                        </span>
+                                <input type="text" name="title" id="title" placeholder="Title in english"
+                                       class="form-control" value="{{ old('title') }}">
+                            </div>
+                            <!-- Translation -->
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_title" id="fr_title" placeholder="Title in french"
+                                       class="form-control" value="{{ old('title') }}">
+                            </div>
                         </div>
 
                         <!-- Description: Form Input -->
                         <div class="form-group">
-                            <label for="description">{{trans('label.description')}}:</label>
-                            <input type="text" name="description" id="description"
-                                   class="form-control" value="{{ old('description') }}">
+                            <label for="description">{{__('label.description')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="description" id="description" placeholder="Description in english"
+                                       class="form-control" value="{{ old('description') }}">
+                            </div>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_description" id="fr_description"
+                                       placeholder="Description in french"
+                                       class="form-control" value="{{ old('description') }}">
+                            </div>
                         </div>
 
                         <!-- Time Period: Form Input -->
@@ -140,16 +166,42 @@
 
                         <!-- Title: Form Input -->
                         <div class="form-group">
-                            <label for="title">Image Title:</label>
-                            <input type="text" name="title" id="media-title"
-                                   class="form-control" value="{{ old('title') }}">
+                            <label for="edit-media-title">{{__('label.title')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="english">
+                        </span>
+                                <input type="text" name="title" id="edit-media-title" placeholder="Title in english"
+                                       class="form-control" value="{{ old('title') }}">
+                            </div>
+                            <!-- Translation -->
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_title" id="edit-media-fr_title" placeholder="Title in french"
+                                       class="form-control" value="{{ old('title') }}">
+                            </div>
                         </div>
 
                         <!-- Description: Form Input -->
                         <div class="form-group">
-                            <label for="description">Image Description:</label>
-                            <input type="text" name="description" id="media-description"
-                                   class="form-control" value="{{ old('description') }}">
+                            <label for="media-description">{{__('label.description')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="description" id="edit-media-description" placeholder="Description in english"
+                                       class="form-control" value="{{ old('description') }}">
+                            </div>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_description" id="edit-media-fr_description"
+                                       placeholder="Description in french"
+                                       class="form-control" value="{{ old('description') }}">
+                            </div>
                         </div>
 
                         <!-- Time Period: Form Input -->
@@ -229,8 +281,10 @@
                 }).done(function (data) {
                     edit.html('<i class="fa fa-pencil"></i>');
                     $('#media-id').val(data.media.id);
-                    $('#media-title').val(data.media.title);
-                    $('#media-description').val(data.media.description);
+                    $('#edit-media-title').val(data.media.en_title);
+                    $('#edit-media-fr_title').val(data.media.fr_title);
+                    $('#edit-media-description').val(data.media.en_description);
+                    $('#edit-media-fr_description').val(data.media.fr_description);
                     $('#media-location').val(data.media.location);
                     $('#modal-edit-collection-image').modal('show');
                     $('#cover-image').attr('src', data.media.images.large);

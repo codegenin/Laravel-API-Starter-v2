@@ -30,14 +30,8 @@ class UploadImageController extends Controller
         $category = $this->categoryRepository->find($request->id);
         
         if ($request->has('file')) {
-            $media              = $this->associateMedia($category, $request, $category->slug);
-            $media->category_id = $category->id;
-            $media->user_id     = 0;
-            $media->title       = $request->title;
-            $media->description = $request->description;
-            $media->location    = $request->location;
-            $media->syncTags($request->tags);
-            $media->save();
+            $media = $this->associateMedia($category, $request, $category->slug);
+            $this->addMediaInformation($media, $request, $category->id);
         }
         
         sleep(2); // delay 5secs the redirect so queue system can work first :D

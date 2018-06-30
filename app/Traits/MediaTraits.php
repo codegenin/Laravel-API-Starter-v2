@@ -64,10 +64,12 @@ trait MediaTraits
         try {
             $media->category_id = $categoryId;
             $media->user_id     = auth()->user()->id;
-            $media->title       = $request->title;
-            $media->description = $request->description;
+            $media->translateOrNew('en')->title       = $request->title;
+            $media->translateOrNew('fr')->title       = $request->fr_title;
+            $media->translateOrNew('en')->description = $request->description;
+            $media->translateOrNew('fr')->description = $request->fr_description;
             $media->location    = $request->location;
-            $media->attachTags(explode(',', $request->tags));
+            $media->syncTags($request->tags);
             $media->save();
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e);
