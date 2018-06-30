@@ -32,23 +32,6 @@ class CategoryController extends Controller
     }
     
     /**
-     * @return $this
-     */
-    public function index()
-    {
-        $categories    = Category::orderBy('seq', 'desc')
-                                 ->paginate(10);
-        $allCategories = Category::orderBy('seq')
-                                 ->where('parent_id', 0)
-                                 ->get();
-        
-        return view('admin.category.index')->with([
-            'categories'         => $categories,
-            'categoriesDropDown' => $allCategories
-        ]);
-    }
-    
-    /**
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */

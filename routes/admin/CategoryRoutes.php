@@ -3,7 +3,7 @@
 Route::group(['prefix' => 'categories'], function () {
     
     ############## Default Routes ########################
-    Route::get('/', 'App\ACME\Admin\Category\Controllers\CategoryController@index')
+    Route::get('/', 'App\ACME\Admin\Category\Controllers\IndexCategoryController@run')
          ->name('admin.category.index');
     Route::get('{id}/collections', 'App\ACME\Admin\Category\Controllers\ListCollectionsController@run')
          ->name('admin.category.collections');

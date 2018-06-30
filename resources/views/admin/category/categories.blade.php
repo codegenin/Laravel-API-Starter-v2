@@ -1,6 +1,6 @@
 <table class="table table-responsive table-striped">
     <tbody>
-    <tr style="background: #cccccc;color: #000;font-weight: bold;">
+    <tr class="text-bold">
         <td style="width: 10px;">{{__('label.id')}}</td>
         <td style="width: 10px;">{{__('label.cover')}}</td>
         <td style="width: 10px;">{{__('label.name')}}</td>
@@ -22,25 +22,27 @@
             <td>{{($category->is_public == 1) ? 'YES' : 'NO'}}</td>
             <td>{{$category->images->count()}}</td>
             <td>
-                <a class="btn btn-success" href="{{route('admin.category.collections', $category->id)}}" title="COLLECTIONS">
-                    <i class="fa fa-folder-o"></i>
-                </a>
-                <a class="btn btn-success" href="{{route('admin.category.images', $category->id)}}" title="IMAGES">
-                    <i class="fa fa-picture-o"></i>
-                </a>
-                <a class="btn btn-warning edit" data-id="{{$category->id}}">
-                    <i class="fa fa-pencil"></i>
-                </a>
-                <a href="{{route('admin.category.move.up', $category->id)}}"
-                   class="btn btn-primary"><i
-                        class="fa fa-arrow-up" title="MOVE UP"></i>
-                </a>
-                <a href="{{route('admin.category.move.down', $category->id)}}"
-                   class="btn btn-primary"><i
-                        class="fa fa-arrow-down" title="MOVE DOWN"></i>
-                </a>
-                <a href="#" data-id="{{$category->id}}"
-                   class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
+                <div class="btn-group">
+                    <a class="btn btn-success" href="{{route('admin.category.collections', $category->id)}}" title="{{trans('label.collections')}}">
+                        <i class="fa fa-folder-o"></i>
+                    </a>
+                    <a class="btn btn-success" href="{{route('admin.category.images', $category->id)}}" title="{{trans('label.images')}}">
+                        <i class="fa fa-picture-o"></i>
+                    </a>
+                    <a class="btn btn-warning edit" data-id="{{$category->id}}" title="{{trans('label.edit')}}">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a href="{{route('admin.category.move.up', $category->id)}}"
+                       class="btn btn-primary"><i
+                            class="fa fa-arrow-up" title="{{trans('label.move_up')}}"></i>
+                    </a>
+                    <a href="{{route('admin.category.move.down', $category->id)}}"
+                       class="btn btn-primary"><i
+                            class="fa fa-arrow-down" title="{{trans('label.move_down')}}"></i>
+                    </a>
+                    <a href="#" data-id="{{$category->id}}" title="{{trans('label.delete')}}"
+                       class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
+                </div>
             </td>
         </tr>
         @if(!empty($category->child))
