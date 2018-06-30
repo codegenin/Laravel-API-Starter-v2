@@ -13,15 +13,16 @@ class IndexCategoryController extends Controller
      */
     public function run()
     {
-        $categories    = Category::orderBy('seq', 'desc')
+        $categories    = Category::where('parent_id', 0)
+                                 ->ordered()
                                  ->paginate();
-        $allCategories = Category::orderBy('seq')
+        /*$allCategories = Category::orderBy('seq')
                                  ->where('parent_id', 0)
-                                 ->get();
+                                 ->get();*/
         
         return view('admin.category.index')->with([
             'categories'         => $categories,
-            'categoriesDropDown' => $allCategories
+            #'categoriesDropDown' => $allCategories
         ]);
     }
 }

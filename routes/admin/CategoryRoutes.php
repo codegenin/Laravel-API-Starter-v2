@@ -19,10 +19,14 @@ Route::group(['prefix' => 'categories'], function () {
          ->name('admin.category.update');
     
     ############## Moving Sequence ###########################
+    Route::get('{id}/move-to-start', 'App\ACME\Admin\Category\Controllers\MoveCategoryController@moveToStart')
+         ->name('admin.category.move.to.start');
     Route::get('{id}/move-up', 'App\ACME\Admin\Category\Controllers\MoveCategoryController@up')
          ->name('admin.category.move.up');
     Route::get('{id}/move-down', 'App\ACME\Admin\Category\Controllers\MoveCategoryController@down')
          ->name('admin.category.move.down');
+    Route::get('{id}/move-to-end', 'App\ACME\Admin\Category\Controllers\MoveCategoryController@moveToEnd')
+         ->name('admin.category.move.to.end');
     
     ############## Images Routes ##############################
     Route::get('{id}/images', 'App\ACME\Admin\Category\Controllers\ListImagesController@run')

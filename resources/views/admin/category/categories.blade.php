@@ -9,6 +9,7 @@
         <td style="width: 10px;">{{__('label.collections')}}</td>
         <td style="width: 5px;">{{__('label.public')}}</td>
         <td style="width: 5px;">{{__('label.images')}}</td>
+        <td style="width: 5px;">{{trans('label.seq')}}</td>
         <td style="width: 20px;">{{__('label.actions')}}</td>
     </tr>
     @foreach($categories as $category)
@@ -21,6 +22,7 @@
             <td>{{$category->collections->count()}}</td>
             <td>{{($category->is_public == 1) ? 'YES' : 'NO'}}</td>
             <td>{{$category->images->count()}}</td>
+            <td>{{$category->seq}}</td>
             <td>
                 <div class="btn-group">
                     <a class="btn btn-success" href="{{route('admin.category.collections', $category->id)}}" title="{{trans('label.collections')}}">
@@ -32,16 +34,35 @@
                     <a class="btn btn-warning edit" data-id="{{$category->id}}" title="{{trans('label.edit')}}">
                         <i class="fa fa-pencil"></i>
                     </a>
-                    <a href="{{route('admin.category.move.up', $category->id)}}"
-                       class="btn btn-primary"><i
-                            class="fa fa-arrow-up" title="{{trans('label.move_up')}}"></i>
-                    </a>
-                    <a href="{{route('admin.category.move.down', $category->id)}}"
-                       class="btn btn-primary"><i
-                            class="fa fa-arrow-down" title="{{trans('label.move_down')}}"></i>
-                    </a>
                     <a href="#" data-id="{{$category->id}}" title="{{trans('label.delete')}}"
                        class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            {{trans('label.move')}}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{route('admin.category.move.to.start', $category->id)}}">
+                                    {{trans('label.move_to_start')}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.category.move.up', $category->id)}}">
+                                    {{trans('label.move_up')}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.category.move.down', $category->id)}}">
+                                    {{trans('label.move_down')}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.category.move.to.end', $category->id)}}">
+                                    {{trans('label.move_to_end')}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </td>
         </tr>

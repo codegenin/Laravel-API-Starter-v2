@@ -36,4 +36,10 @@ return array (
   'browse' => 'Browse',
   'save_changes' => 'Save Changes',
   'points' => 'Points',
+  'move' => 'Move',
+  'move_up' => 'Up',
+  'move_down' => 'Down',
+  'move_to_start' => 'To Start
+',
+  'move_to_end' => 'To End',
 );

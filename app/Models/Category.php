@@ -4,21 +4,24 @@ namespace App\Models;
 
 use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
 use Dimsav\Translatable\Translatable;
-use Hashids\Hashids;
-use HighSolutions\EloquentSequence\Sequence;
 use Illuminate\Database\Eloquent\Model;
-use Kyslik\ColumnSortable\Sortable;
 use Nestable\NestableTrait;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
-use Spatie\Translatable\HasTranslations;
 
-class Category extends Model implements HasMedia
+class Category extends Model implements HasMedia, Sortable
 {
-    use NestableTrait, Sortable, Sequence, HasMediaTrait, Favoriteable,
-        SearchableTrait, Translatable;
+    use NestableTrait, HasMediaTrait, Favoriteable,
+        SearchableTrait, Translatable, SortableTrait;
+    
+    public $sortable = [
+        'order_column_name'  => 'seq',
+        'sort_when_creating' => true,
+    ];
     
     public $translatedAttributes = [
         'name',
@@ -26,12 +29,6 @@ class Category extends Model implements HasMedia
     ];
     
     protected $with = ['translations'];
-    
-    public $sortable = [
-        'id',
-        'name',
-        'seq'
-    ];
     
     protected $searchable = [
         'columns' => [
@@ -55,13 +52,6 @@ class Category extends Model implements HasMedia
     public function setSlugAttribute($value)
     {
         $this->attributes['slug'] = str_slug($value);
-    }
-    
-    public function sequence()
-    {
-        return [
-            'fieldName' => 'seq'
-        ];
     }
     
     public function registerMediaConversions(Media $media = null)

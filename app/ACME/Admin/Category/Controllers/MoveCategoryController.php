@@ -26,7 +26,7 @@ class MoveCategoryController extends Controller
     public function up($id)
     {
         Category::find($id)
-                ->up();
+                ->moveOrderUp();
         
         return redirect()->route('admin.category.index');
     }
@@ -38,8 +38,24 @@ class MoveCategoryController extends Controller
     public function down($id)
     {
         Category::find($id)
-                ->down();
+                ->moveOrderDown();
     
+        return redirect()->route('admin.category.index');
+    }
+    
+    public function moveToStart($id)
+    {
+        Category::find($id)
+                ->moveToStart();
+    
+        return redirect()->route('admin.category.index');
+    }
+    
+    public function moveToEnd($id)
+    {
+        Category::find($id)
+                ->moveToEnd();
+        
         return redirect()->route('admin.category.index');
     }
 }
