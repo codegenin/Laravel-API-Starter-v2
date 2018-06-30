@@ -16,9 +16,6 @@ class IndexCategoryController extends Controller
         $categories    = Category::where('parent_id', 0)
                                  ->ordered()
                                  ->paginate();
-        /*$allCategories = Category::orderBy('seq')
-                                 ->where('parent_id', 0)
-                                 ->get();*/
         
         return view('admin.category.index')->with([
             'categories'         => $categories,

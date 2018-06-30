@@ -31,14 +31,13 @@ class ListImagesController extends Controller
         try {
             $category = $this->categoryRepository->find($id);
             $images   = Media::where('category_id', $id)
-                             ->sortable(['order_column' => 'desc'])
+                             ->orderBy('created_at', 'desc')
                              ->paginate();
             $tags     = Tag::ordered()
                            ->get();
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e);
         }
-        
         
         return view('admin.category.images')->with([
             'category' => $category,
