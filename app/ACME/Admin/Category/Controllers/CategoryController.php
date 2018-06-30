@@ -2,7 +2,7 @@
 
 namespace App\ACME\Admin\Category\Controllers;
 
-use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
+use App\ACME\Admin\Category\Requests\StoreTagRequest;
 use App\ACME\Admin\Category\Resource\AdminCategoryResource;
 use App\ACME\Admin\Category\Resource\AdminCollectionResource;
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
@@ -46,10 +46,10 @@ class CategoryController extends Controller
     }
     
     /**
-     * @param StoreCategoryRequest $request
+     * @param StoreTagRequest $request
      * @return array
      */
-    private function prepareFields(StoreCategoryRequest $request)
+    private function prepareFields(StoreTagRequest $request)
     {
         return [
             'name'        => $request->name,

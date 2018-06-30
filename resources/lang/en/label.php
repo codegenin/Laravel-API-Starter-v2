@@ -42,4 +42,11 @@ return array (
   'move_to_start' => 'To Start
 ',
   'move_to_end' => 'To End',
+  'tag' => 'Tag',
+  'order_column' => 'Order',
+  'new_tag' => 'Add New Tag',
+  'edit' => 'Edit',
+  'delete' => 'Delete',
+  'created_at' => 'Created',
+  'update_tag' => 'Update Tag',
 );

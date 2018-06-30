@@ -2,17 +2,17 @@
 
 namespace App\Traits;
 
-use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
+use App\ACME\Admin\Category\Requests\StoreTagRequest;
 
 trait CategoryTraits
 {
     /**
      * Prepare category fields for storing
      *
-     * @param StoreCategoryRequest $request
+     * @param StoreTagRequest $request
      * @return array
      */
-    public function prepareFields(StoreCategoryRequest $request)
+    public function prepareFields(StoreTagRequest $request)
     {
         return [
             'name'        => $request->name,

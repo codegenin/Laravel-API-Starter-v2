@@ -233,16 +233,6 @@
                             </select>
                         </div>
 
-
-                        {{--<!-- Image URL: Form Input -->
-                        <div class="form-group">
-                            <label for="media_id">Image File:</label>
-                            <div class="input-group">
-                                <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
-                                <span class="input-group-addon" id="basic-addon2">Browse</span>
-                            </div>
-                        </div>--}}
-
                         <div class="form-group">
                             <img src="" id="cover-image" alt="">
                         </div>

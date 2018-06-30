@@ -2,7 +2,7 @@
 
 namespace App\ACME\Admin\Category\Controllers;
 
-use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
+use App\ACME\Admin\Category\Requests\StoreTagRequest;
 use App\ACME\Admin\Category\Requests\UploadImageRequest;
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;

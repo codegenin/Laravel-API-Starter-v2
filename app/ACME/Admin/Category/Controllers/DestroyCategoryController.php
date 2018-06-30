@@ -2,7 +2,7 @@
 
 namespace App\ACME\Admin\Category\Controllers;
 
-use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
+use App\ACME\Admin\Category\Requests\StoreTagRequest;
 use App\Models\Category;
 use App\Traits\CategoryTraits;
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;

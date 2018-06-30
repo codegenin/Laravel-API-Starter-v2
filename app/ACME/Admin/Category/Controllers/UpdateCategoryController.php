@@ -2,7 +2,7 @@
 
 namespace App\ACME\Admin\Category\Controllers;
 
-use App\ACME\Admin\Category\Requests\StoreCategoryRequest;
+use App\ACME\Admin\Category\Requests\StoreTagRequest;
 use App\Models\Category;
 use App\Traits\CategoryTraits;
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
@@ -30,10 +30,10 @@ class UpdateCategoryController extends Controller
     }
     
     /**
-     * @param StoreCategoryRequest $request
+     * @param StoreTagRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function run(StoreCategoryRequest $request)
+    public function run(StoreTagRequest $request)
     {
         $category                                    = $this->categoryRepository->find($request->id);
         $category->translateOrNew('en')->name        = $request->name;

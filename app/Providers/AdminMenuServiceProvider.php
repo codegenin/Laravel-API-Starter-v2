@@ -24,11 +24,11 @@ class AdminMenuServiceProvider extends ServiceProvider
                 'url'  => LaravelLocalization::setLocale() . '/admin/categories',
                 'icon' => 'file',
             ]);
-            /*$event->menu->add([
-                'text' => trans('label.collections'),
-                'url'  => LaravelLocalization::setLocale() . '/admin/collections',
+            $event->menu->add([
+                'text' => trans('label.tags'),
+                'url'  => LaravelLocalization::setLocale() . '/admin/tags',
                 'icon' => 'file',
-            ]);*/
+            ]);
         });
     }
 
