@@ -23,10 +23,10 @@ class MediaResource extends JsonResource
     {
         return [
             'id'             => $this->id,
-            'en_title'        => $this->translate('en')->title ?: '',
-            'fr_title'        => $this->translate('fr')->title ?: '',
-            'en_description' => $this->translate('en')->description ?: '',
-            'fr_description' => $this->translate('fr')->description ?: '',
+            'en_title'       => isset($this->translate('en')->title) ? $this->translate('en')->title : '',
+            'fr_title'       => isset($this->translate('fr')->title) ? $this->translate('fr')->title : '',
+            'en_description' => isset($this->translate('en')->description) ? $this->translate('en')->description : '',
+            'fr_description' => isset($this->translate('fr')->description) ? $this->translate('fr')->description : '',
             'location'       => $this->location ?: '',
             'score'          => $this->score ?: '',
             'images'         => [
