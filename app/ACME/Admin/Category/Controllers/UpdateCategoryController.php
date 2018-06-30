@@ -36,6 +36,7 @@ class UpdateCategoryController extends Controller
     public function run(StoreCategoryRequest $request)
     {
         $category                                    = $this->categoryRepository->find($request->id);
+        $category->translateOrNew('en')->name        = $request->name;
         $category->translateOrNew('fr')->name        = $request->fr_name;
         $category->translateOrNew('en')->description = $request->description;
         $category->translateOrNew('fr')->description = $request->fr_description;

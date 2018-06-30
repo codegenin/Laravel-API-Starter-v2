@@ -70,7 +70,7 @@
         </div>
     </div>
 
-    <!-- Collection Upload Image Modal -->
+    <!-- Category Upload Image Modal -->
     <div class="modal fade" id="modal-new-category-image">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -80,34 +80,60 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="category-modal-title">Upload Image</h4>
+                        <h4 class="modal-title" id="category-modal-title">{{trans('label.upload_image')}}</h4>
                     </div>
                     <div class="modal-body">
 
                         <!-- Title: Form Input -->
                         <div class="form-group">
-                            <label for="title">Image Title:</label>
-                            <input type="text" name="title" id="title"
-                                   class="form-control" value="{{ old('title') }}">
+                            <label for="name">{{__('label.title')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="english">
+                        </span>
+                                <input type="text" name="title" id="title" placeholder="Title in english"
+                                       class="form-control" value="{{ old('title') }}">
+                            </div>
+                            <!-- Translation -->
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_title" id="fr_title" placeholder="Title in french"
+                                       class="form-control" value="{{ old('title') }}">
+                            </div>
                         </div>
 
                         <!-- Description: Form Input -->
                         <div class="form-group">
-                            <label for="description">Image Description:</label>
-                            <input type="text" name="description" id="description"
-                                   class="form-control" value="{{ old('description') }}">
+                            <label for="description">{{__('label.description')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="description" id="description" placeholder="Description in english"
+                                       class="form-control" value="{{ old('description') }}">
+                            </div>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_description" id="fr_description"
+                                       placeholder="Description in french"
+                                       class="form-control" value="{{ old('description') }}">
+                            </div>
                         </div>
 
                         <!-- Time Period: Form Input -->
                         <div class="form-group">
-                            <label for="location">Image Location:</label>
+                            <label for="location">{{trans('label.location')}}:</label>
                             <input type="text" name="location" id="location"
                                    class="form-control" value="{{ old('location') }}">
                         </div>
 
                         <!-- Tags: Form Input -->
                         <div class="form-group">
-                            <label>Tags:</label>
+                            <label>{{trans('label.tags')}}:</label>
                             <select class="form-control select2" multiple="multiple"
                                     name="tags[]" style="width: 100%;" id="tags">
                                 @foreach($tags as $tag)
@@ -119,16 +145,16 @@
 
                         <!-- Image URL: Form Input -->
                         <div class="form-group">
-                            <label for="media_id">Image File:</label>
+                            <label for="media_id">{{trans('label.image_file')}}:</label>
                             <div class="input-group">
                                 <input type="file" name="file" class="form-control" aria-describedby="basic-addon2">
-                                <span class="input-group-addon" id="basic-addon2">Browse</span>
+                                <span class="input-group-addon" id="basic-addon2">{{trans('label.browse')}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{trans('label.close')}}</button>
+                        <button type="submit" class="btn btn-primary">{{trans('label.upload')}}</button>
                     </div>
                 </form>
             </div>
@@ -138,7 +164,7 @@
     </div>
     <!-- /.modal -->
 
-    <!-- Collection Edit Image Modal -->
+    <!-- Category Edit Image Modal -->
     <div class="modal fade" id="modal-edit-category-image">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -153,17 +179,44 @@
                     <div class="modal-body">
 
                         <!-- Title: Form Input -->
+                        <!-- Title: Form Input -->
                         <div class="form-group">
-                            <label for="title">Image Title:</label>
-                            <input type="text" name="title" id="media-title"
-                                   class="form-control" value="{{ old('title') }}">
+                            <label for="edit-media-title">{{__('label.title')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="english">
+                        </span>
+                                <input type="text" name="title" id="edit-media-title" placeholder="Title in english"
+                                       class="form-control" value="{{ old('title') }}">
+                            </div>
+                            <!-- Translation -->
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_title" id="edit-media-fr_title" placeholder="Title in french"
+                                       class="form-control" value="{{ old('title') }}">
+                            </div>
                         </div>
 
                         <!-- Description: Form Input -->
                         <div class="form-group">
-                            <label for="description">Image Description:</label>
-                            <input type="text" name="description" id="media-description"
-                                   class="form-control" value="{{ old('description') }}">
+                            <label for="media-description">{{__('label.description')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="description" id="edit-media-description" placeholder="Description in english"
+                                       class="form-control" value="{{ old('description') }}">
+                            </div>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_description" id="edit-media-fr_description"
+                                       placeholder="Description in french"
+                                       class="form-control" value="{{ old('description') }}">
+                            </div>
                         </div>
 
                         <!-- Time Period: Form Input -->
@@ -242,8 +295,10 @@
                 }).done(function (data) {
                     edit.html('<i class="fa fa-pencil"></i>');
                     $('#media-id').val(data.media.id);
-                    $('#media-title').val(data.media.title);
-                    $('#media-description').val(data.media.description);
+                    $('#edit-media-title').val(data.media.en_title);
+                    $('#edit-media-fr_title').val(data.media.fr_title);
+                    $('#edit-media-description').val(data.media.en_description);
+                    $('#edit-media-fr_description').val(data.media.fr_description);
                     $('#media-location').val(data.media.location);
                     $('#modal-edit-category-image').modal('show');
                     $('#cover-image').attr('src', data.media.images.large);

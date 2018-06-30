@@ -20,10 +20,12 @@ class UpdateController extends Controller
     {
         try {
             
-            $media              = Media::find($request->id);
-            $media->title       = $request->title;
-            $media->description = $request->description;
-            $media->location    = $request->location;
+            $media                                    = Media::find($request->id);
+            $media->translateOrNew('en')->title       = $request->title;
+            $media->translateOrNew('fr')->title       = $request->fr_title;
+            $media->translateOrNew('en')->description = $request->description;
+            $media->translateOrNew('fr')->description = $request->fr_description;
+            $media->location                          = $request->location;
             $media->syncTags($request->tags);
             $media->save();
             
