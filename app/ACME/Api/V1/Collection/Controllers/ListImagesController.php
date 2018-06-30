@@ -48,7 +48,7 @@ class ListImagesController extends ApiResponseController
         }
         
         $images = Media::where('collection_name', $collection->slug)
-                       ->sortable(['order_column' => 'desc'])
+                       ->orderBy('created_at', 'desc')
                        ->paginate();
         
         return MediaResourceCollection::collection($images);

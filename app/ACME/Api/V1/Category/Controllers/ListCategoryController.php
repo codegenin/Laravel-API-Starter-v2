@@ -37,7 +37,7 @@ class ListCategoryController extends ApiResponseController
      */
     public function run()
     {
-        $categories = Category::sortable('seq')
+        $categories = Category::ordered()
                               ->get();
         
         return new CategoryResourceCollection($categories);

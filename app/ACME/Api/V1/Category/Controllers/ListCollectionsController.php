@@ -8,6 +8,7 @@ use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
 use App\Models\Collection;
 use Auth;
+use Psr\Log\InvalidArgumentException;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -41,10 +42,10 @@ class ListCollectionsController extends ApiResponseController
     {
         try {
             $collections = Collection::where('category_id', Hashids::decode($id))
-                                     ->sortable()
-                                     ->paginate(10);
+                                     ->orderBy('created_at', 'desc')
+                                     ->paginate();
         } catch (\Exception $e) {
-            throw new NotFoundResourceException(trans('common.not.found'));
+            throw new InvalidArgumentException($e->getMessage());
         }
         
         return new CollectionResourceCollection($collections);
