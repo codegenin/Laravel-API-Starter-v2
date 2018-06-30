@@ -3,16 +3,11 @@
 namespace App\ACME\Api\V1\Collection\Controllers;
 
 
-use App\ACME\Api\V1\Collection\Repositories\MediaRepository;
-use App\ACME\Api\V1\Collection\Requests\CreateCollectionRequest;
-use App\ACME\Api\V1\Media\Resource\MediaCollectionResource;
-use App\ACME\Api\V1\Media\Resource\MediaResource;
+use App\ACME\Api\V1\Media\Repositories\MediaRepository;
 use App\ACME\Api\V1\Media\Resource\MediaResourceCollection;
 use App\Http\Controllers\ApiResponseController;
-use App\Http\Controllers\Controller;
 use App\Models\Media;
 use App\Traits\MediaTraits;
-use Spatie\MediaLibrary\MediaCollection\MediaCollection;
 use Vinkla\Hashids\Facades\Hashids;
 
 class ListImagesController extends ApiResponseController
@@ -56,6 +51,6 @@ class ListImagesController extends ApiResponseController
                        ->sortable(['order_column' => 'desc'])
                        ->paginate();
         
-        return MediaCollectionResource::collection($images);
+        return MediaResourceCollection::collection($images);
     }
 }

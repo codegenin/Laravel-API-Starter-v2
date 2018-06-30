@@ -34,7 +34,7 @@ class UploadImageController extends Controller
             $this->addMediaInformation($media, $request, $category->id);
         }
         
-        sleep(2); // delay 5secs the redirect so queue system can work first :D
+        sleep(3); // delay 3secs the redirect so queue system can work first :D
         
         return redirect()
             ->back()
