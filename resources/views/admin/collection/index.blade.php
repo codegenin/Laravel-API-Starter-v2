@@ -23,8 +23,14 @@
 
 @section('content')
     @include('admin.common.alerts')
-    <div class="card card-widget card-primary">
-        <div class="card-body">
+    <div class="box box-primary">
+        <div class="box-header">
+            <div class="box-title">{{trans('label.collections')}}</div>
+            <div class="box-tools">
+                {{$collections->links('vendor.pagination.small-default')}}
+            </div>
+        </div>
+        <div class="box-body">
             @include('admin.collection.collections')
         </div>
     </div>

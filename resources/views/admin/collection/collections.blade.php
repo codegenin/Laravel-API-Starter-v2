@@ -1,6 +1,6 @@
 <table class="table table-responsive table-striped">
     <tbody>
-    <tr style="background: #cccccc;color: #000;font-weight: bold;">
+    <tr class="text-bold">
         <td style="width: 10px;">{{trans('label.id')}}</td>
         <td style="width: 10px;">{{trans('label.points')}}</td>
         <td style="width: 10px;">{{trans('label.cover')}}</td>
@@ -22,14 +22,16 @@
             <td>{{$collection->time_period}}</td>
             <td>{{$collection->getMedia($collection->slug)->count()}}</td>
             <td style="width: 100px;">
-                <a class="btn btn-success" href="{{route('admin.collection.images', $collection->id)}}" title="IMAGES">
-                    <i class="fa fa-picture-o"></i>
-                </a>
-                <a class="btn btn-warning edit" data-id="{{$collection->id}}" title="EDIT">
-                    <i class="fa fa-pencil"></i>
-                </a>
-                <a href="#" data-id="{{$collection->id}}"
-                   class="btn btn-danger delete" title="DELETE"><i class="fa fa-remove"></i></a>
+                <div class="btn-group">
+                    <a class="btn btn-success" href="{{route('admin.collection.images', $collection->id)}}" title="IMAGES">
+                        <i class="fa fa-picture-o"></i>
+                    </a>
+                    <a class="btn btn-warning edit" data-id="{{$collection->id}}" title="EDIT">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a href="#" data-id="{{$collection->id}}"
+                       class="btn btn-danger delete" title="DELETE"><i class="fa fa-remove"></i></a>
+                </div>
             </td>
         </tr>
     @endforeach

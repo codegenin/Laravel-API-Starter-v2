@@ -35,4 +35,5 @@ return array (
 ',
   'browse' => 'Browse',
   'save_changes' => 'Save Changes',
+  'points' => 'Points',
 );
