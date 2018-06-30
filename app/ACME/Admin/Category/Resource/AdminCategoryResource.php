@@ -22,11 +22,11 @@ class AdminCategoryResource extends JsonResource
         return [
             'id'             => $this->id,
             'parent_id'      => $this->parent_id,
-            'slug'           => $this->slug ?: '',
-            'en_name'        => $this->translate('en')->name ?: '',
-            'fr_name'        => $this->translate('fr')->name ?: '',
-            'en_description' => $this->translate('en')->description ?: '',
-            'fr_description' => $this->translate('fr')->description ?: '',
+            'slug'           => isset($this->slug) ? $this->slug : '',
+            'en_name'        => isset($this->translate('en')->name) ? $this->translate('en')->name : '',
+            'fr_name'        => isset($this->translate('fr')->name) ? $this->translate('fr')->name : '',
+            'en_description' => isset($this->translate('en')->description) ? $this->translate('en')->description : '',
+            'fr_description' => isset($this->translate('fr')->description) ? $this->translate('fr')->description : '',
             'is_public'      => $this->is_public,
             'covers'         => $this->getMedialUrls($this, 'category'),
         ];
