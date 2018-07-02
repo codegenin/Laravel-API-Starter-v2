@@ -2,7 +2,7 @@
 
 namespace App\ACME\Api\V1\Favorite\Controllers;
 
-use App\ACME\Api\V1\Category\Resource\AdminCategoryResource;
+use App\ACME\Api\V1\Category\Resource\CategoryResource;
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\ACME\Api\V1\Collection\Resource\CollectionResource;
 use App\ACME\Api\V1\User\Resource\UserResource;
@@ -11,8 +11,6 @@ use App\Models\Artist;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Traits\MediaTraits;
-use Psr\Log\InvalidArgumentException;
-use Vinkla\Hashids\Facades\Hashids;
 
 class ListUserFavoritesController extends ApiResponseController
 {
@@ -46,7 +44,7 @@ class ListUserFavoritesController extends ApiResponseController
      */
     public function run()
     {
-        $categories = AdminCategoryResource::collection(auth()
+        $categories = CategoryResource::collection(auth()
             ->user()
             ->favorite(Category::class));
         
