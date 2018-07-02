@@ -33,7 +33,7 @@ class CollectionResource extends JsonResource
             'is_purchased' => auth()
                 ->user()
                 ->hasPurchased($this),
-            'covers'       => $this->getMedialUrls($this, $this->slug),
+            'covers'       => $this->getMedialUrls($this, 'collection'),
         ];
     }
 }
