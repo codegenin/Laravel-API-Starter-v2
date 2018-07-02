@@ -22,6 +22,10 @@ $api->version('v1', function (Router $api) {
         $api->get('{id}/images/month',
             'App\\ACME\\Api\\V1\\Category\\Controllers\\FilteImagesByMonthController@run');
         
+        ################ COLLECTION RANDOM OR RECENT ############################
+        $api->get('{id}/recent-collections',
+            'App\\ACME\\Api\\V1\\Category\\Controllers\\CollectionsRecentController@run');
+            
         ################ ARCHIVE OR RECENT ############################
         $api->get('{id}/archive-images',
             'App\\ACME\\Api\\V1\\Category\\Controllers\\ImagesArchiveController@run');
