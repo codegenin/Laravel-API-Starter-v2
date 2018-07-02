@@ -21,16 +21,19 @@ class CollectionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'          => Hashids::encode($this->id),
-            'slug'        => $this->slug,
-            'title'       => $this->title,
-            'description' => isset($this->description) ? $this->description : '',
-            'time_period' => isset($this->time_period) ? $this->time_period : '',
-            'score'       => isset($this->score) ? $this->score : 0,
-            'points'      => isset($this->points) ? $this->points : 0,
-            'artist'      => isset($this->artist) ? $this->artist : '',
-            'user'        => new UserResourceLimited($this->user),
-            'covers'      => $this->getMedialUrls($this, $this->slug),
+            'id'           => Hashids::encode($this->id),
+            'slug'         => $this->slug,
+            'title'        => $this->title,
+            'description'  => isset($this->description) ? $this->description : '',
+            'time_period'  => isset($this->time_period) ? $this->time_period : '',
+            'score'        => isset($this->score) ? $this->score : 0,
+            'points'       => isset($this->points) ? $this->points : 0,
+            'artist'       => isset($this->artist) ? $this->artist : '',
+            'user'         => new UserResourceLimited($this->user),
+            'is_purchased' => auth()
+                ->user()
+                ->hasPurchased($this),
+            'covers'       => $this->getMedialUrls($this, $this->slug),
         ];
     }
 }
