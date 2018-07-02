@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\PurchasabilityTrait;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteability;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
 use Hash;
@@ -15,7 +16,8 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class User extends Authenticatable implements JWTSubject, HasMedia
 {
-    use Notifiable, HasMediaTrait, Favoriteability, SearchableTrait;
+    use Notifiable, HasMediaTrait, Favoriteability, SearchableTrait,
+        PurchasabilityTrait;
     
     /**
      * The attributes that are mass assignable.

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\PurchasableTrait;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
@@ -9,12 +10,11 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\Translatable\HasTranslations;
 
 class Collection extends Model implements HasMedia
 {
     use HasMediaTrait,Favoriteable, SearchableTrait,
-        Translatable;
+        Translatable, PurchasableTrait;
     
     public $translatedAttributes = [
         'title',
