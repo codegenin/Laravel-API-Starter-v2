@@ -25,14 +25,14 @@ $api->version('v1', function (Router $api) {
         ################ COLLECTION RANDOM OR RECENT ############################
         $api->get('{id}/recent-collections',
             'App\\ACME\\Api\\V1\\Category\\Controllers\\CollectionsRecentController@run');
-        $api->get('{id}/random-collections',
-            'App\\ACME\\Api\\V1\\Category\\Controllers\\CollectionsRandomController@run');
         
         ################ ARCHIVE OR RECENT ############################
         $api->get('{id}/archive-images',
             'App\\ACME\\Api\\V1\\Category\\Controllers\\ImagesArchiveController@run');
         $api->get('{id}/recent-images',
             'App\\ACME\\Api\\V1\\Category\\Controllers\\ImagesRecentController@run');
+        $api->get('{id}/random-images',
+            'App\\ACME\\Api\\V1\\Category\\Controllers\\ImagesRandomController@run');
     });
     
 });

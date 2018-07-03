@@ -8,6 +8,7 @@ use App\ACME\Api\V1\Category\Resource\CategoryResourceCollection;
 use App\ACME\Api\V1\Collection\Resource\CollectionResource;
 use App\ACME\Api\V1\Collection\Resource\CollectionResourceCollection;
 use App\ACME\Api\V1\Media\Resource\MediaResource;
+use App\ACME\Api\V1\Media\Resource\MediaResourceCollection;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class CollectionsRandomController extends ApiResponseController
+class ImagesRandomController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -34,9 +35,9 @@ class CollectionsRandomController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            collectionsRandom
-     * @api                {get} /api/category/{id}/recent-collections List Random Collections
-     * @apiDescription     Retrieve random collections in the category
+     * @apiName            imagesRandom
+     * @api                {get} /api/category/{id}/random-images List Random Images
+     * @apiDescription     Retrieve random images in the category
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
@@ -50,11 +51,11 @@ class CollectionsRandomController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $collection = Collection::where('category_id', $category->id)
-                                ->inRandomOrder()
-                                ->limit(50)
-                                ->paginate();
+        $media = Media::where('category_id', $category->id)
+                      ->inRandomOrder()
+                      ->limit(50)
+                      ->paginate();
         
-        return new CollectionResourceCollection($collection);
+        return new MediaResourceCollection($media);
     }
 }
