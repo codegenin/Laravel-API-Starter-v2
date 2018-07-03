@@ -55,6 +55,6 @@ class CollectionsRandomController extends ApiResponseController
                                 ->limit(50)
                                 ->paginate();
         
-        return CollectionResource::collection($collection);
+        return new CollectionResourceCollection($collection);
     }
 }
