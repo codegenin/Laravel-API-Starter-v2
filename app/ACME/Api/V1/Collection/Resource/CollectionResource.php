@@ -5,6 +5,7 @@ namespace App\ACME\Api\V1\Collection\Resource;
 use App\ACME\Api\V1\User\Resource\UserResource;
 use App\ACME\Api\V1\User\Resource\UserResourceLimited;
 use App\Traits\MediaTraits;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -30,10 +31,12 @@ class CollectionResource extends JsonResource
             'points'       => isset($this->points) ? $this->points : 0,
             'artist'       => isset($this->artist) ? $this->artist : '',
             'user'         => new UserResourceLimited($this->user),
-            'image_count'  => $this->getMedia($this->slug)->count(),
+            'image_count'  => $this->getMedia($this->slug)
+                                   ->count(),
             'is_purchased' => auth()
                 ->user()
                 ->hasPurchased($this),
+            'created'      => $this->created_at->diffForHumans(),
             'covers'       => $this->getMedialUrls($this, 'collection'),
         ];
     }

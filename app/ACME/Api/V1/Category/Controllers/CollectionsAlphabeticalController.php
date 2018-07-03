@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
 
-class CollectionsRecentController extends ApiResponseController
+class CollectionsAlphabeticalController extends ApiResponseController
 {
     private $categoryRepository;
     
@@ -34,9 +34,9 @@ class CollectionsRecentController extends ApiResponseController
     
     /**
      * @apiGroup           Category
-     * @apiName            collectionsRecent
-     * @api                {get} /api/category/{id}/recent-collections List Recent Collections
-     * @apiDescription     Retrieve all recent collections in the category
+     * @apiName            collectionsAlphabetical
+     * @api                {get} /api/category/{id}/alphabetical-collections List Alphabetical Collections
+     * @apiDescription     Retrieve all collections in the category alphabetically
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
@@ -50,8 +50,14 @@ class CollectionsRecentController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $collection = Collection::where('category_id', $category->id)
-                                ->orderBy('created_at', 'desc')
+        $collection = Collection::join('collection_translations as t', function ($join) {
+            $join->on('collections.id', '=', 't.collection_id')
+                 ->where('t.locale', '=', 'en');
+        })
+                                ->where('category_id', $category->id)
+                                ->orderBy('t.title', 'asc')
+                                ->select('collections.*', 't.title')
+                                ->with('translations')
                                 ->paginate();
         
         return new CollectionResourceCollection($collection);
