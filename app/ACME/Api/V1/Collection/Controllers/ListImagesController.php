@@ -3,6 +3,7 @@
 namespace App\ACME\Api\V1\Collection\Controllers;
 
 
+use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\ACME\Api\V1\Media\Repositories\MediaRepository;
 use App\ACME\Api\V1\Media\Resource\MediaResourceCollection;
 use App\Http\Controllers\ApiResponseController;
@@ -21,9 +22,9 @@ class ListImagesController extends ApiResponseController
     
     /**
      * CreateCollectionController constructor.
-     * @param MediaRepository $collectionRepository
+     * @param CollectionRepository $collectionRepository
      */
-    public function __construct(MediaRepository $collectionRepository)
+    public function __construct(CollectionRepository $collectionRepository)
     {
         $this->middleware('jwt.auth', []);
         $this->collectionRepository = $collectionRepository;
@@ -51,6 +52,6 @@ class ListImagesController extends ApiResponseController
                        ->orderBy('created_at', 'desc')
                        ->paginate();
         
-        return MediaResourceCollection::collection($images);
+        return new MediaResourceCollection($images);
     }
 }
