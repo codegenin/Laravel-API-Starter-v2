@@ -33,7 +33,8 @@ class MediaResource extends JsonResource
                 'medium'   => $this->getUrl('medium'),
                 'small'    => $this->getUrl('small'),
             ],
-            'created'     => $this->created_at
+            'created'     => $this->created_at->diffForHumans(),
+            'belongs_to'  => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection'
         
         ];
     }

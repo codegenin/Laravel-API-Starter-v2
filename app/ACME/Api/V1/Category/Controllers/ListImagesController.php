@@ -56,6 +56,6 @@ class ListImagesController extends ApiResponseController
                        ->orderBy('created_at', 'desc')
                        ->paginate();
         
-        return MediaResource::collection($images);
+        return new MediaResourceCollection($images);
     }
 }
