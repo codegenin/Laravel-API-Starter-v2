@@ -34,10 +34,7 @@ class MediaResource extends JsonResource
                 'small'    => $this->getUrl('small'),
             ],
             'created'      => $this->created_at->diffForHumans(),
-            'belongs_to'   => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection',
-            'is_purchased' => ($this->model_type == "App\\Models\\Category") ? true : auth()
-                ->user()
-                ->hasPurchased($this->collection),
+            'belongs_to'   => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection'
         
         ];
     }

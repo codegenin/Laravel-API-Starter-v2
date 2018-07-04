@@ -52,8 +52,7 @@ class ListImagesController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $images = Media::with('collection')
-                       ->where('category_id', $category->id)
+        $images = Media::where('category_id', $category->id)
                        ->orderBy('created_at', 'desc')
                        ->paginate();
         
