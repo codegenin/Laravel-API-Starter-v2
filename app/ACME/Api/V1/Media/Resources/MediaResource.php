@@ -21,20 +21,23 @@ class MediaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'          => Hashids::encode($this->id),
-            'title'       => $this->title ?: '',
-            'description' => $this->description ?: '',
-            'location'    => $this->location ?: '',
-            'score'       => $this->score ?: '',
-            'user'        => new UserResourceLimited($this->user),
-            'images'      => [
+            'id'           => Hashids::encode($this->id),
+            'title'        => $this->title ?: '',
+            'description'  => $this->description ?: '',
+            'location'     => $this->location ?: '',
+            'score'        => $this->score ?: '',
+            'user'         => new UserResourceLimited($this->user),
+            'images'       => [
                 'original' => $this->getUrl(),
                 'large'    => $this->getUrl('large'),
                 'medium'   => $this->getUrl('medium'),
                 'small'    => $this->getUrl('small'),
             ],
-            'created'     => $this->created_at->diffForHumans(),
-            'belongs_to'  => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection'
+            'created'      => $this->created_at->diffForHumans(),
+            'belongs_to'   => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection',
+            'is_purchased' => ($this->model_type == "App\\Models\\Category") ? true : auth()
+                ->user()
+                ->hasPurchased($this->collection),
         
         ];
     }
