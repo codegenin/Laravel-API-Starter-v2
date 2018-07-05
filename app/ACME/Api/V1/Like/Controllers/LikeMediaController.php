@@ -45,6 +45,9 @@ class LikeMediaController extends ApiResponseController
         
         // Checks if the media has been liked already
         if(auth()->user()->hasLiked($media)) {
+            auth()
+                ->user()
+                ->addBook($media);
             return $this->responseWithSuccess(trans('like.success'));
         }
     

@@ -21,7 +21,7 @@ trait LikableTrait
         $this->likes()
              ->where('user_id', ($user_id) ? $user_id : Auth::id())
              ->where('book', 1)
-            ->get();
+             ->get();
     }
     
     /**
@@ -38,6 +38,15 @@ trait LikableTrait
         
         $this->likes()
              ->save($favorite);
+    }
+    
+    public function addBook($user_id = null)
+    {
+        $this->likes()
+             ->where('user_id', ($user_id) ? $user_id : Auth::id())
+             ->update([
+                 'booked' => 1
+             ]);
     }
     
     /**

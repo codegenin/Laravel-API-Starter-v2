@@ -62,6 +62,11 @@ trait LikabilityTrait
         $object->addLike($this->id);
     }
     
+    public function addBook($object)
+    {
+        $object->addBook($this->id);
+    }
+    
     /**
      * Remove the Object from the user likes.
      * The Model needs to have the Likeable trai
