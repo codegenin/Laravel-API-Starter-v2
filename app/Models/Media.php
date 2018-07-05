@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\LikableTrait;
 use Dimsav\Translatable\Translatable;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -12,7 +13,7 @@ use Spatie\Tags\HasTags;
 class Media extends BaseMedia implements HasMedia
 {
     use HasMediaTrait, HasTags, SearchableTrait,
-        Translatable;
+        Translatable, LikableTrait;
     
     public $translatedAttributes = [
         'title',
