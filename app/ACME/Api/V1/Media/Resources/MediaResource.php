@@ -26,7 +26,7 @@ class MediaResource extends JsonResource
             'description'  => $this->description ?: '',
             'location'     => $this->location ?: '',
             'score'        => $this->score ?: '',
-            'user'         => new UserResourceLimited($this->user),
+            #'user'         => new UserResourceLimited($this->user),
             'images'       => [
                 'original' => $this->getUrl(),
                 'large'    => $this->getUrl('large'),
@@ -35,9 +35,9 @@ class MediaResource extends JsonResource
             ],
             'created'      => $this->created_at->diffForHumans(),
             'belongs_to'   => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection',
-            'is_purchased' => auth()
+            'is_purchased' => ($this->model_type == "App\\Models\\Collection") ? auth()
                 ->user()
-                ->hasPurchased($this->collection),
+                ->hasPurchased($this->collection) : false,
         ];
     }
 }

@@ -22,6 +22,10 @@ class Media extends BaseMedia implements HasMedia
     
     protected $table = 'media';
     
+    protected $with = [
+        'collection'
+    ];
+    
     protected $searchable = [
         'columns' => [
             'title'       => 10,
