@@ -61,7 +61,12 @@ class AddUserMediaPointsController extends ApiResponseController
         
         // Add user points
         $this->userRepository->increment($request->amount);
+        $user = $this->userRepository->find(auth()->user()->id);
         
-        return $this->responseWithSuccess(trans('user.points_added'));
+        return response()->json([
+            'status'          => true,
+            'previous_points' => auth()->user()->points,
+            'new_points'      => $user->points
+        ]);
     }
 }
