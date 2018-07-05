@@ -24,7 +24,7 @@ class ListUserLikesController extends ApiResponseController
     /**
      * @apiGroup           Like
      * @apiName            userLikes
-     * @api                {get} /api/like/user-likes List User Purchases
+     * @api                {get} /api/like/user-likes List User Likes
      * @apiDescription     List All User Likes
      * @apiVersion         1.0.0
      *
