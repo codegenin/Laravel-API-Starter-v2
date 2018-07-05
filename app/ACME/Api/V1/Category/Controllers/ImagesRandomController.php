@@ -52,6 +52,7 @@ class ImagesRandomController extends ApiResponseController
         }
         
         $media = Media::where('category_id', $category->id)
+                      ->where('model_type', 'App\\Models\\Collection')
                       ->inRandomOrder()
                       ->limit(50)
                       ->paginate();
