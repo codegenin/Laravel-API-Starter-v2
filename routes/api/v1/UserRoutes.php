@@ -21,7 +21,10 @@ $api->version('v1', function (Router $api) {
         ########### ARTIST ROUTES ######################
         $api->get('artist/{id}/show', 'App\\ACME\\Api\\V1\\User\\Controllers\\ViewArtistController@run');
         $api->get('artist/{id}/is-user-favorite', 'App\\ACME\\Api\\V1\\User\\Controllers\\IsUserFavoriteController@run');
-        
+    
+        $api->post('add-points', 'App\\ACME\\Api\\V1\\User\\Controllers\\AddUserMediaPointsController@run');
+    
+    
     });
     
 });
