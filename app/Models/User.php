@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\LikabilityTrait;
 use App\Traits\PurchasabilityTrait;
+use App\Traits\ViewabilityTrait;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteability;
 use Hash;
 use Illuminate\Notifications\Notifiable;
@@ -16,7 +17,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject, HasMedia
 {
     use Notifiable, HasMediaTrait, Favoriteability, SearchableTrait,
-        PurchasabilityTrait, LikabilityTrait;
+        PurchasabilityTrait, LikabilityTrait, ViewabilityTrait;
     
     /**
      * The attributes that are mass assignable.

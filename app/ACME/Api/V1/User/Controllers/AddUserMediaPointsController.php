@@ -59,8 +59,16 @@ class AddUserMediaPointsController extends ApiResponseController
             return $this->responseWithError(trans('common.not_found'));
         };
         
-        // Add user points
-        $this->userRepository->increment($request->amount);
+        // Checks if this image was viewed already
+        if (!auth()
+            ->user()
+            ->hasViewed($image)) {
+            auth()
+                ->user()
+                ->addView($image);
+            $this->userRepository->increment($request->amount);
+        }
+        
         $user = $this->userRepository->find(auth()->user()->id);
         
         return response()->json([
