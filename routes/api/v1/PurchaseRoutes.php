@@ -11,6 +11,7 @@ $api->version('v1', function (Router $api) {
         $api->get('{id}/collection', 'App\\ACME\\Api\\V1\\Purchase\\Controllers\\PurchaseCollectionController@run');
     
         $api->get('user-purchases', 'App\\ACME\\Api\\V1\\Purchase\\Controllers\\ListUserPurchasesController@run');
+        $api->post('user-points', 'App\\ACME\\Api\\V1\\Purchase\\Controllers\\PurchasePointsController@run');
     
     });
 });
