@@ -40,9 +40,6 @@ class MediaResource extends JsonResource
             'is_purchased' => ($this->model_type == "App\\Models\\Collection") ? auth()
                 ->user()
                 ->hasPurchased($this->collection) : false,
-            'is_book'         => auth()
-                ->user()
-                ->isBooked($this),
             'created'      => $this->created_at->diffForHumans(),
         ];
     }

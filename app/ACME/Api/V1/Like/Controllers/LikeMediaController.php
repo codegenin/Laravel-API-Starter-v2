@@ -58,17 +58,21 @@ class LikeMediaController extends ApiResponseController
                 ->user()
                 ->addBook($media);
             
-            return $this->responseWithSuccess(trans('like.success'));
+        } else {
+            auth()
+                ->user()
+                ->addLike($media);
+            
+            // Add user points
+            $this->userRepository->increment(1);
         }
         
-        auth()
-            ->user()
-            ->addLike($media);
-        
-        // Add user points
-        $this->userRepository->increment(1);
-        
-        return $this->responseWithSuccess(trans('like.success'));
+        return response()->json([
+            'status'      => true,
+            'is_book'     => auth()
+                ->user()
+                ->isBooked($media)
+        ]);
         
     }
 }
