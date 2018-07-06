@@ -98,6 +98,20 @@ trait LikableTrait
     }
     
     /**
+     * Check if the user has likedBy this Object and is booked
+     *
+     * @param null $user_id
+     * @return bool
+     */
+    public function isBooked($user_id = null)
+    {
+        return $this->likes()
+                    ->where('user_id', ($user_id) ? $user_id : Auth::id())
+                    ->where('booked', 1)
+                    ->exists();
+    }
+    
+    /**
      * Return a collection with the Users who marked as favorite this Object.
      *
      * @return Collection

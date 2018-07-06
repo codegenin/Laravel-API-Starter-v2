@@ -106,6 +106,11 @@ trait LikabilityTrait
         return $object->isLiked($this->id);
     }
     
+    public function isBooked($object)
+    {
+        return $object->isBooked($this->id);
+    }
+    
     /**
      * Check if the user has liked this Object
      * The Model needs to have the Likeable trai
