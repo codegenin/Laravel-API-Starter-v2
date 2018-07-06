@@ -2,6 +2,7 @@
 
 namespace App\ACME\Api\V1\Media\Resource;
 
+use App\ACME\Api\V1\Collection\Resource\CollectionLimitedResource;
 use App\ACME\Api\V1\User\Resource\UserResource;
 use App\ACME\Api\V1\User\Resource\UserResourceLimited;
 use App\Traits\MediaTraits;
@@ -33,11 +34,13 @@ class MediaResource extends JsonResource
                 'medium'   => $this->getUrl('medium'),
                 'small'    => $this->getUrl('small'),
             ],
-            'created'      => $this->created_at->diffForHumans(),
             'belongs_to'   => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection',
+            'collection'   => ($this->model_type == "App\\Models\\Collection") ?
+                new CollectionLimitedResource($this->collection) : [],
             'is_purchased' => ($this->model_type == "App\\Models\\Collection") ? auth()
                 ->user()
                 ->hasPurchased($this->collection) : false,
+            'created'      => $this->created_at->diffForHumans(),
         ];
     }
 }
