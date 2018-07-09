@@ -49,4 +49,6 @@ return array (
   'delete' => 'Delete',
   'created_at' => 'Created',
   'update_tag' => 'Update Tag',
+  'main_settings' => 'MAIN SETTINGS',
+  'price_points' => 'Price Points',
 );

@@ -31,7 +31,8 @@ class UserResource extends JsonResource
             'location'      => isset($this->details['location']) ? $this->details['location'] : '',
             'remarks'       => isset($this->details['remarks']) ? $this->details['remarks'] : '',
             'avatar'        => $this->getMedialUrls($this, 'avatar'),
-            'points'        => $this->points
+            'points'        => $this->points,
+            'provider'      => $this->provider
         ];
     }
 }

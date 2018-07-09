@@ -22,6 +22,7 @@ class UserResourceLimited extends JsonResource
             'name'     => $this->name ?: '',
             'location' => $this->location ?: '',
             'avatar'   => $this->getMedialUrls($this, 'avatar'),
+            'provider' => $this->provider
         ];
     }
 }
