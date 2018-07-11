@@ -31,8 +31,20 @@ class PriceListController extends ApiResponseController
                     'price'  => 0.99
                 ],
                 [
-                    'points' => 3000,
+                    'points' => 2000,
                     'price'  => 1.99
+                ],
+                [
+                    'points' => 3000,
+                    'price'  => 2.99
+                ],
+                [
+                    'points' => 4000,
+                    'price'  => 3.99
+                ],
+                [
+                    'points' => 6000,
+                    'price'  => 5.99
                 ]
             ]
         ]);
