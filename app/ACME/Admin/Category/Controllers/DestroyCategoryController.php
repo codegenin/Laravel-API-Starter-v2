@@ -37,15 +37,32 @@ class DestroyCategoryController extends Controller
         $category = $this->categoryRepository->find(request()->id);
         
         $this->categoryRepository->delete(request()->id);
-        $category->clearMediaCollection('category');
+        
+        $category->favorites()
+                 ->delete();
         
         // Delete collection images
         if ($category->collections->count() > 0) {
+            
             foreach ($category->collections as $collection) {
+                
                 $collection->delete();
+                
+                // Delete media likes
+                $medias = $collection->getMedia($collection->slug);
+                if ($medias->count() > 0) {
+                    foreach ($medias as $media) {
+                        $media->likes()
+                              ->delete();
+                    }
+                }
+                
                 $collection->clearMediaCollection($category->slug);
             }
         }
+        
+        $category->clearMediaCollection('category');
+        
         
         return redirect()
             ->back()

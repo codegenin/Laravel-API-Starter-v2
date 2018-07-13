@@ -23,8 +23,7 @@ class DestroyController extends Controller
             $media->delete();
             
             // Remove image in likes
-            Like::where('likable_id', $request->id)
-                ->delete();
+            $media->likes()->delete();
             
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e);

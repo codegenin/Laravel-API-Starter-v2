@@ -30,8 +30,21 @@ class DestroyCollectionController extends Controller
     public function run()
     {
         $collection = $this->collectionRepository->find(request()->id);
-        
         $this->collectionRepository->delete(request()->id);
+        
+        // Delete favorites if present
+        $collection->favorites()
+                   ->delete();
+        
+        // Delete media likes
+        $medias = $collection->getMedia($collection->slug);
+        if($medias->count() > 0) {
+            foreach($medias as $media) {
+                $media->likes()->delete();
+            }
+        }
+        
+        // Clear media collection
         $collection->clearMediaCollection($collection->slug);
         
         return redirect()
