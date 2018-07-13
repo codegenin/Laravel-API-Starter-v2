@@ -51,6 +51,18 @@ abstract class AbstractBaseRepository
                            ->first($columns);
     }
     
+    public function findOrFail($id, $with = [], $columns = ['*'])
+    {
+        try {
+            return $this->model->with($with)
+                               ->where('id', $id)
+                               ->first($columns);
+        } catch (\Exception $e) {
+            throw new \Exception($e);
+        }
+        
+    }
+    
     /**
      * Find a record using the column information
      *

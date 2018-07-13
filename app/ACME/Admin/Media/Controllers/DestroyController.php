@@ -3,6 +3,7 @@
 namespace App\ACME\Admin\Media\Controllers;
 
 use App\ACME\Admin\Media\Requests\DeleteMediaRequest;
+use App\Models\Like;
 use App\Models\Media;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,6 +21,11 @@ class DestroyController extends Controller
         try {
             $media = Media::find($request->id);
             $media->delete();
+            
+            // Remove image in likes
+            Like::where('likable_id', $request->id)
+                ->delete();
+            
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e);
         }

@@ -48,7 +48,7 @@ class LikeMediaController extends ApiResponseController
      */
     public function run($id)
     {
-        $media = $this->mediaRepository->find(Hashids::decode($id));
+        $media = $this->mediaRepository->findOrFail(Hashids::decode($id));
         
         // Checks if the media has been liked already
         if (auth()
