@@ -22,7 +22,7 @@ class AdminMenuServiceProvider extends ServiceProvider
             $event->menu->add([
                 'text' => trans('label.categories'),
                 'url'  => LaravelLocalization::setLocale() . '/admin/categories',
-                'icon' => 'file',
+                'icon' => 'folder',
             ]);
             $event->menu->add([
                 'text' => trans('label.tags'),
@@ -34,6 +34,12 @@ class AdminMenuServiceProvider extends ServiceProvider
                 'text' => trans('label.price_points'),
                 'url'  => LaravelLocalization::setLocale() . '/admin/setting/price-points',
                 'icon' => 'dollar',
+            ]);
+            $event->menu->add(trans('label.import'));
+            $event->menu->add([
+                'text' => trans('label.view_imports'),
+                'url'  => LaravelLocalization::setLocale() . '/admin/imports',
+                'icon' => 'file',
             ]);
         });
     }

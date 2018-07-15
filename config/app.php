@@ -158,6 +158,7 @@ return [
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Dimsav\Translatable\TranslatableServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         
         /*
          * Application Service Providers...
@@ -226,6 +227,7 @@ return [
         'Hashids'             => Vinkla\Hashids\Facades\Hashids::class,
         'Nestable'            => Nestable\Facades\NestableService::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Excel'               => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
