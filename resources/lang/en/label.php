@@ -57,4 +57,6 @@ return array (
   'main_settings' => 'MAIN SETTINGS',
   'price_points' => 'Price Points',
   'points_value' => 'Points Value',
+  'medium' => 'Medium',
+  'import_file' => 'Import File',
 );

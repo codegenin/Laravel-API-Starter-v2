@@ -60,4 +60,6 @@ return array (
   'total_rows' => 'Total des lignes',
   'view_imports' => 'Voir les importations',
   'points_value' => 'Valeur des points',
+  'medium' => 'Moyen',
+  'import_file' => 'Importer le fichier',
 );
