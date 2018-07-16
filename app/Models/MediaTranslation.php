@@ -9,6 +9,8 @@ class MediaTranslation extends Model
     public    $timestamps = false;
     protected $fillable   = [
         'title',
-        'description'
+        'description',
+        'location',
+        'medium'
     ];
 }

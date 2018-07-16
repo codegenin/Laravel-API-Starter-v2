@@ -13,19 +13,20 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Collection extends Model implements HasMedia
 {
-    use HasMediaTrait,Favoriteable, SearchableTrait,
+    use HasMediaTrait, Favoriteable, SearchableTrait,
         Translatable, PurchasableTrait;
     
     public $translatedAttributes = [
         'title',
-        'description'
+        'description',
+        'time_period'
     ];
     
     protected $with = ['translations'];
     
     protected $searchable = [
         'columns' => [
-            'title'       => 10
+            'title' => 10
         ],
     ];
     

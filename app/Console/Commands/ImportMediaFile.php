@@ -2,15 +2,17 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\ProcessMediaImport;
+use App\Models\Category;
 use App\Models\Import;
+use App\Models\ImportRecord;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportMediaFile extends Command
 {
-    protected $chunkSize   = 50;
-    
     /**
      * The name and signature of the console command.
      *
@@ -43,29 +45,74 @@ class ImportMediaFile extends Command
     public function handle()
     {
         $import = Import::where('status', 0)
-                      ->first();
-        
-        if($import) {
-    
+                        ->orWhere('status', 1)
+                        ->first();
+        if ($import) {
+            
+            $this->updateStatus($import, 1);
+            
             $file = Storage::path($import->file);
-    
-            // let's first count the total number of rows
-            Excel::load($file, function ($reader) use ($import) {
-                $objWorksheet     = $reader->getActiveSheet();
-                $import->total_rows = $objWorksheet->getHighestRow() - 1; //exclude the heading
-                $import->save();
-            });
             
             Excel::filter('chunk')
                  ->load($file)
-                 ->chunk($this->chunkSize, function ($rows) use ($file) {
-        
-                     $importedCount  = 0;
-            
+                 ->chunk(50, function ($rows) use ($import) {
+                
+                     $importedCount = 0;
+                
+                     try {
+                    
+                         foreach ($rows as $row) {
+                             
+                             $record = new ImportRecord();
+                             
+                             $record->fr_title          = $row->titre_de_loeuvre_version_francaise;
+                             $record->en_title          = $row->titre_de_loeuvre_version_anglaise;
+                             $record->fr_complete_title = $row->titre_complet_de_loeuvreversion_francaise;
+                             $record->en_complete_title = $row->titre_complet_de_loeuvreversion_anglaise;
+                             $record->artist            = $row->artiste;
+                             $record->fr_date           = $row->date_version_francaise;
+                             $record->en_date           = $row->date_version_anglaise;
+                             $record->fr_location       = $row->lieuversion_francaise;
+                             $record->en_location       = $row->lieuversion_anglaise;
+                             $record->fr_collection     = $row->nom_collection_version_francaise;
+                             $record->en_collection     = $row->nom_collection_version_anglaise;
+                             $record->fr_art_medium     = $row->mediumversion_francaise;
+                             $record->en_art_medium     = $row->mediumversion_anglaise;
+                             $record->credit_line       = $row->credit_line;
+                             $record->museum            = $row->nom_du_musee;
+                             $record->image_url         = $row->url;
+                             $record->fr_department     = $row->departement_version_francaise;
+                             $record->en_department     = $row->departement_version_anglaise;
+                             $record->save();
+                             
+                             ProcessMediaImport::dispatch($record);
+                        
+                             $importedCount++;
+                         }
+                    
+                     } catch (\Exception $e) {
+                         $import->status = 3;
+                         $import->error  = $e;
+                         $import->save();
+                         throw  new \Exception($e);
+                     }
                      
+                     $import->imported_count = $import->imported_count + $importedCount;
+                     $import->save();
                  }
                  );
             
+            $this->updateStatus($import, 2);
+            
         }
+    }
+    
+    
+    public function updateStatus($import, $status)
+    {
+        $import->status = $status;
+        $import->save();
+        
+        return $this;
     }
 }

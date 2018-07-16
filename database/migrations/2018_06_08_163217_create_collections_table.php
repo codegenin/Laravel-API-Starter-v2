@@ -21,7 +21,6 @@ class CreateCollectionsTable extends Migration
                   ->nullable();
             $table->unsignedInteger('points')
                   ->default(0);
-            $table->string('time_period');
             $table->timestamps();
             
         });

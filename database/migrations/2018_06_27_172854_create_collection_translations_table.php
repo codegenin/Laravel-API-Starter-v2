@@ -20,10 +20,12 @@ class CreateCollectionTranslationsTable extends Migration
                   ->nullable();
             $table->text('description')
                   ->nullable();
+            $table->string('time_period')
+                  ->nullable();
             $table->string('locale')
                   ->index();
             $table->timestamps();
-    
+            
             $table->unique([
                 'collection_id',
                 'locale'
@@ -34,7 +36,7 @@ class CreateCollectionTranslationsTable extends Migration
                   ->onDelete('cascade');
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *

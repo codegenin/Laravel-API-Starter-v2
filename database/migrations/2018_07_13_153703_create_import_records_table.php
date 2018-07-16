@@ -41,17 +41,15 @@ class CreateImportRecordsTable extends Migration
                   ->nullable();
             $table->string('fr_art_medium')
                   ->nullable();
-            $table->string('en_credit_line')
+            $table->text('credit_line')
                   ->nullable();
-            $table->string('fr_credit_line')
-                  ->nullable();
-            $table->string('en_museum')
+            $table->string('museum')
                   ->nullable();
             $table->string('image_url')
                   ->nullable();
             $table->string('en_department')
                   ->nullable();
-            $table->string('fn_department')
+            $table->string('fr_department')
                   ->nullable();
     
             $table->boolean('imported')

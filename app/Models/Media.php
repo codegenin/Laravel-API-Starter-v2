@@ -18,7 +18,9 @@ class Media extends BaseMedia implements HasMedia
     
     public $translatedAttributes = [
         'title',
-        'description'
+        'description',
+        'location',
+        'medium'
     ];
     
     protected $table = 'media';

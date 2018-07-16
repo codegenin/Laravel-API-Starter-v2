@@ -9,6 +9,7 @@ class CollectionTranslation extends Model
     public    $timestamps = false;
     protected $fillable   = [
         'title',
-        'description'
+        'description',
+        'time_period'
     ];
 }

@@ -22,6 +22,10 @@ class CreateMediaTranslationsTable extends Migration
                   ->nullable();
             $table->string('locale')
                   ->index();
+            $table->string('location')
+                  ->nullable();
+            $table->string('medium')
+                  ->nullable();
             $table->timestamps();
             
             $table->unique([

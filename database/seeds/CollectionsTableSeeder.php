@@ -15,14 +15,17 @@ class CollectionsTableSeeder extends Seeder
         factory(\App\Models\Collection::class, 5)
             ->create()
             ->each(function ($collection) {
-    
-                $fakeEn = \Faker\Factory::create('en_EN');
-                $fakeFr = \Faker\Factory::create('fr_FR');
+                
+                $fakeEn     = \Faker\Factory::create('en_EN');
+                $fakeFr     = \Faker\Factory::create('fr_FR');
+                $timePeriod = $fakeEn->numberBetween(1900, 1945);
                 
                 $collection->translateOrNew('en')->title       = $fakeEn->word;
                 $collection->translateOrNew('fr')->title       = $fakeFr->word;
                 $collection->translateOrNew('en')->description = $fakeEn->paragraph;
                 $collection->translateOrNew('fr')->description = $fakeFr->paragraph;
+                $collection->translateOrNew('en')->time_period = $timePeriod;
+                $collection->translateOrNew('fr')->time_period = $timePeriod;
                 $collection->save();
                 
                 // Create sample cover
@@ -36,11 +39,15 @@ class CollectionsTableSeeder extends Seeder
                                                                            ->toMediaCollection($collection->slug);
                     $media->category_id                       = $collection->category_id;
                     $media->user_id                           = 1;
-                    $media->translateOrNew('en')->title        = $fakeEn->word;
-                    $media->translateOrNew('fr')->title        = $fakeFr->word;
+                    $media->museum                            = $fakeEn->word;
+                    $media->translateOrNew('en')->title       = $fakeEn->word;
+                    $media->translateOrNew('fr')->title       = $fakeFr->word;
                     $media->translateOrNew('en')->description = $fakeEn->word;
                     $media->translateOrNew('fr')->description = $fakeFr->paragraph;
-                    $media->location                          = 'Sample' . $i;
+                    $media->translateOrNew('en')->medium      = $fakeEn->word;
+                    $media->translateOrNew('fr')->medium      = $fakeFr->word;
+                    $media->translateOrNew('en')->location    = $fakeEn->country;
+                    $media->translateOrNew('fr')->location    = $fakeFr->country;
                     $media->score                             = rand(0, 50000);
                     $media->save();
                 }
