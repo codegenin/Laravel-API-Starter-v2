@@ -56,4 +56,5 @@ return array (
   'update_tag' => 'Update Tag',
   'main_settings' => 'MAIN SETTINGS',
   'price_points' => 'Price Points',
+  'points_value' => 'Points Value',
 );
