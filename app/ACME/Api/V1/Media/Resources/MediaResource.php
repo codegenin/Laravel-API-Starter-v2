@@ -26,6 +26,7 @@ class MediaResource extends JsonResource
             'title'        => $this->title ?: '',
             'description'  => $this->description ?: '',
             'location'     => $this->location ?: '',
+            'medium'       => $this->medium ?: '',
             'score'        => $this->score ?: '',
             #'user'         => new UserResourceLimited($this->user),
             'images'       => [
@@ -40,7 +41,7 @@ class MediaResource extends JsonResource
             'is_purchased' => ($this->model_type == "App\\Models\\Collection") ? auth()
                 ->user()
                 ->hasPurchased($this->collection) : false,
-            'is_book'         => auth()
+            'is_book'      => auth()
                 ->user()
                 ->isBooked($this),
             'created'      => $this->created_at->diffForHumans(),

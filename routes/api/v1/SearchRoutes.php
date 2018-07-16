@@ -1,15 +1,7 @@
 <?php
 
-use Dingo\Api\Routing\Router;
-
-$api = app(Router::class);
-
-$api->version('v1', function (Router $api) {
+Route::group(['prefix' => 'search'], function () {
     
-    $api->group(['prefix' => 'search'], function (Router $api) {
-        
-        $api->get('{term}/all', 'App\\ACME\\Api\\V1\\Search\\Controllers\\SearchAllController@run');
-        
-    });
+    Route::get('{term}/all', 'App\\ACME\\Api\\V1\\Search\\Controllers\\SearchAllController@run');
     
 });

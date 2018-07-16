@@ -74,9 +74,14 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::group([
-            'middleware' => 'api',
+            'middleware' => [
+                'api',
+                'localeSessionRedirect',
+                'localizationRedirect',
+                'localeViewPath'
+            ],
             #'namespace'  => $this->namespace,
-            'prefix'     => 'api',
+            'prefix'     => LaravelLocalization::setLocale() . '/api',
         ], function ($router) {
             require base_path('routes/api.php');
             require base_path('routes/api/v1/AuthenticationRoutes.php');
