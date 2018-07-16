@@ -124,11 +124,44 @@
                             </div>
                         </div>
 
-                        <!-- Time Period: Form Input -->
+                        <!-- Location: Form Input -->
                         <div class="form-group">
-                            <label for="location">{{trans('label.location')}}:</label>
-                            <input type="text" name="location" id="location"
-                                   class="form-control" value="{{ old('location') }}">
+                            <label for="location">{{__('label.location')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="location" id="location" placeholder="Location in english"
+                                       class="form-control" value="{{ old('location') }}">
+                            </div>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_location" id="fr_location"
+                                       placeholder="Location in french"
+                                       class="form-control" value="{{ old('fr_location') }}">
+                            </div>
+                        </div>
+
+                        <!-- Medium: Form Input -->
+                        <div class="form-group">
+                            <label for="medium">{{__('label.medium')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="medium" id="medium" placeholder="Location in english"
+                                       class="form-control" value="{{ old('medium') }}">
+                            </div>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_medium" id="fr_medium"
+                                       placeholder="Location in french"
+                                       class="form-control" value="{{ old('fr_medium') }}">
+                            </div>
                         </div>
 
                         <!-- Tags: Form Input -->
@@ -218,11 +251,44 @@
                             </div>
                         </div>
 
-                        <!-- Time Period: Form Input -->
+                        <!-- Location: Form Input -->
                         <div class="form-group">
-                            <label for="location">Image Location:</label>
-                            <input type="text" name="location" id="media-location"
-                                   class="form-control" value="{{ old('location') }}">
+                            <label for="edit-media-location">{{__('label.location')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="location" id="edit-media-location" placeholder="Location in english"
+                                       class="form-control" value="{{ old('location') }}">
+                            </div>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_location" id="edit-media-fr-location"
+                                       placeholder="Location in french"
+                                       class="form-control" value="{{ old('fr_location') }}">
+                            </div>
+                        </div>
+
+                        <!-- Medium: Form Input -->
+                        <div class="form-group">
+                            <label for="edit-media-medium">{{__('label.medium')}}:</label>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="medium" id="edit-media-medium" placeholder="Location in english"
+                                       class="form-control" value="{{ old('medium') }}">
+                            </div>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                                <input type="text" name="fr_medium" id="edit-media-fr-medium"
+                                       placeholder="Location in french"
+                                       class="form-control" value="{{ old('fr_medium') }}">
+                            </div>
                         </div>
 
                         <!-- Tags: Form Input -->
@@ -288,7 +354,10 @@
                     $('#edit-media-fr_title').val(data.media.fr_title);
                     $('#edit-media-description').val(data.media.en_description);
                     $('#edit-media-fr_description').val(data.media.fr_description);
-                    $('#media-location').val(data.media.location);
+                    $('#edit-media-location').val(data.media.location);
+                    $('#edit-media-fr-location').val(data.media.fr_location);
+                    $('#edit-media-medium').val(data.media.medium);
+                    $('#edit-media-fr-medium').val(data.media.fr_medium);
                     $('#modal-edit-category-image').modal('show');
                     $('#cover-image').attr('src', data.media.images.large);
                     $.each(data.tags, function (i, item) {
