@@ -34,12 +34,13 @@ class StoreCollectionController extends Controller
         $collection->translateOrNew('fr')->title       = $request->fr_title;
         $collection->translateOrNew('en')->description = $request->description;
         $collection->translateOrNew('fr')->description = $request->fr_description;
+        $collection->translateOrNew('en')->time_period = $request->time_period;
+        $collection->translateOrNew('fr')->time_period = $request->fr_time_period;
         
         $collection->category_id = $request->category_id;
         $collection->slug        = $request->title;
         $collection->artist      = $request->artist;
         $collection->points      = $request->points;
-        $collection->time_period = $request->time_period;
         $collection->save();
         
         if ($request->has('file')) {

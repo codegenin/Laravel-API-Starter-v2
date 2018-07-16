@@ -77,6 +77,7 @@
                     $('#edit-category-id').val(data.collection.category_id);
                     $('#edit-points').val(data.collection.points);
                     $('#edit-time-period').val(data.collection.time_period);
+                    $('#edit-fr-time-period').val(data.collection.fr_time_period);
                     $('#edit-image_path').val(data.collection.image_path);
                     $('#modal-edit-collection').modal('show');
                     $('#cover-image').attr('src', data.covers.large);

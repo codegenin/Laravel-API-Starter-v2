@@ -62,20 +62,32 @@
                         </div>
                     </div>
 
+                    <!-- Time Period: Form Input -->
+                    <div class="form-group">
+                        <label for="time_period">{{__('label.time_period')}}:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="time_period" id="time_period" placeholder="Time period in english"
+                                   class="form-control" value="{{ old('time_period') }}">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="fr_time_period" id="fr_time_period"
+                                   placeholder="Time Period in french"
+                                   class="form-control" value="{{ old('fr_time_period') }}">
+                        </div>
+                    </div>
+
                     <!-- Points Value: Form Input -->
                     <div class="form-group">
                         <label for="points">{{trans('label.points_value')}}:</label>
                         <input type="number" name="points" id="points"
                                placeholder="Points required to unlock the collection" class="form-control"
                                value="{{ old('points') }}">
-                    </div>
-
-                    <!-- Time Period: Form Input -->
-                    <div class="form-group">
-                        <label for="time-period">{{trans('label.time_period')}}:</label>
-                        <input type="text" name="time_period" id="time-period"
-                               placeholder="Time period of the collection"
-                               class="form-control" value="{{ old('time-period') }}">
                     </div>
 
                     <!-- Image URL: Form Input -->
@@ -167,19 +179,32 @@
                         </div>
                     </div>
 
+                    <!-- Time Period: Form Input -->
+                    <div class="form-group">
+                        <label for="edit-time-period">{{__('label.time_period')}}:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/en.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="time_period" id="edit-time-period" placeholder="Time period in english"
+                                   class="form-control" value="{{ old('time_period') }}">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <img src="{{asset('images/fr.png')}}" alt="french">
+                        </span>
+                            <input type="text" name="fr_time_period" id="edit-fr-time-period"
+                                   placeholder="Time Period in french"
+                                   class="form-control" value="{{ old('fr_time_period') }}">
+                        </div>
+                    </div>
+
                     <!-- Points Value: Form Input -->
                     <div class="form-group">
                         <label for="edit-points">Points Value:</label>
                         <input type="number" name="points" id="edit-points"
                                placeholder="Points required to unlock the collection" class="form-control"
                                value="{{ old('points') }}">
-                    </div>
-
-                    <!-- Time Period: Form Input -->
-                    <div class="form-group">
-                        <label for="edit-time-period">{{trans('label.time_period')}}:</label>
-                        <input type="text" name="time_period" id="edit-time-period"
-                               class="form-control" value="{{ old('time-period') }}">
                     </div>
 
                     <!-- Image URL: Form Input -->
