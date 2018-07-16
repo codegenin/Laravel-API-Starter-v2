@@ -18,19 +18,20 @@ class Kernel extends ConsoleKernel
         GenerateApiDocumentation::class,
         ImportMediaFile::class
     ];
-
+    
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('media:import')
+                 ->everyMinute()
+                 ->withoutOverlapping();
     }
-
+    
     /**
      * Register the Closure based commands for the application.
      *
