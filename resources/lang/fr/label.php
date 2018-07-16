@@ -52,4 +52,11 @@ return array (
   'update_tag' => 'Mettre à jour',
   'upload' => 'Télécharger',
   'upload_image' => 'Importer une image',
+  'file' => 'Fichier',
+  'import_count' => 'Nombre d\'importations',
+  'main_settings' => 'RÉGLAGES PRINCIPAUX',
+  'price_points' => 'Points de prix',
+  'status' => 'Statut',
+  'total_rows' => 'Total des lignes',
+  'view_imports' => 'Voir les importations',
 );

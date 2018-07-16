@@ -1,6 +1,11 @@
 <?php
 
 return array (
+  'view_imports' => 'View Imports',
+  'file' => 'File',
+  'total_rows' => 'Total Rows',
+  'import_count' => 'Import Count',
+  'status' => 'Status',
   'main_navigation' => 'MAIN NAVIGATION',
   'categories' => 'Categories',
   'collections' => 'Collections',
