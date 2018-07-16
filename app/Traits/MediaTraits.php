@@ -62,13 +62,16 @@ trait MediaTraits
     public function addMediaInformation($media, $request, $categoryId = null): bool
     {
         try {
-            $media->category_id = $categoryId;
-            $media->user_id     = auth()->user()->id;
+            $media->category_id                       = $categoryId;
+            $media->user_id                           = auth()->user()->id;
             $media->translateOrNew('en')->title       = $request->title;
             $media->translateOrNew('fr')->title       = $request->fr_title;
             $media->translateOrNew('en')->description = $request->description;
             $media->translateOrNew('fr')->description = $request->fr_description;
-            $media->location    = $request->location;
+            $media->translateOrNew('en')->location    = $request->location;
+            $media->translateOrNew('fr')->location    = $request->fr_location;
+            $media->translateOrNew('en')->medium      = $request->medium;
+            $media->translateOrNew('fr')->medium      = $request->fr_medium;
             $media->syncTags($request->tags);
             $media->save();
         } catch (\Exception $e) {
