@@ -60,9 +60,10 @@ class ListCollectionFavoritesImagesController extends ApiResponseController
             
             $images = Media::orWhereIn('model_id', $collections)
                            ->where('model_type', 'App\\Models\\Collection')
+                           ->where('collection_name', '<>', 'collection')
                            ->orderBy('created_at', 'desc')
                            ->paginate();
-    
+            
             return new MediaResourceCollection($images);
         }
         
