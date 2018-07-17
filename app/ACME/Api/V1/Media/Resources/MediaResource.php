@@ -45,6 +45,7 @@ class MediaResource extends JsonResource
                 ->user()
                 ->isBooked($this),
             'created'      => $this->created_at->diffForHumans(),
+            'updated'      => $this->updated_at
         ];
     }
 }
