@@ -62,4 +62,6 @@ return array (
   'points_value' => 'Valeur des points',
   'medium' => 'Moyen',
   'import_file' => 'Importer le fichier',
+  'import' => 'IMPORTED DES IMAGES',
+  'imported' => 'Importé',
 );

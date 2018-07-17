@@ -8,5 +8,7 @@ Route::group(['prefix' => 'favorite'], function () {
     Route::get('{id}/artist', 'App\\ACME\\Api\\V1\\Favorite\\Controllers\\SetArtistAsFavoriteController@run');
     
     Route::get('user-favorites', 'App\\ACME\\Api\\V1\\Favorite\\Controllers\\ListUserFavoritesController@run');
+    Route::get('category-images',
+        'App\\ACME\\Api\\V1\\Favorite\\Controllers\\ListCategoryFavoritesImagesController@run');
     
 });
