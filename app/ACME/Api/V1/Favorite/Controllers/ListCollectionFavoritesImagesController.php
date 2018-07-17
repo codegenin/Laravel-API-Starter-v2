@@ -5,6 +5,7 @@ namespace App\ACME\Api\V1\Favorite\Controllers;
 use App\ACME\Api\V1\Category\Resource\CategoryLimitedResource;
 use App\ACME\Api\V1\Category\Resource\CategoryResource;
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
+use App\ACME\Api\V1\Collection\Resource\CollectionLimitedResource;
 use App\ACME\Api\V1\Collection\Resource\CollectionResource;
 use App\ACME\Api\V1\Media\Resource\MediaResource;
 use App\ACME\Api\V1\Media\Resource\MediaResourceCollection;
@@ -17,12 +18,12 @@ use App\Models\Media;
 use App\Traits\MediaTraits;
 use Spatie\MediaLibrary\MediaCollection\MediaCollection;
 
-class ListCategoryFavoritesImagesController extends ApiResponseController
+class ListCollectionFavoritesImagesController extends ApiResponseController
 {
     use MediaTraits;
     
     /**
-     *
+     * CollectionFavoriteController constructor.
      */
     public function __construct()
     {
@@ -31,9 +32,9 @@ class ListCategoryFavoritesImagesController extends ApiResponseController
     
     /**
      * @apiGroup           Favorite
-     * @apiName            listCategoryFavoriteImages
-     * @api                {get} /api/favorite/category-images List Category Fav Images
-     * @apiDescription     Get all images from all the category favorites
+     * @apiName            listCollectionFavoriteImages
+     * @api                {get} /api/favorite/collection-images List Collection Fav Images
+     * @apiDescription     Get all images from all the collection favorites
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
@@ -42,25 +43,26 @@ class ListCategoryFavoritesImagesController extends ApiResponseController
      */
     public function run()
     {
-        $favorites = CategoryLimitedResource::collection(auth()
+        $favorites = CollectionLimitedResource::collection(auth()
             ->user()
-            ->favorite(Category::class));
+            ->favorite(Collection::class));
         
         $images = [];
         
+        
         if ($favorites->count() > 0) {
             
-            $categories = [];
+            $collections = [];
             
             foreach ($favorites as $favorite) {
-                $categories[] = $favorite->id;
+                $collections[] = $favorite->id;
             }
             
-            $images = Media::orWhereIn('category_id', $categories)
+            $images = Media::orWhereIn('model_id', $collections)
                            ->where('model_type', 'App\\Models\\Collection')
                            ->orderBy('created_at', 'desc')
                            ->paginate();
-            
+    
             return new MediaResourceCollection($images);
         }
         
