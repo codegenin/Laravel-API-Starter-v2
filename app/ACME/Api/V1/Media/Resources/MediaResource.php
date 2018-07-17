@@ -22,30 +22,32 @@ class MediaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'           => Hashids::encode($this->id),
-            'title'        => $this->title ?: '',
-            'description'  => $this->description ?: '',
-            'location'     => $this->location ?: '',
-            'medium'       => $this->medium ?: '',
-            'score'        => $this->score ?: '',
+            'id'                => Hashids::encode($this->id),
+            'title'             => $this->title ?: '',
+            'description'       => $this->description ?: '',
+            'location'          => $this->location ?: '',
+            'medium'            => $this->medium ?: '',
+            'score'             => $this->score ?: '',
             #'user'         => new UserResourceLimited($this->user),
-            'images'       => [
+            'images'            => [
                 'original' => $this->getUrl(),
                 'large'    => $this->getUrl('large'),
                 'medium'   => $this->getUrl('medium'),
                 'small'    => $this->getUrl('small'),
             ],
-            'belongs_to'   => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection',
-            'collection'   => ($this->model_type == "App\\Models\\Collection") ?
+            'belongs_to'        => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection',
+            'collection'        => ($this->model_type == "App\\Models\\Collection") ?
                 new CollectionLimitedResource($this->collection) : [],
-            'is_purchased' => ($this->model_type == "App\\Models\\Collection") ? auth()
+            'is_purchased'      => ($this->model_type == "App\\Models\\Collection") ? auth()
                 ->user()
                 ->hasPurchased($this->collection) : false,
-            'is_book'      => auth()
+            'is_book'           => auth()
                 ->user()
                 ->isBooked($this),
-            'created'      => $this->created_at->diffForHumans(),
-            'updated'      => $this->updated_at
+            'created'           => $this->created_at->diffForHumans(),
+            'updated'           => $this->updated_at->diffForHumans(),
+            'created_timestamp' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_timestamp' => $this->updated_at->format('Y-m-d H:i:s')
         ];
     }
 }
