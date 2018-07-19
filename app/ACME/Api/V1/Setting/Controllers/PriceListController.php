@@ -2,7 +2,10 @@
 
 namespace App\ACME\Api\V1\Setting\Controllers;
 
+use App\ACME\Api\V1\Price\Resource\PriceResource;
+use App\ACME\Api\V1\Price\Resource\PriceResourceCollection;
 use App\Http\Controllers\ApiResponseController;
+use App\Models\Price;
 
 class PriceListController extends ApiResponseController
 {
@@ -23,30 +26,8 @@ class PriceListController extends ApiResponseController
      */
     public function run()
     {
-        return response()->json([
-            'status' => 'true',
-            'data'   => [
-                [
-                    'points' => 1000,
-                    'price'  => 0.99
-                ],
-                [
-                    'points' => 2000,
-                    'price'  => 1.99
-                ],
-                [
-                    'points' => 3000,
-                    'price'  => 2.99
-                ],
-                [
-                    'points' => 4000,
-                    'price'  => 3.99
-                ],
-                [
-                    'points' => 6000,
-                    'price'  => 5.99
-                ]
-            ]
-        ]);
+        $prices = Price::all();
+        
+        return new PriceResourceCollection($prices);
     }
 }
