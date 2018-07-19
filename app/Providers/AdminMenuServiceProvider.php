@@ -29,12 +29,17 @@ class AdminMenuServiceProvider extends ServiceProvider
                 'url'  => LaravelLocalization::setLocale() . '/admin/tags',
                 'icon' => 'tags',
             ]);
-            $event->menu->add(trans('label.main_settings'));
+            $event->menu->add([
+                'text' => trans('label.prices'),
+                'url'  => LaravelLocalization::setLocale() . '/admin/prices',
+                'icon' => 'dollar',
+            ]);
+            /*$event->menu->add(trans('label.main_settings'));
             $event->menu->add([
                 'text' => trans('label.price_points'),
                 'url'  => LaravelLocalization::setLocale() . '/admin/setting/price-points',
                 'icon' => 'dollar',
-            ]);
+            ]);*/
             $event->menu->add(trans('label.import'));
             $event->menu->add([
                 'text' => trans('label.view_imports'),

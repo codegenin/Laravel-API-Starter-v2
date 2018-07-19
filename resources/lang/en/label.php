@@ -61,4 +61,7 @@ return array (
   'import_file' => 'Import File',
   'import' => 'IMPORT IMAGES',
   'imported' => 'Imported',
+  'prices' => 'Prices',
+  'new_price' => 'New Price',
+  'update_price' => 'Update Price',
 );

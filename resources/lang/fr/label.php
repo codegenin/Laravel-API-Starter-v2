@@ -64,4 +64,8 @@ return array (
   'import_file' => 'Importer le fichier',
   'import' => 'IMPORTED DES IMAGES',
   'imported' => 'Importé',
+  'new_price' => 'Nouveau Prix
+',
+  'prices' => 'Des prix',
+  'update_price' => 'Mise à jour Prix',
 );
