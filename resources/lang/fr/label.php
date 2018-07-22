@@ -68,4 +68,10 @@ return array (
 ',
   'prices' => 'Des prix',
   'update_price' => 'Mise à jour Prix',
+  'email' => 'Email',
+  'new_user' => 'Nouvel utilisateur
+',
+  'provider' => 'Fournisseur',
+  'users' => 'Utilisateurs',
+  'verified' => 'Vérifié',
 );

@@ -64,4 +64,9 @@ return array (
   'prices' => 'Prices',
   'new_price' => 'New Price',
   'update_price' => 'Update Price',
+  'users' => 'Users',
+  'email' => 'Email',
+  'provider' => 'Provider',
+  'verified' => 'Verified',
+  'new_user' => 'New User',
 );
