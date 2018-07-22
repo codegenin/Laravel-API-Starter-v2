@@ -6,6 +6,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('{id}/show', 'App\\ACME\\Api\\V1\\User\\Controllers\\ViewUserController@run');
     
     Route::post('role-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\RoleController@updateUserRole');
+    Route::post('update-is-new', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateIsNewController@run');
     Route::post('profile-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateProfileController@run');
     Route::post('about-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateAboutController@run');
     Route::post('avatar-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateAvatarController@run');
