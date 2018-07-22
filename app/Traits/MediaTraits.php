@@ -28,6 +28,11 @@ trait MediaTraits
                 $covers['medium']   = $media->getUrl('medium');
                 $covers['small']    = $media->getUrl('small');
             }
+        } else {
+            $covers['original'] = asset('images/default-image.png');
+            $covers['large']    = asset('images/default-image.png');
+            $covers['medium']   = asset('images/default-image.png');
+            $covers['small']    = asset('images/default-image.png');
         }
         
         return $covers;
