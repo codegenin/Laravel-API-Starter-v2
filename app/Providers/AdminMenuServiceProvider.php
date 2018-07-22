@@ -34,6 +34,11 @@ class AdminMenuServiceProvider extends ServiceProvider
                 'url'  => LaravelLocalization::setLocale() . '/admin/prices',
                 'icon' => 'dollar',
             ]);
+            $event->menu->add([
+                'text' => trans('label.users'),
+                'url'  => LaravelLocalization::setLocale() . '/admin/users',
+                'icon' => 'users',
+            ]);
             /*$event->menu->add(trans('label.main_settings'));
             $event->menu->add([
                 'text' => trans('label.price_points'),

@@ -21,7 +21,9 @@
         <div class="box-header">
             <div class="box-title">{{trans('label.tags')}}</div>
             <div class="box-tools">
-
+                <div class="box-tools">
+                    {{$tags->links('vendor.pagination.small-default')}}
+                </div>
             </div>
         </div>
         <div class="box-body">

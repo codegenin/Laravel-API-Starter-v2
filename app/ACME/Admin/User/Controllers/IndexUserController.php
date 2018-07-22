@@ -1,12 +1,13 @@
 <?php
 
-namespace App\ACME\Admin\Tag\Controllers;
+namespace App\ACME\Admin\User\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Tags\Tag;
 
-class IndexTagController extends Controller
+class IndexUserController extends Controller
 {
     public function __construct()
     {
@@ -15,8 +16,8 @@ class IndexTagController extends Controller
     
     public function run()
     {
-        $tags = Tag::paginate();
+        $users = User::paginate();
         
-        return view('admin.tag.index', compact('tags'));
+        return view('admin.user.index', compact('users'));
     }
 }
