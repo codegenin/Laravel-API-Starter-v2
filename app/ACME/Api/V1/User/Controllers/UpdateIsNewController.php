@@ -5,6 +5,7 @@ namespace App\ACME\Api\V1\User\Controllers;
 use App\ACME\Api\V1\User\Repositories\UserRepository;
 use App\ACME\Api\V1\User\Requests\UpdateAboutRequest;
 use App\ACME\Api\V1\User\Requests\UpdateAvatarRequest;
+use App\ACME\Api\V1\User\Requests\UpdateIsNewRequest;
 use App\ACME\Api\V1\User\Resource\UserResource;
 use App\Http\Controllers\ApiResponseController;
 use App\Models\User;
@@ -46,12 +47,15 @@ class UpdateIsNewController extends ApiResponseController
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
+     * @apiParam {String} is_new set 0 if false and 1 if true
      *
+     * @param UpdateIsNewRequest $request
+     * @return mixed
      */
-    public function run()
+    public function run(UpdateIsNewRequest $request)
     {
         $user         = $this->userRepository->find(auth()->user()->id);
-        $user->is_new = 0;
+        $user->is_new = $request->is_new;
         $user->save();
         
         return $this->responseWithSuccess(trans('common.update.success'));
