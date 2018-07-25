@@ -47,6 +47,9 @@ trait LikabilityTrait
                     ->with('likable')
                     ->get()
                     ->mapWithKeys(function ($item) {
+                        if (!$item['likable']) {
+                            return [];
+                        }
                         return [$item['likable']->id => $item['likable']];
                     });
     }

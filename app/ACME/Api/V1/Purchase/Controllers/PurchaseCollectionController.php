@@ -40,7 +40,11 @@ class PurchaseCollectionController extends ApiResponseController
      */
     public function run($id)
     {
-        $collection = $this->collectionRepository->find(Hashids::decode($id));
+        $collection = $this->collectionRepository->findOrFail(Hashids::decode($id));
+        
+        if(empty($collection)) {
+            return $this->responseWithError(trans('common.not.found'));
+        }
         
         // Checks if user points  is enough to purchase the collection
         if (auth()->user()->points < $collection->points) {

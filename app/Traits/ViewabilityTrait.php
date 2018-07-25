@@ -26,9 +26,16 @@ trait ViewabilityTrait
      */
     public function view($class)
     {
-        return $this->views()->where('viewable_type', $class)->with('viewable')->get()->mapWithKeys(function ($item) {
-            return [$item['viewable']->id=>$item['viewable']];
-        });
+        return $this->views()
+                    ->where('viewable_type', $class)
+                    ->with('viewable')
+                    ->get()
+                    ->mapWithKeys(function ($item) {
+                        if (!$item['viewable']) {
+                            return [];
+                        }
+                        return [$item['viewable']->id => $item['viewable']];
+                    });
     }
     
     /**

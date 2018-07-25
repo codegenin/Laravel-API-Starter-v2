@@ -25,9 +25,18 @@ trait PurchasabilityTrait
      */
     public function purchase($class)
     {
-        return $this->purchases()->where('purchasable_type', $class)->with('purchasable')->get()->mapWithKeys(function ($item) {
-            return [$item['purchasable']->id=>$item['purchasable']];
-        });
+        return $this->purchases()
+                    ->where('purchasable_type', $class)
+                    ->with('purchasable')
+                    ->get()
+                    ->mapWithKeys(function ($item) {
+            
+                        if (!$item['purchasable']) {
+                            return [];
+                        }
+            
+                        return [$item['purchasable']->id => $item['purchasable']];
+                    });
     }
     
     /**
