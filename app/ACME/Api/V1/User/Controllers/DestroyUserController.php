@@ -45,7 +45,6 @@ class DestroyUserController extends ApiResponseController
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {String} about a introduction of the user
      *
      */
     public function run()
