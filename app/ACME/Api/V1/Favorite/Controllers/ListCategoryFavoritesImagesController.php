@@ -66,7 +66,7 @@ class ListCategoryFavoritesImagesController extends ApiResponseController
         
         return response()->json([
             'status' => true,
-            'images' => $images
+            'data' => $images
         ]);
         
     }
