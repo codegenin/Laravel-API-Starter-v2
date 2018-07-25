@@ -12,7 +12,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('delete', 'App\\ACME\\Api\\V1\\User\\Controllers\\DestroyUserController@run');
     Route::post('avatar-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateAvatarController@run');
     
-    Route::get('{id}/delete', 'App\\ACME\\Api\\V1\\User\\Controllers\\UserController@delete');
+    //Route::get('{id}/delete', 'App\\ACME\\Api\\V1\\User\\Controllers\\UserController@delete');
     
     ########### ARTIST ROUTES ######################
     Route::get('artist/{id}/show', 'App\\ACME\\Api\\V1\\User\\Controllers\\ViewArtistController@run');

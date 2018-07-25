@@ -29,37 +29,4 @@ class UserController extends Controller
         $this->middleware('jwt.auth', []);
         $this->userRepository = $userRepository;
     }
-    
-    /**
-     * @apiGroup           User
-     * @apiName            deleteUser
-     * @api                {get} /api/user/{id}/delete Delete User
-     * @apiDescription     Delete a user
-     * @apiVersion         1.0.0
-     *
-     * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
-     *
-     * @apiParam {String} id the encoded id of the user
-     *
-     *
-     * @apiSuccessExample {json} Success-Response:
-     *                     {
-     * "status": "ok",
-     * "message": "User has been delete!"
-     * }
-     *
-     */
-    public function delete($id)
-    {
-        $id = Hashids::decode($id);
-        
-        if (!$this->userRepository->delete($id)) {
-            throw new ResourceNotFoundException();
-        }
-        
-        return response()->json([
-            'status'  => 'ok',
-            'message' => 'User has been delete successfully!'
-        ]);
-    }
 }

@@ -51,7 +51,7 @@ class DestroyUserController extends ApiResponseController
     {
         $this->userRepository->delete(auth()->user()->id);
         
-        return $this->responseWithSuccess(trans('common.update.success'));
+        return $this->responseWithSuccess('User has been deleted!');
     }
     
 }
