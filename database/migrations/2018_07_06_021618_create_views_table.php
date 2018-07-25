@@ -25,6 +25,8 @@ class CreateViewsTable extends Migration
                 'viewable_type'
             ]);
             $table->timestamps();
+    
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

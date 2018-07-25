@@ -9,6 +9,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('update-is-new', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateIsNewController@run');
     Route::post('profile-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateProfileController@run');
     Route::post('about-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateAboutController@run');
+    Route::post('delete', 'App\\ACME\\Api\\V1\\User\\Controllers\\DestroyUserController@run');
     Route::post('avatar-update', 'App\\ACME\\Api\\V1\\User\\Controllers\\UpdateAvatarController@run');
     
     Route::get('{id}/delete', 'App\\ACME\\Api\\V1\\User\\Controllers\\UserController@delete');

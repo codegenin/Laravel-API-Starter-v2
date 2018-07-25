@@ -19,6 +19,8 @@ class CreatePurchasesTable extends Migration
     
             $table->primary(['user_id', 'purchasable_id', 'purchasable_type']);
             $table->timestamps();
+    
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

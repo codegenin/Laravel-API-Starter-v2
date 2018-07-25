@@ -26,6 +26,8 @@ class CreateLikesTable extends Migration
                 'likable_type'
             ]);
             $table->timestamps();
+    
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
     
