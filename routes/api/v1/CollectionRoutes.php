@@ -6,6 +6,9 @@ Route::group(['prefix' => 'collection'], function () {
     Route::get('{id}/show', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\ViewCollectionController@run');
     Route::get('{id}/is-user-favorite', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\IsUserFavoriteController@run');
     
+    Route::get('all-recent-collections', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\CollectionsRecentController@run');
+    Route::get('all-alphabetical-collections', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\CollectionsAlphabeticalController@run');
+    
     ############## DISABLED #############################
     #Route::post('create', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\CreateCollectionController@run');
     #Route::post('upload-image', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\AddMediaToCollectionController@run');
