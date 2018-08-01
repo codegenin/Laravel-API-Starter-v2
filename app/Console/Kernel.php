@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ClearViewsTable;
 use App\Console\Commands\GenerateApiDocumentation;
 use App\Console\Commands\ImportMediaFile;
 use Illuminate\Console\Scheduling\Schedule;
@@ -16,7 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         GenerateApiDocumentation::class,
-        ImportMediaFile::class
+        ImportMediaFile::class,
+        ClearViewsTable::class
     ];
     
     /**
@@ -30,6 +32,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('media:import')
                  ->everyMinute()
                  ->withoutOverlapping();
+        $schedule->command('clear:views')
+                 ->cron('0 */12 * * *');
     }
     
     /**
