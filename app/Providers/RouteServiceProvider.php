@@ -124,6 +124,7 @@ class RouteServiceProvider extends ServiceProvider
             require base_path('routes/admin/ImportRoutes.php');
             require base_path('routes/admin/PriceRoutes.php');
             require base_path('routes/admin/UserRoutes.php');
+            require base_path('routes/admin/SettingRoutes.php');
         });
     }
 }

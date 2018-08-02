@@ -1,13 +1,12 @@
 <?php
 
-namespace App\ACME\Admin\Price\Controllers;
+namespace App\ACME\Admin\Setting\Controllers;
 
-use App\ACME\Admin\Tag\Requests\DeleteSettingRequest;
+use App\ACME\Admin\Setting\Requests\DeleteSettingRequest;
 use App\Http\Controllers\Controller;
-use App\Models\Price;
-use Spatie\Tags\Tag;
+use App\Models\Setting;
 
-class DestroyPriceController extends Controller
+class DestroySettingController extends Controller
 {
     public function __construct()
     {
@@ -16,8 +15,8 @@ class DestroyPriceController extends Controller
     
     public function run(DeleteSettingRequest $request)
     {
-        $price = Price::find($request->id);
-        $price->delete();
+        $setting = Setting::find($request->id);
+        $setting->delete();
         
         return redirect()
             ->back()

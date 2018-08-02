@@ -2,7 +2,7 @@
 
 namespace App\ACME\Admin\Tag\Controllers;
 
-use App\ACME\Admin\Tag\Requests\DeleteTagRequest;
+use App\ACME\Admin\Tag\Requests\DeleteSettingRequest;
 use App\Http\Controllers\Controller;
 use Spatie\Tags\Tag;
 
@@ -13,7 +13,7 @@ class DestroyTagController extends Controller
         $this->middleware('auth:admin');
     }
     
-    public function run(DeleteTagRequest $request)
+    public function run(DeleteSettingRequest $request)
     {
         $tag = Tag::find($request->id);
         $tag->delete();

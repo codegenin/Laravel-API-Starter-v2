@@ -17,8 +17,12 @@ class EventServiceProvider extends ServiceProvider
         'Dingo\Api\Event\ResponseWasMorphed' => [
             AddWrapToResponse::class,
         ],
+        'App\Events\AuthLoginEventHandler'   => [
+            'App\Listeners\DailyLoginRewardPoints',
+            'App\Listeners\LogSuccessfulLogin',
+        ],
     ];
-
+    
     /**
      * Register any events for your application.
      *
@@ -27,7 +31,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
+        
         //
     }
 }

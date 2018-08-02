@@ -51,6 +51,12 @@ class AdminMenuServiceProvider extends ServiceProvider
                 'url'  => LaravelLocalization::setLocale() . '/admin/imports',
                 'icon' => 'file',
             ]);
+            $event->menu->add(trans('label.settings'));
+            $event->menu->add([
+                'text' => trans('label.view_settings'),
+                'url'  => LaravelLocalization::setLocale() . '/admin/settings',
+                'icon' => 'cog',
+            ]);
         });
     }
 

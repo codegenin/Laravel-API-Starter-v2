@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
                  ->everyMinute()
                  ->withoutOverlapping();
         $schedule->command('clear:views')
-                 ->cron('0 */12 * * *');
+                 ->everyMinute();
     }
     
     /**

@@ -3,6 +3,7 @@
 namespace App\ACME\Api\V1\Authentication\Controllers;
 
 use App\ACME\Api\V1\Authentication\Requests\LoginRequest;
+use App\Events\AuthLoginEventHandler;
 use Hashids\Hashids;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tymon\JWTAuth\JWTAuth;
@@ -67,6 +68,8 @@ class LoginController extends Controller
         if (!$user->verified) {
             throw new AccessDeniedHttpException('Account is disabled! please check your email to activate your account.');
         }
+        
+        event(new AuthLoginEventHandler($user));
         
         return response()
             ->json([
