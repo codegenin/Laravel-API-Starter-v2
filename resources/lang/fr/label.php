@@ -74,4 +74,11 @@ return array (
   'provider' => 'Fournisseur',
   'users' => 'Utilisateurs',
   'verified' => 'Vérifié',
+  'new_setting' => 'Nouveau paramètre',
+  'setting_name' => 'Nom du paramètre',
+  'setting_value' => 'Valeur de réglage',
+  'value' => 'Valeur
+',
+  'view_settings' => 'Paramètres d\'affichage
+',
 );

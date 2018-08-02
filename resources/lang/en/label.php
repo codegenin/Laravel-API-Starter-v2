@@ -69,4 +69,9 @@ return array (
   'provider' => 'Provider',
   'verified' => 'Verified',
   'new_user' => 'New User',
+  'view_settings' => 'View Settings',
+  'new_setting' => 'New Setting',
+  'value' => 'Value',
+  'setting_value' => 'Setting Value',
+  'setting_name' => 'Setting Name',
 );
