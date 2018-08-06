@@ -30,6 +30,7 @@ class ImportService
             $media->translateOrNew('en')->description = $record->credit_line;
             $media->translateOrNew('fr')->description = $record->credit_line;
             $media->score                             = 0;
+            $media->url                               = $record->url;
             $media->save();
         } catch (\Exception $e) {
             $record->imported     = 2;

@@ -124,6 +124,7 @@ return [
      */
     'image_generators'         => [
         Spatie\MediaLibrary\ImageGenerators\FileTypes\Image::class,
+        App\Services\Webp::class,
         Spatie\MediaLibrary\ImageGenerators\FileTypes\Pdf::class,
         Spatie\MediaLibrary\ImageGenerators\FileTypes\Svg::class,
         Spatie\MediaLibrary\ImageGenerators\FileTypes\Video::class,
