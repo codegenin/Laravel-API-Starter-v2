@@ -74,4 +74,6 @@ return array (
   'value' => 'Value',
   'setting_value' => 'Setting Value',
   'setting_name' => 'Setting Name',
+  'price' => 'Price',
+  'google_id' => 'Google Id',
 );

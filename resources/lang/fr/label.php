@@ -81,4 +81,6 @@ return array (
 ',
   'view_settings' => 'Paramètres d\'affichage
 ',
+  'google_id' => 'Google Id',
+  'price' => 'Price',
 );

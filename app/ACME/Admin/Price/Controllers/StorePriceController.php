@@ -15,9 +15,10 @@ class StorePriceController extends Controller
     
     public function run(StorePriceRequest $request)
     {
-        $price         = new Price();
-        $price->points = $request->points;
-        $price->price  = $request->price;
+        $price            = new Price();
+        $price->points    = $request->points;
+        $price->price     = $request->price;
+        $price->google_id = $request->google_id;
         $price->save();
         
         return redirect()

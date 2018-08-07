@@ -20,9 +20,10 @@ class AjaxGetPriceController extends Controller
         return response()->json([
             'status' => true,
             'price'  => [
-                'id'     => $price->id,
-                'points' => $price->points,
-                'price'  => $price->price
+                'id'        => $price->id,
+                'points'    => $price->points,
+                'price'     => $price->price,
+                'google_id' => $price->google_id
             ]
         ]);
     }

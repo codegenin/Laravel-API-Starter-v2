@@ -15,8 +15,9 @@ class PriceResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'points' => $this->points,
-            'price'  => $this->price
+            'points'    => $this->points,
+            'price'     => $this->price,
+            'google_id' => $this->google_id
         ];
     }
 }

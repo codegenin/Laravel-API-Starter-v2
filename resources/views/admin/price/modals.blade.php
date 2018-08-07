@@ -22,6 +22,14 @@
                         <label for="price">Price:</label>
                         <input type="text" name="price" id="price" placeholder="Price:" class="form-control" value="{{ old('price') }}">
                     </div>
+
+                    <!-- Google Id: Form Input -->
+                    <div class="form-group">
+                        <label for="google-id">Google Id:</label>
+                        <input type="text" name="google_id" id="google-id"
+                               placeholder="Google Id:" class="form-control" value="{{ old('google_id') }}">
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left"
@@ -58,8 +66,17 @@
                     <!-- Price: Form Input -->
                     <div class="form-group">
                         <label for="price">Price:</label>
-                        <input type="text" name="price" id="edit-price" placeholder="Price:" class="form-control" value="{{ old('price') }}">
+                        <input type="text" name="price" id="edit-price" placeholder="Price:"
+                               class="form-control" value="{{ old('price') }}">
                     </div>
+
+                    <!-- Google Id: Form Input -->
+                    <div class="form-group">
+                        <label for="edit-google-id">Google Id:</label>
+                        <input type="text" name="google_id" id="edit-google-id"
+                               placeholder="Google Id:" class="form-control" value="{{ old('google_id') }}">
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left"

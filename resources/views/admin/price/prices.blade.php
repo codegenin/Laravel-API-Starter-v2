@@ -4,6 +4,7 @@
         <td style="width: 10px;">{{trans('label.id')}}</td>
         <td style="width: 10px;">{{trans('label.points')}}</td>
         <td style="width: 10px;">{{trans('label.price')}}</td>
+        <td style="width: 10px;">{{trans('label.google_id')}}</td>
         <td style="width: 10px;">{{trans('label.created_at')}}</td>
         <td style="width: 10px;">{{trans('label.actions')}}</td>
     </tr>
@@ -12,6 +13,7 @@
             <td>{{$price->id}}</td>
             <td>{{$price->points}}</td>
             <td>{{$price->price}}</td>
+            <td>{{$price->google_id}}</td>
             <td>{{$price->created_at}}</td>
             <td>
                 <div class="btn-group">
@@ -56,6 +58,7 @@
                     $('#edit-id').val(data.price.id);
                     $('#edit-points').val(data.price.points);
                     $('#edit-price').val(data.price.price);
+                    $('#edit-google-id').val(data.price.google_id);
                     $('#modal-edit-price').modal('show');
                 });
 
