@@ -45,7 +45,7 @@ class ImportService
     {
         App::setLocale('en');
         
-        $collection = Collection::whereTranslation('title', $record->en_collection, 'en')
+        $collection = Collection::whereTranslation('title', trim($record->en_collection), 'en')
                                 ->get();
         
         if ($collection->count() <= 0) {
@@ -73,7 +73,7 @@ class ImportService
     {
         App::setLocale('en');
         
-        $category = Category::whereTranslation('name', $record->en_department, 'en')
+        $category = Category::whereTranslation('name', trim($record->en_department), 'en')
                             ->get();
         
         if ($category->count() <= 0) {
