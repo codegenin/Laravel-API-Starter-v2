@@ -81,7 +81,7 @@ class ImportMediaFile extends Command
                              $record->credit_line       = $row->credit_line;
                              $record->museum            = $row->nom_du_musee;
                              $record->url               = $row->url;
-                             $record->image_url         = $row->lien_drive;
+                             $record->image_url         = $row->aws;
                              $record->fr_department     = $row->departement_version_francaise;
                              $record->en_department     = $row->departement_version_anglaise;
                              $record->save();
