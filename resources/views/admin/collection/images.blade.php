@@ -24,37 +24,39 @@
 @section('content')
     @include('admin.common.alerts')
 
-    @foreach($images as $image)
-        <div class="col-sm-3">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{$image->title}}</h3>
-                    <div class="box-tools pull-right">
+    <div class="row">
+        @foreach($images as $image)
+            <div class="col-sm-3">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{$image->title}}</h3>
+                        <div class="box-tools pull-right">
 
-                        <button type="button" data-toggle="modal" title="EDIT"
-                                class="btn btn-box-tool edit" data-id="{{$image->id}}">
-                            <i class="fa fa-pencil"></i>
-                        </button>
+                            <button type="button" data-toggle="modal" title="EDIT"
+                                    class="btn btn-box-tool edit" data-id="{{$image->id}}">
+                                <i class="fa fa-pencil"></i>
+                            </button>
 
-                        <button type="button" data-toggle="modal" title="DELETE"
-                                class="btn btn-box-tool delete" data-id="{{$image->id}}">
-                            <i class="fa fa-remove"></i>
-                        </button>
+                            <button type="button" data-toggle="modal" title="DELETE"
+                                    class="btn btn-box-tool delete" data-id="{{$image->id}}">
+                                <i class="fa fa-remove"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body text-center">
+                        <img src="{{$image->getUrl('medium')}}" alt="" height="300" width="300">
+                        <p>
+                            {{$image->description}}
+                        </p>
+                    </div>
+                    <div class="box-footer">
+                        <strong>Location:</strong> {{$image->location}}
+                        <strong class="pull-right">Score: {{$image->score}}</strong>
                     </div>
                 </div>
-                <div class="box-body text-center">
-                    <img src="{{$image->getUrl('medium')}}" alt="" height="300" width="300">
-                    <p>
-                        {{$image->description}}
-                    </p>
-                </div>
-                <div class="box-footer">
-                    <strong>Location:</strong> {{$image->location}}
-                    <strong class="pull-right">Score: {{$image->score}}</strong>
-                </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    </div>
 
     <!-- Collection Upload Image Modal -->
     <div class="modal fade" id="modal-new-collection-image">
