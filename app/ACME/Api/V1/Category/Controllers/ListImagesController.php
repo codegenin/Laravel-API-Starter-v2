@@ -54,7 +54,7 @@ class ListImagesController extends ApiResponseController
         
         $images = Media::where('category_id', $category->id)
                        ->where('model_type', 'App\\Models\\Collection')
-                       ->orderBy('created_at', 'desc')
+                       ->inRandomOrder()
                        ->paginate();
         
         return new MediaResourceCollection($images);

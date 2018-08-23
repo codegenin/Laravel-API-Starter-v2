@@ -58,7 +58,7 @@ class ListCategoryFavoritesImagesController extends ApiResponseController
             
             $images = Media::orWhereIn('category_id', $categories)
                            ->where('model_type', 'App\\Models\\Collection')
-                           ->orderBy('created_at', 'desc')
+                           ->inRandomOrder()
                            ->paginate();
             
             return new MediaResourceCollection($images);
