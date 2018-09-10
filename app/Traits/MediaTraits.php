@@ -24,12 +24,14 @@ trait MediaTraits
         if (count($model->getMedia($collection)) > 0) {
             foreach ($model->getMedia($collection) as $media) {
                 $covers['original'] = $media->getUrl();
+                $covers['cover']    = $media->getUrl('cover');
                 $covers['large']    = $media->getUrl('large');
                 $covers['medium']   = $media->getUrl('medium');
                 $covers['small']    = $media->getUrl('small');
             }
         } else {
             $covers['original'] = asset('images/default-image.png');
+            $covers['cover']    = asset('images/default-image.png');
             $covers['large']    = asset('images/default-image.png');
             $covers['medium']   = asset('images/default-image.png');
             $covers['small']    = asset('images/default-image.png');

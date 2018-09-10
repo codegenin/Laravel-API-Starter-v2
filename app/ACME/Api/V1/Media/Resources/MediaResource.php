@@ -31,6 +31,7 @@ class MediaResource extends JsonResource
             #'user'         => new UserResourceLimited($this->user),
             'images'            => [
                 'original' => $this->getUrl(),
+                'cover'    => $this->getUrl('cover'),
                 'large'    => $this->getUrl('large'),
                 'medium'   => $this->getUrl('medium'),
                 'small'    => $this->getUrl('small'),
