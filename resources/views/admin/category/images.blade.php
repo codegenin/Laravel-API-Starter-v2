@@ -49,9 +49,9 @@
                     </div>
                     <div class="box-body text-center">
                         <img src="{{$image->getUrl('medium')}}" alt="" width="300" height="300">
-                        <p>
+                        {{--<p>
                             {{$image->description}}
-                        </p>
+                        </p>--}}
                     </div>
                     <div class="box-footer">
                         <strong>Location:</strong> {{$image->location}}
