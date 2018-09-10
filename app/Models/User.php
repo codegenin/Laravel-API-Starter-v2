@@ -58,6 +58,9 @@ class User extends Authenticatable implements JWTSubject, HasMedia
         $this->addMediaCollection('avatar')
              ->singleFile()
              ->registerMediaConversions(function (Media $media) {
+                 $this->addMediaConversion('cover')
+                      ->width(1200)
+                      ->height(1200);
                  $this->addMediaConversion('large')
                       ->width(500)
                       ->height(500);

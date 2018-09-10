@@ -43,6 +43,9 @@ class Collection extends Model implements HasMedia
     
     public function registerMediaConversions(Media $media = null)
     {
+        $this->addMediaConversion('cover')
+             ->width(1200)
+             ->height(1200);
         $this->addMediaConversion('large')
              ->width(500)
              ->height(500);
@@ -59,6 +62,9 @@ class Collection extends Model implements HasMedia
         $this->addMediaCollection('collection')
              ->singleFile()
              ->registerMediaConversions(function (Media $media) {
+                 $this->addMediaConversion('cover')
+                      ->width(1200)
+                      ->height(1200);
                  $this->addMediaConversion('large')
                       ->width(500)
                       ->height(500);
