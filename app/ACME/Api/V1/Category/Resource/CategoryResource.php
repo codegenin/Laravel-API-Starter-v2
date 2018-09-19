@@ -26,7 +26,9 @@ class CategoryResource extends JsonResource
             'description' => $this->description ?: '',
             'public'      => ($this->is_public == 1) ? 'Yes' : 'No',
             'covers'      => $this->getMedialUrls($this, 'category'),
-            'updated_at'  => $this->updated_at->format('Y-m-d H:i:s')
+            'created'     => $this->created_at->diffForHumans(),
+            'updated_at'  => $this->updated_at->format('Y-m-d H:i:s'),
+            'days_ago'    => ($this->created_at->diffInDays() == 0) ? 1 . ' j' : $this->created_at->diffInDays() . ' j',
             #'collections' => CollectionResource::collection($this->whenLoaded('collections'))
         ];
     }
