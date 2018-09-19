@@ -57,7 +57,7 @@ class ImportMediaFile extends Command
                  ->load($file)
                  ->chunk(50, function ($rows) use ($import) {
                 
-                     $importedCount = 0;
+                     $importedCount = ($import->imported_count != 0 ) ? $import->imported_count : 0;
                 
                      try {
                     
