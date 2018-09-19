@@ -29,7 +29,7 @@
             <div class="col-sm-3">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{str_limit($image->title, 50)}}</h3>
+                        <h3 class="box-title">{{str_limit($image->title, 30)}}</h3>
                         <div class="box-tools pull-right">
 
                             <button type="button" data-toggle="modal" title="EDIT"
