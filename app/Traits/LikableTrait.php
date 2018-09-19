@@ -21,6 +21,7 @@ trait LikableTrait
         $this->likes()
              ->where('user_id', ($user_id) ? $user_id : Auth::id())
              ->where('book', 1)
+             ->orderBy('created_at', 'desc')
              ->get();
     }
     
