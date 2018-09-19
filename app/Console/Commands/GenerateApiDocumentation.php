@@ -37,6 +37,12 @@ class GenerateApiDocumentation extends Command
      */
     public function handle()
     {
-        exec('apidoc -i app/ACME/Api/V1 -o public/docs/');
+        $path = '/home/master/applications/kbghawwqbz/public_html/node_modules/apidoc/bin/apidoc';
+        
+        if(app()->environment() == 'local') {
+            $path = 'apidoc';
+        };
+        
+        exec($path . ' -i app/ACME/Api/V1 -o public/docs/');
     }
 }
