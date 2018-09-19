@@ -27,6 +27,7 @@ trait LikabilityTrait
                     ->where('likable_type', $class)
                     ->where('booked', 1)
                     ->with('likable')
+                    ->orderBy('created_at', 'desc')
                     ->get()
                     ->mapWithKeys(function ($item) {
                         return [$item['likable']->id => $item['likable']];
@@ -50,6 +51,7 @@ trait LikabilityTrait
                         if (!$item['likable']) {
                             return [];
                         }
+            
                         return [$item['likable']->id => $item['likable']];
                     });
     }
