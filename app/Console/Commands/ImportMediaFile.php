@@ -55,9 +55,9 @@ class ImportMediaFile extends Command
             
             Excel::filter('chunk')
                  ->load($file)
-                 ->chunk(100, function ($rows) use ($import) {
+                 ->chunk(20, function ($rows) use ($import) {
                 
-                     $importedCount = 0;
+                     $importedCount = $import->imported_count;
                 
                      try {
                     
