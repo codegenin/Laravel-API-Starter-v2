@@ -13,6 +13,15 @@ class CategoriesTableSeeder extends Seeder
     {
         $categories = [
             [
+                'name'           => 'Art Object',
+                'fr_name'        => 'Objet d’Art',
+                'slug'           => 'art-object',
+                'description'    => 'Art Object',
+                'fr_description' => 'Objet d’Art',
+                'is_public'      => 1,
+                'seq'            => 1,
+            ],
+            [
                 'name'           => 'Graphic Art',
                 'fr_name'        => 'Graphique Art',
                 'slug'           => 'graphique-art',
