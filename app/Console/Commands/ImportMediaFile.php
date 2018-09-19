@@ -99,9 +99,6 @@ class ImportMediaFile extends Command
                          $import->save();
                          throw  new \Exception($e);
                      }
-                     
-                     $import->imported_count = $imported;
-                     $import->save();
                  }
                  );
             
@@ -113,6 +110,7 @@ class ImportMediaFile extends Command
     
     public function updateStatus($import, $status)
     {
+        $import->imported_count = $import->total_rows;
         $import->status = $status;
         $import->save();
         
