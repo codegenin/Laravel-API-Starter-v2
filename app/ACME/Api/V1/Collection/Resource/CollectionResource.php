@@ -37,6 +37,7 @@ class CollectionResource extends JsonResource
                 ->user()
                 ->hasPurchased($this),
             'created'      => $this->created_at->diffForHumans(),
+            'days_ago'     => ($this->created_at->diffInDays() == 0) ? 1 . ' j' : $this->created_at->diffInDays() . ' j',
             'covers'       => $this->getMedialUrls($this, 'collection'),
         ];
     }
