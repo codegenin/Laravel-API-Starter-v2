@@ -47,18 +47,19 @@ class ImportMediaFile extends Command
         $import = Import::where('status', 0)
                         ->orWhere('status', 1)
                         ->first();
+        
         if ($import) {
             
             $this->updateStatus($import, 1);
             
             $file = Storage::path($import->file);
             
-            Excel::filter('chunk')
+            $imported = Excel::filter('chunk')
                  ->load($file)
                  ->chunk(20, function ($rows) use ($import) {
                 
-                     $importedCount = $import->imported_count;
-                
+                     $imported = $import->imported_count;
+                     
                      try {
                     
                          foreach ($rows as $row) {
@@ -85,10 +86,11 @@ class ImportMediaFile extends Command
                              $record->fr_department     = $row->departement_version_francaise;
                              $record->en_department     = $row->departement_version_anglaise;
                              $record->save();
-                        
+                             
+                             $imported++;
+                             
                              ProcessMediaImport::dispatch($record);
-                        
-                             $importedCount++;
+                             
                          }
                     
                      } catch (\Exception $e) {
@@ -97,8 +99,8 @@ class ImportMediaFile extends Command
                          $import->save();
                          throw  new \Exception($e);
                      }
-                
-                     $import->imported_count = $import->imported_count + $importedCount;
+                     
+                     $import->imported_count = $imported;
                      $import->save();
                  }
                  );
