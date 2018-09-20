@@ -2,7 +2,7 @@
 
 namespace App\ACME\Admin\Price\Controllers;
 
-use App\ACME\Admin\Tag\Requests\DeleteSettingRequest;
+use App\ACME\Admin\Setting\Requests\DeleteSettingRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Price;
 use Spatie\Tags\Tag;
