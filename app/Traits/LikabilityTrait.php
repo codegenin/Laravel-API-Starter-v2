@@ -19,19 +19,37 @@ trait LikabilityTrait
     /**
      * Get all images book
      *
+     * @param     $class
+     * @param int $perPage
      * @return mixed
      */
-    public function book($class)
+    public function book($class, $perPage = 10)
     {
         return $this->likes()
                     ->where('likable_type', $class)
                     ->where('booked', 1)
                     ->with('likable')
                     ->orderBy('created_at', 'desc')
-                    ->get()
+                    ->paginate($perPage)
                     ->mapWithKeys(function ($item) {
                         return [$item['likable']->id => $item['likable']];
                     });
+    }
+    
+    /**
+     * Count total booked
+     *
+     * @param $class
+     * @return mixed
+     */
+    public function bookCount($class)
+    {
+        return $this->likes()
+                    ->where('likable_type', $class)
+                    ->where('booked', 1)
+                    ->with('likable')
+                    ->orderBy('created_at', 'desc')
+                    ->count();
     }
     
     /**

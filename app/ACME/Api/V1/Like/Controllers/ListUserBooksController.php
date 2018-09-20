@@ -9,11 +9,14 @@ use App\Http\Controllers\ApiResponseController;
 use App\Models\Collection;
 use App\Models\Media;
 use App\Models\User;
+use App\Traits\CustomPaginationTrait;
 use Psr\Log\InvalidArgumentException;
 use Vinkla\Hashids\Facades\Hashids;
 
 class ListUserBooksController extends ApiResponseController
 {
+    use CustomPaginationTrait;
+    
     /**
      */
     public function __construct()
@@ -37,9 +40,16 @@ class ListUserBooksController extends ApiResponseController
             ->user()
             ->book(Media::class));
         
+        $total = auth()
+            ->user()
+            ->bookCount(Media::class);
+        
         return response()->json([
-            'status'      => true,
-            'media' => $media,
+            'status' => true,
+            'media'  => $media,
+            'links'  => [
+                'next' => $this->nextPageUrl($total)
+            ]
         ]);
     }
 }
