@@ -56,6 +56,9 @@ class Category extends Model implements HasMedia, Sortable
     
     public function registerMediaConversions(Media $media = null)
     {
+        $this->addMediaConversion('zoom')
+             ->width(2000)
+             ->height(2000);
         $this->addMediaConversion('cover')
              ->width(1200)
              ->height(1200);
@@ -75,6 +78,9 @@ class Category extends Model implements HasMedia, Sortable
         $this->addMediaCollection('category')
              ->singleFile()
              ->registerMediaConversions(function (Media $media) {
+                 $this->addMediaConversion('zoom')
+                      ->width(2000)
+                      ->height(2000);
                  $this->addMediaConversion('cover')
                       ->width(1200)
                       ->height(1200);

@@ -27,10 +27,12 @@ class MediaResource extends JsonResource
             'description'       => $this->description ?: '',
             'location'          => $this->location ?: '',
             'medium'            => $this->medium ?: '',
+            'museum'            => $this->museum ?: '',
             'score'             => $this->score ?: '',
             #'user'         => new UserResourceLimited($this->user),
             'images'            => [
                 'original' => $this->getUrl(),
+                'zoom'     => $this->getUrl('zoom'),
                 'cover'    => $this->getUrl('cover'),
                 'large'    => $this->getUrl('large'),
                 'medium'   => $this->getUrl('medium'),
