@@ -38,6 +38,7 @@ class ListCategoryController extends ApiResponseController
     public function run()
     {
         $categories = Category::ordered()
+                              ->remember(60)
                               ->get();
         
         return new CategoryResourceCollection($categories);

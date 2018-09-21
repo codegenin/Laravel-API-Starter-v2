@@ -32,7 +32,8 @@
     "spatie/laravel-medialibrary": "7.0.0",
     "spatie/laravel-tags": "^2.0",
     "tymon/jwt-auth": "1.0.*",
-    "vinkla/hashids": "^5.0"
+    "vinkla/hashids": "^5.0",
+    "watson/rememberable": "^2.0"
   },
   "require-dev": {
     "filp/whoops": "^2.0",

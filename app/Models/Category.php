@@ -12,11 +12,12 @@ use Spatie\EloquentSortable\SortableTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Watson\Rememberable\Rememberable;
 
 class Category extends Model implements HasMedia, Sortable
 {
     use NestableTrait, HasMediaTrait, Favoriteable,
-        SearchableTrait, Translatable, SortableTrait;
+        SearchableTrait, Translatable, SortableTrait, Rememberable;
     
     public $sortable = [
         'order_column_name'  => 'seq',
