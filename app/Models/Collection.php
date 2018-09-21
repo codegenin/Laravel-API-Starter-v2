@@ -55,9 +55,9 @@ class Collection extends Model implements HasMedia
         $this->addMediaConversion('medium')
              ->width(300)
              ->height(300);
-        /*$this->addMediaConversion('small')
+        $this->addMediaConversion('small')
              ->width(100)
-             ->height(100);*/
+             ->height(100);
     }
     
     public function registerMediaCollections()
@@ -75,11 +75,11 @@ class Collection extends Model implements HasMedia
                       ->width(500)
                       ->height(500);
                  $this->addMediaConversion('medium')
-                      ->width(200)
-                      ->height(200);
-                 /*$this->addMediaConversion('small')
+                      ->width(300)
+                      ->height(300);
+                 $this->addMediaConversion('small')
                       ->width(100)
-                      ->height(100);*/
+                      ->height(100);
              });
     }
     
