@@ -22,8 +22,9 @@ class CollectionLimitedResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'    => Hashids::encode($this->id),
-            'title' => $this->title,
+            'id'        => Hashids::encode($this->id),
+            'title'     => $this->title,
+            'time_period' => $this->time_period
         ];
     }
 }
