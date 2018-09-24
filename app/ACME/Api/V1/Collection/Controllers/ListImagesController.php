@@ -59,7 +59,9 @@ class ListImagesController extends ApiResponseController
      */
     private function retrieveImages($collection)
     {
-        $paginate = 15;
+        $paginate = (!$isPurchased = auth()
+            ->user()
+            ->hasPurchased($collection) ? 1 : 15);
         
         $mainImages = Media::with([
             'collection',
@@ -69,7 +71,7 @@ class ListImagesController extends ApiResponseController
                            ->orderBy('created_at', 'desc')
                            ->paginate($paginate);
         
-        $relatedImages = $this->relatedImages($collection, $mainImages);
+        $relatedImages = $this->relatedImages($collection, $mainImages, $isPurchased);
         
         return $mainImages->merge($relatedImages);
     }
@@ -77,15 +79,14 @@ class ListImagesController extends ApiResponseController
     /**
      * @param $collection
      * @param $mainImages
+     * @param $isPurchased
      * @return mixed
      */
-    private function relatedImages($collection, $mainImages)
+    private function relatedImages($collection, $mainImages, $isPurchased)
     {
         $relatedImages = collect();
         
-        if (!$isPurchased = auth()
-                ->user()
-                ->hasPurchased($collection) AND $mainImages->count() > 0) {
+        if (!$isPurchased AND $mainImages->count() > 0) {
             
             $relatedImages = Media::with([
                 'collection',
