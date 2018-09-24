@@ -36,15 +36,15 @@
                             <span class="input-group-addon">
                             <img src="{{asset('images/en.png')}}" alt="french">
                         </span>
-                            <input type="text" name="description" id="description"
-                                   class="form-control" value="{{ old('description') }}">
+                            <textarea type="text" name="description" id="description"
+                                      class="form-control" value="{{ old('description') }}">{{ old('description') }}</textarea>
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon">
                             <img src="{{asset('images/fr.png')}}" alt="french">
                         </span>
-                            <input type="text" name="fr_description" id="fr_description"
-                                   class="form-control" value="{{ old('description') }}">
+                            <textarea type="text" name="fr_description" id="fr_description"
+                                      class="form-control" value="{{ old('fr_description') }}">{{ old('fr_description') }}</textarea>
                         </div>
                     </div>
 
@@ -131,15 +131,15 @@
                             <span class="input-group-addon">
                             <img src="{{asset('images/en.png')}}" alt="french">
                         </span>
-                            <input type="text" name="description" id="edit-description"
-                                   class="form-control" value="{{ old('description') }}">
+                            <textarea type="text" name="description" id="edit-description"
+                                      class="form-control" value="{{ old('description') }}">{{ old('description') }}</textarea>
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon">
                             <img src="{{asset('images/fr.png')}}" alt="french">
                         </span>
-                            <input type="text" name="fr_description" id="edit-fr_description"
-                                   class="form-control" value="{{ old('fr_description') }}">
+                            <textarea type="text" name="fr_description" id="edit-fr_description"
+                                      class="form-control" value="{{ old('fr_description') }}">{{ old('fr_description') }}</textarea>
                         </div>
                     </div>
 

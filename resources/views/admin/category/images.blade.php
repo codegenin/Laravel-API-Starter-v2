@@ -111,16 +111,18 @@
                             <span class="input-group-addon">
                             <img src="{{asset('images/en.png')}}" alt="french">
                         </span>
-                                <input type="text" name="description" id="description" placeholder="Description in english"
-                                       class="form-control" value="{{ old('description') }}">
+                                <textarea type="text" name="description" id="description" placeholder="Description in english"
+                                          class="form-control" value="{{ old('description') }}"
+                                rows="10" >{{ old('description') }}</textarea>
                             </div>
                             <div class="input-group">
                             <span class="input-group-addon">
                             <img src="{{asset('images/fr.png')}}" alt="french">
                         </span>
-                                <input type="text" name="fr_description" id="fr_description"
+                                <textarea type="text" name="fr_description" id="fr_description"
                                        placeholder="Description in french"
-                                       class="form-control" value="{{ old('description') }}">
+                                          class="form-control" value="{{ old('fr_description') }}"
+                                row="10">{{ old('fr_description') }}</textarea>
                             </div>
                         </div>
 
@@ -238,16 +240,17 @@
                             <span class="input-group-addon">
                             <img src="{{asset('images/en.png')}}" alt="french">
                         </span>
-                                <input type="text" name="description" id="edit-media-description" placeholder="Description in english"
-                                       class="form-control" value="{{ old('description') }}">
+                                <textarea type="text" name="description" id="edit-media-description"
+                                          placeholder="Description in english" rows="10"
+                                          class="form-control" value="{{ old('description') }}">{{ old('description') }}</textarea>
                             </div>
                             <div class="input-group">
                             <span class="input-group-addon">
                             <img src="{{asset('images/fr.png')}}" alt="french">
                         </span>
-                                <input type="text" name="fr_description" id="edit-media-fr_description"
-                                       placeholder="Description in french"
-                                       class="form-control" value="{{ old('description') }}">
+                                <textarea type="text" name="fr_description" id="edit-media-fr_description"
+                                       placeholder="Description in french" rows="10"
+                                          class="form-control" value="{{ old('fr_description') }}">{{ old('fr_description') }}</textarea>
                             </div>
                         </div>
 
