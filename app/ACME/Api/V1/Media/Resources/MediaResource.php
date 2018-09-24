@@ -41,7 +41,7 @@ class MediaResource extends JsonResource
             ],
             'belongs_to'        => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection',
             'collection'        => ($this->model_type == "App\\Models\\Collection") ?
-                new CollectionLimitedResource($this->collection) : [],
+                $this->whenLoaded('collection', new CollectionLimitedResource($this->collection)) : [],
             'is_purchased'      => ($this->model_type == "App\\Models\\Collection") ? auth()
                 ->user()
                 ->hasPurchased($this->collection) : false,

@@ -30,7 +30,7 @@ class CollectionResource extends JsonResource
             'score'        => isset($this->score) ? $this->score : 0,
             'points'       => isset($this->points) ? $this->points : 0,
             'artist'       => isset($this->artist) ? $this->artist : '',
-            'user'         => new UserResourceLimited($this->user),
+            'user'         => $this->whenLoaded('user', new UserResourceLimited($this->user)),
             'image_count'  => $this->getMedia($this->slug)
                                    ->count(),
             'is_purchased' => auth()

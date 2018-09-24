@@ -41,7 +41,11 @@ class ListCollectionsController extends ApiResponseController
     public function run($id)
     {
         try {
-            $collections = Collection::where('category_id', Hashids::decode($id))
+            $collections = Collection::with([
+                'category',
+                'user'
+            ])
+                                     ->where('category_id', Hashids::decode($id))
                                      ->orderBy('created_at', 'desc')
                                      ->paginate();
         } catch (\Exception $e) {

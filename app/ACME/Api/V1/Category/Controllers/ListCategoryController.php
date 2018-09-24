@@ -37,7 +37,8 @@ class ListCategoryController extends ApiResponseController
      */
     public function run()
     {
-        $categories = Category::ordered()
+        $categories = Category::with('images')
+                              ->ordered()
                               ->remember(60)
                               ->get();
         
