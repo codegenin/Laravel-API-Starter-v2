@@ -70,7 +70,9 @@ class ListImagesController extends ApiResponseController
             'translations'
         ])
                            ->where('collection_name', $collection->slug)
-                           ->orderBy('created_at', 'desc')->remember(1400)
+                           ->orderBy('created_at', 'desc')
+                           ->remember(1400)
+                           ->take((!$isPurchased) ? 1 : '')
                            ->paginate($paginate);
         
         $relatedImages = $this->getRelatedImages($collection, $mainImages, $isPurchased);
@@ -103,8 +105,8 @@ class ListImagesController extends ApiResponseController
                                       $query->where('location', $mainImages[0]->location);
                                   })
                                   ->inRandomOrder()
-                                  ->limit(2)
-                                  ->paginate();
+                                  ->take(2)
+                                  ->get();
         }
         
         return $relatedImages;
