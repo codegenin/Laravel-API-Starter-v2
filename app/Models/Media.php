@@ -10,11 +10,12 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media as BaseMedia;
 use Spatie\Tags\HasTags;
+use Watson\Rememberable\Rememberable;
 
 class Media extends BaseMedia implements HasMedia
 {
     use HasMediaTrait, HasTags, SearchableTrait,
-        Translatable, LikableTrait, ViewableTrait;
+        Translatable, LikableTrait, ViewableTrait, Rememberable;
     
     public $translatedAttributes = [
         'title',

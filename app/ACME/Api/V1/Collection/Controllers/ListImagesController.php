@@ -48,7 +48,7 @@ class ListImagesController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $images = $this->retrieveImages($collection);
+        $images = $this->getImages($collection);
         
         return new MediaResourceCollection($images);
     }
@@ -57,23 +57,25 @@ class ListImagesController extends ApiResponseController
      * @param $collection
      * @return mixed
      */
-    private function retrieveImages($collection)
+    private function getImages($collection)
     {
-        $paginate = (!$isPurchased = auth()
+        $isPurchased = auth()
             ->user()
-            ->hasPurchased($collection) ? 1 : 15);
+            ->hasPurchased($collection);
+        
+        $paginate = (!$isPurchased ? 1 : 5);
         
         $mainImages = Media::with([
             'collection',
             'translations'
         ])
                            ->where('collection_name', $collection->slug)
-                           ->orderBy('created_at', 'desc')
+                           ->orderBy('created_at', 'desc')->remember(1400)
                            ->paginate($paginate);
         
-        $relatedImages = $this->relatedImages($collection, $mainImages, $isPurchased);
+        $relatedImages = $this->getRelatedImages($collection, $mainImages, $isPurchased);
         
-        return $mainImages->merge($relatedImages);
+        return ($relatedImages->count() > 0) ? $mainImages->merge($relatedImages) : $mainImages;
     }
     
     /**
@@ -82,7 +84,7 @@ class ListImagesController extends ApiResponseController
      * @param $isPurchased
      * @return mixed
      */
-    private function relatedImages($collection, $mainImages, $isPurchased)
+    private function getRelatedImages($collection, $mainImages, $isPurchased)
     {
         $relatedImages = collect();
         
@@ -101,8 +103,8 @@ class ListImagesController extends ApiResponseController
                                       $query->where('location', $mainImages[0]->location);
                                   })
                                   ->inRandomOrder()
-                                  ->take(2)
-                                  ->get();
+                                  ->limit(2)
+                                  ->paginate();
         }
         
         return $relatedImages;
