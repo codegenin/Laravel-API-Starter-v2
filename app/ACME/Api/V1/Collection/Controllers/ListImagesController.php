@@ -48,11 +48,63 @@ class ListImagesController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $images = Media::with('collection')
-                       ->where('collection_name', $collection->slug)
-                       ->orderBy('created_at', 'desc')
-                       ->paginate();
+        $images = $this->retrieveImages($collection);
         
         return new MediaResourceCollection($images);
     }
+    
+    /**
+     * @param $collection
+     * @return mixed
+     */
+    private function retrieveImages($collection)
+    {
+        $paginate = 15;
+        
+        $mainImages = Media::with([
+            'collection',
+            'translations'
+        ])
+                           ->where('collection_name', $collection->slug)
+                           ->orderBy('created_at', 'desc')
+                           ->paginate($paginate);
+        
+        $relatedImages = $this->relatedImages($collection, $mainImages);
+        
+        return $mainImages->merge($relatedImages);
+    }
+    
+    /**
+     * @param $collection
+     * @param $mainImages
+     * @return mixed
+     */
+    private function relatedImages($collection, $mainImages)
+    {
+        $relatedImages = collect();
+        
+        if (!$isPurchased = auth()
+                ->user()
+                ->hasPurchased($collection) AND $mainImages->count() > 0) {
+            
+            $relatedImages = Media::with([
+                'collection',
+                'translations'
+            ])
+                                  ->where('collection_name', '!=', $collection->slug)
+                                  ->where('model_type', '!=', 'App\Models\Category')
+                                  ->whereHas('collection.translations', function ($query) use ($mainImages) {
+                                      $query->whereOr('time_period', $mainImages[0]->collection->time_period);
+                                  })
+                                  ->whereHas('translations', function ($query) use ($mainImages) {
+                                      $query->where('location', $mainImages[0]->location);
+                                  })
+                                  ->inRandomOrder()
+                                  ->take(2)
+                                  ->get();
+        }
+        
+        return $relatedImages;
+    }
+    
 }
