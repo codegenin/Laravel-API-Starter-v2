@@ -105,7 +105,7 @@ class ListImagesController extends ApiResponseController
                                       $query->where('location', $mainImages[0]->location);
                                   })
                                   ->inRandomOrder()
-                                  ->take(2)
+                                  ->take(3)
                                   ->get();
         }
         
