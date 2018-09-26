@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\LikableTrait;
+use App\Traits\ReportableTrait;
 use App\Traits\ViewableTrait;
 use Dimsav\Translatable\Translatable;
 use Nicolaslopezj\Searchable\SearchableTrait;
@@ -15,7 +16,7 @@ use Watson\Rememberable\Rememberable;
 class Media extends BaseMedia implements HasMedia
 {
     use HasMediaTrait, HasTags, SearchableTrait,
-        Translatable, LikableTrait, ViewableTrait, Rememberable;
+        Translatable, LikableTrait, ViewableTrait, Rememberable, ReportableTrait;
     
     public $translatedAttributes = [
         'title',

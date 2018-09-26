@@ -83,17 +83,15 @@ class RouteServiceProvider extends ServiceProvider
             #'namespace'  => $this->namespace,
             'prefix'     => LaravelLocalization::setLocale() . '/api',
         ], function ($router) {
+    
             require base_path('routes/api.php');
-            require base_path('routes/api/v1/AuthenticationRoutes.php');
-            require base_path('routes/api/v1/UserRoutes.php');
-            require base_path('routes/api/v1/CategoryRoutes.php');
-            require base_path('routes/api/v1/MediaRoutes.php');
-            require base_path('routes/api/v1/CollectionRoutes.php');
-            require base_path('routes/api/v1/FavoriteRoutes.php');
-            require base_path('routes/api/v1/SearchRoutes.php');
-            require base_path('routes/api/v1/PurchaseRoutes.php');
-            require base_path('routes/api/v1/LikeRoutes.php');
-            require base_path('routes/api/v1/SettingRoutes.php');
+            
+            // Loop to all api routes available
+            foreach(scandir(base_path('routes/api/v1/')) as $file) {
+                if(is_file($filePath = base_path("routes/api/v1/{$file}"))) {
+                    require $filePath;
+                }
+            }
         });
     }
     
@@ -115,16 +113,13 @@ class RouteServiceProvider extends ServiceProvider
             ],
             'prefix'     => LaravelLocalization::setLocale() . '/admin',
         ], function ($router) {
-            require base_path('routes/admin/AuthenticationRoutes.php');
-            require base_path('routes/admin/AdminRoutes.php');
-            require base_path('routes/admin/CategoryRoutes.php');
-            require base_path('routes/admin/CollectionRoutes.php');
-            require base_path('routes/admin/MediaRoutes.php');
-            require base_path('routes/admin/TagRoutes.php');
-            require base_path('routes/admin/ImportRoutes.php');
-            require base_path('routes/admin/PriceRoutes.php');
-            require base_path('routes/admin/UserRoutes.php');
-            require base_path('routes/admin/SettingRoutes.php');
+    
+            // Loop to all api routes available
+            foreach(scandir(base_path('routes/admin/')) as $file) {
+                if(is_file($filePath = base_path("routes/admin/{$file}"))) {
+                    require $filePath;
+                }
+            }
         });
     }
 }
