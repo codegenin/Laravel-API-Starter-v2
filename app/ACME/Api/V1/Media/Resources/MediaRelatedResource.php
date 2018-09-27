@@ -9,7 +9,7 @@ use App\Traits\MediaTraits;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Vinkla\Hashids\Facades\Hashids;
 
-class MediaResource extends JsonResource
+class MediaRelatedResource extends JsonResource
 {
     use MediaTraits;
     
