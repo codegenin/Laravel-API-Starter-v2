@@ -35,6 +35,11 @@ class AdminMenuServiceProvider extends ServiceProvider
                 'icon' => 'dollar',
             ]);
             $event->menu->add([
+                'text' => trans('label.reported'),
+                'url'  => LaravelLocalization::setLocale() . '/admin/reports',
+                'icon' => 'exclamation',
+            ]);
+            $event->menu->add([
                 'text' => trans('label.users'),
                 'url'  => LaravelLocalization::setLocale() . '/admin/users',
                 'icon' => 'users',

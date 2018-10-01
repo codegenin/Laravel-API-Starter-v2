@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\ReportabilityTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Report extends Model
 {
+    use HasMediaTrait, ReportabilityTrait;
+    
     /**
      * The table associated with the model.
      *
@@ -28,7 +33,7 @@ class Report extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function likable()
+    public function reportable()
     {
         return $this->morphTo();
     }
