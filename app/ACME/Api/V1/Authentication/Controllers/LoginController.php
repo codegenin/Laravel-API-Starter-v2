@@ -4,6 +4,7 @@ namespace App\ACME\Api\V1\Authentication\Controllers;
 
 use App\ACME\Api\V1\Authentication\Requests\LoginRequest;
 use App\Events\AuthLoginEventHandler;
+use App\Http\Controllers\ApiResponseController;
 use Hashids\Hashids;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tymon\JWTAuth\JWTAuth;
@@ -12,7 +13,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Auth;
 
-class LoginController extends Controller
+class LoginController extends ApiResponseController
 {
     /**
      * @apiGroup           Authentication
@@ -54,11 +55,11 @@ class LoginController extends Controller
                          ->attempt($credentials);
             
             if (!$token) {
-                throw new AccessDeniedHttpException();
+                throw new AccessDeniedHttpException(trans('auth.failed'));
             }
             
         } catch (JWTException $e) {
-            throw new HttpException(500);
+            return $this->responseWithError(trans('auth.exception'));
         }
         
         // Checks if user is active
@@ -66,7 +67,7 @@ class LoginController extends Controller
                     ->authenticate($token);
         
         if (!$user->verified) {
-            throw new AccessDeniedHttpException('Account is disabled! please check your email to activate your account.');
+            throw new AccessDeniedHttpException(trans('auth.disabled'));
         }
         
         event(new AuthLoginEventHandler($user));
