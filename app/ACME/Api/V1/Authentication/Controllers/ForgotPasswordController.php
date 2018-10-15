@@ -19,10 +19,9 @@ class ForgotPasswordController extends Controller
      * @apiVersion         1.0.0
      *
      * @apiParam {String} email unique email of the user
-     * @apiParam {String} password at least 6 characters
      *
      * @apiSuccessExample {json} Success-Response:
-     *                     {
+     *                     
      * {
      * "status": "ok"
      * }
