@@ -31,7 +31,7 @@ class ForgotPasswordController extends Controller
         $user = User::where('email', '=', $request->get('email'))->first();
 
         if(!$user) {
-            throw new NotFoundHttpException(trans('password.user'));
+            throw new NotFoundHttpException(trans('passwords.user'));
         }
 
         $broker = $this->getPasswordBroker();
@@ -43,7 +43,7 @@ class ForgotPasswordController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => trans('password.sent')
+            'message' => trans('passwords.sent')
         ], 200);
     }
 
