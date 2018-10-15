@@ -34,7 +34,7 @@ class ResendEmailConfirmationController extends Controller
                     ->first();
         
         if (!$user) {
-            throw new NotFoundHttpException();
+            throw new NotFoundHttpException(trans('auth.failed'));
         }
         
         // Send verification email
