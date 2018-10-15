@@ -38,7 +38,7 @@ class SocialAuthenticationController extends Controller
      *
      * @apiSuccessExample {json} Success-Response:
      *{
-     * "status": "ok",
+     * "status": true,
      * "token":
      * "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnlveW9naS5vby9hcGkvYXV0aC9zb2NpYWwiLCJpYXQiOjE1MjgwMzEwMTcsImV4cCI6MTUyODAzNDYxNywibmJmIjoxNTI4MDMxMDE3LCJqdGkiOiJZSDlOWHRNeWNiQkFaMm5ZIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.iBP8LY555D-acykoIUPmYvEG1e20iFr2vAqAqoeL4qo",
      * "expires_in": 3600,

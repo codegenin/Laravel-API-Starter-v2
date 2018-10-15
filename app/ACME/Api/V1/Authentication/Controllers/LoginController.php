@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @apiSuccessExample {json} Success-Response:
      *                     {
-     * "status": "ok",
+     * "status": true,
      * "token":
      * "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnlveW9naS5vby9hcGkvYXV0aC9sb2dpbiIsImlhdCI6MTUyNzY3ODg2NiwiZXhwIjoxNTI3NjgyNDY2LCJuYmYiOjE1Mjc2Nzg4NjYsImp0aSI6IklmdlpQbHIwcGJoUGFlcEoiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.xXrwVH9ggT1gx1iir6pXT8Jd0Tyw6Q1PIFK4VICSq8Q",
      * "expires_in": 3600,
@@ -37,7 +37,7 @@ class LoginController extends Controller
      *
      * @apiErrorExample {json} Error-Response:
      *                     {
-     * "status": "error",
+     * "status": false,
      * "message": "403 Forbidden",
      * "status_code": 403
      * }

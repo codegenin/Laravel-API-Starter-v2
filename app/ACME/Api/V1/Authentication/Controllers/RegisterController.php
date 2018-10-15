@@ -26,7 +26,7 @@ class RegisterController extends Controller
      * @apiParam {String} role artist | patron
      *
      * @apiSuccessExample {json} Success-Response:
-     *                     { "status": "ok"}
+     *                     { "status": true}
      */
     public function register(SignUpRequest $request, JWTAuth $JWTAuth)
     {

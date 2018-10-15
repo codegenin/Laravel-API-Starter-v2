@@ -21,9 +21,9 @@ class ForgotPasswordController extends Controller
      * @apiParam {String} email unique email of the user
      *
      * @apiSuccessExample {json} Success-Response:
-     *                     
+     *
      * {
-     * "status": "ok"
+     * "status": true
      * }
      */
     public function sendResetEmail(ForgotPasswordRequest $request)

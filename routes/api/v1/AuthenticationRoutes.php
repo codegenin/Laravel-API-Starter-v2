@@ -11,6 +11,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('recovery',
         'App\\ACME\\Api\\V1\\Authentication\\Controllers\\ForgotPasswordController@sendResetEmail');
     Route::post('reset', 'App\\ACME\\Api\\V1\\Authentication\\Controllers\\ResetPasswordController@resetPassword');
+    Route::post('resend-confirmation', 'App\\ACME\\Api\\V1\\Authentication\\Controllers\\ResendEmailConfirmationController@resendConfirmationEmail');
     
     Route::post('logout', 'App\\ACME\\Api\\V1\\Authentication\\Controllers\\LogoutController@logout');
     Route::post('refresh', 'App\\ACME\\Api\\V1\\Authentication\\Controllers\\RefreshController@refresh');
