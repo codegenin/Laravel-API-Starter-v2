@@ -13,7 +13,7 @@ class ResendEmailConfirmationController extends Controller
 {
     /**
      * @apiGroup           Authentication
-     * @apiName            resendConfirmationEmail
+     * @apiName            resendConfirmation
      * @api                {post} /api/auth/resend-confirmation
      * @apiDescription     Resend user email confirmation
      * @apiVersion         1.0.0
