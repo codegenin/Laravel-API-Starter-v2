@@ -13,7 +13,7 @@ class ResendEmailConfirmationController extends Controller
 {
     /**
      * @apiGroup           Authentication
-     * @apiName            resendConfirmation
+     * @apiName            resendEmailConfirmation
      * @api                {post} /api/auth/resend-confirmation
      * @apiDescription     Resend user email confirmation
      * @apiVersion         1.0.0
@@ -26,8 +26,6 @@ class ResendEmailConfirmationController extends Controller
      * "status": true,
      * "message": "A verification mail has been sent into your email account!"
      * }
-     * @param ForgotPasswordRequest $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function resendConfirmationEmail(ForgotPasswordRequest $request)
     {
