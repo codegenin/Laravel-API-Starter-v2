@@ -3,7 +3,7 @@
 namespace App\ACME\Api\V1\Authentication\Controllers;
 
 use App\ACME\Api\V1\Authentication\Requests\ForgotPasswordRequest;
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -11,6 +11,22 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ForgotPasswordController extends Controller
 {
+    /**
+     * @apiGroup           Authentication
+     * @apiName            forgetPassword
+     * @api                {post} /api/auth/recovery Forgot Password
+     * @apiDescription     Forgot user password
+     * @apiVersion         1.0.0
+     *
+     * @apiParam {String} email unique email of the user
+     * @apiParam {String} password at least 6 characters
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *                     {
+     * {
+     * "status": "ok"
+     * }
+     */
     public function sendResetEmail(ForgotPasswordRequest $request)
     {
         $user = User::where('email', '=', $request->get('email'))->first();
