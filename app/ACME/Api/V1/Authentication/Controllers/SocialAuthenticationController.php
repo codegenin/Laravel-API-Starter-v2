@@ -65,7 +65,7 @@ class SocialAuthenticationController extends Controller
             
             if ($exists) {
                 return response()->json([
-                    'status'  => 'error',
+                    'status'  => false,
                     'message' => 'User already exist using a different provider!'
                 ]);
             }
