@@ -3,6 +3,7 @@
 namespace App\ACME\Api\V1\Authentication\Controllers;
 
 use App\ACME\Api\V1\Authentication\Requests\LoginRequest;
+use App\ACME\Api\V1\User\Resource\UserResource;
 use App\Events\AuthLoginEventHandler;
 use App\Http\Controllers\ApiResponseController;
 use Hashids\Hashids;
@@ -74,15 +75,12 @@ class LoginController extends ApiResponseController
         
         return response()
             ->json([
-                'status'     => true,
-                'token'      => $token,
-                'expires_in' => Auth::guard()
-                                    ->factory()
-                                    ->getTTL() * 60,
-                'id'         => \Vinkla\Hashids\Facades\Hashids::encode($user->id),
-                'name'       => $user->name,
-                'role'       => $user->role,
-                'is_new'     => $user->is_new
+                'status'           => true,
+                'token'            => $token,
+                'expires_in'       => Auth::guard()
+                                          ->factory()
+                                          ->getTTL() * 60,
+                'user_information' => new UserResource($user)
             ]);
     }
 }
