@@ -4,6 +4,7 @@ namespace App\ACME\Api\V1\Authentication\Controllers;
 
 use App\ACME\Api\V1\Authentication\Requests\SocialAuthenticationRequest;
 use App\ACME\Api\V1\User\Repositories\UserRepository;
+use App\ACME\Api\V1\User\Resource\UserResource;
 use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -72,15 +73,16 @@ class SocialAuthenticationController extends Controller
             
             // Create User
             $user = $this->userRepository->create([
-                'name'               => $request->name,
-                'email'              => $request->email,
-                'password'           => bcrypt($request->email . '123'),
-                'social_id'          => $request->social_id,
-                'provider'           => $request->provider,
+                'name'      => $request->name,
+                'email'     => $request->email,
+                'password'  => bcrypt($request->email . '123'),
+                'social_id' => $request->social_id,
+                'provider'  => $request->provider,
                 /*'avatar'             => $request->avatar,
                 'avatar_original'    => $request->avata,
                 'social_profile_url' => $request->social_profile,*/
-                'verified'           => 1
+                'verified'  => 1,
+                'points'    => 1000
             ]);
         }
         
@@ -89,14 +91,12 @@ class SocialAuthenticationController extends Controller
         
         return response()
             ->json([
-                'status'     => true,
-                'token'      => $token,
-                'expires_in' => Auth::guard()
-                                    ->factory()
-                                    ->getTTL() * 60,
-                'id'         => \Vinkla\Hashids\Facades\Hashids::encode($user->id),
-                'name'       => $user->name,
-                'role'       => $user->role,
+                'status'           => true,
+                'token'            => $token,
+                'expires_in'       => Auth::guard()
+                                          ->factory()
+                                          ->getTTL() * 60,
+                'user_information' => new UserResource($user)
             ]);
     }
 }
