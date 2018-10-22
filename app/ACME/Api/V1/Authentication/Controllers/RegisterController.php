@@ -7,6 +7,7 @@ use App\ACME\Api\V1\Authentication\Requests\SignUpRequest;
 use App\Http\Controllers\ApiResponseController;
 use App\Jobs\SendVerificationEmail;
 use Config;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -36,7 +37,7 @@ class RegisterController extends ApiResponseController
         $data = [
             'name'               => $request->name,
             'email'              => $request->email,
-            'password'           => $request->password,
+            'password'           => Hash::make($request->password),
             'verification_token' => base64_encode($request->email),
             'points'             => 1000
         ];

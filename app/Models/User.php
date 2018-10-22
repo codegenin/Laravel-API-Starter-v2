@@ -75,17 +75,6 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     }
     
     /**
-     * Automatically creates hash for the user password.
-     *
-     * @param  string $value
-     * @return void
-     */
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
-    
-    /**
      * Automatically transforms name to lower case
      * @param $value
      */

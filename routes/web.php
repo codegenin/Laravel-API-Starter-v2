@@ -28,9 +28,9 @@ Route::post('reset_password/update',
     'App\\ACME\\Web\\Authentication\\Controllers\\ResetPasswordController@reset')
      ->name('password.update');
 
-Route::post('reset_password/success',
+Route::get('reset/success',
     'App\\ACME\\Web\\Authentication\\Controllers\\ResetPasswordController@resetSuccess')
-     ->name('password.update');
+     ->name('password.success');
 
 Route::get('verify/{token}', 'App\\ACME\\Web\\Authentication\\Controllers\\VerificationController@verify')
      ->name('verify.user');
