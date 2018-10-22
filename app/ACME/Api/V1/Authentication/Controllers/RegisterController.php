@@ -41,7 +41,7 @@ class RegisterController extends Controller
         ];
         
         if (!$user = $userRepo->create($data)) {
-            throw new HttpException(500);
+            throw new HttpException(trans('auth.registered'));
         }
         
         // Send verification email
