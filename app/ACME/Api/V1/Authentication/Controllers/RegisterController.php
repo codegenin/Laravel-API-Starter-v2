@@ -4,13 +4,14 @@ namespace App\ACME\Api\V1\Authentication\Controllers;
 
 use App\ACME\Api\V1\Authentication\Repositories\UserRepository;
 use App\ACME\Api\V1\Authentication\Requests\SignUpRequest;
+use App\Http\Controllers\ApiResponseController;
 use App\Jobs\SendVerificationEmail;
 use Config;
 use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class RegisterController extends Controller
+class RegisterController extends ApiResponseController
 {
     /**
      * @apiGroup           Authentication
@@ -40,8 +41,14 @@ class RegisterController extends Controller
             'points'             => 1000
         ];
         
+        $exists = $userRepo->findByColumnsFirst(['email' => $request->email]);
+        
+        if ($exists) {
+            return $this->responseWithError(trans('auth.registered'));
+        }
+        
         if (!$user = $userRepo->create($data)) {
-            throw new HttpException(trans('auth.registered'));
+            throw new HttpException(trans('auth.exception'));
         }
         
         // Send verification email
