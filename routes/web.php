@@ -20,16 +20,21 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
     echo $image;
 });*/
 
-Route::get('reset_password/{token}', [
-    'as' => 'password.reset',
-    function ($token) {
-        // implement your reset password route here!
-        ##echo 'test';
-    }
-]);
+Route::get('reset_password/{token}',
+    'App\\ACME\\Web\\Authentication\\Controllers\\ResetPasswordController@showResetForm')
+     ->name('password.reset');
+
+Route::post('reset_password/update',
+    'App\\ACME\\Web\\Authentication\\Controllers\\ResetPasswordController@reset')
+     ->name('password.update');
+
+Route::post('reset_password/success',
+    'App\\ACME\\Web\\Authentication\\Controllers\\ResetPasswordController@resetSuccess')
+     ->name('password.update');
 
 Route::get('verify/{token}', 'App\\ACME\\Web\\Authentication\\Controllers\\VerificationController@verify')
      ->name('verify.user');
+
 
 Route::get('/', function () {
     return view('welcome');
