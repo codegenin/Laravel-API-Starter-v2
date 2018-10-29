@@ -19,9 +19,9 @@ class CreateImportRecordsTable extends Migration
                   ->nullable();
             $table->string('fr_title')
                   ->nullable();
-            $table->string('en_complete_title')
+            $table->text('en_complete_title')
                   ->nullable();
-            $table->string('fr_complete_title')
+            $table->text('fr_complete_title')
                   ->nullable();
             $table->string('artist')
                   ->nullable();

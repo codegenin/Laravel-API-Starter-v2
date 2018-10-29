@@ -22,6 +22,8 @@ class ImportService
             $media->category_id                       = $categoryId;
             $media->user_id                           = 1;
             $media->museum                            = $record->museum;
+            $media->translateOrNew('en')->title_short = $record->en_title;
+            $media->translateOrNew('fr')->title_short = $record->fr_title;
             $media->translateOrNew('en')->title       = $record->en_complete_title;
             $media->translateOrNew('fr')->title       = $record->fr_complete_title;
             $media->translateOrNew('en')->location    = $record->en_location;

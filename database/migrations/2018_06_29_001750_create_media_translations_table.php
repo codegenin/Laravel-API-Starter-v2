@@ -16,6 +16,10 @@ class CreateMediaTranslationsTable extends Migration
         Schema::create('media_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('media_id');
+            $table->string('title_short')
+                  ->nullable();
+            $table->text('description_short')
+                  ->nullable();
             $table->string('title')
                   ->nullable();
             $table->text('description')

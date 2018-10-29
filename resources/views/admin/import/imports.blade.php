@@ -3,6 +3,7 @@
     <tr class="text-bold">
         <td style="width: 10px;">{{__('label.id')}}</td>
         <td style="width: 10px;">{{__('label.file')}}</td>
+        <td style="width: 10px;">{{__('label.file')}}</td>
         <td style="width: 10px;">{{__('label.total_rows')}}</td>
         <td style="width: 10px;">{{__('label.import_count')}}</td>
         <td style="width: 10px;">{{__('label.status')}}</td>
