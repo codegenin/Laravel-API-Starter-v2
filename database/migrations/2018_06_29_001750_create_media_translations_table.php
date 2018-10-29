@@ -18,9 +18,7 @@ class CreateMediaTranslationsTable extends Migration
             $table->unsignedInteger('media_id');
             $table->string('title_short')
                   ->nullable();
-            $table->text('description_short')
-                  ->nullable();
-            $table->string('title')
+            $table->text('title')
                   ->nullable();
             $table->text('description')
                   ->nullable();
