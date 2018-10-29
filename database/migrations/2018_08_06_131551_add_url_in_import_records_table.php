@@ -14,7 +14,7 @@ class AddUrlInImportRecordsTable extends Migration
     public function up()
     {
         Schema::table('import_records', function (Blueprint $table) {
-            $table->string('url')
+            $table->text('url')
                   ->nullable()
                   ->after('museum');
         });

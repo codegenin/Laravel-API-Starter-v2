@@ -14,7 +14,7 @@ class AddUrlInMediaTable extends Migration
     public function up()
     {
         Schema::table('media', function (Blueprint $table) {
-            $table->string('url')
+            $table->text('url')
                   ->nullable()
                   ->after('order_column');
         });
