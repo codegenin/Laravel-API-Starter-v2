@@ -80,7 +80,7 @@ class CategoriesTableSeeder extends Seeder
             $category->save();
             
             // Create sample cover
-            $category->addMediaFromUrl('https://s3.amazonaws.com/yyg-test-collections/sample.jpg')
+            $category->addMediaFromUrl('https://s3.eu-west-2.amazonaws.com/yoyogi-test-collections/sample.jpg')
                      ->toMediaCollection('category');
         }
     }
