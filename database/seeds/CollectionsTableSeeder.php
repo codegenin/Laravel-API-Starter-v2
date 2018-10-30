@@ -29,13 +29,13 @@ class CollectionsTableSeeder extends Seeder
                 $collection->save();
                 
                 // Create sample cover
-                $collection->addMediaFromUrl('https://s3.amazonaws.com/yyg-test-collections/sample.jpg')
+                $collection->addMediaFromUrl('https://s3.eu-west-2.amazonaws.com/yoyogi-test-collections/sample.jpg')
                            ->toMediaCollection('collection');
                 
                 // Create sample images
                 for ($i = 1; $i <= 3; $i++) {
                     
-                    $media                                    = $collection->addMediaFromUrl('https://s3.amazonaws.com/yyg-test-collections/sample.jpg')
+                    $media                                    = $collection->addMediaFromUrl('https://s3.eu-west-2.amazonaws.com/yoyogi-test-collections/sample.jpg')
                                                                            ->toMediaCollection($collection->slug);
                     $media->category_id                       = $collection->category_id;
                     $media->user_id                           = 1;
