@@ -29,7 +29,7 @@ class SetCollectionAsFavoriteController extends ApiResponseController
      * @apiGroup           Favorite
      * @apiName            setCollectionAsFavorite
      * @api                {get} /api/favorite/{id}/collection Set Collection As Favorite
-     * @apiDescription     Set a collection as user favorite
+     * @apiDescription     Set a collection as user favorite - send the same request to toggle the favorite to on/off
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.

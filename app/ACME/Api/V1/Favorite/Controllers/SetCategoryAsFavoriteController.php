@@ -29,7 +29,7 @@ class SetCategoryAsFavoriteController extends ApiResponseController
      * @apiGroup           Favorite
      * @apiName            setCategoryAsFavorite
      * @api                {get} /api/favorite/{id}/category Set Category As Favorite
-     * @apiDescription     Set a category as user favorite
+     * @apiDescription     Set a category as user favorite - send the same request to toggle the favorite to on/off
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.

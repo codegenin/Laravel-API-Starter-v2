@@ -30,7 +30,7 @@ class SetArtistAsFavoriteController extends ApiResponseController
      * @apiGroup           Favorite
      * @apiName            setArtistAsFavorite
      * @api                {get} /api/favorite/{id}/artist Set Artist As Favorite
-     * @apiDescription     Set a artist as user favorite
+     * @apiDescription     Set a artist as user favorite - send same request to toggle favorite to on/off
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
