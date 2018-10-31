@@ -27,11 +27,11 @@ class AdminCollectionResource extends JsonResource
             'fr_title'       => isset($this->translate('fr')->title) ? $this->translate('fr')->title : '',
             'en_description' => isset($this->translate('en')->description) ? $this->translate('en')->description : '',
             'fr_description' => isset($this->translate('fr')->description) ? $this->translate('fr')->description : '',
-            'is_public'      => $this->is_public,
             'time_period'    => isset($this->translate('en')->time_period) ? $this->translate('en')->time_period : '',
             'fr_time_period' => isset($this->translate('fr')->time_period) ? $this->translate('fr')->time_period : '',
             'artists'        => $this->artists,
             'points'         => $this->points,
+            'is_public'      => $this->is_public,
             'covers'         => $this->getMedialUrls($this, 'category'),
         ];
     }

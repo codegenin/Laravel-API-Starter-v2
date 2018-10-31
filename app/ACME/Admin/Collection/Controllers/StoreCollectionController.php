@@ -28,7 +28,7 @@ class StoreCollectionController extends Controller
     
     public function run(StoreCollectionRequest $request)
     {
-        $collection                                    = new Collection();
+        $collection = new Collection();
         
         $collection->translateOrNew('en')->title       = $request->title;
         $collection->translateOrNew('fr')->title       = $request->fr_title;
@@ -41,6 +41,8 @@ class StoreCollectionController extends Controller
         $collection->slug        = $request->title;
         $collection->artist      = $request->artist;
         $collection->points      = $request->points;
+        $collection->is_public   = $request->is_public;
+        
         $collection->save();
         
         if ($request->has('file')) {

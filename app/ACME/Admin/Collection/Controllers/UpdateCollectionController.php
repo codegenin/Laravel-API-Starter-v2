@@ -40,6 +40,7 @@ class UpdateCollectionController extends Controller
         $collection->slug        = $request->title;
         $collection->artist      = $request->artist;
         $collection->points      = $request->points;
+        $collection->is_public   = $request->is_public;
         $collection->save();
         
         if ($request->has('file')) {

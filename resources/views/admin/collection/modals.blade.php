@@ -90,6 +90,15 @@
                                value="{{ old('points') }}">
                     </div>
 
+                    <!-- Set as public? Form Input -->
+                    <div class="form-group">
+                        <label for="is-public">{{__('label.set_public')}}</label>
+                        <select name="is_public" id="is-public" class="form-control">
+                            <option value="1">YES</option>
+                            <option value="0">NO</option>
+                        </select>
+                    </div>
+
                     <!-- Image URL: Form Input -->
                     <div class="form-group">
                         <label for="media_id">{{trans('label.cover_image')}}</label>
@@ -205,6 +214,15 @@
                         <input type="number" name="points" id="edit-points"
                                placeholder="Points required to unlock the collection" class="form-control"
                                value="{{ old('points') }}">
+                    </div>
+
+                    <!-- Set as public? Form Input -->
+                    <div class="form-group">
+                        <label for="is_public">{{__('label.set_public')}}</label>
+                        <select name="is_public" id="edit-is-public" class="form-control">
+                            <option value="1">YES</option>
+                            <option value="0">NO</option>
+                        </select>
                     </div>
 
                     <!-- Image URL: Form Input -->
