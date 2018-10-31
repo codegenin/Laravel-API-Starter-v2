@@ -29,6 +29,7 @@ class CollectionResource extends JsonResource
             'time_period'  => isset($this->time_period) ? $this->time_period : '',
             'score'        => isset($this->score) ? $this->score : 0,
             'points'       => isset($this->points) ? $this->points : 0,
+            'public'       => ($this->is_public == 1) ? 'Yes' : 'No',
             'artist'       => isset($this->artist) ? $this->artist : '',
             'user'         => $this->whenLoaded('user', new UserResourceLimited($this->user)),
             'image_count'  => $this->getMedia($this->slug)
@@ -37,7 +38,8 @@ class CollectionResource extends JsonResource
                 ->user()
                 ->hasPurchased($this),
             'created'      => $this->created_at->diffForHumans(),
-            'days_ago'     => ($this->created_at->diffInDays() == 0) ? 1 . ' j' : $this->created_at->diffInDays() . ' j',
+            'days_ago'     => ($this->created_at->diffInDays() == 0) ? 1 . ' j' :
+                $this->created_at->diffInDays() . ' j',
             'covers'       => $this->getMedialUrls($this, 'collection'),
         ];
     }
