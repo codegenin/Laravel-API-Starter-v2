@@ -4,7 +4,6 @@ namespace App\Traits;
 
 use App\Models\Report;
 
-
 trait ReportabilityTrait
 {
     /**

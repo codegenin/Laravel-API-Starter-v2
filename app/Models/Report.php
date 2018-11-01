@@ -9,8 +9,6 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Report extends Model
 {
-    use HasMediaTrait, ReportabilityTrait;
-    
     /**
      * The table associated with the model.
      *

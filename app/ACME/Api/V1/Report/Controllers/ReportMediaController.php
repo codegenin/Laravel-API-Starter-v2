@@ -5,8 +5,11 @@ namespace App\ACME\Api\V1\Report\Controllers;
 use App\ACME\Api\V1\Media\Repositories\MediaRepository;
 use App\ACME\Api\V1\User\Repositories\UserRepository;
 use App\Http\Controllers\ApiResponseController;
+use App\Models\Admin;
+use App\Notifications\Report\MediaReported;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Notification;
 use Vinkla\Hashids\Facades\Hashids;
 
 class ReportMediaController extends ApiResponseController
@@ -46,7 +49,7 @@ class ReportMediaController extends ApiResponseController
     public function run($id)
     {
         $media = $this->mediaRepository->findOrFail(Hashids::decode($id));
-    
+        
         // Checks if the media has been liked already
         if (auth()
             ->user()
@@ -58,8 +61,11 @@ class ReportMediaController extends ApiResponseController
         auth()
             ->user()
             ->addReport($media);
-        
     
+        // Notify support
+        Notification::route('mail', 'support@arture.app')
+                    ->notify(new MediaReported($media, auth()->user()));
+        
         return $this->responseWithSuccess(trans('report.success'));
     }
 }
