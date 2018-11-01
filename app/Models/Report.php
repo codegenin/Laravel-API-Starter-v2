@@ -40,4 +40,11 @@ class Report extends Model
     {
         return $this->belongsTo(Config::get('auth.providers.users.model'));
     }
+    
+    public function allReported($class)
+    {
+        return $this->where('reportable_type', $class)
+                    ->with(['reportable', 'user'])
+                    ->paginate();
+    }
 }

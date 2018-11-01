@@ -83,4 +83,11 @@ return array (
 ',
   'google_id' => 'Google Id',
   'price' => 'Price',
+  'image' => 'Image',
+  'new_report' => 'Nouveau rapport
+',
+  'reported' => 'Signalé',
+  'reported_by' => 'Rapporté par',
+  'reports' => 'Rapports',
+  'type' => 'Type',
 );

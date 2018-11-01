@@ -76,4 +76,10 @@ return array (
   'setting_name' => 'Setting Name',
   'price' => 'Price',
   'google_id' => 'Google Id',
+  'reported' => 'Reported',
+  'reports' => 'Reports',
+  'type' => 'Type',
+  'image' => 'Image',
+  'reported_by' => 'Reported By',
+  'new_report' => 'New Report',
 );

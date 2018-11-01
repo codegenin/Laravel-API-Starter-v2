@@ -39,13 +39,6 @@ trait ReportabilityTrait
                     });
     }
     
-    public function allReported($class)
-    {
-        return $this->where('reportable_type', $class)
-                    ->with(['reportable', 'user'])
-                    ->paginate();
-    }
-    
     /**
      * Add the object to the User report.
      * The Model needs to have the reportable trait
