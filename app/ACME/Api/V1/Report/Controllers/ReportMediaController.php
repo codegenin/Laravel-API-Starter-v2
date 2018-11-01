@@ -55,7 +55,7 @@ class ReportMediaController extends ApiResponseController
             ->user()
             ->hasReported($media)) {
         
-            return $this->responseWithSuccess(trans('report.success'));
+            return $this->responseWithSuccess(trans('report.success_already'));
         }
     
         auth()
