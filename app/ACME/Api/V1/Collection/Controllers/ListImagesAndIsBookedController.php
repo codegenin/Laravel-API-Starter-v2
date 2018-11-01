@@ -68,7 +68,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
         return response()->json([
             'status'            => true,
             'collection_info'   => new CollectionResource($collection),
-            'collection_images' => new MediaResourceCollection($images),
+            'collection_images' => MediaResource::collection($images),
             'is_booked'         => auth()
                 ->user()
                 ->isBooked($media)
@@ -85,7 +85,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
             ->user()
             ->hasPurchased($collection);
         
-        $paginate = (!$isPurchased ? 1 : 5);
+        $paginate = (!$isPurchased ? 1 : 1000);
         
         $mainImages = Media::with([
             'collection',
