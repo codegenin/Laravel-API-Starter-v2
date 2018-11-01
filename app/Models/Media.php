@@ -19,6 +19,7 @@ class Media extends BaseMedia implements HasMedia
         Translatable, LikableTrait, ViewableTrait, Rememberable, ReportableTrait;
     
     public $translatedAttributes = [
+        'title_short',
         'title',
         'description',
         'location',
