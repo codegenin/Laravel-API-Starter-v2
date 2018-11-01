@@ -68,7 +68,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
         return response()->json([
             'status'            => true,
             'collection_info'   => new CollectionResource($collection),
-            'collection_images' => MediaResource::collection($images),
+            'collection_images' => MediaResourceLimited::collection($images),
             'is_booked'         => auth()
                 ->user()
                 ->isBooked($media)
