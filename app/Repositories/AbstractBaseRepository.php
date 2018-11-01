@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 abstract class AbstractBaseRepository
 {
@@ -46,9 +47,13 @@ abstract class AbstractBaseRepository
      */
     public function find($id, $with = [], $columns = ['*'])
     {
-        return $this->model->with($with)
-                           ->where('id', $id)
-                           ->first($columns);
+        try {
+            return $this->model->with($with)
+                               ->where('id', $id)
+                               ->first($columns);
+        } catch (\Exception $e) {
+            throw new NotFoundResourceException(trans('common.not.found'));
+        }
     }
     
     public function findOrFail($id, $with = [], $columns = ['*'])
@@ -58,7 +63,7 @@ abstract class AbstractBaseRepository
                                ->where('id', $id)
                                ->first($columns);
         } catch (\Exception $e) {
-            throw new \Exception($e);
+            throw new NotFoundResourceException(trans('common.not.found'));
         }
         
     }

@@ -55,15 +55,9 @@ class ListImagesAndIsBookedController extends ApiResponseController
      */
     public function run($id, $media)
     {
-        if (!$collection = $this->collectionRepository->find(Hashids::decode($id))) {
-            return $this->responseWithError(trans('common.not.found'));
-        }
-        
-        if (!$media = $this->mediaRepository->find(Hashids::decode($media))) {
-            return $this->responseWithError(trans('common.not.found'));
-        }
-        
-        $images = $this->getImages($collection);
+        $collection = $this->collectionRepository->find(Hashids::decode($id));
+        $media      = $this->mediaRepository->find(Hashids::decode($media));
+        $images     = $this->getImages($collection);
         
         //return new MediaResourceCollection($images);
         return response()->json([
