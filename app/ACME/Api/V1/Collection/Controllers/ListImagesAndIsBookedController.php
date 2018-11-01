@@ -41,14 +41,15 @@ class ListImagesAndIsBookedController extends ApiResponseController
     
     /**
      * @apiGroup           Collection
-     * @apiName            listImages
-     * @api                {post} /api/collection/{id}/images List Images
-     * @apiDescription     Retrieve all images of a collection
+     * @apiName            listImagesAndIsBooked
+     * @api                {post} /api/collection/{id}/info/{image}/booked Collection Info and Image Is Booked
+     * @apiDescription     Retrieve collection information and verify if image is booked
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {int} collection_id the encoded id of a collection
+     * @apiParam {varchar} id the encoded collection id of a collection
+     * @apiParam {varchar} image the encoded image id of a image
      *
      */
     public function run($id, $media)
