@@ -72,7 +72,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
             'collection_images' => [
                 'data'  => MediaResourceLimited::collection($images),
                 'links' => [
-                    'next' => $this->nextPageUrl($this->getImageTotal($collection))
+                    'next' => $this->nextPageUrl($this->getImageTotal($collection), 5)
                 ]
             ],
             'is_booked'         => auth()
@@ -116,7 +116,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
         ])
                     ->where('collection_name', $collection->slug)
                     ->orderBy('created_at', 'desc')
-                    ->remember(1400)
+                    #->remember(1400)
                     ->get()
                     ->count();
     }

@@ -20,11 +20,10 @@ trait CustomPaginationTrait
     {
         $next  = null;
         $pages = ceil($total / $perPage);
+        $page = !request('page') ? 1 : request('page');
         
-        for ($i = 1; $i < $pages; $i++) {
-            if (request('page') != $pages) {
-                $next = url()->current() . '?page=' . ($i + 1);
-            }
+        if (request('page') != $pages) {
+            $next = url()->current() . '?page=' . ( $page + 1);
         }
         
         return $next;
