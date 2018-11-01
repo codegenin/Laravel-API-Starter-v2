@@ -22,9 +22,10 @@ class MediaRelatedResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                => Hashids::encode($this->id),
-            'title'             => $this->title ?: '',
-            'images'            => [
+            'id'          => Hashids::encode($this->id),
+            'title_short' => $this->title_short ?: '',
+            'title'       => $this->title ?: '',
+            'images'      => [
                 'original' => $this->getUrl(),
                 'zoom'     => $this->getUrl('zoom'),
                 'cover'    => $this->getUrl('cover'),
