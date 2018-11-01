@@ -11,12 +11,13 @@ use App\ACME\Api\V1\Media\Resource\MediaResourceCollection;
 use App\ACME\Api\V1\Media\Resource\MediaResourceLimited;
 use App\Http\Controllers\ApiResponseController;
 use App\Models\Media;
+use App\Traits\CustomPaginationTrait;
 use App\Traits\MediaTraits;
 use Vinkla\Hashids\Facades\Hashids;
 
 class ListImagesAndIsBookedController extends ApiResponseController
 {
-    use MediaTraits;
+    use MediaTraits, CustomPaginationTrait;
     
     /**
      * @var MediaRepository
@@ -68,7 +69,12 @@ class ListImagesAndIsBookedController extends ApiResponseController
         return response()->json([
             'status'            => true,
             'collection_info'   => new CollectionResource($collection),
-            'collection_images' => MediaResourceLimited::collection($images),
+            'collection_images' => [
+                'data'  => MediaResourceLimited::collection($images),
+                'links' => [
+                    'next' => $this->nextPageUrl($this->getImageTotal($collection))
+                ]
+            ],
             'is_booked'         => auth()
                 ->user()
                 ->isBooked($media)
@@ -85,7 +91,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
             ->user()
             ->hasPurchased($collection);
         
-        $paginate = (!$isPurchased ? 1 : 1000);
+        $paginate = (!$isPurchased ? 1 : 5);
         
         $mainImages = Media::with([
             'collection',
@@ -100,6 +106,18 @@ class ListImagesAndIsBookedController extends ApiResponseController
         $relatedImages = $this->getRelatedImages($collection, $mainImages, $isPurchased);
         
         return ($relatedImages->count() > 0) ? $mainImages->merge($relatedImages) : $mainImages;
+    }
+    
+    private function getImageTotal($collection)
+    {
+        return Media::with([
+            'collection',
+            'translations'
+        ])
+                    ->where('collection_name', $collection->slug)
+                    ->orderBy('created_at', 'desc')
+                    ->remember(1400)
+                    ->count();
     }
     
     /**
