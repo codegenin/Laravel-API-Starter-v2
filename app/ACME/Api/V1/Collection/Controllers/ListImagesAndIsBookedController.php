@@ -63,12 +63,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
         return response()->json([
             'status'            => true,
             'collection_info'   => new CollectionResource($collection),
-            'collection_images' => [
-                'data'  => MediaResourceLimited::collection($images),
-                'links' => [
-                    'next' => $this->nextPageUrl($this->getImageTotal($collection), 5)
-                ]
-            ],
+            'collection_images' => MediaResourceLimited::collection($images),
             'is_booked'         => auth()
                 ->user()
                 ->isBooked($media)
@@ -94,7 +89,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
                            ->where('collection_name', $collection->slug)
                            ->orderBy('created_at', 'desc')
                            ->remember(1400)
-                           ->take((!$isPurchased) ? 1 : '')
+                           ->take((!$isPurchased) ? 1 : 4)
                            ->paginate($paginate);
         
         $relatedImages = $this->getRelatedImages($collection, $mainImages, $isPurchased);
@@ -138,7 +133,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
                                   ->whereHas('translations', function ($query) use ($mainImages) {
                                       $query->where('location', $mainImages[0]->location);
                                   })
-                                  ->orWhere('model_type', '=', 'App\Models\Category')
+                                  ->orWhere('model_type', '!=', 'App\Models\Category')
                                   ->inRandomOrder()
                                   ->take(3)
                                   ->get();
