@@ -85,7 +85,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
             ->user()
             ->hasPurchased($collection);
         
-        $paginate = (!$isPurchased ? 1 : 5);
+        $paginate = (!$isPurchased ? 1 : 4);
         
         $mainImages = Media::with([
             'collection',
@@ -131,7 +131,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
                 'collection',
                 'translations'
             ])
-                                  ->where('collection_name', '!=', $collection->slug)
+                                  ->where('collection_name', '=', $collection->slug)
                                   ->where('model_type', '!=', 'App\Models\Category')
                                   ->whereHas('collection.translations', function ($query) use ($mainImages) {
                                       $query->whereOr('time_period', $mainImages[0]->collection->time_period);
