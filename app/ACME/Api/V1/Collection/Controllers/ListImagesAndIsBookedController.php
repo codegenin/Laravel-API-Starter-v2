@@ -126,15 +126,6 @@ class ListImagesAndIsBookedController extends ApiResponseController
                 'collection',
                 'translations'
             ])
-                                  ->whereHas('translations', function ($query) use ($mainImages) {
-                                      $query->where('location', 'like', "%{$mainImages[0]->location}%");
-                                  })
-                                  ->whereHas('collection.translations', function ($query) use ($mainImages) {
-                                      $query->orWhere('time_period', $mainImages[0]->collection->time_period);
-                                  })
-                                  ->whereHas('collection.translations', function ($query) use ($mainImages) {
-                                      $query->orWhere('museum', $mainImages[0]->museum);
-                                  })
                                   ->where('collection_name', '!=', $collection->slug)
                                   ->where('model_type', '!=', 'App\Models\Category')
                                   ->inRandomOrder()
