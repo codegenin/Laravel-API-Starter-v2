@@ -128,6 +128,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
             ])
                                   ->where('collection_name', '!=', $collection->slug)
                                   ->where('model_type', '!=', 'App\Models\Category')
+                                  ->where('collection.category_id', $collection->category_id)
                                   ->inRandomOrder()
                                   ->remember(1400)
                                   ->take(3)
