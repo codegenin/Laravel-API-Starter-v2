@@ -91,7 +91,7 @@ class ListImagesController extends ApiResponseController
                                   ->where('collection_name', '!=', $collection->slug)
                                   ->where('model_type', '!=', 'App\Models\Category')
                                   ->whereHas('translations', function ($query) use ($mainImages) {
-                                      $query->where('location', $mainImages[0]->location);
+                                      $query->orWhere('location', $mainImages[0]->location);
                                   })
                                   ->whereHas('collection.translations', function ($query) use ($mainImages) {
                                       $query->orWhere('time_period', $mainImages[0]->collection->time_period);
