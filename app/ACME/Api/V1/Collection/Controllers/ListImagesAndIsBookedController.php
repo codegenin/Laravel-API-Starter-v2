@@ -80,7 +80,8 @@ class ListImagesAndIsBookedController extends ApiResponseController
             ->user()
             ->hasPurchased($collection);
         
-        $paginate = (!$isPurchased ? 1 : 4);
+        #$paginate = (!$isPurchased ? 1 : 4);
+        $paginate = (1);
         
         $mainImages = Media::with([
             'collection',
@@ -89,7 +90,8 @@ class ListImagesAndIsBookedController extends ApiResponseController
                            ->where('collection_name', $collection->slug)
                            ->orderBy('created_at', 'desc')
                            ->remember(1400)
-                           ->take((!$isPurchased) ? 1 : 4)
+                           #->take((!$isPurchased) ? 1 : 4)
+                           ->take(1)
                            ->paginate($paginate);
         
         $relatedImages = $this->getRelatedImages($collection, $mainImages, $isPurchased);

@@ -63,7 +63,7 @@ class ListImagesController extends ApiResponseController
             ->user()
             ->hasPurchased($collection);
         
-        $paginate = (!$isPurchased ? 1 : 5);
+        $paginate = (1);
         
         $mainImages = Media::with([
             'collection',
@@ -72,7 +72,7 @@ class ListImagesController extends ApiResponseController
                            ->where('collection_name', $collection->slug)
                            ->orderBy('created_at', 'desc')
                            ->remember(1400)
-                           ->take((!$isPurchased) ? 1 : '')
+                           ->take(1)
                            ->paginate($paginate);
         
         $relatedImages = $this->getRelatedImages($collection, $mainImages, $isPurchased);
