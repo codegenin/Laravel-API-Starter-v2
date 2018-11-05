@@ -90,4 +90,5 @@ return array (
   'reported_by' => 'Rapporté par',
   'reports' => 'Rapports',
   'type' => 'Type',
+  'artist' => 'Artist',
 );

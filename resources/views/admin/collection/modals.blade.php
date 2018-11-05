@@ -85,7 +85,7 @@
                     <!-- Artist -->
                     <div class="form-group">
                         <label for="artist">{{trans('label.artist')}}:</label>
-                        <input type="number" name="artist" id="artist"
+                        <input type="text" name="artist" id="artist"
                                placeholder="Artist name" class="form-control"
                                value="{{ old('artist') }}">
                     </div>
@@ -219,7 +219,7 @@
                     <!-- Artist -->
                     <div class="form-group">
                         <label for="edit-artist">{{trans('label.artist')}}:</label>
-                        <input type="number" name="artist" id="edit-artist"
+                        <input type="text" name="artist" id="edit-artist"
                                placeholder="Artist name" class="form-control"
                                value="{{ old('artist') }}">
                     </div>

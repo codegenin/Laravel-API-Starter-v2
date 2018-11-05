@@ -82,4 +82,5 @@ return array (
   'image' => 'Image',
   'reported_by' => 'Reported By',
   'new_report' => 'New Report',
+  'artist' => 'Artist',
 );
