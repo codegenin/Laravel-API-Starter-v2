@@ -83,8 +83,8 @@ class ListImagesAndIsBookedController extends ApiResponseController
                            ->where('collection_name', $collection->slug)
                            ->orderBy('created_at', 'desc')
                            ->remember(1400)
-                           #->take((!$isPurchased) ? 1 : 4)
-                           ->take(1);
+                           ->take(1)
+                           ->get();
         
         $relatedImages = $this->getRelatedImages($collection, $mainImages);
         
@@ -113,7 +113,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
     private function getRelatedImages($collection, $mainImages)
     {
         $relatedImages = collect();
-    
+        
         if ($mainImages->count() > 0) {
             $relatedImages = Media::with([
                 'collection',

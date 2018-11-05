@@ -66,7 +66,8 @@ class ListImagesController extends ApiResponseController
                            ->where('collection_name', $collection->slug)
                            ->orderBy('created_at', 'desc')
                            ->remember(1400)
-                           ->take(1);
+                           ->take(1)
+                           ->get();
         
         $relatedImages = $this->getRelatedImages($collection, $mainImages);
         
