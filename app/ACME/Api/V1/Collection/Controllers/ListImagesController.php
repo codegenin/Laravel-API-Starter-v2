@@ -91,20 +91,24 @@ class ListImagesController extends ApiResponseController
         $relatedImages = collect();
         
         if (!$isPurchased AND $mainImages->count() > 0) {
-            
+    
             $relatedImages = Media::with([
                 'collection',
                 'translations'
             ])
-                                  ->where('collection_name', '!=', $collection->slug)
-                                  ->whereHas('collection.translations', function ($query) use ($mainImages) {
-                                      $query->whereOr('time_period', $mainImages[0]->collection->time_period);
-                                  })
                                   ->whereHas('translations', function ($query) use ($mainImages) {
                                       $query->where('location', $mainImages[0]->location);
                                   })
-                                  ->orWhere('model_type', '=', 'App\Models\Category')
+                                  ->whereHas('collection.translations', function ($query) use ($mainImages) {
+                                      $query->orWhere('time_period', $mainImages[0]->collection->time_period);
+                                  })
+                                  ->whereHas('collection', function ($query) use ($collection) {
+                                      $query->orWhere('category_id', $collection->category_id);
+                                  })
+                                  ->where('collection_name', '!=', $collection->slug)
+                                  ->where('model_type', '!=', 'App\Models\Category')
                                   ->inRandomOrder()
+                                  ->remember(1400)
                                   ->take(3)
                                   ->get();
         }
