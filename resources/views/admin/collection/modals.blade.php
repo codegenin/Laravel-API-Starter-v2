@@ -82,6 +82,14 @@
                         </div>
                     </div>
 
+                    <!-- Artist -->
+                    <div class="form-group">
+                        <label for="artist">{{trans('label.artist')}}:</label>
+                        <input type="number" name="artist" id="artist"
+                               placeholder="Artist name" class="form-control"
+                               value="{{ old('artist') }}">
+                    </div>
+
                     <!-- Points Value: Form Input -->
                     <div class="form-group">
                         <label for="points">{{trans('label.points_value')}}:</label>
@@ -206,6 +214,14 @@
                                    placeholder="Time Period in french"
                                    class="form-control" value="{{ old('fr_time_period') }}">
                         </div>
+                    </div>
+
+                    <!-- Artist -->
+                    <div class="form-group">
+                        <label for="edit-artist">{{trans('label.artist')}}:</label>
+                        <input type="number" name="artist" id="edit-artist"
+                               placeholder="Artist name" class="form-control"
+                               value="{{ old('artist') }}">
                     </div>
 
                     <!-- Points Value: Form Input -->

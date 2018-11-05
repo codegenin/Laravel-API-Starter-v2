@@ -76,6 +76,7 @@
                     $('#edit-fr_description').val(data.collection.fr_description);
                     $('#edit-category-id').val(data.collection.category_id);
                     $('#edit-points').val(data.collection.points);
+                    $('#edit-artist').val(data.collection.artist);
                     $('#edit-time-period').val(data.collection.time_period);
                     $('#edit-fr-time-period').val(data.collection.fr_time_period);
                     $('#edit-is-public').val(data.collection.is_public);
