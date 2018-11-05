@@ -76,13 +76,6 @@ class ListImagesAndIsBookedController extends ApiResponseController
      */
     private function getImages($collection)
     {
-        $isPurchased = auth()
-            ->user()
-            ->hasPurchased($collection);
-        
-        #$paginate = (!$isPurchased ? 1 : 4);
-        $paginate = (1);
-        
         $mainImages = Media::with([
             'collection',
             'translations'
@@ -91,10 +84,9 @@ class ListImagesAndIsBookedController extends ApiResponseController
                            ->orderBy('created_at', 'desc')
                            ->remember(1400)
                            #->take((!$isPurchased) ? 1 : 4)
-                           ->take(1)
-                           ->paginate($paginate);
+                           ->take(1);
         
-        $relatedImages = $this->getRelatedImages($collection, $mainImages, $isPurchased);
+        $relatedImages = $this->getRelatedImages($collection, $mainImages);
         
         return ($relatedImages->count() > 0) ? $mainImages->merge($relatedImages) : $mainImages;
     }
@@ -118,16 +110,17 @@ class ListImagesAndIsBookedController extends ApiResponseController
      * @param $isPurchased
      * @return mixed
      */
-    private function getRelatedImages($collection, $mainImages, $isPurchased)
+    private function getRelatedImages($collection, $mainImages)
     {
         $relatedImages = collect();
-        
-        if (!$isPurchased AND $mainImages->count() > 0) {
-            
+    
+        if ($mainImages->count() > 0) {
             $relatedImages = Media::with([
                 'collection',
                 'translations'
             ])
+                                  ->where('collection_name', '!=', $collection->slug)
+                                  ->where('model_type', '!=', 'App\Models\Category')
                                   ->whereHas('translations', function ($query) use ($mainImages) {
                                       $query->orWhere('location', $mainImages[0]->location);
                                   })
@@ -137,8 +130,6 @@ class ListImagesAndIsBookedController extends ApiResponseController
                                   ->whereHas('collection', function ($query) use ($collection) {
                                       $query->orWhere('category_id', $collection->category_id);
                                   })
-                                  ->where('collection_name', '!=', $collection->slug)
-                                  ->where('model_type', '!=', 'App\Models\Category')
                                   ->inRandomOrder()
                                   ->remember(1400)
                                   ->take(3)
