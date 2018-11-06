@@ -82,7 +82,6 @@ class ListImagesAndIsBookedController extends ApiResponseController
         ])
                            ->where('collection_name', $collection->slug)
                            ->orderBy('created_at', 'desc')
-                           ->remember(1400)
                            ->take(1)
                            ->get();
         
@@ -131,7 +130,6 @@ class ListImagesAndIsBookedController extends ApiResponseController
                                       $query->orWhere('category_id', $collection->category_id);
                                   })
                                   ->inRandomOrder()
-                                  ->remember(1400)
                                   ->take(3)
                                   ->get();
         }
