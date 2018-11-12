@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\ClearViewsTable;
+use App\Console\Commands\DownloadImagesFromS3;
 use App\Console\Commands\GenerateApiDocumentation;
 use App\Console\Commands\ImportMediaFile;
 use Illuminate\Console\Scheduling\Schedule;
@@ -18,7 +19,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         GenerateApiDocumentation::class,
         ImportMediaFile::class,
-        ClearViewsTable::class
+        ClearViewsTable::class,
+        DownloadImagesFromS3::class
     ];
     
     /**
