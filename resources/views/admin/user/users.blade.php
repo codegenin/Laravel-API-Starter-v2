@@ -50,7 +50,7 @@
                 let edit = $(this);
 
                 $.ajax({
-                    url: "users/" + id + "/get",
+                    url: "/admin/users/" + id + "/get",
                     beforeSend: function (xhr) {
                         $('#cover-image').attr('src', '');
                         edit.html('<i class="fa fa-refresh fa-spin"></i>');

@@ -16,6 +16,25 @@
 
 @section('content')
     @include('admin.common.alerts')
+    <div class="row">
+        <form action="{{ route('admin.user.search') }}" method="GET">
+            <div class="col-sm-12">
+                <!-- Search user name or email address: Form Input -->
+                <div class="form-group">
+                    <label for="name">Search user name or email address:</label>
+                    <div class="input-group">
+                        <input type="text" name="name" id="name" placeholder="enter user name or email address"
+                               class="form-control" value="{{ old('search') }}">
+                        <span class="input-group-btn">
+                           <button class="btn btn-primary" type="button">
+                               <i class="glyphicon glyphicon-search"></i>
+                           </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="box box-primary">
         <div class="box-header">
             <div class="box-title">{{trans('label.users')}}</div>

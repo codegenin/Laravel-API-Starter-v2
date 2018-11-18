@@ -16,4 +16,8 @@ Route::group(['prefix' => 'users'], function () {
     Route::post('update', 'App\ACME\Admin\User\Controllers\UpdateUserController@run')
          ->name('admin.user.update');
     
+    ############### SEARCH Route ###########################
+    
+    Route::get('search', 'App\ACME\Admin\User\Controllers\SearchUserController')
+         ->name('admin.user.search');
 });
