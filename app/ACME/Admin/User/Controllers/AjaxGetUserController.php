@@ -17,8 +17,8 @@ class AjaxGetUserController extends Controller
                 'id'       => $user->id,
                 'name'     => $user->name,
                 'email'    => $user->email,
-                'role'     => $user->role,
                 'verified' => $user->verified,
+                'points'   => $user->points,
             ]
         ]);
     }

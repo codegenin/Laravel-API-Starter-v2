@@ -19,9 +19,9 @@
             <td>{{($user->verified == 1) ? 'YES' : 'NO'}}</td>
             <td>
                 <div class="btn-group">
-                    {{--<a class="btn btn-warning edit" data-id="{{$user->id}}" title="{{trans('label.edit')}}">
+                    <a class="btn btn-warning edit" data-id="{{$user->id}}" title="{{trans('label.edit')}}">
                         <i class="fa fa-pencil"></i>
-                    </a>--}}
+                    </a>
                     <a href="#" data-id="{{$user->id}}" title="{{trans('label.delete')}}"
                        class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
                 </div>
@@ -60,8 +60,8 @@
                     $('#edit-id').val(data.user.id);
                     $('#edit-name').val(data.user.name);
                     $('#edit-email').val(data.user.email);
-                    $('#edit-role').val(data.user.role);
                     $('#edit-verified').val(data.user.verified);
+                    $('#edit-points').val(data.user.points);
                     $('#modal-edit-user').modal('show');
                 });
 

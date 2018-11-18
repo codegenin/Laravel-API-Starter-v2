@@ -64,20 +64,36 @@
                     <!-- Name: Form Input -->
                     <div class="form-group">
                         <label for="name">{{__('label.name')}}:</label>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                            <img src="{{asset('images/en.png')}}" alt="english">
-                        </span>
-                            <input type="text" name="name" id="edit-name"
-                                   class="form-control" value="{{ old('name') }}">
+                        <input type="text" name="name" id="edit-name"
+                               class="form-control" value="{{ old('name') }}">
+                    </div>
+
+                    <!-- Email: Form Input -->
+                    <div class="form-group">
+                        <label for="edit-email">Email:</label>
+                        <input type="text" name="email" id="edit-email" placeholder="Email:"
+                               class="form-control" value="{{ old('email') }}">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- Verified: Form Input -->
+                            <div class="form-group">
+                                <label for="edit-verified">Verified:</label>
+                                <select name="verified" id="edit-verified" class="form-control">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
                         </div>
-                        <!-- Translation -->
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                            <img src="{{asset('images/fr.png')}}" alt="french">
-                        </span>
-                            <input type="text" name="fr_name" id="edit-fr_name"
-                                   class="form-control" value="{{ old('name') }}">
+
+                        <div class="col-sm-6">
+                            <!-- Points: Form Input -->
+                            <div class="form-group">
+                                <label for="edit-points">Points:</label>
+                                <input type="text" name="points" id="edit-points" placeholder="Points:"
+                                       class="form-control" value="{{ old('points') }}">
+                            </div>
                         </div>
                     </div>
                 </div>
