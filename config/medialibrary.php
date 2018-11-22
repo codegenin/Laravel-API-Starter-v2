@@ -31,7 +31,7 @@ return [
          * The domain that should be prepended when generating urls.
          */
         #'domain' => 'https://' . env('AWS_BUCKET') . '.s3.amazonaws.com',
-        'domain' => 'https://d15isnw50pz8a1.cloudfront.net',
+        'domain' => 'https://' . env('AWS_CLOUDFRONT'),
     ],
     
     'remote' => [
