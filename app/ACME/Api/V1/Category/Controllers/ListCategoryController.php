@@ -37,10 +37,7 @@ class ListCategoryController extends ApiResponseController
      */
     public function run()
     {
-        $categories = Category::with('images')
-                              ->ordered()
-                              ->remember(60)
-                              ->get();
+        $categories = $this->categoryRepository->getPublicCategories()->get();
         
         return new CategoryResourceCollection($categories);
     }

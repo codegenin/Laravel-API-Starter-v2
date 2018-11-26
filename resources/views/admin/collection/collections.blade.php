@@ -7,7 +7,7 @@
         {{--<td style="width: 10px;">{{trans('label.category')}}</td>--}}
         <td style="width: 10px;">{{trans('label.title')}}</td>
         <td style="width: 10px;">{{trans('label.description')}}</td>
-        <td style="width: 10px;">{{trans('label.time_period')}}</td>
+        <td style="width: 10px;">{{trans('label.public')}}</td>
         <td style="width: 10px;">{{trans('label.images')}}</td>
         <td style="width: 20px;">{{trans('label.actions')}}</td>
     </tr>
@@ -19,7 +19,7 @@
             {{--<td>{{$collection->category->name}}</td>--}}
             <td>{{$collection->title}}</td>
             <td>{{str_limit($collection->description, 100)}}</td>
-            <td>{{$collection->time_period}}</td>
+            <td>@if($collection->is_public) YES @else NO @endif</td>
             <td>{{$collection->getMedia($collection->slug)->count()}}</td>
             <td style="width: 100px;">
                 <div class="btn-group">

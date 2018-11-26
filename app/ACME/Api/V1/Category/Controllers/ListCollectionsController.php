@@ -3,6 +3,7 @@
 namespace App\ACME\Api\V1\Category\Controllers;
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
+use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\ACME\Api\V1\Collection\Resource\CollectionResourceCollection;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller;
@@ -14,16 +15,19 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class ListCollectionsController extends ApiResponseController
 {
-    private $categoryRepository;
+    /**
+     * @var CollectionRepository
+     */
+    private $collectionRepository;
     
     /**
      * CategoryListsController constructor.
-     * @param CategoryRepository $categoryRepository
+     * @param CollectionRepository $collectionRepository
      */
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CollectionRepository $collectionRepository)
     {
         $this->middleware('jwt.auth', []);
-        $this->categoryRepository = $categoryRepository;
+        $this->collectionRepository = $collectionRepository;
     }
     
     /**
@@ -41,13 +45,7 @@ class ListCollectionsController extends ApiResponseController
     public function run($id)
     {
         try {
-            $collections = Collection::with([
-                'category',
-                'user'
-            ])
-                                     ->where('category_id', Hashids::decode($id))
-                                     ->orderBy('created_at', 'desc')
-                                     ->paginate();
+            $collections = $this->collectionRepository->getPublicCollectionsOfCategory($id)->paginate();
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e->getMessage());
         }
