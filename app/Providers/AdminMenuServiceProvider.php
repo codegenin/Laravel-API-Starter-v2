@@ -39,10 +39,16 @@ class AdminMenuServiceProvider extends ServiceProvider
                 'url'  => LaravelLocalization::setLocale() . '/admin/reports',
                 'icon' => 'exclamation',
             ]);
+            $event->menu->add('ACCOUNT ACCESS');
             $event->menu->add([
-                'text' => trans('label.users'),
+                'text' => 'User Management',
                 'url'  => LaravelLocalization::setLocale() . '/admin/users',
                 'icon' => 'users',
+            ]);
+            $event->menu->add([
+                'text' => 'Role Management',
+                'url'  => LaravelLocalization::setLocale() . '/admin/roles',
+                'icon' => 'key',
             ]);
             /*$event->menu->add(trans('label.main_settings'));
             $event->menu->add([

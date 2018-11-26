@@ -13,12 +13,22 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject, HasMedia
 {
-    use Notifiable, HasMediaTrait, Favoriteability, SearchableTrait,
-        PurchasabilityTrait, LikabilityTrait, ViewabilityTrait, ReportabilityTrait;
+    use Notifiable,
+        HasMediaTrait,
+        Favoriteability,
+        SearchableTrait,
+        PurchasabilityTrait,
+        LikabilityTrait,
+        ViewabilityTrait,
+        ReportabilityTrait,
+        HasRoles;
+    
+    protected $guard_name = 'api';
     
     /**
      * The attributes that are mass assignable.
@@ -57,21 +67,21 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     public function registerMediaCollections()
     {
         $this->addMediaCollection('avatar')
-             ->singleFile()
-             ->registerMediaConversions(function (Media $media) {
-                 $this->addMediaConversion('cover')
-                      ->width(1200)
-                      ->height(1200);
-                 $this->addMediaConversion('large')
-                      ->width(500)
-                      ->height(500);
-                 $this->addMediaConversion('medium')
-                      ->width(300)
-                      ->height(300);
-                 $this->addMediaConversion('small')
-                      ->width(100)
-                      ->height(100);
-             });
+            ->singleFile()
+            ->registerMediaConversions(function (Media $media) {
+                $this->addMediaConversion('cover')
+                    ->width(1200)
+                    ->height(1200);
+                $this->addMediaConversion('large')
+                    ->width(500)
+                    ->height(500);
+                $this->addMediaConversion('medium')
+                    ->width(300)
+                    ->height(300);
+                $this->addMediaConversion('small')
+                    ->width(100)
+                    ->height(100);
+            });
     }
     
     /**
