@@ -17,7 +17,7 @@ class IndexImportController extends Controller
     
     public function run()
     {
-        $imports = Import::paginate();
+        $imports = Import::orderBy('created_at', 'desc')->paginate();
         
         return view('admin.import.index', compact('imports'));
     }

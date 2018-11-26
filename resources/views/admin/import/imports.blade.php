@@ -6,6 +6,7 @@
         <td style="width: 10px;">{{__('label.total_rows')}}</td>
         <td style="width: 10px;">{{__('label.import_count')}}</td>
         <td style="width: 10px;">{{__('label.status')}}</td>
+        <td style="width: 10px;">{{__('label.created_at')}}</td>
         <td style="width: 20px;">{{__('label.actions')}}</td>
     </tr>
     @foreach($imports as $import)
@@ -19,6 +20,9 @@
                 @if($import->status == '1')<span class="label label-warning">In Progress</span>@endif
                 @if($import->status == '2')<span class="label label-success">Completed</span>@endif
                 @if($import->status == '3')<span class="label label-danger">Error</span>@endif
+            </td>
+            <td>
+                {{$import->created_at}}
             </td>
             <td>
                 <div class="btn-group">
