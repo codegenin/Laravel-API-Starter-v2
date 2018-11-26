@@ -10,5 +10,6 @@ Route::group(['prefix' => 'media'], function () {
          ->name('admin.media.update');
     Route::post('/delete', 'App\ACME\Admin\Media\Controllers\DestroyController@run')
          ->name('admin.media.destroy');
-    
+    Route::post('/visible', 'App\ACME\Admin\Media\Controllers\ToggleVisibilityController')
+        ->name('admin.media.visible');
 });

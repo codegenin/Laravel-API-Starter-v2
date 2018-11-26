@@ -15,14 +15,14 @@
                 <img src="{{$report->reportable->getUrl('small')}}" alt="" width="100" height="100">
                 </a>
             </td>
-            <td>{{$report->user->email}}</td>
+            <td>{{!empty($report->user) ? $report->user->email : ''}}</td>
             <td>{{$report->created_at}}</td>
             <td>
                 <div class="btn-group">
                     {{--<a class="btn btn-warning edit" data-id="{{$report->id}}" title="{{trans('label.edit')}}">
                         <i class="fa fa-pencil"></i>
                     </a>--}}
-                    <a href="#" data-id="{{$report->id}}" title="{{trans('label.delete')}}"
+                    <a href="#" data-id="{{$report->reportable_id}}" title="{{trans('label.delete')}}"
                        class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
                 </div>
             </td>

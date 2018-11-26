@@ -27,10 +27,15 @@
     <div class="row">
         @foreach($images as $image)
             <div class="col-sm-3">
-                <div class="box box-primary">
+                <div class="box @if($image->visible == 1) box-primary @else box-danger @endif">
                     <div class="box-header with-border">
                         <h3 class="box-title">{{str_limit($image->title, 30)}}</h3>
                         <div class="box-tools pull-right">
+
+                            <button type="button" data-toggle="modal" title="SHOW or HIDE"
+                                    class="btn btn-box-tool public" data-id="{{$image->id}}">
+                                <i class="fa fa-eye"></i>
+                            </button>
 
                             <button type="button" data-toggle="modal" title="EDIT"
                                     class="btn btn-box-tool edit" data-id="{{$image->id}}">
@@ -305,6 +310,7 @@
     <!-- /.modal -->
 
     @include('admin.common.delete')
+    @include('admin.common.visible')
 
 @endsection
 
@@ -321,6 +327,15 @@
                 $('#deleteId').val(id);
                 $('#deleteForm').attr('action', "{{route('admin.media.destroy')}}");
                 $('#deleteModal').modal('show');
+            });
+
+            // Open visible toogle popup
+            $('.wrapper').on('click', '.public', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#publicId').val(id);
+                $('#publicForm').attr('action', "{{route('admin.media.visible')}}");
+                $('#publicModal').modal('show');
             });
 
             // Open modal for editing a record

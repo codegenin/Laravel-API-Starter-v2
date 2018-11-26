@@ -9,22 +9,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Psr\Log\InvalidArgumentException;
 
-class DestroyController extends Controller
+class ToggleVisibilityController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
     }
     
-    public function run(DeleteMediaRequest $request)
+    public function __invoke(DeleteMediaRequest $request)
     {
         try {
             $media = Media::find($request->id);
-            $media->delete();
             
-            // Remove image in likes
-            $media->likes()->delete();
-            $media->reports()->delete();
+            $visible = ($media->visible == 1) ? 0 : 1;
+            $media->visible = $visible;
+            $media->save();
             
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e);

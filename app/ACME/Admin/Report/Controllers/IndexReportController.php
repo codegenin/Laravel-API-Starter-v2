@@ -13,7 +13,7 @@ class IndexReportController extends Controller
     {
         $reports = new Report();
         $reports = $reports->allReported(Media::class);
-        
+
         return view('admin.report.index', compact('reports'));
     }
 }

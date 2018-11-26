@@ -1,29 +1,24 @@
 <?php
 
-namespace App\ACME\Admin\Media\Controllers;
+namespace App\ACME\Admin\Report\Controllers;
 
-use App\ACME\Admin\Media\Requests\DeleteMediaRequest;
-use App\Models\Like;
-use App\Models\Media;
-use Illuminate\Http\Request;
+use App\ACME\Admin\Report\Requests\DeleteReportRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Media;
+use App\Models\Report;
 use Psr\Log\InvalidArgumentException;
 
-class DestroyController extends Controller
+class DestroyReportController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
     }
     
-    public function run(DeleteMediaRequest $request)
+    public function run(DeleteReportRequest $request)
     {
         try {
             $media = Media::find($request->id);
-            $media->delete();
-            
-            // Remove image in likes
-            $media->likes()->delete();
             $media->reports()->delete();
             
         } catch (\Exception $e) {
