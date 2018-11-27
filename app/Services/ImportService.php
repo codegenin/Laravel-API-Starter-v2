@@ -97,6 +97,11 @@ class ImportService
             $collection->points      = 100;
             $collection->time_period = $record->en_date;
             $collection->save();
+            
+            // Add first image
+            $collection->addMediaFromUrl($record->image_url)
+                ->toMediaCollection('collection');
+            
         } else {
             $collection = Collection::find($collection[0]->id);
         }
