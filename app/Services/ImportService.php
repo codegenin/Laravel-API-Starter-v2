@@ -86,6 +86,8 @@ class ImportService
             
             $collection->translateOrNew('en')->title       = $record->en_collection;
             $collection->translateOrNew('fr')->title       = $record->fr_collection;
+            $collection->translateOrNew('en')->description = $record->en_collection;
+            $collection->translateOrNew('fr')->description = $record->fr_collection;
             $collection->translateOrNew('en')->time_period = $record->en_date;
             $collection->translateOrNew('fr')->time_period = $record->fr_date;
             
@@ -111,12 +113,17 @@ class ImportService
         
         if ($category->count() <= 0) {
             // Create category
-            $category                             = new Category();
-            $category->translateOrNew('en')->name = $record->en_department;
-            $category->translateOrNew('fr')->name = $record->fr_department;
-            $category->slug                       = str_slug($record->en_department);
-            $category->is_public                  = 0;
-            $category->parent_id                  = 0;
+            $category = new Category();
+            
+            $category->translateOrNew('en')->name        = $record->en_department;
+            $category->translateOrNew('fr')->name        = $record->fr_department;
+            $category->translateOrNew('en')->description = $record->en_department;
+            $category->translateOrNew('fr')->description = $record->fr_department;
+            
+            $category->slug      = str_slug($record->en_department);
+            $category->is_public = 0;
+            $category->parent_id = 0;
+            
             $category->save();
             $categoryId = $category->id;
         } else {
