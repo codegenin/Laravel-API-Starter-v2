@@ -34,15 +34,18 @@ class DestroyCollectionController extends Controller
         
         // Delete favorites if present
         $collection->favorites()
-                   ->delete();
+            ->delete();
         
         // Delete media likes
         $medias = $collection->getMedia($collection->slug);
-        if($medias->count() > 0) {
-            foreach($medias as $media) {
+        if ($medias->count() > 0) {
+            foreach ($medias as $media) {
                 $media->likes()->delete();
+                $media->reports()->delete();
+                $media->purchases()->delete();
             }
         }
+        
         
         // Clear media collection
         $collection->clearMediaCollection($collection->slug);
