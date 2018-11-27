@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Category;
 use App\Models\Collection;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 use Mockery\Exception;
 
 class ImportService
@@ -39,11 +40,15 @@ class ImportService
                 $media->url                               = $record->url;
                 $media->save();
             }
+    
+            Log::error('IMPORT_ERROR_NO_IMAGE ' . json_encode($record));
             
         } catch (\Exception $e) {
             $record->imported     = 2;
             $record->import_error = $e;
             $record->save();
+            
+            Log::error('IMPORT_ERROR ' . json_encode($e->getMessage()));
             throw new Exception($e);
         }
         

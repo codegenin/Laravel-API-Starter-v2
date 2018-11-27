@@ -8,6 +8,7 @@ use App\Models\Import;
 use App\Models\ImportRecord;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -97,6 +98,9 @@ class ImportMediaFile extends Command
                          $import->status = 3;
                          $import->error  = $e;
                          $import->save();
+    
+                         Log::error('IMPORT_FILE_ERROR ' . json_encode($e->getMessage()));
+                         
                          throw  new \Exception($e);
                      }
                  }
