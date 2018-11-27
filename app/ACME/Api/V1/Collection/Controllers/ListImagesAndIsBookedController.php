@@ -96,7 +96,6 @@ class ListImagesAndIsBookedController extends ApiResponseController
         ])
             ->where('collection_name', $collection->slug)->visible()
             ->orderBy('created_at', 'desc')
-            ->remember(1400)
             ->get()
             ->count();
     }
