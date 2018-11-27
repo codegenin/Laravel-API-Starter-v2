@@ -42,7 +42,7 @@ class DestroyCollectionController extends Controller
             foreach ($medias as $media) {
                 $media->likes()->delete();
                 $media->reports()->delete();
-                $media->purchases()->delete();
+                $media->purchase()->delete();
             }
         }
         
