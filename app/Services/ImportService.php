@@ -13,14 +13,14 @@ class ImportService
     public static function processImportedRecord($record)
     {
         try {
-            
+    
+            // Check or create category
+            $categoryId = self::createOrGetCategory($record);
+            $collection = self::createOrGetCollection($record, $categoryId);
+    
+            // Add media if remote image file exists
             if (self::checkRemoteFile($record->image_url)) {
                 
-                // Check or create category
-                $categoryId = self::createOrGetCategory($record);
-                $collection = self::createOrGetCollection($record, $categoryId);
-                
-                // Add media
                 $media                                    = $collection->addMediaFromUrl($record->image_url)
                     ->toMediaCollection($collection->slug);
                 $media->category_id                       = $categoryId;
