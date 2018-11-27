@@ -13,30 +13,38 @@ class ImportService
     public static function processImportedRecord($record)
     {
         try {
-    
-            // Check or create category
-            $categoryId = self::createOrGetCategory($record);
-            $collection = self::createOrGetCollection($record, $categoryId);
-    
-            // Add media
-            $media                                    = $collection->addMediaFromUrl($record->image_url)
-                ->toMediaCollection($collection->slug);
-            $media->category_id                       = $categoryId;
-            $media->user_id                           = 1;
-            $media->museum                            = $record->museum;
-            $media->translateOrNew('en')->title_short = $record->en_title;
-            $media->translateOrNew('fr')->title_short = $record->fr_title;
-            $media->translateOrNew('en')->title       = $record->en_complete_title;
-            $media->translateOrNew('fr')->title       = $record->fr_complete_title;
-            $media->translateOrNew('en')->location    = $record->en_location;
-            $media->translateOrNew('fr')->location    = $record->fr_location;
-            $media->translateOrNew('en')->medium      = $record->en_art_medium;
-            $media->translateOrNew('fr')->medium      = $record->fr_art_medium;
-            $media->translateOrNew('en')->description = $record->credit_line;
-            $media->translateOrNew('fr')->description = $record->credit_line;
-            $media->score                             = 0;
-            $media->url                               = $record->url;
-            $media->save();
+            
+            if (self::checkRemoteFile($record->image_url)) {
+                
+                // Check or create category
+                $categoryId = self::createOrGetCategory($record);
+                $collection = self::createOrGetCollection($record, $categoryId);
+                
+                // Add media
+                $media                                    = $collection->addMediaFromUrl($record->image_url)
+                    ->toMediaCollection($collection->slug);
+                $media->category_id                       = $categoryId;
+                $media->user_id                           = 1;
+                $media->museum                            = $record->museum;
+                $media->translateOrNew('en')->title_short = $record->en_title;
+                $media->translateOrNew('fr')->title_short = $record->fr_title;
+                $media->translateOrNew('en')->title       = $record->en_complete_title;
+                $media->translateOrNew('fr')->title       = $record->fr_complete_title;
+                $media->translateOrNew('en')->location    = $record->en_location;
+                $media->translateOrNew('fr')->location    = $record->fr_location;
+                $media->translateOrNew('en')->medium      = $record->en_art_medium;
+                $media->translateOrNew('fr')->medium      = $record->fr_art_medium;
+                $media->translateOrNew('en')->description = $record->credit_line;
+                $media->translateOrNew('fr')->description = $record->credit_line;
+                $media->score                             = 0;
+                $media->url                               = $record->url;
+                $media->save();
+                
+            } else {
+                
+                Log::error('IMPORT_ERROR_NO_IMAGE ' . json_encode($record));
+                
+            }
             
         } catch (\Exception $e) {
             $record->imported     = 2;
