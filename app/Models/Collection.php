@@ -41,46 +41,51 @@ class Collection extends Model implements HasMedia
         $this->attributes['slug'] = str_slug($value);
     }
     
+    public function scopeVisible($query)
+    {
+        return $query->where('is_public', 1);
+    }
+    
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('zoom')
-             ->width(2000)
-             ->height(2000);
+            ->width(2000)
+            ->height(2000);
         $this->addMediaConversion('cover')
-             ->width(1200)
-             ->height(1200);
+            ->width(1200)
+            ->height(1200);
         $this->addMediaConversion('large')
-             ->width(500)
-             ->height(500);
+            ->width(500)
+            ->height(500);
         $this->addMediaConversion('medium')
-             ->width(300)
-             ->height(300);
+            ->width(300)
+            ->height(300);
         $this->addMediaConversion('small')
-             ->width(100)
-             ->height(100);
+            ->width(100)
+            ->height(100);
     }
     
     public function registerMediaCollections()
     {
         $this->addMediaCollection('collection')
-             ->singleFile()
-             ->registerMediaConversions(function (Media $media) {
-                 $this->addMediaConversion('zoom')
-                      ->width(2000)
-                      ->height(2000);
-                 $this->addMediaConversion('cover')
-                      ->width(1200)
-                      ->height(1200);
-                 $this->addMediaConversion('large')
-                      ->width(500)
-                      ->height(500);
-                 $this->addMediaConversion('medium')
-                      ->width(300)
-                      ->height(300);
-                 $this->addMediaConversion('small')
-                      ->width(100)
-                      ->height(100);
-             });
+            ->singleFile()
+            ->registerMediaConversions(function (Media $media) {
+                $this->addMediaConversion('zoom')
+                    ->width(2000)
+                    ->height(2000);
+                $this->addMediaConversion('cover')
+                    ->width(1200)
+                    ->height(1200);
+                $this->addMediaConversion('large')
+                    ->width(500)
+                    ->height(500);
+                $this->addMediaConversion('medium')
+                    ->width(300)
+                    ->height(300);
+                $this->addMediaConversion('small')
+                    ->width(100)
+                    ->height(100);
+            });
     }
     
     public function user()

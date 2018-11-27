@@ -32,9 +32,10 @@ class ListRelatedImagesController extends ApiResponseController
     public function run($location)
     {
         $imageByLocation = Media::whereTranslation('location', $location)
-                                ->first();
+            ->visible()
+            ->first();
         
-        if(empty($imageLocation)) {
+        if (empty($imageLocation)) {
         
         }
         

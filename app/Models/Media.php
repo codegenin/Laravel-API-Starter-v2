@@ -60,4 +60,9 @@ class Media extends BaseMedia implements HasMedia
     {
         return $this->hasOne(Collection::class, 'id', 'model_id');
     }
+    
+    public function scopeVisible($query)
+    {
+        return $query->where('visible', 1);
+    }
 }

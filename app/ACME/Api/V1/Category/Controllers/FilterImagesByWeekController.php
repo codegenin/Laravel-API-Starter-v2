@@ -48,7 +48,7 @@ class FilterImagesByWeekController extends ApiResponseController
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
         
         try {
-            $collections = Collection::where('category_id', Hashids::decode($id))
+            $collections = Collection::where('category_id', Hashids::decode($id))->visible()
                                      ->whereBetween('created_at', [
                                          Carbon::now()
                                                ->startOfWeek(),

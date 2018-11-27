@@ -52,13 +52,13 @@ class CollectionsAlphabeticalController extends ApiResponseController
         
         $collection = Collection::join('collection_translations as t', function ($join) {
             $join->on('collections.id', '=', 't.collection_id')
-                 ->where('t.locale', '=', 'en');
+                ->where('t.locale', '=', 'en');
         })
-                                ->where('category_id', $category->id)
-                                ->orderBy('t.title', 'asc')
-                                ->select('collections.*', 't.title')
-                                ->with('translations')
-                                ->paginate();
+            ->where('category_id', $category->id)->visible()
+            ->orderBy('t.title', 'asc')
+            ->select('collections.*', 't.title')
+            ->with('translations')
+            ->paginate();
         
         return new CollectionResourceCollection($collection);
     }

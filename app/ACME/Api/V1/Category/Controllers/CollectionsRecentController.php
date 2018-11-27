@@ -50,7 +50,7 @@ class CollectionsRecentController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $collection = Collection::where('category_id', $category->id)
+        $collection = Collection::where('category_id', $category->id)->visible()
                                 ->orderBy('created_at', 'desc')
                                 ->paginate();
         

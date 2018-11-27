@@ -37,7 +37,7 @@ class CollectionsRecentController extends ApiResponseController
      */
     public function run()
     {
-        $collection = Collection::orderBy('created_at', 'desc')
+        $collection = Collection::orderBy('created_at', 'desc')->visible()
                                 ->paginate();
         
         return new CollectionResourceCollection($collection);

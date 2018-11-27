@@ -50,10 +50,10 @@ class FilterImagesByDayController extends ApiResponseController
         
         try {
             $images = Media::with('user')
-                           ->where('collection_name', $category->slug)
-                           ->whereDate('updated_at', DB::raw('CURDATE()'))
-                           ->orderBy('score', 'desc')
-                           ->paginate();
+                ->where('collection_name', $category->slug)->visible()
+                ->whereDate('updated_at', DB::raw('CURDATE()'))
+                ->orderBy('score', 'desc')
+                ->paginate();
         } catch (\Exception $e) {
             throw new \Exception($e);
         }

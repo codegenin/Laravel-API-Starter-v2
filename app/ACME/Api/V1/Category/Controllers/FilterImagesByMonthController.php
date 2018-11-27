@@ -45,10 +45,12 @@ class FilterImagesByMonthController extends ApiResponseController
     public function run($id)
     {
         try {
-            $collections = Collection::where('category_id', Hashids::decode($id))
-                                     ->whereMonth('updated_at', date('m'))
-                                     ->orderBy('score', 'desc')
-                                     ->paginate();
+            
+            $collections = Collection::where('category_id', Hashids::decode($id))->visible()
+                ->whereMonth('updated_at', date('m'))
+                ->orderBy('score', 'desc')
+                ->paginate();
+            
         } catch (\Exception $e) {
             throw new \Exception($e);
         }
