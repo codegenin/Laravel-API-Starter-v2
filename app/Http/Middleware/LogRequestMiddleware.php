@@ -16,6 +16,12 @@ class LogRequestMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if ($request->has('password')) {
+            $request->merge([
+                'password' => '********'
+            ]);
+        }
+        
         Log::debug('APP.REQUEST', [
             'Method'     => $request->method(),
             'Route '     => $request->capture()
