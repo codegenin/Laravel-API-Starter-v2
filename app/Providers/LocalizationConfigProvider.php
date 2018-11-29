@@ -26,7 +26,7 @@ class LocalizationConfigProvider extends ServiceProvider
                 ],
             ],
             
-            'laravellocalization.useAcceptLanguageHeader' => true,
+            'laravellocalization.useAcceptLanguageHeader' => false,
             
             'laravellocalization.hideDefaultLocaleInURL' => true
         ]);
