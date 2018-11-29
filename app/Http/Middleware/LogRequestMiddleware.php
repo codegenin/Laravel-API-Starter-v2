@@ -16,12 +16,17 @@ class LogRequestMiddleware
      */
     public function handle($request, Closure $next)
     {
+        return $next($request);
+    }
+    
+    public function terminate($request, $response)
+    {
         if ($request->has('password')) {
             $request->merge([
                 'password' => '********'
             ]);
         }
-        
+    
         Log::debug('APP.REQUEST', [
             'Method'     => $request->method(),
             'Route '     => $request->capture()
@@ -31,7 +36,5 @@ class LogRequestMiddleware
             //'response' => $response
             //'Method' => $request->route()->getActionName(),
         ]);
-        
-        return $next($request);
     }
 }
