@@ -22,10 +22,10 @@ class User extends Authenticatable implements JWTSubject, HasMedia
         HasMediaTrait,
         Favoriteability,
         SearchableTrait,
-        PurchasabilityTrait,
         LikabilityTrait,
         ViewabilityTrait,
         ReportabilityTrait,
+        PurchasabilityTrait,
         HasRoles;
     
     protected $guard_name = 'api';
