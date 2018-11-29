@@ -32,6 +32,6 @@ class LogRequestMiddleware
             //'Method' => $request->route()->getActionName(),
         ]);
         
-        return $next($request);
+        #return $next($request);
     }
 }
