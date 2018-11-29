@@ -58,6 +58,6 @@ class ImagesRandomController extends ApiResponseController
             ->limit(50)
             ->paginate();
         
-        return new MediaResourceCollection($images);
+        return new MediaResourceCollection($images->shuffle());
     }
 }
