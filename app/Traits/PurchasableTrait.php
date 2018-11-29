@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\Purchase;
+use Illuminate\Support\Facades\Auth;
 
 trait PurchasableTrait
 {

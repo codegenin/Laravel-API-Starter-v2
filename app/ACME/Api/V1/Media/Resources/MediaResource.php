@@ -45,7 +45,7 @@ class MediaResource extends JsonResource
                 $this->whenLoaded('collection', new CollectionLimitedResource($this->collection)) : [],
             'is_purchased'      => ($this->model_type == "App\\Models\\Collection") ? auth()
                 ->user()
-                ->hasPurchased($this->collection) : false,
+                ->isPurchased($this->collection) : false,
             'is_book'           => auth()
                 ->user()
                 ->isBooked($this),
