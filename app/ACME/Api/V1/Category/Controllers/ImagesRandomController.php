@@ -51,12 +51,13 @@ class ImagesRandomController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $media = Media::where('category_id', $category->id)
-                      #->where('model_type', 'App\\Models\\Collection')->visible()
-                      ->inRandomOrder()
-                      ->limit(50)
-                      ->paginate();
+        $images = Media::where('category_id', $category->id)->visible()
+            ->where('model_type', 'App\\Models\\Collection')
+            ->orderBy('created_at', 'desc')
+            ->inRandomOrder()
+            ->limit(50)
+            ->paginate();
         
-        return new MediaResourceCollection($media);
+        return new MediaResourceCollection($images);
     }
 }
