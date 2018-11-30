@@ -3,6 +3,7 @@
 Route::group(['prefix' => 'collection'], function () {
     
     Route::get('{id}/images', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\ListImagesController@run');
+    Route::get('{id}/all-images', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\ListAllImagesController@run');
     Route::get('{id}/show', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\ViewCollectionController@run');
     Route::get('{id}/is-user-favorite', 'App\\ACME\\Api\\V1\\Collection\\Controllers\\IsUserFavoriteController@run');
     
