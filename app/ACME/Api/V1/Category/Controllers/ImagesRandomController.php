@@ -57,7 +57,8 @@ class ImagesRandomController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $images = Media::where('category_id', $category->id)->visible()
+        $images = Media::inRandomOrder()
+            ->where('category_id', $category->id)->visible()
             ->where('model_type', 'App\\Models\\Collection')
             #->orderByRaw("RAND()")
             #->inRandomOrder()
