@@ -46,13 +46,12 @@ trait CustomPaginationTrait
             ['path' => $request->url(), 'query' => $request->query()]);
         
         return [
-            "current_page" => $paginator->currentPage(),
-            "from"         => $paginator->first(),
-            "last_page"    => $paginator->lastPage(),
-            "path"         => $paginator->url(1),
-            "per_page"     => $paginator->perPage(),
-            "to"           => $paginator->last(),
-            "total"        => $paginator->total()
+            'current_page' => $paginator->currentPage(),
+            'from'         => $paginator->firstItem(),
+            'last_page'    => $paginator->lastPage(),
+            'per_page'     => $paginator->perPage(),
+            'to'           => $paginator->lastItem(),
+            'total'        => $paginator->total(),
         ];
     }
     
