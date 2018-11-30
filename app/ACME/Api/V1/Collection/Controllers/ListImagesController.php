@@ -39,7 +39,7 @@ class ListImagesController extends ApiResponseController
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
-     * @apiParam {int} collection_id the encoded id of a collection
+     * @apiParam {int} id the encoded id of a collection
      *
      */
     public function run($id)
