@@ -70,7 +70,7 @@ class ImagesRandomController extends ApiResponseController
             'links'  => [
                 'next' => $this->nextPageUrl($images->count())
             ],
-            "meta"   => $this->metaPage($this->items, $images->count(), 50, request('page'), request())
+            "meta"   => $this->metaPage($this->items, $images->count(), $this->items, request('page'), request())
         ]);
     }
 }
