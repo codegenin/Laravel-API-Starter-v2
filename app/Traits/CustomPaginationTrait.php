@@ -44,6 +44,7 @@ trait CustomPaginationTrait
             'last_page'    => $paginatedItems->toArray()['last_page'],
             'path'         => $paginatedItems->toArray()['path'],
             'per_page'     => $paginatedItems->toArray()['per_page'],
+            'to'           => $paginatedItems->toArray()['to'],
             'total'        => $paginatedItems->toArray()['total'],
         ];
     }
