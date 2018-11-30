@@ -40,10 +40,9 @@ trait CustomPaginationTrait
      * @param $request
      * @return array
      */
-    public function metaPage($items, $total, $perPage, $page, $request)
+    public function metaPage($items, $total, $perPage, $page)
     {
-        $paginator = new LengthAwarePaginator($items, $total, $perPage, $page,
-            ['path' => $request->url(), 'query' => $request->query()]);
+        $paginator = new LengthAwarePaginator($items, $total, $perPage, $page);
         
         return [
             'current_page' => $paginator->currentPage(),
@@ -51,7 +50,7 @@ trait CustomPaginationTrait
             'last_page'    => $paginator->lastPage(),
             'per_page'     => $paginator->perPage(),
             'to'           => $paginator->lastItem(),
-            'total'        => $total,
+            'total'        => $paginator->total(),
         ];
     }
     
