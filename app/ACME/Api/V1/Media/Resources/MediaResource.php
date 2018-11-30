@@ -40,10 +40,10 @@ class MediaResource extends JsonResource
                 'medium'   => $this->getUrl('medium'),
                 'small'    => $this->getUrl('small'),
             ],
-            'belongs_to'        => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection',
-            'collection'        => ($this->model_type == "App\\Models\\Collection") ?
+            'belongs_to'        => ($this->model_type == "App\Models\Category") ? 'category' : 'collection',
+            'collection'        => ($this->model_type == "App\Models\Collection") ?
                 $this->whenLoaded('collection', new CollectionLimitedResource($this->collection)) : [],
-            'is_purchased'      => ($this->model_type == "App\\Models\\Collection") ?
+            'is_purchased'      => ($this->model_type == "App\Models\Collection") ?
                 $this->whenLoaded('collection', auth()->user()->isPurchased($this->collection)) : false,
             'is_book'           => auth()->user()->isBooked($this),
             'created'           => $this->created_at->diffForHumans(),
