@@ -33,7 +33,7 @@ class ListAllImagesController extends ApiResponseController
     /**
      * @apiGroup           Collection
      * @apiName            listAllImages
-     * @api                {post} /api/collection/{id}/all-images List All Images
+     * @api                {get} /api/collection/{id}/all-images List All Images
      * @apiDescription     Retrieve all images of a collection
      * @apiVersion         1.0.0
      *
