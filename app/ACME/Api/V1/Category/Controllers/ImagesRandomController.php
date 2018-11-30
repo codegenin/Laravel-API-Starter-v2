@@ -16,6 +16,7 @@ use App\Models\Collection;
 use App\Models\Media;
 use App\Traits\CustomPaginationTrait;
 use Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Vinkla\Hashids\Facades\Hashids;
@@ -23,6 +24,8 @@ use Vinkla\Hashids\Facades\Hashids;
 class ImagesRandomController extends ApiResponseController
 {
     use CustomPaginationTrait;
+    
+    protected $items = 50;
     
     private $categoryRepository;
     
@@ -56,16 +59,18 @@ class ImagesRandomController extends ApiResponseController
         
         $images = Media::where('category_id', $category->id)->visible()
             ->where('model_type', 'App\\Models\\Collection');
-            #->orderByRaw("RAND()")
-            #->inRandomOrder()
-            
-    
+        #->orderByRaw("RAND()")
+        #->inRandomOrder()
+        
+        $paginateImages = $images->paginate($this->items);
+        
         return response()->json([
             'status' => true,
-            'data'  => MediaResource::collection($images->paginate(50)->shuffle()),
+            'data'   => MediaResource::collection($paginateImages->shuffle()),
             'links'  => [
                 'next' => $this->nextPageUrl($images->count())
-            ]
+            ],
+            "meta"   => $this->metaPage($this->items, $images->count(), $this->items, request('page'), request())
         ]);
     }
 }
