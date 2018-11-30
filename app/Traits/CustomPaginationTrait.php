@@ -33,24 +33,18 @@ trait CustomPaginationTrait
     /**
      * Generate page meta
      *
-     * @param $items
-     * @param $total
-     * @param $perPage
-     * @param $page
-     * @param $request
+     * @param $paginatedItems
      * @return array
      */
-    public function metaPage($items, $total, $perPage, $page)
+    public function metaPage($paginatedItems)
     {
-        $paginator = new LengthAwarePaginator($items, $total, $perPage, $page);
-        
         return [
-            'current_page' => $paginator->currentPage(),
-            'from'         => $paginator->firstItem(),
-            'last_page'    => $paginator->lastPage(),
-            'per_page'     => $paginator->perPage(),
-            'to'           => $paginator->lastItem(),
-            'total'        => $paginator->total(),
+            'current_page' => $paginatedItems->toArray()['current_page'],
+            'from'         => $paginatedItems->toArray()['from'],
+            'last_page'    => $paginatedItems->toArray()['last_page'],
+            'path'         => $paginatedItems->toArray()['path'],
+            'per_page'     => $paginatedItems->toArray()['per_page'],
+            'total'        => $paginatedItems->toArray()['total'],
         ];
     }
     
