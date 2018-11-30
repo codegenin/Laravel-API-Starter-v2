@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Media;
+use App\Traits\CustomPaginationTrait;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
@@ -21,6 +22,8 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class ImagesRandomController extends ApiResponseController
 {
+    use CustomPaginationTrait;
+    
     private $categoryRepository;
     
     /**
@@ -52,12 +55,17 @@ class ImagesRandomController extends ApiResponseController
         }
         
         $images = Media::where('category_id', $category->id)->visible()
-            ->where('model_type', 'App\\Models\\Collection')
-            ->orderBy('created_at', 'desc')
+            ->where('model_type', 'App\\Models\\Collection');
+            #->orderByRaw("RAND()")
             #->inRandomOrder()
-            ->limit(50)
-            ->paginate();
-        
-        return new MediaResourceCollection($images->shuffle());
+            
+    
+        return response()->json([
+            'status' => true,
+            'data'  => MediaResource::collection($images->paginate(50)->shuffle()),
+            'links'  => [
+                'next' => $this->nextPageUrl($images->count())
+            ]
+        ]);
     }
 }
