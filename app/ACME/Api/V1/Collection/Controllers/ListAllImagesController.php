@@ -54,8 +54,7 @@ class ListAllImagesController extends ApiResponseController
         ])
             ->where('collection_name', $collection->slug)->visible()
             ->orderBy('created_at', 'desc')
-            ->take(1)
-            ->get();
+            ->paginate(50);
         
         return new MediaResourceCollection($images);
     }
