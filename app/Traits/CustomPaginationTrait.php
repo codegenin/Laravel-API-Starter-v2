@@ -51,7 +51,7 @@ trait CustomPaginationTrait
             'last_page'    => $paginator->lastPage(),
             'per_page'     => $paginator->perPage(),
             'to'           => $paginator->lastItem(),
-            'total'        => $paginator->total(),
+            'total'        => $total,
         ];
     }
     
