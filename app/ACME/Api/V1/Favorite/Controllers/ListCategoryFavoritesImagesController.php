@@ -14,12 +14,14 @@ use App\Models\Artist;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Media;
+use App\Traits\CustomPaginationTrait;
 use App\Traits\MediaTraits;
 use Spatie\MediaLibrary\MediaCollection\MediaCollection;
 
 class ListCategoryFavoritesImagesController extends ApiResponseController
 {
-    use MediaTraits;
+    use MediaTraits,
+        CustomPaginationTrait;
     
     /**
      *
@@ -58,10 +60,16 @@ class ListCategoryFavoritesImagesController extends ApiResponseController
             
             $images = Media::orWhereIn('category_id', $categories)
                 ->where('model_type', 'App\\Models\\Collection')
-                ->inRandomOrder()
+                ->visible()
                 ->paginate((request()->has('perPage')) ? request('perPage') : 50);
             
-            return new MediaResourceCollection($images);
+            #return new MediaResourceCollection($images);
+    
+            return response()->json([
+                'status' => true,
+                'data'   => MediaResource::collection($images->shuffle()),
+                "meta"   => $this->metaPage($images)
+            ]);
         }
         
         return response()->json([
