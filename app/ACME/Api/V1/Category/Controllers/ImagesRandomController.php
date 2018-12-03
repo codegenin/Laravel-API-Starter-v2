@@ -59,12 +59,11 @@ class ImagesRandomController extends ApiResponseController
         
         $images = Media::where('category_id', $category->id)
             ->visible()
-            ->where('model_type', 'App\\Models\\Collection')->paginate($this->items);
+            ->where('model_type', 'App\\Models\\Collection')
+            ->inRandomOrder()
+            ->paginate($this->items);
         
-        return response()->json([
-            'status' => true,
-            'data'   => MediaResource::collection($images->shuffle()),
-            "meta"   => $this->metaPage($images)
-        ]);
+        return new MediaResourceCollection($images);
+        
     }
 }

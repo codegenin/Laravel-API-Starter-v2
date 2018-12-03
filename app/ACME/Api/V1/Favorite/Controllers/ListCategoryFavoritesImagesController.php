@@ -61,15 +61,11 @@ class ListCategoryFavoritesImagesController extends ApiResponseController
             $images = Media::orWhereIn('category_id', $categories)
                 ->where('model_type', 'App\\Models\\Collection')
                 ->visible()
+                ->inRandomOrder()
                 ->paginate((request()->has('perPage')) ? request('perPage') : 50);
             
-            #return new MediaResourceCollection($images);
-    
-            return response()->json([
-                'status' => true,
-                'data'   => MediaResource::collection($images->shuffle()),
-                "meta"   => $this->metaPage($images)
-            ]);
+            return new MediaResourceCollection($images);
+            
         }
         
         return response()->json([
