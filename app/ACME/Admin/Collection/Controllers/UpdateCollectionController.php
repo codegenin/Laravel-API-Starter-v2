@@ -43,7 +43,7 @@ class UpdateCollectionController extends Controller
         $collection->is_public   = $request->is_public;
         $collection->save();
         
-        if ($request->has('file')) {
+        if ($request->has('file') AND $request->has('file') != '') {
             $this->associateMedia($collection, $request, 'collection');
             sleep(2);
         }
