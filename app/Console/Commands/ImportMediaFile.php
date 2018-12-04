@@ -64,33 +64,36 @@ class ImportMediaFile extends Command
                      try {
                     
                          foreach ($rows as $row) {
-                        
-                             $record = new ImportRecord();
-                        
-                             $record->fr_title          = $row->titre_de_loeuvre_version_francaise;
-                             $record->en_title          = $row->titre_de_loeuvre_version_anglaise;
-                             $record->fr_complete_title = $row->titre_complet_de_loeuvreversion_francaise;
-                             $record->en_complete_title = $row->titre_complet_de_loeuvreversion_anglaise;
-                             $record->artist            = $row->artiste;
-                             $record->fr_date           = $row->date_version_francaise;
-                             $record->en_date           = $row->date_version_anglaise;
-                             $record->fr_location       = $row->lieuversion_francaise;
-                             $record->en_location       = $row->lieuversion_anglaise;
-                             $record->fr_collection     = $row->nom_collection_version_francaise;
-                             $record->en_collection     = $row->nom_collection_version_anglaise;
-                             $record->fr_art_medium     = $row->mediumversion_francaise;
-                             $record->en_art_medium     = $row->mediumversion_anglaise;
-                             $record->credit_line       = $row->credit_line;
-                             $record->museum            = $row->nom_du_musee;
-                             $record->url               = $row->url;
-                             $record->image_url         = $row->aws;
-                             $record->fr_department     = $row->departement_version_francaise;
-                             $record->en_department     = $row->departement_version_anglaise;
-                             $record->save();
-                             
-                             $imported++;
-                             
-                             ProcessMediaImport::dispatch($record);
+                    
+                             if(!empty($row->departement_version_anglaise) AND !empty($row->nom_collection_version_anglaise)) {
+                                 
+                                 $record = new ImportRecord();
+    
+                                 $record->fr_title          = $row->titre_de_loeuvre_version_francaise;
+                                 $record->en_title          = $row->titre_de_loeuvre_version_anglaise;
+                                 $record->fr_complete_title = $row->titre_complet_de_loeuvreversion_francaise;
+                                 $record->en_complete_title = $row->titre_complet_de_loeuvreversion_anglaise;
+                                 $record->artist            = $row->artiste;
+                                 $record->fr_date           = $row->date_version_francaise;
+                                 $record->en_date           = $row->date_version_anglaise;
+                                 $record->fr_location       = $row->lieuversion_francaise;
+                                 $record->en_location       = $row->lieuversion_anglaise;
+                                 $record->fr_collection     = $row->nom_collection_version_francaise;
+                                 $record->en_collection     = $row->nom_collection_version_anglaise;
+                                 $record->fr_art_medium     = $row->mediumversion_francaise;
+                                 $record->en_art_medium     = $row->mediumversion_anglaise;
+                                 $record->credit_line       = $row->credit_line;
+                                 $record->museum            = $row->nom_du_musee;
+                                 $record->url               = $row->url;
+                                 $record->image_url         = $row->aws;
+                                 $record->fr_department     = $row->departement_version_francaise;
+                                 $record->en_department     = $row->departement_version_anglaise;
+                                 $record->save();
+    
+                                 $imported++;
+    
+                                 ProcessMediaImport::dispatch($record);
+                             }
                              
                          }
                     

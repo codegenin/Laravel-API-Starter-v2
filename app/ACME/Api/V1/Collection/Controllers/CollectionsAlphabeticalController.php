@@ -35,7 +35,7 @@ class CollectionsAlphabeticalController extends ApiResponseController
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
      * @apiParam {string} category_id the encoded category id - optional
-     *                     
+     *
      */
     public function run()
     {

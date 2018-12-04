@@ -13,14 +13,16 @@ class ImportService
     public static function processImportedRecord($record)
     {
         try {
-    
-            // Check or create category
-            $categoryId = self::createOrGetCategory($record);
-            $collection = self::createOrGetCollection($record, $categoryId);
-    
-            // Add media if remote image file exists
-            if (self::checkRemoteFile($record->image_url)) {
+            
+            if (!empty($record->en_department)
+                AND !empty($record->en_collection)
+                AND self::checkRemoteFile($record->image_url)) {
                 
+                // Check or create category
+                $categoryId = self::createOrGetCategory($record);
+                $collection = self::createOrGetCollection($record, $categoryId);
+                
+                // Add media if remote image file exists
                 $media                                    = $collection->addMediaFromUrl($record->image_url)
                     ->toMediaCollection($collection->slug);
                 $media->category_id                       = $categoryId;
@@ -39,11 +41,8 @@ class ImportService
                 $media->score                             = 0;
                 $media->url                               = $record->url;
                 $media->save();
-                
             } else {
-                
                 Log::error('IMPORT_ERROR_NO_IMAGE ' . json_encode($record));
-                
             }
             
         } catch (\Exception $e) {
