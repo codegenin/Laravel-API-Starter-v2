@@ -38,14 +38,14 @@ class CollectionsRecentController extends ApiResponseController
      */
     public function run()
     {
+        $query = Collection::orderBy('created_at', 'desc');
+        
         if(request()->has('category_id') AND !empty(request('category_id'))) {
-            $query = Collection::where('category_id', Hashids::decode(request('category_id')))
-                ->orderBy('created_at', 'desc')->visible();
-        } else {
-            $query = Collection::orderBy('created_at', 'desc')->visible();
+            $query->where('category_id', Hashids::decode(request('category_id')))
+                ->orderBy('created_at', 'desc');
         }
         
-        $collection = $query->paginate();
+        $collection = $query->visible()->paginate();
         
         return new CollectionResourceCollection($collection);
     }
