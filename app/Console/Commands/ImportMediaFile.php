@@ -55,7 +55,7 @@ class ImportMediaFile extends Command
             
             $file = Storage::path($import->file);
             
-            $imported = Excel::filter('chunk')
+            Excel::filter('chunk')
                  ->load($file)
                  ->chunk(20, function ($rows) use ($import) {
                 
