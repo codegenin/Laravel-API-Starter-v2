@@ -27,12 +27,13 @@ class ListUserPurchasesController extends ApiResponseController
     /**
      * @apiGroup           Purchase
      * @apiName            userPurchases
-     * @api                {get} /api/purchase/user-purchases List User Purchases
+     * @api                {get} /api/purchase/user-purchases/{category_id?} List User Purchases
      * @apiDescription     List All User Purchases
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
+     * @apiParam {string} category_id the encoded category id - optional
      */
     public function run()
     {

@@ -28,17 +28,24 @@ class CollectionsRecentController extends ApiResponseController
     /**
      * @apiGroup           Collection
      * @apiName            collectionsRecent
-     * @api                {get} /api/collection/all-recent-collections List Recent Collections
-     * @apiDescription     Retrieve all recent collections
+     * @api                {get} /api/collection/all-recent-collections?category_id={category_id?} List Recent Collections
+     * @apiDescription     Retrieve all recent collections - add category_id parameter to filter specific category collections
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
+     * @apiParam {string} category_id the encoded category id - optional
      */
     public function run()
     {
-        $collection = Collection::orderBy('created_at', 'desc')->visible()
-                                ->paginate();
+        if(request()->has('category_id') AND !empty(request('category_id'))) {
+            $query = Collection::where('category_id', Hashids::decode(request('category_id')))
+                ->orderBy('created_at', 'desc')->visible();
+        } else {
+            $query = Collection::orderBy('created_at', 'desc')->visible();
+        }
+        
+        $collection = $query->paginate();
         
         return new CollectionResourceCollection($collection);
     }
