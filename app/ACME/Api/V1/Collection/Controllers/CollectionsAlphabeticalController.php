@@ -28,24 +28,30 @@ class CollectionsAlphabeticalController extends ApiResponseController
     /**
      * @apiGroup           Collection
      * @apiName            collectionsAlphabetical
-     * @api                {get} /api/collection/all-alphabetical-collections List Alphabetical Collections
+     * @api                {get} /api/collection/all-alphabetical-collections?category_id={category_id} List Alphabetical Collections
      * @apiDescription     Retrieve all collections in alphabetically
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
      *
+     * @apiParam {string} category_id the encoded category id - optional
+     *                     
      */
     public function run()
     {
-        $collection = Collection::join('collection_translations as t', function ($join) {
+        $query = Collection::join('collection_translations as t', function ($join) {
             $join->on('collections.id', '=', 't.collection_id')
-                 ->where('t.locale', '=', 'en');
-        })->visible()
-                                ->orderBy('t.title', 'asc')
-                                ->select('collections.*', 't.title')
-                                ->with('translations')
-                                ->paginate();
+                ->where('t.locale', '=', 'en');
+        })
+            ->with('translations');
         
-        return new CollectionResourceCollection($collection);
+        if (request()->has('category_id') AND !empty(request('category_id'))) {
+            $query->where('category_id', Hashids::decode(request('category_id')));
+        }
+        
+        $collections = $query->select('collections.*', 't.title')->orderBy('t.title', 'asc')
+            ->visible()->paginate();
+        
+        return new CollectionResourceCollection($collections);
     }
 }

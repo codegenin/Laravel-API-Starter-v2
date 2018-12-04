@@ -28,7 +28,7 @@ class CollectionsRecentController extends ApiResponseController
     /**
      * @apiGroup           Collection
      * @apiName            collectionsRecent
-     * @api                {get} /api/collection/all-recent-collections?category_id={category_id?} List Recent Collections
+     * @api                {get} /api/collection/all-recent-collections?category_id={category_id} List Recent Collections
      * @apiDescription     Retrieve all recent collections - add category_id parameter to filter specific category collections
      * @apiVersion         1.0.0
      *
@@ -41,8 +41,7 @@ class CollectionsRecentController extends ApiResponseController
         $query = Collection::orderBy('created_at', 'desc');
         
         if(request()->has('category_id') AND !empty(request('category_id'))) {
-            $query->where('category_id', Hashids::decode(request('category_id')))
-                ->orderBy('created_at', 'desc');
+            $query->where('category_id', Hashids::decode(request('category_id')));
         }
         
         $collection = $query->visible()->paginate();
