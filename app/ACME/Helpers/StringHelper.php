@@ -11,6 +11,7 @@ class StringHelper
      */
     public static function cleanString($string)
     {
-        return str_replace(["\r", "\n", "\\", "/"], '', strip_tags($string));
+        #return str_replace(["\r", "\n", "\\", "/"], '', strip_tags($string));
+        return rtrim($string, "\r\n");
     }
 }
