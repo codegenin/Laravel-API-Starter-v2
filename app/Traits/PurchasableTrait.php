@@ -40,6 +40,16 @@ trait PurchasableTrait
     }
     
     /**
+     * Grab user purchases
+     *
+     * @return $this
+     */
+    public function userPurchases()
+    {
+        $this->purchases()->where('user_id',  Auth::id());
+    }
+    
+    /**
      * Toggle the favorite status from this Object
      *
      * @param  int $user_id  [if  null its added to the auth user]

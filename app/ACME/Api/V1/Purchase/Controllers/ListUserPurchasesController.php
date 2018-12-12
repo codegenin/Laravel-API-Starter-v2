@@ -7,6 +7,8 @@ use App\ACME\Api\V1\Collection\Resource\CollectionResource;
 use App\Http\Controllers\ApiResponseController;
 use App\Models\Collection;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Psr\Log\InvalidArgumentException;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -37,9 +39,20 @@ class ListUserPurchasesController extends ApiResponseController
      */
     public function run()
     {
-        $collections = CollectionResource::collection(auth()
+        /*$collections = CollectionResource::collection(auth()
             ->user()
-            ->purchase(Collection::class));
+            ->purchase(Collection::class));*/
+        
+        $query = DB::table('collections')
+            ->join('purchases', 'collections.id', '=', 'purchases.purchasable_id');
+        
+        if (request()->has('category_id') AND !empty(request('category_id'))) {
+            $query->where('collections.category_id', Hashids::decode(request('category_id')));
+        }
+        
+        $collections = $query->where('purchases.user_id', auth()->user()->id)
+            ->orderBy('collections.created_at', 'desc')
+            ->paginate();
         
         return response()->json([
             'status'      => true,

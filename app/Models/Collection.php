@@ -97,4 +97,9 @@ class Collection extends Model implements HasMedia
     {
         return $this->belongsTo(Category::class);
     }
+    
+    public function scopePurchases()
+    {
+        return $this->hasMany(Purchase::class)->where('user_id', auth()->id());
+    }
 }
