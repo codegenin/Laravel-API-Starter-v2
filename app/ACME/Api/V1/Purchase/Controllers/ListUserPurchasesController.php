@@ -4,6 +4,7 @@ namespace App\ACME\Api\V1\Purchase\Controllers;
 
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\ACME\Api\V1\Collection\Resource\CollectionResource;
+use App\ACME\Api\V1\Collection\Resource\CollectionResourceCollection;
 use App\Http\Controllers\ApiResponseController;
 use App\Models\Collection;
 use App\Models\User;
@@ -39,24 +40,17 @@ class ListUserPurchasesController extends ApiResponseController
      */
     public function run()
     {
-        /*$collections = CollectionResource::collection(auth()
-            ->user()
-            ->purchase(Collection::class));*/
-        
-        $query = DB::table('collections')
-            ->join('purchases', 'collections.id', '=', 'purchases.purchasable_id');
+        $query = Collection::visible();
         
         if (request()->has('category_id') AND !empty(request('category_id'))) {
-            $query->where('collections.category_id', Hashids::decode(request('category_id')));
+            $query->where('category_id', Hashids::decode(request('category_id')));
         }
         
-        $collections = $query->where('purchases.user_id', auth()->user()->id)
-            ->orderBy('collections.created_at', 'desc')
-            ->paginate();
+        $collections = $query->whereHas('archives', function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        })->paginate();
         
-        return response()->json([
-            'status'      => true,
-            'collections' => $collections,
-        ]);
+        return new CollectionResourceCollection($collections);
+
     }
 }

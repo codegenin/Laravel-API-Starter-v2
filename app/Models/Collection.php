@@ -98,8 +98,12 @@ class Collection extends Model implements HasMedia
         return $this->belongsTo(Category::class);
     }
     
-    public function scopePurchases()
+    /**
+     * User purchases
+     *
+     */
+    public function archives()
     {
-        return $this->hasMany(Purchase::class)->where('user_id', auth()->id());
+        return $this->morphMany(Purchase::class, 'purchasable');
     }
 }
