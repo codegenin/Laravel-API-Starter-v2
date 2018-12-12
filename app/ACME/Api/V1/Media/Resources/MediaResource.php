@@ -5,6 +5,7 @@ namespace App\ACME\Api\V1\Media\Resource;
 use App\ACME\Api\V1\Collection\Resource\CollectionLimitedResource;
 use App\ACME\Api\V1\User\Resource\UserResource;
 use App\ACME\Api\V1\User\Resource\UserResourceLimited;
+use App\ACME\Helpers\StringHelper;
 use App\Traits\MediaTraits;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Vinkla\Hashids\Facades\Hashids;
@@ -25,7 +26,7 @@ class MediaResource extends JsonResource
             'id'                => Hashids::encode($this->id),
             'title'             => $this->title_short ?: '',
             'title_long'        => $this->title ?: '',
-            'description'       => $this->description ?: '',
+            'description'       => StringHelper::cleanString($this->description) ?: '',
             'location'          => $this->location ?: '',
             'medium'            => $this->medium ?: '',
             'museum'            => $this->museum ?: '',

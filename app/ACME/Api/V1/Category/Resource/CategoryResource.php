@@ -3,6 +3,7 @@
 namespace App\ACME\Api\V1\Category\Resource;
 
 use App\ACME\Api\V1\Collection\Resource\CollectionResource;
+use App\ACME\Helpers\StringHelper;
 use App\Traits\MediaTraits;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Vinkla\Hashids\Facades\Hashids;
@@ -23,7 +24,7 @@ class CategoryResource extends JsonResource
             'id'          => Hashids::encode($this->id),
             'slug'        => $this->slug ?: '',
             'name'        => $this->name ?: '',
-            'description' => $this->description ?: '',
+            'description' => StringHelper::cleanString($this->description) ?: '',
             'public'      => ($this->is_public == 1) ? 'Yes' : 'No',
             'covers'      => $this->getMedialUrls($this, 'category'),
             'created'     => $this->created_at->diffForHumans(),
