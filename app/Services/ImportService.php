@@ -40,6 +40,7 @@ class ImportService
                 $media->translateOrNew('fr')->description = $record->credit_line;
                 $media->score                             = 0;
                 $media->url                               = $record->url;
+                $media->visible                           = 0;
                 $media->save();
             } else {
                 Log::error('IMPORT_ERROR_NO_IMAGE ' . json_encode($record));

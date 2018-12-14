@@ -14,7 +14,7 @@ class UpdateMediaAddVisibleColumn extends Migration
     public function up()
     {
         Schema::table('media', function (Blueprint $table) {
-            $table->boolean('visible')->default(true);
+            $table->boolean('visible')->default(false);
         });
     }
     
