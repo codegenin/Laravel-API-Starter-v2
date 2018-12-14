@@ -52,7 +52,7 @@ class ListAllImagesController extends ApiResponseController
             'collection',
             'translations'
         ])
-            ->where('collection_name', $collection->slug)->visible()
+            ->where('collection_name', $collection->slug)
             ->orderBy('created_at', 'desc')
             ->paginate(50);
         
