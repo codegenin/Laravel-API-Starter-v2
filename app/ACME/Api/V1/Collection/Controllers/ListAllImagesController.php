@@ -26,7 +26,7 @@ class ListAllImagesController extends ApiResponseController
      */
     public function __construct(CollectionRepository $collectionRepository)
     {
-        $this->middleware('jwt.auth', []);
+        #$this->middleware('jwt.auth', []);
         $this->collectionRepository = $collectionRepository;
     }
     

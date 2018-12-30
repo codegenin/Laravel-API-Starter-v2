@@ -20,7 +20,7 @@ class ListCategoryController extends ApiResponseController
      */
     public function __construct(CategoryRepository $categoryRepository)
     {
-        $this->middleware('jwt.auth', []);
+        #$this->middleware('jwt.auth', []);
         $this->categoryRepository = $categoryRepository;
     }
     

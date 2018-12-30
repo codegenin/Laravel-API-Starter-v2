@@ -35,7 +35,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
      */
     public function __construct(CollectionRepository $collectionRepository, MediaRepository $mediaRepository)
     {
-        $this->middleware('jwt.auth', []);
+        #$this->middleware('jwt.auth', []);
         $this->collectionRepository = $collectionRepository;
         $this->mediaRepository      = $mediaRepository;
     }
@@ -64,7 +64,7 @@ class ListImagesAndIsBookedController extends ApiResponseController
             'status'            => true,
             'collection_info'   => new CollectionResource($collection),
             'collection_images' => MediaResource::collection($images),
-            'is_booked'         => !($media) ? 0 : auth()->user()->isBooked($media)
+            #'is_booked'         => !($media) ? 0 : auth()->user()->isBooked($media)
         ]);
     }
     

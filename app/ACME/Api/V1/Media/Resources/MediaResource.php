@@ -44,9 +44,9 @@ class MediaResource extends JsonResource
             'belongs_to'        => ($this->model_type == "App\\Models\\Category") ? 'category' : 'collection',
             'collection'        => ($this->model_type == "App\\Models\\Collection") ?
                 $this->whenLoaded('collection', new CollectionLimitedResource($this->collection)) : [],
-            'is_purchased'      => (!empty($this->collection)) ?
+            /*'is_purchased'      => (!empty($this->collection)) ?
                 $this->whenLoaded('collection', auth()->user()->isPurchased($this->collection)) : false,
-            'is_book'           => auth()->user()->isBooked($this),
+            'is_book'           => auth()->user()->isBooked($this),*/
             'created'           => $this->created_at->diffForHumans(),
             'updated'           => $this->updated_at->diffForHumans(),
             'created_timestamp' => $this->created_at->format('Y-m-d H:i:s'),

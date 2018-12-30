@@ -35,9 +35,9 @@ class CollectionResource extends JsonResource
             'user'         => $this->whenLoaded('user', new UserResourceLimited($this->user)),
             'image_count'  => $this->getMedia($this->slug)
                                    ->count(),
-            'is_purchased' => auth()
+            /*'is_purchased' => auth()
                 ->user()
-                ->hasPurchased($this),
+                ->hasPurchased($this),*/
             'created'      => $this->created_at->diffForHumans(),
             'days_ago'     => ($this->created_at->diffInDays() == 0) ? 1 . ' j' :
                 $this->created_at->diffInDays() . ' j',
