@@ -28,8 +28,10 @@ class CollectionsRecentController extends ApiResponseController
     /**
      * @apiGroup           Collection
      * @apiName            collectionsRecent
-     * @api                {get} /api/collection/all-recent-collections?category_id={category_id} List Recent Collections
-     * @apiDescription     Retrieve all recent collections - add category_id parameter to filter specific category collections
+     * @api                {get} /api/collection/all-recent-collections?category_id={category_id} List Recent
+     *                     Collections
+     * @apiDescription     Retrieve all recent collections - add category_id parameter to filter specific category
+     *                     collections
      * @apiVersion         1.0.0
      *
      * @apiHeader {String} Authorization =Bearer+access-token} Users unique access-token.
@@ -38,9 +40,9 @@ class CollectionsRecentController extends ApiResponseController
      */
     public function run()
     {
-        $query = Collection::orderBy('created_at', 'desc');
+        $query = Collection::with('category')->orderBy('created_at', 'desc');
         
-        if(request()->has('category_id') AND !empty(request('category_id'))) {
+        if (request()->has('category_id') AND !empty(request('category_id'))) {
             $query->where('category_id', Hashids::decode(request('category_id')));
         }
         

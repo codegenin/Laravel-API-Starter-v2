@@ -43,7 +43,7 @@ class CollectionsAlphabeticalController extends ApiResponseController
             $join->on('collections.id', '=', 't.collection_id')
                 ->where('t.locale', '=', 'en');
         })
-            ->with('translations');
+            ->with('translations', 'category');
         
         if (request()->has('category_id') AND !empty(request('category_id'))) {
             $query->where('category_id', Hashids::decode(request('category_id')));

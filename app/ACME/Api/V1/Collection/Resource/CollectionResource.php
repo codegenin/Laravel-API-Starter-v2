@@ -23,25 +23,26 @@ class CollectionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'           => Hashids::encode($this->id),
-            'slug'         => $this->slug,
-            'title'        => $this->title,
-            'description'  => isset($this->description) ? StringHelper::cleanString($this->description) : '',
-            'time_period'  => isset($this->time_period) ? $this->time_period : '',
-            'score'        => isset($this->score) ? $this->score : 0,
-            'points'       => isset($this->points) ? $this->points : 0,
-            'public'       => ($this->is_public == 1) ? 'Yes' : 'No',
-            'artist'       => isset($this->artist) ? $this->artist : '',
-            'user'         => $this->whenLoaded('user', new UserResourceLimited($this->user)),
-            'image_count'  => $this->getMedia($this->slug)
-                                   ->count(),
+            'id'          => Hashids::encode($this->id),
+            'category_id' => Hashids::encode($this->category_id),
+            'slug'        => $this->slug,
+            'title'       => $this->title,
+            'description' => isset($this->description) ? StringHelper::cleanString($this->description) : '',
+            'time_period' => isset($this->time_period) ? $this->time_period : '',
+            'score'       => isset($this->score) ? $this->score : 0,
+            'points'      => isset($this->points) ? $this->points : 0,
+            'public'      => ($this->is_public == 1) ? 'Yes' : 'No',
+            'artist'      => isset($this->artist) ? $this->artist : '',
+            'user'        => $this->whenLoaded('user', new UserResourceLimited($this->user)),
+            'image_count' => $this->getMedia($this->slug)
+                ->count(),
             /*'is_purchased' => auth()
                 ->user()
                 ->hasPurchased($this),*/
-            'created'      => $this->created_at->diffForHumans(),
-            'days_ago'     => ($this->created_at->diffInDays() == 0) ? 1 . ' j' :
+            'created'     => $this->created_at->diffForHumans(),
+            'days_ago'    => ($this->created_at->diffInDays() == 0) ? 1 . ' j' :
                 $this->created_at->diffInDays() . ' j',
-            'covers'       => $this->getMedialUrls($this, 'collection'),
+            'covers'      => $this->getMedialUrls($this, 'collection'),
         ];
     }
 }
