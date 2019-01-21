@@ -48,21 +48,21 @@ class Collection extends Model implements HasMedia
     
     public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaConversion('zoom')
-            ->width(2000)
-            ->height(2000);
-        $this->addMediaConversion('cover')
-            ->width(1200)
-            ->height(1200);
-        $this->addMediaConversion('large')
-            ->width(500)
-            ->height(500);
-        $this->addMediaConversion('medium')
-            ->width(300)
-            ->height(300);
         $this->addMediaConversion('small')
             ->width(100)
             ->height(100);
+        $this->addMediaConversion('medium')
+            ->width(300)
+            ->height(300);
+        $this->addMediaConversion('large')
+            ->width(500)
+            ->height(500);
+        $this->addMediaConversion('cover')
+            ->width(1200)
+            ->height(1200);
+        $this->addMediaConversion('zoom')
+            ->width(2000)
+            ->height(2000);
     }
     
     public function registerMediaCollections()
@@ -70,21 +70,21 @@ class Collection extends Model implements HasMedia
         $this->addMediaCollection('collection')
             ->singleFile()
             ->registerMediaConversions(function (Media $media) {
-                $this->addMediaConversion('zoom')
-                    ->width(2000)
-                    ->height(2000);
-                $this->addMediaConversion('cover')
-                    ->width(1200)
-                    ->height(1200);
-                $this->addMediaConversion('large')
-                    ->width(500)
-                    ->height(500);
-                $this->addMediaConversion('medium')
-                    ->width(300)
-                    ->height(300);
                 $this->addMediaConversion('small')
                     ->width(100)
                     ->height(100);
+                $this->addMediaConversion('medium')
+                    ->width(300)
+                    ->height(300);
+                $this->addMediaConversion('large')
+                    ->width(500)
+                    ->height(500);
+                $this->addMediaConversion('cover')
+                    ->width(1200)
+                    ->height(1200);
+                $this->addMediaConversion('zoom')
+                    ->width(2000)
+                    ->height(2000);
             });
     }
     

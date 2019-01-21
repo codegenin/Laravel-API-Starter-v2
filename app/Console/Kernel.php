@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\ClearViewsTable;
+use App\Console\Commands\DeleteMediaWithNoImages;
 use App\Console\Commands\DownloadImagesFromS3;
 use App\Console\Commands\GenerateApiDocumentation;
 use App\Console\Commands\ImportMediaFile;
@@ -20,7 +21,8 @@ class Kernel extends ConsoleKernel
         GenerateApiDocumentation::class,
         ImportMediaFile::class,
         ClearViewsTable::class,
-        DownloadImagesFromS3::class
+        DownloadImagesFromS3::class,
+        DeleteMediaWithNoImages::class
     ];
     
     /**
@@ -32,10 +34,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('media:import')
-                 ->everyMinute()
-                 ->withoutOverlapping();
+            ->everyMinute()
+            ->withoutOverlapping();
         $schedule->command('clear:views')
-                 ->everyMinute();
+            ->everyMinute()
+            ->withoutOverlapping();
+        $schedule->command('delete:media_with_no_images')
+            ->everyFiveMinutes()
+            ->withoutOverlapping();
     }
     
     /**
