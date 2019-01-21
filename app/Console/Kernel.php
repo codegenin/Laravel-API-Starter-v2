@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
             ->everyMinute()
             ->withoutOverlapping();
         $schedule->command('delete:media_with_no_images')
-            ->everyFiveMinutes()
+            ->everyThirtyMinutes()
             ->withoutOverlapping();
     }
     
