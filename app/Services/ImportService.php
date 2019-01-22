@@ -38,6 +38,9 @@ class ImportService
                 $media->translateOrNew('fr')->medium      = $record->fr_art_medium;
                 $media->translateOrNew('en')->description = $record->credit_line;
                 $media->translateOrNew('fr')->description = $record->credit_line;
+                $media->translateOrNew('en')->time_period = $record->en_date;
+                $media->translateOrNew('fr')->time_period = $record->fr_date;
+                $media->artist                            = $record->artist;
                 $media->score                             = 0;
                 $media->url                               = $record->url;
                 $media->visible                           = 0;

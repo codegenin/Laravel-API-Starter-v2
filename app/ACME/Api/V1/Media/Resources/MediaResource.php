@@ -33,6 +33,8 @@ class MediaResource extends JsonResource
             'museum_url'        => $this->url ?: '',
             'score'             => $this->score ?: '',
             #'user'         => new UserResourceLimited($this->user),
+            'artist'            => isset($this->artist) ? $this->artist : '',
+            'time_period'       => isset($this->time_period) ? $this->time_period : '',
             'images'            => [
                 'original' => $this->getUrl(),
                 'zoom'     => $this->getUrl('zoom'),

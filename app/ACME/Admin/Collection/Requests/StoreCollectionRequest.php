@@ -16,7 +16,7 @@ class StoreCollectionRequest extends FormRequest
         return [
             'category_id' => 'required',
             'title'       => 'required',
-            'time_period' => 'required',
+            'points'      => 'required',
             'description' => 'required',
             'file'        => 'nullable|mimes:jpeg,png',
         ];

@@ -17,6 +17,7 @@ class UploadImageRequest extends FormRequest
             'title'       => 'required',
             'description' => 'required',
             'location'    => 'required',
+            'artist'      => 'required',
             #'tags'        => 'required',
             'file'        => 'nullable|mimes:jpeg,png',
         ];

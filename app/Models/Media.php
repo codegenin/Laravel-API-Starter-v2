@@ -23,13 +23,15 @@ class Media extends BaseMedia implements HasMedia
         'title',
         'description',
         'location',
+        'time_period',
         'medium'
     ];
     
     protected $table = 'media';
     
     protected $with = [
-        'collection'
+        'collection',
+        'translations'
     ];
     
     protected $searchable = [

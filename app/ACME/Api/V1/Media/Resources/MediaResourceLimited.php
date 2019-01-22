@@ -22,17 +22,19 @@ class MediaResourceLimited extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                => Hashids::encode($this->id),
-            'title'             => $this->title_short ?: '',
-            'title_long'        => $this->title ?: '',
-            'description'       => $this->description ?: '',
-            'location'          => $this->location ?: '',
-            'medium'            => $this->medium ?: '',
-            'museum'            => $this->museum ?: '',
-            'museum_url'        => $this->url ?: '',
-            'score'             => $this->score ?: '',
+            'id'          => Hashids::encode($this->id),
+            'title'       => $this->title_short ?: '',
+            'title_long'  => $this->title ?: '',
+            'description' => $this->description ?: '',
+            'location'    => $this->location ?: '',
+            'medium'      => $this->medium ?: '',
+            'museum'      => $this->museum ?: '',
+            'museum_url'  => $this->url ?: '',
+            'score'       => $this->score ?: '',
             #'user'         => new UserResourceLimited($this->user),
-            'images'            => [
+            'artist'      => isset($this->artist) ? $this->artist : '',
+            'time_period' => isset($this->time_period) ? $this->time_period : '',
+            'images'      => [
                 'original' => $this->getUrl(),
                 'zoom'     => $this->getUrl('zoom'),
                 'cover'    => $this->getUrl('cover'),

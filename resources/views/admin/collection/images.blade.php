@@ -104,7 +104,8 @@
                             <span class="input-group-addon">
                             <img src="{{asset('images/en.png')}}" alt="french">
                         </span>
-                                <input type="text" name="description" id="description" placeholder="Description in english"
+                                <input type="text" name="description" id="description"
+                                       placeholder="Description in english"
                                        class="form-control" value="{{ old('description') }}">
                             </div>
                             <div class="input-group">
@@ -157,6 +158,35 @@
                             </div>
                         </div>
 
+                        <!-- Time Period: Form Input -->
+                        <div class="form-group">
+                            <label for="en_time_period">{{__('label.time_period')}}:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                <img src="{{asset('images/en.png')}}" alt="french">
+                                </span>
+                                <input type="text" name="en_time_period" id="en_time_period"
+                                       placeholder="Time period in english"
+                                       class="form-control" value="{{ old('en_time_period') }}">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                <img src="{{asset('images/fr.png')}}" alt="french">
+                                </span>
+                                <input type="text" name="fr_time_period" id="fr_time_period"
+                                       placeholder="Time Period in french"
+                                       class="form-control" value="{{ old('fr_time_period') }}">
+                            </div>
+                        </div>
+
+                        <!-- Artist -->
+                        <div class="form-group">
+                            <label for="artist">{{trans('label.artist')}}:</label>
+                            <input type="text" name="artist" id="artist"
+                                   placeholder="Artist name" class="form-control"
+                                   value="{{ old('artist') }}">
+                        </div>
+
                         <!-- Tags: Form Input -->
                         <div class="form-group">
                             <label>{{trans('label.tags')}}:</label>
@@ -179,7 +209,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{trans('label.close')}}</button>
+                        <button type="button" class="btn btn-default pull-left"
+                                data-dismiss="modal">{{trans('label.close')}}</button>
                         <button type="submit" class="btn btn-primary">{{trans('label.upload')}}</button>
                     </div>
                 </form>
@@ -219,7 +250,8 @@
                             <span class="input-group-addon">
                             <img src="{{asset('images/fr.png')}}" alt="french">
                         </span>
-                                <input type="text" name="fr_title" id="edit-media-fr_title" placeholder="Title in french"
+                                <input type="text" name="fr_title" id="edit-media-fr_title"
+                                       placeholder="Title in french"
                                        class="form-control" value="{{ old('title') }}">
                             </div>
                         </div>
@@ -231,7 +263,8 @@
                             <span class="input-group-addon">
                             <img src="{{asset('images/en.png')}}" alt="french">
                         </span>
-                                <input type="text" name="description" id="edit-media-description" placeholder="Description in english"
+                                <input type="text" name="description" id="edit-media-description"
+                                       placeholder="Description in english"
                                        class="form-control" value="{{ old('description') }}">
                             </div>
                             <div class="input-group">
@@ -251,7 +284,8 @@
                             <span class="input-group-addon">
                             <img src="{{asset('images/en.png')}}" alt="french">
                         </span>
-                                <input type="text" name="location" id="edit-media-location" placeholder="Location in english"
+                                <input type="text" name="location" id="edit-media-location"
+                                       placeholder="Location in english"
                                        class="form-control" value="{{ old('location') }}">
                             </div>
                             <div class="input-group">
@@ -271,7 +305,8 @@
                             <span class="input-group-addon">
                             <img src="{{asset('images/en.png')}}" alt="french">
                         </span>
-                                <input type="text" name="medium" id="edit-media-medium" placeholder="Location in english"
+                                <input type="text" name="medium" id="edit-media-medium"
+                                       placeholder="Location in english"
                                        class="form-control" value="{{ old('medium') }}">
                             </div>
                             <div class="input-group">
@@ -282,6 +317,35 @@
                                        placeholder="Location in french"
                                        class="form-control" value="{{ old('fr_medium') }}">
                             </div>
+                        </div>
+
+                        <!-- Time Period: Form Input -->
+                        <div class="form-group">
+                            <label for="en_time_period">{{__('label.time_period')}}:</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                <img src="{{asset('images/en.png')}}" alt="french">
+                                </span>
+                                <input type="text" name="en_time_period" id="edit-en-time-period"
+                                       placeholder="Time period in english"
+                                       class="form-control" value="{{ old('en_time_period') }}">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                <img src="{{asset('images/fr.png')}}" alt="french">
+                                </span>
+                                <input type="text" name="fr_time_period" id="edit-fr-time-period"
+                                       placeholder="Time Period in french"
+                                       class="form-control" value="{{ old('fr_time_period') }}">
+                            </div>
+                        </div>
+
+                        <!-- Artist -->
+                        <div class="form-group">
+                            <label for="artist">{{trans('label.artist')}}:</label>
+                            <input type="text" name="artist" id="edit-artist"
+                                   placeholder="Artist name" class="form-control"
+                                   value="{{ old('artist') }}">
                         </div>
 
                         <!-- Tags: Form Input -->
@@ -362,6 +426,9 @@
                     $('#edit-media-fr-location').val(data.media.fr_location);
                     $('#edit-media-medium').val(data.media.medium);
                     $('#edit-media-fr-medium').val(data.media.fr_medium);
+                    $('#edit-en-time-period').val(data.media.en_time_period);
+                    $('#edit-fr-time-period').val(data.media.fr_time_period);
+                    $('#edit-artist').val(data.media.artist);
                     $('#modal-edit-collection-image').modal('show');
                     $('#cover-image').attr('src', data.media.images.large);
                     $.each(data.tags, function (i, item) {
