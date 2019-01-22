@@ -45,12 +45,13 @@ class DeleteMediaWithNoImages extends Command
             ->where('collection_name', '!=', 'collection')
             ->chunk(20, function ($medias) {
                 foreach ($medias as $media) {
-                    $mediaSmalUrl    = "https://" . env('AWS_CLOUDFRONT') . "/" . $media->id .
-                        "/conversions/{$media->name}-small.jpg";
+                    $encodedName = urlencode($media->name);
+                    $mediaSmallUrl    = "https://" . env('AWS_CLOUDFRONT') . "/" . $media->id .
+                        "/conversions/{$encodedName}-small.jpg";
                     $medialMediumUrl = "https://" . env('AWS_CLOUDFRONT') . "/" . $media->id .
-                        "/conversions/{$media->name}-medium.jpg";
+                        "/conversions/{$encodedName}-medium.jpg";
                     
-                    if (CheckRemoteFileHelper::checkRemoteFile($mediaSmalUrl) AND
+                    if (CheckRemoteFileHelper::checkRemoteFile($mediaSmallUrl) AND
                         CheckRemoteFileHelper::checkRemoteFile($medialMediumUrl)) {
                         $media->verified = 1;
                         $media->save();
