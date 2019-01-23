@@ -91,4 +91,8 @@ return array (
   'reports' => 'Rapports',
   'type' => 'Type',
   'artist' => 'Artist',
+  'collection' => 'Collection',
+  'failed_count' => 'Échec du compte',
+  'import_error' => 'Erreur d\'importation',
+  'import_image' => 'Importer une image',
 );

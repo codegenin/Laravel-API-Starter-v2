@@ -5,6 +5,7 @@
         <td style="width: 10px;">{{__('label.file')}}</td>
         <td style="width: 10px;">{{__('label.total_rows')}}</td>
         <td style="width: 10px;">{{__('label.import_count')}}</td>
+        <td style="width: 10px;">{{__('label.failed_count')}}</td>
         <td style="width: 10px;">{{__('label.status')}}</td>
         <td style="width: 10px;">{{__('label.created_at')}}</td>
         <td style="width: 20px;">{{__('label.actions')}}</td>
@@ -15,6 +16,7 @@
             <td>{{$import->file}}</td>
             <td>{{$import->total_rows}}</td>
             <td>{{$import->imported_count}}</td>
+            <td>{{$import->failed_count}}</td>
             <td>
                 @if($import->status == '0')<span class="label label-primary">Standby</span>@endif
                 @if($import->status == '1')<span class="label label-warning">In Progress</span>@endif
@@ -31,6 +33,9 @@
                     </a>
                     <a href="#" data-id="{{$import->id}}" title="{{trans('label.delete')}}"
                        class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
+                    <a href="{{ route('admin.import.failed.imports', $import->id) }}" data-id="{{$import->id}}"
+                       title="Failed Imports"
+                       class="btn btn-warning"><i class="fa fa-bullhorn"></i></a>
                 </div>
             </td>
         </tr>

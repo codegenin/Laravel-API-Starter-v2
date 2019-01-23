@@ -83,4 +83,8 @@ return array (
   'reported_by' => 'Reported By',
   'new_report' => 'New Report',
   'artist' => 'Artist',
+  'failed_count' => 'Failed Count',
+  'collection' => 'Collection',
+  'import_error' => 'Import Error',
+  'import_image' => 'Import Image',
 );

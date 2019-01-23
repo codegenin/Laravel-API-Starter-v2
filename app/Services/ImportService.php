@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\ACME\Helpers\CheckRemoteFileHelper;
 use App\Models\Category;
 use App\Models\Collection;
+use App\Models\Import;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Mockery\Exception;
@@ -12,47 +14,73 @@ class ImportService
 {
     public static function processImportedRecord($record)
     {
+        $import      = Import::where('id', $record->import_id)->first();
+        $failedCount = $import->failed_count;
+        
         try {
             
             if (!empty($record->en_department)
                 AND !empty($record->en_collection)
-                AND self::checkRemoteFile($record->image_url)) {
+                AND CheckRemoteFileHelper::checkRemoteFile($record->image_url)) {
                 
                 // Check or create category
                 $categoryId = self::createOrGetCategory($record);
                 $collection = self::createOrGetCollection($record, $categoryId);
                 
                 // Add media if remote image file exists
-                $media                                    = $collection->addMediaFromUrl($record->image_url)
-                    ->toMediaCollection($collection->slug);
-                $media->category_id                       = $categoryId;
-                $media->user_id                           = 1;
-                $media->museum                            = $record->museum;
-                $media->translateOrNew('en')->title_short = $record->en_title;
-                $media->translateOrNew('fr')->title_short = $record->fr_title;
-                $media->translateOrNew('en')->title       = $record->en_complete_title;
-                $media->translateOrNew('fr')->title       = $record->fr_complete_title;
-                $media->translateOrNew('en')->location    = $record->en_location;
-                $media->translateOrNew('fr')->location    = $record->fr_location;
-                $media->translateOrNew('en')->medium      = $record->en_art_medium;
-                $media->translateOrNew('fr')->medium      = $record->fr_art_medium;
-                $media->translateOrNew('en')->description = $record->credit_line;
-                $media->translateOrNew('fr')->description = $record->credit_line;
-                $media->translateOrNew('en')->time_period = $record->en_date;
-                $media->translateOrNew('fr')->time_period = $record->fr_date;
-                $media->artist                            = $record->artist;
-                $media->score                             = 0;
-                $media->url                               = $record->url;
-                $media->visible                           = 0;
-                $media->save();
+                try {
+                    $media                                    = $collection->addMediaFromUrl($record->image_url)
+                        ->toMediaCollection($collection->slug);
+                    $media->category_id                       = $categoryId;
+                    $media->user_id                           = 1;
+                    $media->museum                            = $record->museum;
+                    $media->translateOrNew('en')->title_short = $record->en_title;
+                    $media->translateOrNew('fr')->title_short = $record->fr_title;
+                    $media->translateOrNew('en')->title       = $record->en_complete_title;
+                    $media->translateOrNew('fr')->title       = $record->fr_complete_title;
+                    $media->translateOrNew('en')->location    = $record->en_location;
+                    $media->translateOrNew('fr')->location    = $record->fr_location;
+                    $media->translateOrNew('en')->medium      = $record->en_art_medium;
+                    $media->translateOrNew('fr')->medium      = $record->fr_art_medium;
+                    $media->translateOrNew('en')->description = $record->credit_line;
+                    $media->translateOrNew('fr')->description = $record->credit_line;
+                    $media->translateOrNew('en')->time_period = $record->en_date;
+                    $media->translateOrNew('fr')->time_period = $record->fr_date;
+                    $media->artist                            = $record->artist;
+                    $media->score                             = 0;
+                    $media->url                               = $record->url;
+                    $media->visible                           = 0;
+                    $media->save();
+                } catch (\Exception $e) {
+                    $record->imported     = 2;
+                    $record->import_error = json_encode($e);
+                    $record->save();
+                    
+                    // Save import failed count
+                    $import->failed_count = $failedCount + 1;
+                    $import->save();
+                }
+                
             } else {
+                $record->imported     = 1;
+                $record->import_error = 'INVALID_DEPARTMENT_COLLECTION_OR_IMAGE';
+                $record->save();
+                
+                // Save import failed count
+                $import->failed_count = $failedCount + 1;
+                $import->save();
+                
                 Log::error('IMPORT_ERROR_NO_IMAGE ' . json_encode($record));
             }
             
         } catch (\Exception $e) {
             $record->imported     = 2;
-            $record->import_error = $e;
+            $record->import_error = json_encode($e);
             $record->save();
+            
+            // Save import failed count
+            $import->failed_count = $failedCount + 1;
+            $import->save();
             
             Log::error('IMPORT_ERROR ' . json_encode($e->getMessage()));
             throw new Exception($e);

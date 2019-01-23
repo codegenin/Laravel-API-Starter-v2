@@ -46,8 +46,8 @@ class ImportMediaFile extends Command
     public function handle()
     {
         $import = Import::where('status', 0)
-                        ->orWhere('status', 1)
-                        ->first();
+            ->orWhere('status', 1)
+            ->first();
         
         if ($import) {
             
@@ -56,58 +56,60 @@ class ImportMediaFile extends Command
             $file = Storage::path($import->file);
             
             Excel::filter('chunk')
-                 ->load($file)
-                 ->chunk(20, function ($rows) use ($import) {
-                
-                     $imported = $import->imported_count;
-                     
-                     try {
+                ->load($file)
+                ->chunk(20, function ($rows) use ($import) {
                     
-                         foreach ($rows as $row) {
+                    $imported = $import->imported_count;
                     
-                             if(!empty($row->departement_version_anglaise) AND !empty($row->nom_collection_version_anglaise)) {
-                                 
-                                 $record = new ImportRecord();
-    
-                                 $record->fr_title          = $row->titre_de_loeuvre_version_francaise;
-                                 $record->en_title          = $row->titre_de_loeuvre_version_anglaise;
-                                 $record->fr_complete_title = $row->titre_complet_de_loeuvreversion_francaise;
-                                 $record->en_complete_title = $row->titre_complet_de_loeuvreversion_anglaise;
-                                 $record->artist            = $row->artiste;
-                                 $record->fr_date           = $row->date_version_francaise;
-                                 $record->en_date           = $row->date_version_anglaise;
-                                 $record->fr_location       = $row->lieuversion_francaise;
-                                 $record->en_location       = $row->lieuversion_anglaise;
-                                 $record->fr_collection     = $row->nom_collection_version_francaise;
-                                 $record->en_collection     = $row->nom_collection_version_anglaise;
-                                 $record->fr_art_medium     = $row->mediumversion_francaise;
-                                 $record->en_art_medium     = $row->mediumversion_anglaise;
-                                 $record->credit_line       = $row->credit_line;
-                                 $record->museum            = $row->nom_du_musee;
-                                 $record->url               = $row->url;
-                                 $record->image_url         = $row->aws;
-                                 $record->fr_department     = $row->departement_version_francaise;
-                                 $record->en_department     = $row->departement_version_anglaise;
-                                 $record->save();
-    
-                                 $imported++;
-    
-                                 ProcessMediaImport::dispatch($record);
-                             }
-                             
-                         }
-                    
-                     } catch (\Exception $e) {
-                         $import->status = 3;
-                         $import->error  = $e;
-                         $import->save();
-    
-                         Log::error('IMPORT_FILE_ERROR ' . json_encode($e->getMessage()));
-                         
-                         throw  new \Exception($e);
-                     }
-                 }
-                 );
+                    try {
+                        
+                        foreach ($rows as $row) {
+                            
+                            if (!empty($row->departement_version_anglaise) AND
+                                !empty($row->nom_collection_version_anglaise)) {
+                                
+                                $record = new ImportRecord();
+                                
+                                $record->import_id         = $import->id;
+                                $record->fr_title          = $row->titre_de_loeuvre_version_francaise;
+                                $record->en_title          = $row->titre_de_loeuvre_version_anglaise;
+                                $record->fr_complete_title = $row->titre_complet_de_loeuvreversion_francaise;
+                                $record->en_complete_title = $row->titre_complet_de_loeuvreversion_anglaise;
+                                $record->artist            = $row->artiste;
+                                $record->fr_date           = $row->date_version_francaise;
+                                $record->en_date           = $row->date_version_anglaise;
+                                $record->fr_location       = $row->lieuversion_francaise;
+                                $record->en_location       = $row->lieuversion_anglaise;
+                                $record->fr_collection     = $row->nom_collection_version_francaise;
+                                $record->en_collection     = $row->nom_collection_version_anglaise;
+                                $record->fr_art_medium     = $row->mediumversion_francaise;
+                                $record->en_art_medium     = $row->mediumversion_anglaise;
+                                $record->credit_line       = $row->credit_line;
+                                $record->museum            = $row->nom_du_musee;
+                                $record->url               = $row->url;
+                                $record->image_url         = $row->aws;
+                                $record->fr_department     = $row->departement_version_francaise;
+                                $record->en_department     = $row->departement_version_anglaise;
+                                $record->save();
+                                
+                                $imported++;
+                                
+                                ProcessMediaImport::dispatch($record);
+                            }
+                            
+                        }
+                        
+                    } catch (\Exception $e) {
+                        $import->status = 3;
+                        $import->error  = $e;
+                        $import->save();
+                        
+                        Log::error('IMPORT_FILE_ERROR ' . json_encode($e->getMessage()));
+                        
+                        throw  new \Exception($e);
+                    }
+                }
+                );
             
             $this->updateStatus($import, 2);
             
@@ -118,7 +120,7 @@ class ImportMediaFile extends Command
     public function updateStatus($import, $status)
     {
         $import->imported_count = $import->total_rows;
-        $import->status = $status;
+        $import->status         = $status;
         $import->save();
         
         return $this;
