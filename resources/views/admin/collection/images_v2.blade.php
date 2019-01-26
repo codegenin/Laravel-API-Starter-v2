@@ -25,13 +25,26 @@
     @include('admin.common.alerts')
 
     <div class="row">
-        @foreach($images as $image)
-            <div class="col-sm-3">
-                <div class="box @if($image->visible == 1) box-primary @else box-danger @endif">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">{{str_limit($image->title, 30)}}</h3>
-                        <div class="box-tools pull-right">
-
+        <table class="table table-responsive table-striped">
+            <tbody>
+            <tr class="text-bold">
+                <td style="width: 10px;">{{trans('label.id')}}</td>
+                <td style="width: 10px;">{{trans('label.image')}}</td>
+                <td style="width: 10px;">{{trans('label.artist')}}</td>
+                <td style="width: 10px;">{{trans('label.time_period')}}</td>
+                <td style="width: 10px;">{{trans('label.visible')}}</td>
+                <td style="width: 20px;">{{trans('label.actions')}}</td>
+            </tr>
+            @foreach($images as $image)
+                <tr>
+                    <td>{{$image->id}}</td>
+                    <td><img src="{{$image->getFirstMediaUrl('collection', 'small')}}" alt=""></td>
+                    <td>{{$image->artist}}</td>
+                    <td>{{$image->time_period}}</td>
+                    <td>{{$image->time_period}}</td>
+                    <td>@if($image->visible) YES @else NO @endif</td>
+                    <td style="width: 100px;">
+                        <div class="btn-group">
                             <button type="button" data-toggle="modal" title="SHOW or HIDE"
                                     class="btn btn-box-tool public" data-id="{{$image->id}}">
                                 <i class="fa fa-eye"></i>
@@ -47,20 +60,11 @@
                                 <i class="fa fa-remove"></i>
                             </button>
                         </div>
-                    </div>
-                    <div class="box-body text-center">
-                        <img src="{{$image->getUrl('medium')}}" alt="" height="300" width="300">
-                        {{--<p>
-                            {{$image->description}}
-                        </p>--}}
-                    </div>
-                    <div class="box-footer">
-                        <strong>Location:</strong> {{$image->location}}
-                        <strong class="pull-right">Score: {{$image->score}}</strong>
-                    </div>
-                </div>
-            </div>
-        @endforeach
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
 
     <!-- Collection Upload Image Modal -->

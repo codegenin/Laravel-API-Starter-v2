@@ -39,9 +39,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('clear:views')
             ->everyMinute()
             ->withoutOverlapping();
-        $schedule->command('delete:media_with_no_images')
-            ->everyThirtyMinutes()
-            ->withoutOverlapping();
+//        $schedule->command('delete:media_with_no_images')
+//            ->everyThirtyMinutes()
+//            ->withoutOverlapping();
     }
     
     /**
