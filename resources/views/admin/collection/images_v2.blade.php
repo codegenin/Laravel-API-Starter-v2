@@ -404,7 +404,6 @@
             // Open visible toogle popup
             $('.wrapper').on('click', '.public', function (e) {
                 e.preventDefault();
-                alert('test');
                 var id = $(this).data('id');
                 $('#publicId').val(id);
                 $('#publicForm').attr('action', "{{route('admin.media.visible')}}");
