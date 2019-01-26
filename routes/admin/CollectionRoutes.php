@@ -7,6 +7,8 @@ Route::group(['prefix' => 'collections'], function () {
          ->name('admin.collection.index');
     Route::get('{id}/images', 'App\ACME\Admin\Collection\Controllers\ImagesCollectionController@run')
          ->name('admin.collection.images');
+    Route::get('{id}/image-for-table', 'App\ACME\Admin\Collection\Controllers\ImagesTableCollectionController@run')
+        ->name('admin.collection.images.get');
     Route::post('/upload', 'App\ACME\Admin\Collection\Controllers\UploadImageController@run')
          ->name('admin.collection.upload');
     

@@ -10,6 +10,7 @@ use App\Models\Media;
 use App\Traits\MediaTraits;
 use Psr\Log\InvalidArgumentException;
 use Spatie\Tags\Tag;
+use Yajra\DataTables\Facades\DataTables;
 
 class ImagesCollectionController extends Controller
 {
@@ -33,19 +34,16 @@ class ImagesCollectionController extends Controller
     {
         try {
             $collection = $this->collectionRepository->find($id, ['category']);
-            $images     = Media::where('collection_name', $collection->slug)
-                               ->get();
             $tags       = Tag::ordered()
-                             ->get();
+                ->get();
             
         } catch (\Exception $e) {
             throw new InvalidArgumentException($e);
         }
         
-        return view('admin.collection.images')->with([
+        return view('admin.collection.images_v2')->with([
             'collection' => $collection,
-            'images'     => $images,
-            'tags'       => TagResource::collection($tags)
+            'tags' => $tags
         ]);
     }
 }

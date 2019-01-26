@@ -24,48 +24,51 @@
 @section('content')
     @include('admin.common.alerts')
 
-    <div class="row">
-        <table class="table table-responsive table-striped">
-            <tbody>
-            <tr class="text-bold">
-                <td style="width: 10px;">{{trans('label.id')}}</td>
-                <td style="width: 10px;">{{trans('label.image')}}</td>
-                <td style="width: 10px;">{{trans('label.artist')}}</td>
-                <td style="width: 10px;">{{trans('label.time_period')}}</td>
-                <td style="width: 10px;">{{trans('label.visible')}}</td>
-                <td style="width: 20px;">{{trans('label.actions')}}</td>
-            </tr>
-            @foreach($images as $image)
-                <tr>
-                    <td>{{$image->id}}</td>
-                    <td><img src="{{$image->getFirstMediaUrl('collection', 'small')}}" alt=""></td>
-                    <td>{{$image->artist}}</td>
-                    <td>{{$image->time_period}}</td>
-                    <td>{{$image->time_period}}</td>
-                    <td>@if($image->visible) YES @else NO @endif</td>
-                    <td style="width: 100px;">
-                        <div class="btn-group">
-                            <button type="button" data-toggle="modal" title="SHOW or HIDE"
-                                    class="btn btn-box-tool public" data-id="{{$image->id}}">
-                                <i class="fa fa-eye"></i>
-                            </button>
+    <div class="box box-info">
+        <div class="box-body">
+            <div class="table-responsive data-table-wrapper">
+                <table id="images-table" class="table table-condensed table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        {{--<th></th>--}}
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Artist</th>
+                        <th>Location</th>
+                        <th>Time Period</th>
+                        <th>Visible</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <thead class="transparent-bg">
+                    <tr>
+                        {{--<th></th>--}}
+                        <th>{!! Form::text('title', null, ["class" => "search-input-text form-control",
+                            "data-column" => 0, "placeholder" => 'Search Title']) !!}
+                            <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div><!--table-responsive-->
+        </div><!-- /.box-body -->
+    </div><!--box-->
 
-                            <button type="button" data-toggle="modal" title="EDIT"
-                                    class="btn btn-box-tool edit" data-id="{{$image->id}}">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-
-                            <button type="button" data-toggle="modal" title="DELETE"
-                                    class="btn btn-box-tool delete" data-id="{{$image->id}}">
-                                <i class="fa fa-remove"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
+    <!--<div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{ trans('history.backend.recent_history') }}</h3>
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div><!-- /.box tools -->
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        {{-- {!! history()->renderType('CMSpage') !!} --}}
+    </div><!-- /.box-body -->
 
     <!-- Collection Upload Image Modal -->
     <div class="modal fade" id="modal-new-collection-image">
@@ -382,9 +385,10 @@
 
 @endsection
 
-@section('js')
+
+@section('scripts')
     <script>
-        $(function () {
+        $(document).ready(function () {
 
             $('.select2').select2({tags: true});
 
@@ -400,6 +404,7 @@
             // Open visible toogle popup
             $('.wrapper').on('click', '.public', function (e) {
                 e.preventDefault();
+                alert('test');
                 var id = $(this).data('id');
                 $('#publicId').val(id);
                 $('#publicForm').attr('action', "{{route('admin.media.visible')}}");
@@ -441,6 +446,38 @@
                 });
             });
 
+            var dataTable = $('#images-table').dataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '{{ route("admin.collection.images.get", $collection->id) }}',
+                    type: 'get'
+                },
+                columns: [
+//                    {data: 'checkbox', name: 'checkbox'},
+                    {data: 'title', name: 'title'},
+                    {data: 'image', name: 'image'},
+                    {data: 'artist', name: 'artist'},
+                    {data: 'location', name: 'location'},
+                    {data: 'time_period', name: 'time_period'},
+                    {data: 'visible', name: 'visible'},
+                    {data: 'actions', name: 'actions', searchable: false, sortable: false}
+                ],
+                order: [[1, "asc"]],
+                searchDelay: 500,
+                dom: 'lBfrtip',
+                buttons: {
+                    buttons: [
+                        {extend: 'copy', className: 'copyButton', exportOptions: {columns: [0, 1, 2, 3]}},
+                        {extend: 'csv', className: 'csvButton', exportOptions: {columns: [0, 1, 2, 3]}},
+                        {extend: 'excel', className: 'excelButton', exportOptions: {columns: [0, 1, 2, 3]}},
+                        {extend: 'pdf', className: 'pdfButton', exportOptions: {columns: [0, 1, 2, 3]}},
+                        {extend: 'print', className: 'printButton', exportOptions: {columns: [0, 1, 2, 3]}}
+                    ]
+                }
+            });
+
+            Backend.DataTableSearch.init(dataTable);
         });
     </script>
 @endsection

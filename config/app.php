@@ -160,6 +160,8 @@ return [
         Dimsav\Translatable\TranslatableServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
         
         /*
          * Application Service Providers...
@@ -229,6 +231,8 @@ return [
         'Nestable'            => Nestable\Facades\NestableService::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Excel'               => Maatwebsite\Excel\Facades\Excel::class,
+        'Form'                => Collective\Html\FormFacade::class,
+        'Html'                => Collective\Html\HtmlFacade::class,
     ],
 
 ];

@@ -12,8 +12,14 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
+    @yield('before-styles')
+
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="{{asset('css/backend-custom.css')}}">
+
+    @yield('after-styles')
+
+<!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -58,7 +64,8 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Brad Diesel
@@ -74,7 +81,8 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar"
+                                 class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     John Pierce
@@ -90,7 +98,8 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar"
+                                 class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Nora Silvester
@@ -167,7 +176,8 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview">
@@ -500,9 +510,11 @@
                     <h3 class="card-title">Title</h3>
 
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
                             <i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip"
+                                title="Remove">
                             <i class="fa fa-times"></i></button>
                     </div>
                 </div>
@@ -538,7 +550,9 @@
 </div>
 <!-- ./wrapper -->
 
+<!-- JavaScripts -->
+@yield('before-scripts')
 <script src="{{ mix('js/app.js') }}"></script>
-@yield('scripts')
+@yield('after-scripts')
 </body>
 </html>
