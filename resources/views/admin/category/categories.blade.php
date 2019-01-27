@@ -33,7 +33,7 @@
                     {{--</a>--}}
                     <a class="btn btn-warning edit" data-id="{{$category->id}}" title="{{trans('label.edit')}}"
                        data-toggle="modal" data-target="#modal-edit-category">
-                        <i class="fa fa-pencil"></i>
+                        EDIT
                     </a>
                     <a href="#" data-id="{{$category->id}}" title="{{trans('label.delete')}}"
                        class="btn btn-danger delete" data-target="#deleteModal" data-toggle="modal"><i class="fa fa-remove"></i></a>
@@ -102,7 +102,9 @@
                                             class="fa fa-arrow-down" title="MOVE DOWN"></i>
                                     </a>
                                     <a href="#" data-id="{{$category->id}}"
-                                       class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
+                                       class="btn btn-danger delete">
+                                        DELETE
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -138,7 +140,7 @@
                         edit.html('<i class="fa fa-refresh fa-spin"></i>');
                     }
                 }).done(function (data) {
-                    edit.html('<i class="fa fa-pencil"></i>');
+                    edit.html('EDIT');
                     $('#edit-id').val(data.category.id);
                     $('#edit-name').val(data.category.en_name);
                     $('#edit-fr_name').val(data.category.fr_name);

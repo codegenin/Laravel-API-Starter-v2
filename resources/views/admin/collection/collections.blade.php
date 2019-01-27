@@ -26,12 +26,12 @@
                     <a class="btn btn-success" href="{{route('admin.collection.images', $collection->id)}}" title="IMAGES">
                         <i class="fa fa-picture-o"></i>
                     </a>
-                    <a class="btn btn-warning edit" data-id="{{$collection->id}}" title="EDIT"
-                       data-toggle="modal" data-target="#modal-edit-collection">
-                        <i class="fa fa-pencil"></i>
+                    <a class="btn btn-warning edit" data-id="{{$collection->id}}" data-target="#modal-edit-collection" data-toggle="modal"  title="EDIT">
+                        EDIT
                     </a>
-                    <a href="#" data-id="{{$collection->id}}" data-toggle="modal" data-target="#deleteModal"
-                       class="btn btn-danger delete" title="DELETE"><i class="fa fa-remove"></i></a>
+                    <a href="#" data-id="{{$collection->id}}" class="btn btn-danger delete" data-target="#deleteModal" data-toggle="modal"
+                        title="DELETE">
+                        <i class="fa fa-remove"></i></a>
                 </div>
             </td>
         </tr>
@@ -42,18 +42,18 @@
 <div id="paginate" class="pull-right">
     {{$collections->links()}}
 </div>
-@include('admin.common.delete')
+
 @section('scripts')
     <script>
         $(function () {
 
             // Open modal for deleting a record
-            $('.wrapper').on('click', '.delete', function (e) {
+            $('.delete').on('click', function (e) {
                 e.preventDefault();
                 var id = $(this).data('id');
                 $('#deleteId').val(id);
                 $('#deleteForm').attr('action', "{{route('admin.collection.destroy')}}");
-                $('#deleteModal').modal('show');
+                $('#deleteModal').modal('toggle');
             });
 
             // Open modal for editing a record
@@ -69,7 +69,7 @@
                         edit.html('<i class="fa fa-refresh fa-spin"></i>');
                     }
                 }).done(function (data) {
-                    edit.html('<i class="fa fa-pencil"></i>');
+                    edit.html('EDIT');
                     $('#edit-id').val(data.collection.id);
                     $('#edit-title').val(data.collection.en_title);
                     $('#edit-fr_title').val(data.collection.fr_title);
@@ -82,7 +82,7 @@
                     $('#edit-fr-time-period').val(data.collection.fr_time_period);
                     $('#edit-is-public').val(data.collection.is_public);
                     $('#edit-image_path').val(data.collection.image_path);
-                    $('#modal-edit-collection').modal('show');
+                    $('#modal-edit-collection').modal('toggle');
                     $('#cover-image').attr('src', data.covers.large);
                 });
 
@@ -92,3 +92,4 @@
     </script>
 
 @endsection
+

@@ -23,6 +23,9 @@
 
 @section('content')
     @include('admin.common.alerts')
+    @include('admin.collection.modals')
+    @include('admin.common.delete')
+
     <div class="box box-primary">
         <div class="box-header">
             <div class="box-title">{{trans('label.collections')}}</div>
@@ -35,14 +38,6 @@
         </div>
     </div>
 
-    <!-- Modals -->
-    @include('admin.collection.modals')
+
 @endsection
 
-@section('js')
-    <script>
-        $(function () {
-
-        });
-    </script>
-@endsection
