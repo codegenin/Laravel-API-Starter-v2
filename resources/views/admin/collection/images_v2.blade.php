@@ -446,6 +446,7 @@
             });
 
             var dataTable = $('#images-table').dataTable({
+                pageLength: 100,
                 processing: true,
                 serverSide: true,
                 ajax: {
