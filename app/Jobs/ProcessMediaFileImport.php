@@ -107,7 +107,7 @@ class ProcessMediaFileImport implements ShouldQueue
     public function handle()
     {
         $import = Import::where('id', $this->import->id)->first();
-
+        
         $records = ImportRecord::where('import_id', $import->id)
             ->where('imported', 0)->get();
         
@@ -117,7 +117,8 @@ class ProcessMediaFileImport implements ShouldQueue
         $import->total_rows = $records->count();
         
         if ($records->count() > 0) {
-            foreach ($records as $record) {
+            foreach (ImportRecord::where('import_id', $import->id)
+                ->where('imported', 0)->cursor() as $record) {
                 try {
                     
                     if (!empty($record->en_department)
