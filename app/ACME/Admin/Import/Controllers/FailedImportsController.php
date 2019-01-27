@@ -17,7 +17,7 @@ class FailedImportsController extends Controller
     {
         $imports = ImportRecord::where([
             'import_id' => request('id'),
-            ['imported', '!=', 0]
+            ['imported', '=', 2]
         ])->paginate();
     
         return view('admin.import.records.records', compact('imports'));
