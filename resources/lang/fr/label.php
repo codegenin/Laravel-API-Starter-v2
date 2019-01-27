@@ -95,4 +95,5 @@ return array (
   'failed_count' => 'Échec du compte',
   'import_error' => 'Erreur d\'importation',
   'import_image' => 'Importer une image',
+  'error' => 'Error',
 );

@@ -28,14 +28,15 @@
                     <a class="btn btn-success" href="{{route('admin.category.collections', $category->id)}}" title="{{trans('label.collections')}}">
                         <i class="fa fa-folder-o"></i>
                     </a>
-                    <a class="btn btn-success" href="{{route('admin.category.images', $category->id)}}" title="{{trans('label.images')}}">
-                        <i class="fa fa-picture-o"></i>
-                    </a>
-                    <a class="btn btn-warning edit" data-id="{{$category->id}}" title="{{trans('label.edit')}}">
+                    {{--<a class="btn btn-success" href="{{route('admin.category.images', $category->id)}}" title="{{trans('label.images')}}">--}}
+                        {{--<i class="fa fa-picture-o"></i>--}}
+                    {{--</a>--}}
+                    <a class="btn btn-warning edit" data-id="{{$category->id}}" title="{{trans('label.edit')}}"
+                       data-toggle="modal" data-target="#modal-edit-category">
                         <i class="fa fa-pencil"></i>
                     </a>
                     <a href="#" data-id="{{$category->id}}" title="{{trans('label.delete')}}"
-                       class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
+                       class="btn btn-danger delete" data-target="#deleteModal" data-toggle="modal"><i class="fa fa-remove"></i></a>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             {{trans('label.move')}}
@@ -146,7 +147,7 @@
                     $('#edit-parent-id').val(data.category.parent_id);
                     $('#edit-is-public').val(data.category.is_public);
                     $('#edit-image_path').val(data.category.image_path);
-                    $('#modal-edit-category').modal('show');
+                    //$('#modal-edit-category').modal('show');
                     $('#cover-image').attr('src', data.category.covers.large);
                 });
 

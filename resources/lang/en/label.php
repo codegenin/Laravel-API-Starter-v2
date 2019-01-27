@@ -87,4 +87,5 @@ return array (
   'collection' => 'Collection',
   'import_error' => 'Import Error',
   'import_image' => 'Import Image',
+  'error' => 'Error',
 );

@@ -51,6 +51,11 @@ class ImportService
                     $media->url                               = $record->url;
                     $media->visible                           = 0;
                     $media->save();
+                    
+                    // update record
+                    $record->imported = 1;
+                    $record->save();
+                    
                 } catch (\Exception $e) {
                     $record->imported     = 2;
                     $record->import_error = json_encode($e);
@@ -62,7 +67,7 @@ class ImportService
                 }
                 
             } else {
-                $record->imported     = 1;
+                $record->imported     = 2;
                 $record->import_error = 'INVALID_DEPARTMENT_COLLECTION_OR_IMAGE';
                 $record->save();
                 

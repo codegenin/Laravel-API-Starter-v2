@@ -75,6 +75,9 @@ class ImagesTableCollectionController extends Controller
             ->addColumn('actions', function($image) {
                 return $image->action_buttons;
             })
+            ->setRowClass(function ($image) {
+                return $image->visible ? 'row-visible' : 'row-hidden';
+            })
             ->make(true);
     }
 }

@@ -71,17 +71,17 @@ class Media extends BaseMedia implements HasMedia
     public function getActionButtonsAttribute()
     {
         return "<button type=\"button\" data-toggle=\"modal\" title=\"SHOW or HIDE\"
-                                    class=\"btn btn-box-tool public\" data-id=\"{$this->id}\" data-target=\"#publicModal\">
+                                    class=\"btn btn-primary public\" data-id=\"{$this->id}\" data-target=\"#publicModal\">
                                 <i class=\"fa fa-eye\"></i>
                             </button>
 
                             <button type=\"button\" data-toggle=\"modal\" title=\"EDIT\"
-                                    class=\"btn btn-box-tool edit\" data-id=\"{$this->id}\" data-target=\"#modal-edit-collection-image\">
+                                    class=\"btn btn-warning\" data-id=\"{$this->id}\" data-target=\"#modal-edit-collection-image\">
                                 <i class=\"fa fa-pencil\"></i>
                             </button>
 
                             <button type=\"button\" data-toggle=\"modal\" title=\"DELETE\"
-                                    class=\"btn btn-box-tool delete\" data-id=\"{$this->id}\" data-target=\"#deleteModal\">
+                                    class=\"btn btn-danger delete\" data-id=\"{$this->id}\" data-target=\"#deleteModal\">
                                 <i class=\"fa fa-remove\"></i>
                             </button>";
     }

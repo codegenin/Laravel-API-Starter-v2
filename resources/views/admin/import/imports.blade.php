@@ -4,9 +4,9 @@
         <td style="width: 10px;">{{__('label.id')}}</td>
         <td style="width: 10px;">{{__('label.file')}}</td>
         <td style="width: 10px;">{{__('label.total_rows')}}</td>
-        <td style="width: 10px;">{{__('label.import_count')}}</td>
         <td style="width: 10px;">{{__('label.failed_count')}}</td>
         <td style="width: 10px;">{{__('label.status')}}</td>
+        <td style="width: 10px;">{{__('label.error')}}</td>
         <td style="width: 10px;">{{__('label.created_at')}}</td>
         <td style="width: 20px;">{{__('label.actions')}}</td>
     </tr>
@@ -15,7 +15,6 @@
             <td>{{$import->id}}</td>
             <td>{{$import->file}}</td>
             <td>{{$import->total_rows}}</td>
-            <td>{{$import->imported_count}}</td>
             <td>{{$import->failed_count}}</td>
             <td>
                 @if($import->status == '0')<span class="label label-primary">Standby</span>@endif
@@ -23,16 +22,17 @@
                 @if($import->status == '2')<span class="label label-success">Completed</span>@endif
                 @if($import->status == '3')<span class="label label-danger">Error</span>@endif
             </td>
+            <td>{{$import->error}}</td>
             <td>
                 {{$import->created_at}}
             </td>
             <td>
                 <div class="btn-group">
-                    <a href="{{$import->getFirstMediaUrl('imports')}}" class="btn btn-success">
-                        <i class="fa fa-download"></i>
-                    </a>
-                    <a href="#" data-id="{{$import->id}}" title="{{trans('label.delete')}}"
-                       class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
+                    {{--<a href="{{$import->getFirstMediaUrl('imports')}}" class="btn btn-success">--}}
+                        {{--<i class="fa fa-download"></i>--}}
+                    {{--</a>--}}
+                    {{--<a href="#" data-id="{{$import->id}}" title="{{trans('label.delete')}}"--}}
+                       {{--class="btn btn-danger delete"><i class="fa fa-remove"></i></a>--}}
                     <a href="{{ route('admin.import.failed.imports', $import->id) }}" data-id="{{$import->id}}"
                        title="Failed Imports"
                        class="btn btn-warning"><i class="fa fa-bullhorn"></i></a>

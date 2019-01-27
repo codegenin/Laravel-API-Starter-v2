@@ -45,30 +45,29 @@ class ImportMediaFile extends Command
      */
     public function handle()
     {
+        exit();
         $import = Import::where('status', 0)
-            ->orWhere('status', 1)
             ->first();
         
-        if ($import) {
+        if (!empty($import)) {
             
-            $this->updateStatus($import, 1);
             
             $file = Storage::path($import->file);
             
             Excel::filter('chunk')
                 ->load($file)
-                ->chunk(20, function ($rows) use ($import) {
+                ->chunk(10, function ($rows) use ($import) {
                     
                     $imported = $import->imported_count;
                     
                     try {
                         
                         foreach ($rows as $row) {
+    
+                            $record = new ImportRecord();
                             
                             if (!empty($row->departement_version_anglaise) AND
                                 !empty($row->nom_collection_version_anglaise)) {
-                                
-                                $record = new ImportRecord();
                                 
                                 $record->import_id         = $import->id;
                                 $record->fr_title          = trim($row->titre_de_loeuvre_version_francaise);
@@ -94,13 +93,16 @@ class ImportMediaFile extends Command
                                 
                                 $imported++;
                                 
-                                ProcessMediaImport::dispatch($record);
+                                ProcessMediaImport::dispatch($record)->delay(1);
+                            } else {
+                                $record->imported = 2;
+                                $record->save();
                             }
                             
                         }
                         
                     } catch (\Exception $e) {
-                        $import->status = 3;
+                        $import->status = 2;
                         $import->error  = $e;
                         $import->save();
                         
@@ -111,7 +113,7 @@ class ImportMediaFile extends Command
                 }
                 );
             
-            $this->updateStatus($import, 2);
+           //$this->updateStatus($import, 2);
             
         }
     }

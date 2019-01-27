@@ -26,10 +26,11 @@
                     <a class="btn btn-success" href="{{route('admin.collection.images', $collection->id)}}" title="IMAGES">
                         <i class="fa fa-picture-o"></i>
                     </a>
-                    <a class="btn btn-warning edit" data-id="{{$collection->id}}" title="EDIT">
+                    <a class="btn btn-warning edit" data-id="{{$collection->id}}" title="EDIT"
+                       data-toggle="modal" data-target="#modal-edit-collection">
                         <i class="fa fa-pencil"></i>
                     </a>
-                    <a href="#" data-id="{{$collection->id}}"
+                    <a href="#" data-id="{{$collection->id}}" data-toggle="modal" data-target="#deleteModal"
                        class="btn btn-danger delete" title="DELETE"><i class="fa fa-remove"></i></a>
                 </div>
             </td>

@@ -358,3 +358,11 @@ ul.timeline.notification-list>li>.timeline-item>.timeline-header>span.comment-hl
     .navbar-custom-menu>.navbar-nav>li>.dropdown-menu { right: 3%; }
  }
  /*Responsive CSS end*/
+
+.row-visible {
+    background-color: #afe568 !important;
+}
+
+.row-hidden {
+    background-color: #e5cb8e !important;
+}

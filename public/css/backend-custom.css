@@ -850,6 +850,13 @@ ul.timeline.notification-list>li>.timeline-item>.timeline-header>span.comment-hl
  }
  /*Responsive CSS end*/
 
+.row-visible {
+    background-color: #afe568 !important;
+}
+
+.row-hidden {
+    background-color: #e5cb8e !important;
+}
 /*!
  * Datetimepicker for Bootstrap 3
  * version : 4.17.47
