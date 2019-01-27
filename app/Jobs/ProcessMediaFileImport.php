@@ -195,7 +195,9 @@ class ProcessMediaFileImport implements ShouldQueue
                 
             } else {
                 // image already exists, set to imported
-                $record->imported = 1;
+                $record->imported     = 2;
+                $record->import_error = 'DUPLICATE_RECORD_DETECTED';
+                $failedCount          = $failedCount + 1;
             }
             
             $record->save();
