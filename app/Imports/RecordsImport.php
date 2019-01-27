@@ -83,6 +83,6 @@ class RecordsImport implements ToModel, WithHeadingRow, WithValidation, WithBatc
     
     public function batchSize(): int
     {
-        return 10;
+        return 100;
     }
 }
