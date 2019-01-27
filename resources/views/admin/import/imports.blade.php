@@ -35,7 +35,7 @@
                        {{--class="btn btn-danger delete"><i class="fa fa-remove"></i></a>--}}
                     <a href="{{ route('admin.import.failed.imports', $import->id) }}" data-id="{{$import->id}}"
                        title="Failed Imports"
-                       class="btn btn-warning"><i class="fa fa-bullhorn"></i></a>
+                       class="btn btn-warning"><i class="fa fa-exclamation"></i></a>
                 </div>
             </td>
         </tr>

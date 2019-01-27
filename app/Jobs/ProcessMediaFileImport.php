@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Import;
 use App\Models\ImportRecord;
+use App\Models\Media;
+use App\Models\MediaTranslation;
 use App\Services\ImportService;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -100,102 +102,109 @@ class ProcessMediaFileImport implements ShouldQueue
     }
     
     /**
+     * Determine if media exists
+     *
+     * @param $media
+     * @return bool
+     */
+    public function mediaExist($media): bool
+    {
+        $media = MediaTranslation::where('title', $media->en_complete_title)
+            ->where('title_short', $media->en_title)
+            ->where('location', $media->en_location)
+            ->first();
+        
+        if (!$media) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    /**
      * Execute the job.
      *
      * @return void
      */
     public function handle()
     {
-        $import = Import::where('id', $this->import->id)->first();
-        
-        $records = ImportRecord::where('import_id', $import->id)
-            ->where('imported', 0)->get();
-        
+        $import      = Import::where('id', $this->import->id)->first();
         $failedCount = $import->failed_count;
+        $totalRows   = $import->total_rows;
         
-        // total import rows
-        $import->total_rows = $records->count();
-        
-        if ($records->count() > 0) {
-            foreach (ImportRecord::where('import_id', $import->id)
-                ->where('imported', 0)->cursor() as $record) {
-                try {
+        foreach (ImportRecord::where('import_id', $import->id)
+            ->where('imported', 0)->cursor() as $record) {
+            
+            $totalRows = $totalRows + 1;
+            
+            if (!$this->mediaExist($record)) {
+                // Search if image already exists and image is valid
+                if (CheckRemoteFileHelper::checkRemoteFile($record->image_url)) {
                     
-                    if (!empty($record->en_department)
-                        AND !empty($record->en_collection)
-                        AND CheckRemoteFileHelper::checkRemoteFile($record->image_url)) {
+                    // Check or create category
+                    $categoryId = self::createOrGetCategory($record);
+                    $collection = self::createOrGetCollection($record, $categoryId);
+                    
+                    // Add media if remote image file exists
+                    try {
+                        $media                                    = $collection->addMediaFromUrl($record->image_url)
+                            ->toMediaCollection($collection->slug);
+                        $media->category_id                       = $categoryId;
+                        $media->user_id                           = 1;
+                        $media->museum                            = $record->museum;
+                        $media->translateOrNew('en')->title_short = $record->en_title;
+                        $media->translateOrNew('fr')->title_short = $record->fr_title;
+                        $media->translateOrNew('en')->title       = $record->en_complete_title;
+                        $media->translateOrNew('fr')->title       = $record->fr_complete_title;
+                        $media->translateOrNew('en')->location    = $record->en_location;
+                        $media->translateOrNew('fr')->location    = $record->fr_location;
+                        $media->translateOrNew('en')->medium      = $record->en_art_medium;
+                        $media->translateOrNew('fr')->medium      = $record->fr_art_medium;
+                        $media->translateOrNew('en')->description = $record->credit_line;
+                        $media->translateOrNew('fr')->description = $record->credit_line;
+                        $media->translateOrNew('en')->time_period = $record->en_date;
+                        $media->translateOrNew('fr')->time_period = $record->fr_date;
+                        $media->artist                            = $record->artist;
+                        $media->score                             = 0;
+                        $media->url                               = $record->url;
+                        $media->visible                           = 0;
+                        $media->save();
                         
-                        // Check or create category
-                        $categoryId = self::createOrGetCategory($record);
-                        $collection = self::createOrGetCollection($record, $categoryId);
+                        // update record
+                        $record->imported = 1;
                         
-                        // Add media if remote image file exists
-                        try {
-                            $media                                    = $collection->addMediaFromUrl($record->image_url)
-                                ->toMediaCollection($collection->slug);
-                            $media->category_id                       = $categoryId;
-                            $media->user_id                           = 1;
-                            $media->museum                            = $record->museum;
-                            $media->translateOrNew('en')->title_short = $record->en_title;
-                            $media->translateOrNew('fr')->title_short = $record->fr_title;
-                            $media->translateOrNew('en')->title       = $record->en_complete_title;
-                            $media->translateOrNew('fr')->title       = $record->fr_complete_title;
-                            $media->translateOrNew('en')->location    = $record->en_location;
-                            $media->translateOrNew('fr')->location    = $record->fr_location;
-                            $media->translateOrNew('en')->medium      = $record->en_art_medium;
-                            $media->translateOrNew('fr')->medium      = $record->fr_art_medium;
-                            $media->translateOrNew('en')->description = $record->credit_line;
-                            $media->translateOrNew('fr')->description = $record->credit_line;
-                            $media->translateOrNew('en')->time_period = $record->en_date;
-                            $media->translateOrNew('fr')->time_period = $record->fr_date;
-                            $media->artist                            = $record->artist;
-                            $media->score                             = 0;
-                            $media->url                               = $record->url;
-                            $media->visible                           = 0;
-                            $media->save();
-                            
-                            // update record
-                            $record->imported = 1;
-                            $record->save();
-                            
-                        } catch (\Exception $e) {
-                            $record->imported     = 2;
-                            $record->import_error = $e;
-                            $record->save();
-                            
-                            // Save import failed count
-                            $import->failed_count = $failedCount + 1;
-                            $import->save();
-                        }
-                        
-                    } else {
+                    } catch (\Exception $e) {
+                        // Save the record
                         $record->imported     = 2;
-                        $record->import_error = 'INVALID_DEPARTMENT_COLLECTION_OR_IMAGE';
-                        $record->save();
+                        $record->import_error = $e;
                         
                         // Save import failed count
-                        $import->failed_count = $failedCount + 1;
-                        $import->save();
-                        
-                        Log::error('IMPORT_ERROR_NO_IMAGE ' . json_encode($record));
+                        $failedCount = $failedCount + 1;
                     }
                     
-                } catch (\Exception $e) {
+                } else {
+                    // error occurred
                     $record->imported     = 2;
-                    $record->import_error = $e;
-                    $record->save();
+                    $record->import_error = 'INVALID_IMAGE_URL_DETECTED';
                     
                     // Save import failed count
-                    $import->failed_count = $failedCount + 1;
-                    $import->save();
+                    $failedCount = $failedCount + 1;
                     
-                    Log::error('IMPORT_ERROR ' . json_encode($e->getMessage()));
-                    //throw new Exception($e);
+                    Log::error('IMPORT_ERROR_NO_IMAGE ' . json_encode($record));
                 }
+                
+            } else {
+                // image already exists, set to imported
+                $record->imported = 1;
             }
+            
+            $record->save();
+            
         }
         
-        $import->status = 2;
+        $import->failed_count = $failedCount;
+        $import->total_rows   = $totalRows;
+        $import->status       = 2; // completed
         $import->save();
     }
 }
