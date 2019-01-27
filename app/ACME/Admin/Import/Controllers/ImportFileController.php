@@ -49,9 +49,14 @@ class ImportFileController extends Controller
                 
                 ProcessMediaFileImport::dispatch($import)->delay(1);
                 
-            } catch (\Exception $e) {
+            } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+    
+                $failures = $e->failures();
+                foreach($failures as $failure) {
+                    $import->error .= "Row: {$failure->row()} {$failure->attribute()} is required <br />";
+                }
                 $import->status = 3;
-                $import->error  = $e->getMessage() . ' - ' . $e->getLine() . ' - ' . $e->getFile();
+                #$import->error  = 'INVALID EXCEL FORMAT OR MISSING INFORMATION PLEASE_CHECK_EXCEL_PROPERLY';
                 $import->save();
             }
             

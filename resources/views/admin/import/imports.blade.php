@@ -22,7 +22,7 @@
                 @if($import->status == '2')<span class="label label-success">Completed</span>@endif
                 @if($import->status == '3')<span class="label label-danger">Error</span>@endif
             </td>
-            <td>{{$import->error}}</td>
+            <td>{!! $import->error!!}</td>
             <td>
                 {{$import->created_at}}
             </td>
