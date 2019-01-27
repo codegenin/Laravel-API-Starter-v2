@@ -53,7 +53,7 @@
                 var id = $(this).data('id');
                 $('#deleteId').val(id);
                 $('#deleteForm').attr('action', "{{route('admin.collection.destroy')}}");
-                $('#deleteModal').modal('toggle');
+                $('#deleteModal').modal('show');
             });
 
             // Open modal for editing a record
@@ -82,7 +82,7 @@
                     $('#edit-fr-time-period').val(data.collection.fr_time_period);
                     $('#edit-is-public').val(data.collection.is_public);
                     $('#edit-image_path').val(data.collection.image_path);
-                    $('#modal-edit-collection').modal('toggle');
+                    $('#modal-edit-collection').modal('show');
                     $('#cover-image').attr('src', data.covers.large);
                 });
 
