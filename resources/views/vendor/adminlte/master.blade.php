@@ -46,7 +46,6 @@
 <body class="hold-transition @yield('body_class')">
 
 @yield('body')
-
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -55,6 +54,14 @@
 <script src="{{ mix('js/dataTable.js') }}"></script>
 @yield('adminlte_js')
 @yield('scripts')
+
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 
 </body>
 </html>

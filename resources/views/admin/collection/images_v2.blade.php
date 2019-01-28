@@ -26,7 +26,20 @@
 
     <div class="box box-info">
         <div class="box-header">
-            <button class="btn btn-primary" id="selected-show-images" disabled="disabled">SHOW SELECTED</button>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle"
+                        type="button" id="dropdownMenu1"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Select Options
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a id="selected-show-images">Show Selected</a></li>
+                    <li><a id="selected-hide-images">Hide Selected</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a id="selected-delete-images">Delete Selected</a></li>
+                </ul>
+            </div>
         </div>
         <div class="box-body">
             <div class="table-responsive data-table-wrapper">
@@ -45,7 +58,9 @@
                     </thead>
                     <thead class="transparent-bg">
                     <tr>
-                        <th></th>
+                        <th>
+                            <input type="checkbox" id="check-all">
+                        </th>
                         <th>{!! Form::text('title', null, ["class" => "search-input-text form-control",
                             "data-column" => 0, "placeholder" => 'Search Title']) !!}
                             <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a></th>
@@ -482,15 +497,103 @@
 
             Backend.DataTableSearch.init(dataTable);
 
+            // Select option button
+            $('#check-all').on('change', function (e) {
+                e.preventDefault();
+                $('.check-item').prop('checked', $(this).prop('checked'));
+            });
+
             // Selected Submit
             $('#selected-show-images').on('click', function (e) {
                 e.preventDefault();
-                $.ajax({
-                    url: '/path/to/your/script.php',
-                    data: dataTable.$('input[type="checkbox"]').serialize()
-                }).done(function (data) {
-                    console.log('Response', data);
-                });
+                if ($("input:checkbox:checked").length > 0) {
+                    if(confirm('Are you sure you want to show this images?')) {
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ route('admin.media.ajax.selected', 'show') }}",
+                            data: dataTable.$('input[type="checkbox"]').serialize(),
+                            beforeSend: function() {
+                                $.each($("input:checkbox:checked"), function(key, value) {
+                                    let id = $(this).val();
+                                    $('#image-'+id).html("<td colspan='8' class='bg-red' style='text-align:center;'>Processing, please wait....</td>");
+                                });
+                            }
+                        }).done(function (data) {
+                            if(data.code === 200) {
+                                location.reload();
+                                return true;
+                            }
+
+                            alert('A error has occured!');
+                        });
+                    }
+
+                    return false;
+                } else {
+                    alert('Please select a image to process!');
+                    return false;
+                }
+            });
+
+            $('#selected-hide-images').on('click', function (e) {
+                e.preventDefault();
+                if ($("input:checkbox:checked").length > 0) {
+                    if(confirm('Are you sure you want to hide this images?')) {
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ route('admin.media.ajax.selected', 'hide') }}",
+                            data: dataTable.$('input[type="checkbox"]').serialize(),
+                            beforeSend: function() {
+                                $.each($("input:checkbox:checked"), function(key, value) {
+                                    let id = $(this).val();
+                                    $('#image-'+id).html("<td colspan='8' class='bg-red' style='text-align:center;'>Processing, please wait....</td>");
+                                });
+                            }
+                        }).done(function (data) {
+                            if(data.code === 200) {
+                                location.reload();
+                                return true;
+                            }
+
+                            alert('A error has occured!');
+                        });
+                    }
+
+                    return false;
+                } else {
+                    alert('Please select a image to process!');
+                    return false;
+                }
+            });
+
+            $('#selected-delete-images').on('click', function (e) {
+                e.preventDefault();
+                if ($("input:checkbox:checked").length > 0) {
+                    if(confirm('WARNING!!! Are you sure you want delete this images?')) {
+                        $.ajax({
+                            type: 'post',
+                            url: "{{ route('admin.media.ajax.selected', 'delete') }}",
+                            data: dataTable.$('input[type="checkbox"]').serialize(),
+                            beforeSend: function() {
+                                $.each($("input:checkbox:checked"), function(key, value) {
+                                    let id = $(this).val();
+                                    $('#image-'+id).html("<td colspan='8' class='bg-red' style='text-align:center;'>Processing, please wait....</td>");
+                                });
+                            }
+                        }).done(function (data) {
+                            if(data.code === 200) {
+                                location.reload();
+                                return true;
+                            }
+                            alert('A error has occured!');
+                        });
+                    }
+
+                    return false;
+                } else {
+                    alert('Please select a image to process!');
+                    return false;
+                }
             });
 
         });

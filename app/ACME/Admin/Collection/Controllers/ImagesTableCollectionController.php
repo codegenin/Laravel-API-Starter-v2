@@ -51,13 +51,13 @@ class ImagesTableCollectionController extends Controller
         
         return Datatables::of($images)
             ->addColumn('checkbox', function ($image) {
-                return "<input name=\"images[]\" class=\"\" value=\"{$image->id}\" type=\"checkbox\">";
+                return "<input name=\"images[]\" class=\"check-item\" value=\"{$image->id}\" type=\"checkbox\">";
             })
             ->escapeColumns(['title'])
             ->addColumn('title', function ($image) {
                 return $image->title;
             })
-            ->addColumn('image', function($image) {
+            ->addColumn('image', function ($image) {
                 return "<img src=\"{$image->getUrl('small')}\" alt=\"\" height=\"100\" width=\"100\">";
             })
             ->addColumn('artist', function ($image) {
@@ -69,11 +69,14 @@ class ImagesTableCollectionController extends Controller
             ->addColumn('time_period', function ($image) {
                 return $image->time_period;
             })
-            ->addColumn('visible', function($image) {
+            ->addColumn('visible', function ($image) {
                 return $image->visible ? 'YES' : 'NO';
             })
-            ->addColumn('actions', function($image) {
+            ->addColumn('actions', function ($image) {
                 return $image->action_buttons;
+            })
+            ->setRowId(function ($image) {
+                return 'image-' . $image->id;
             })
             ->setRowClass(function ($image) {
                 return $image->visible ? 'row-visible' : 'row-hidden';

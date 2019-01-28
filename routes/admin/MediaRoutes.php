@@ -12,4 +12,8 @@ Route::group(['prefix' => 'media'], function () {
          ->name('admin.media.destroy');
     Route::post('/visible', 'App\ACME\Admin\Media\Controllers\ToggleVisibilityController')
         ->name('admin.media.visible');
+    
+    ############## AJAX Routes ################################
+    Route::post('/ajax/selected/{type}', 'App\ACME\Admin\Media\Controllers\AjaxToggleSelectedController')
+        ->name('admin.media.ajax.selected');
 });
