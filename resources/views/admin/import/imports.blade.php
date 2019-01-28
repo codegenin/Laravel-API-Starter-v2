@@ -31,8 +31,8 @@
                     {{--<a href="{{$import->getFirstMediaUrl('imports')}}" class="btn btn-success">--}}
                         {{--<i class="fa fa-download"></i>--}}
                     {{--</a>--}}
-                    {{--<a href="#" data-id="{{$import->id}}" title="{{trans('label.delete')}}"--}}
-                       {{--class="btn btn-danger delete"><i class="fa fa-remove"></i></a>--}}
+                    <a href="#" data-id="{{$import->id}}" title="{{trans('label.delete')}}"
+                       class="btn btn-danger delete" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-remove"></i></a>
                     <a href="{{ route('admin.import.failed.imports', $import->id) }}" data-id="{{$import->id}}"
                        title="Failed Imports"
                        class="btn btn-warning"><i class="fa fa-exclamation"></i></a>
