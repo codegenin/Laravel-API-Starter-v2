@@ -47,7 +47,7 @@ class ImportFileController extends Controller
                 $import->status = 1;
                 $import->save();
                 
-                ProcessMediaFileImport::dispatch($import)->delay(1);
+                ProcessMediaFileImport::dispatch($import)->delay(10);
                 
             } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
     
