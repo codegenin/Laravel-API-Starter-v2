@@ -8,7 +8,8 @@
         <td style="width: 10px;">{{trans('label.title')}}</td>
         <td style="width: 10px;">{{trans('label.description')}}</td>
         <td style="width: 10px;">{{trans('label.public')}}</td>
-        <td style="width: 10px;">{{trans('label.images')}}</td>
+        <td style="width: 10px;">{{trans('label.shown')}}</td>
+        <td style="width: 10px;">{{trans('label.hidden')}}</td>
         <td style="width: 20px;">{{trans('label.actions')}}</td>
     </tr>
     @foreach($collections as $collection)
@@ -20,17 +21,21 @@
             <td>{{$collection->title}}</td>
             <td>{{str_limit($collection->description, 100)}}</td>
             <td>@if($collection->is_public) YES @else NO @endif</td>
-            <td>{{$collection->getMedia($collection->slug)->count()}}</td>
+            <td>{{$collection->getMedia($collection->slug)->where('visible', 1)->count()}}</td>
+            <td>{{$collection->getMedia($collection->slug)->where('visible', 0)->count()}}</td>
             <td style="width: 100px;">
                 <div class="btn-group">
-                    <a class="btn btn-success" href="{{route('admin.collection.images', $collection->id)}}" title="IMAGES">
+                    <a class="btn btn-success" href="{{route('admin.collection.images', $collection->id)}}"
+                       title="IMAGES">
                         <i class="fa fa-picture-o"></i>
                     </a>
-                    <a class="btn btn-warning edit" data-id="{{$collection->id}}" data-target="#modal-edit-collection" data-toggle="modal"  title="EDIT">
+                    <a class="btn btn-warning edit" data-id="{{$collection->id}}" data-target="#modal-edit-collection"
+                       data-toggle="modal" title="EDIT">
                         EDIT
                     </a>
-                    <a href="#" data-id="{{$collection->id}}" class="btn btn-danger delete" data-target="#deleteModal" data-toggle="modal"
-                        title="DELETE">
+                    <a href="#" data-id="{{$collection->id}}" class="btn btn-danger delete" data-target="#deleteModal"
+                       data-toggle="modal"
+                       title="DELETE">
                         <i class="fa fa-remove"></i></a>
                 </div>
             </td>

@@ -25,12 +25,15 @@
     @include('admin.common.alerts')
 
     <div class="box box-info">
+        <div class="box-header">
+            <button class="btn btn-primary" id="selected-show-images" disabled="disabled">SHOW SELECTED</button>
+        </div>
         <div class="box-body">
             <div class="table-responsive data-table-wrapper">
                 <table id="images-table" class="table table-condensed table-hover table-bordered">
                     <thead>
                     <tr>
-                        {{--<th></th>--}}
+                        <th></th>
                         <th>Title</th>
                         <th>Image</th>
                         <th>Artist</th>
@@ -42,7 +45,7 @@
                     </thead>
                     <thead class="transparent-bg">
                     <tr>
-                        {{--<th></th>--}}
+                        <th></th>
                         <th>{!! Form::text('title', null, ["class" => "search-input-text form-control",
                             "data-column" => 0, "placeholder" => 'Search Title']) !!}
                             <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a></th>
@@ -454,7 +457,7 @@
                     type: 'get'
                 },
                 columns: [
-//                    {data: 'checkbox', name: 'checkbox'},
+                    {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false},
                     {data: 'title', name: 'title'},
                     {data: 'image', name: 'image'},
                     {data: 'artist', name: 'artist'},
@@ -478,6 +481,18 @@
             });
 
             Backend.DataTableSearch.init(dataTable);
+
+            // Selected Submit
+            $('#selected-show-images').on('click', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '/path/to/your/script.php',
+                    data: dataTable.$('input[type="checkbox"]').serialize()
+                }).done(function (data) {
+                    console.log('Response', data);
+                });
+            });
+
         });
     </script>
 @endsection

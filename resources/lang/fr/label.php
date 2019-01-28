@@ -96,4 +96,6 @@ return array (
   'import_error' => 'Erreur d\'importation',
   'import_image' => 'Importer une image',
   'error' => 'Error',
+  'hidden' => 'Cachée',
+  'shown' => 'Montré',
 );

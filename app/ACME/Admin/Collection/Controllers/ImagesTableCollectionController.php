@@ -50,9 +50,9 @@ class ImagesTableCollectionController extends Controller
 //        ]);
         
         return Datatables::of($images)
-//            ->addColumn('checkbox', function ($image) {
-//                return "<input type=\"checkbox\" name=\"image-{$image->id}[]\">";
-//            })
+            ->addColumn('checkbox', function ($image) {
+                return "<input name=\"images[]\" class=\"\" value=\"{$image->id}\" type=\"checkbox\">";
+            })
             ->escapeColumns(['title'])
             ->addColumn('title', function ($image) {
                 return $image->title;

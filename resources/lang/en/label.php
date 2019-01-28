@@ -88,4 +88,6 @@ return array (
   'import_error' => 'Import Error',
   'import_image' => 'Import Image',
   'error' => 'Error',
+  'shown' => 'Shown',
+  'hidden' => 'Hidden',
 );
