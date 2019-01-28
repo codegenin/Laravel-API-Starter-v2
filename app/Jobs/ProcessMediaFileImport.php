@@ -110,6 +110,7 @@ class ProcessMediaFileImport implements ShouldQueue
     public function mediaExist($media): bool
     {
         $media = Media::where('collection_name', str_slug($media->en_collection))
+            ->where('ur', $media->url)
             ->whereHas('translations', function ($query) use ($media) {
                 $query->where('title', $media->en_complete_title)
                     ->where('title_short', $media->en_title)->where('location', $media->en_location);
