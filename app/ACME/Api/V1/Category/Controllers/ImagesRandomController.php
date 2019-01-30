@@ -62,7 +62,7 @@ class ImagesRandomController extends ApiResponseController
         })->where('category_id', $category->id)
             ->visible()
             ->where('model_type', 'App\\Models\\Collection')
-            ->inRandomOrder()
+            ->inRandomOrder(request()->page)
             ->paginate($this->items);
         
         return new MediaResourceCollection($images);
