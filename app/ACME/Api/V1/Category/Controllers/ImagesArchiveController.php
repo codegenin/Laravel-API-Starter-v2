@@ -50,9 +50,11 @@ class ImagesArchiveController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $images = Media::where('collection_name', $category->slug)->visible()
-                       ->orderBy('created_at', 'desc')
-                       ->paginate();
+        $images = Media::whereHas('collection', function ($query) use ($category) {
+            $query->where('category_id', $category->id);
+        })->where('collection_name', $category->slug)->visible()
+            ->orderBy('created_at', 'desc')
+            ->paginate();
         
         return MediaResource::collection($images);
     }

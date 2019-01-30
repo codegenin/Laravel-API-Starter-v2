@@ -49,9 +49,11 @@ class ImagesRecentController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $images = Media::where('category_id', $category->id)->visible()
-                       ->orderBy('created_at', 'desc')
-                       ->paginate();
+        $images = Media::whereHas('collection', function ($query) use ($category) {
+            $query->where('category_id', $category->id);
+        })->where('category_id', $category->id)->visible()
+            ->orderBy('created_at', 'desc')
+            ->paginate();
         
         return MediaResource::collection($images);
     }
