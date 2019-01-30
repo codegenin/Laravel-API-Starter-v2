@@ -25,7 +25,7 @@ class ImagesRandomController extends ApiResponseController
 {
     use CustomPaginationTrait;
     
-    protected $items = 50;
+    protected $items = 1;
     
     private $categoryRepository;
     
@@ -57,14 +57,23 @@ class ImagesRandomController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
+        #$ids = session()->has('random-ids') ? session('random-ids') : [0];
+        
+        #print_r(session('random-ids'));
+        
         $images = Media::whereHas('collection', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })->where('category_id', $category->id)
             ->visible()
             ->where('model_type', 'App\\Models\\Collection')
-            ->inRandomOrder(request()->page)
+            #->whereNotIn('id', $ids)
+            ->inRandomOrder()
             ->paginate($this->items);
+    
+        #session()->push('random-ids', $images->pluck('id')->all());
         
+        #print_r(session()->get('random-ids'));
+        #exit();
         return new MediaResourceCollection($images);
         
     }

@@ -5,6 +5,7 @@ namespace App\ACME\Admin\Collection\Controllers;
 use App\ACME\Admin\Collection\Requests\StoreCollectionRequest;
 use App\ACME\Api\V1\Collection\Repositories\CollectionRepository;
 use App\Http\Controllers\Controller;
+use App\Models\Media;
 use App\Traits\MediaTraits;
 
 class UpdateCollectionController extends Controller
@@ -47,6 +48,12 @@ class UpdateCollectionController extends Controller
             $this->associateMedia($collection, $request, 'collection');
             sleep(2);
         }
+        
+        
+        // Update the collection images
+        Media::where('model_id', $collection->id)->update([
+            'collection_name' => str_slug($request->title)
+        ]);
         
         return redirect()
             ->back()
