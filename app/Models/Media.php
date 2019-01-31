@@ -76,8 +76,8 @@ class Media extends BaseMedia implements HasMedia
                             </button>
 
                             <button type=\"button\" data-toggle=\"modal\" title=\"EDIT\"
-                                    class=\"btn btn-warning\" data-id=\"{$this->id}\" data-target=\"#modal-edit-collection-image\">
-                                <i class=\"fa fa-pencil\"></i>
+                                    class=\"btn btn-warning edit\" data-id=\"{$this->id}\" data-target=\"#modal-edit-collection-image\">
+                                EDIT
                             </button>
 
                             <button type=\"button\" data-toggle=\"modal\" title=\"DELETE\"
