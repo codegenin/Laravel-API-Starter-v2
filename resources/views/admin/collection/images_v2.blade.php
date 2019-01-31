@@ -250,7 +250,7 @@
     <div class="modal fade" id="modal-edit-collection-image">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{route('admin.media.update')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.media.update')}}" id="edit-collection-image-form" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <input type="hidden" name="id" id="media-id">
                     <div class="modal-header">
@@ -437,13 +437,13 @@
                 $.ajax({
                     url: "/admin/media/" + id + "/get",
                     beforeSend: function (xhr) {
-                        /*$('input.form-control').val('Processing, please wait...');*/
+                        $('#edit-collection-image-form:input').val('Processing, please wait...');
                         $('#cover-image').attr('src', '');
                         $('#edit-tags').empty();
                         edit.html('<i class="fa fa-refresh fa-spin"></i>');
                     }
                 }).done(function (data) {
-                    edit.html('<i class="fa fa-pencil"></i>');
+                    edit.html('EDIT');
                     $('#media-id').val(data.media.id);
                     $('#edit-media-title').val(data.media.en_title);
                     $('#edit-media-fr_title').val(data.media.fr_title);
