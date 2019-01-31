@@ -32,7 +32,7 @@ class ReportMediaController extends ApiResponseController
     public function __construct(MediaRepository $mediaRepository, UserRepository $userRepository)
     {
         $this->mediaRepository = $mediaRepository;
-        $this->userRepository = $userRepository;
+        $this->userRepository  = $userRepository;
     }
     
     /**
@@ -51,7 +51,7 @@ class ReportMediaController extends ApiResponseController
     {
         $media = $this->mediaRepository->findOrFail(Hashids::decode($id));
         
-        if(!$media) {
+        if (!$media) {
             return $this->responseWithError(trans('report.record_not_found'));
         }
         
@@ -59,15 +59,31 @@ class ReportMediaController extends ApiResponseController
         if (Report::where('reportable_id', $media->id)->exists()) {
             return $this->responseWithSuccess(trans('report.success_already'));
         }
-    
-        auth()
-            ->user()
-            ->addReport($media);
-    
-        // Notify support
-        Notification::route('mail', 'support@arture.app')
-                    ->notify(new MediaReported($media, auth()->user()));
+        
+        $this->createReport($media);
+        $this->notifyViaEmail($media);
         
         return $this->responseWithSuccess(trans('report.success'));
+    }
+    
+    /**
+     * @param $media
+     */
+    private function createReport($media): void
+    {
+        $report                  = new Report();
+        $report->user_id         = 0; // 0 cause no user is being handled for now
+        $report->reportable_type = 'App\Models\Media';
+        $report->reportable_id   = $media->id;
+        $report->save();
+    }
+    
+    /**
+     * @param $media
+     */
+    private function notifyViaEmail($media): void
+    {
+        Notification::route('mail', 'support@arture.app')
+            ->notify(new MediaReported($media));
     }
 }

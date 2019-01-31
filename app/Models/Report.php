@@ -44,7 +44,7 @@ class Report extends Model
     public function allReported($class)
     {
         return $this->where('reportable_type', $class)
-                    ->with(['reportable', 'user'])
+                    ->with(['reportable'])
                     ->paginate();
     }
 }

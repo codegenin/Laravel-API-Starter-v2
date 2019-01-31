@@ -3,7 +3,7 @@
     <tr class="text-bold">
         <td style="width: 10px;">{{trans('label.type')}}</td>
         <td style="width: 10px;">{{trans('label.image')}}</td>
-        <td style="width: 10px;">{{trans('label.reported_by')}}</td>
+        {{--<td style="width: 10px;">{{trans('label.reported_by')}}</td>--}}
         <td style="width: 10px;">{{trans('label.created_at')}}</td>
         <td style="width: 10px;">{{trans('label.actions')}}</td>
     </tr>
@@ -16,7 +16,7 @@
                         <img src="{{$report->reportable->getUrl('small')}}" alt="" width="100" height="100">
                     </a>
                 </td>
-                <td>{{!empty($report->user) ? $report->user->email : ''}}</td>
+                {{--<td>{{!empty($report->user) ? $report->user->email : ''}}</td>--}}
                 <td>{{$report->created_at}}</td>
                 <td>
                     <div class="btn-group">

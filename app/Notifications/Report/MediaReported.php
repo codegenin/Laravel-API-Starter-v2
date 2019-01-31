@@ -14,22 +14,16 @@ class MediaReported extends Notification implements ShouldQueue
      * @var
      */
     private $media;
-    /**
-     * @var
-     */
-    private $user;
     
     /**
      * Create a new notification instance.
      *
      * @param $media
-     * @param $user
      */
-    public function __construct($media, $user)
+    public function __construct($media)
     {
         //
         $this->media = $media;
-        $this->user  = $user;
     }
     
     /**
@@ -53,7 +47,7 @@ class MediaReported extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Alert! An image has been reported')
-            ->line("Reported by {$this->user->name} with email {$this->user->email}")
+            //->line("Reported by {$this->user->name} with email {$this->user->email}")
             ->action('View Media', url("{$this->media->getUrl()}"))
             ->line('Thank you!');
     }
