@@ -25,7 +25,7 @@ class ImagesRandomController extends ApiResponseController
 {
     use CustomPaginationTrait;
     
-    protected $items = 1;
+    protected $items = 50;
     
     private $categoryRepository;
     
