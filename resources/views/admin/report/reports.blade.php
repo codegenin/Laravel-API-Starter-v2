@@ -1,7 +1,10 @@
 <table class="table table-responsive table-striped">
     <tbody>
     <tr class="text-bold">
-        <td style="width: 10px;">{{trans('label.type')}}</td>
+        {{--<td style="width: 10px;">{{trans('label.type')}}</td>--}}
+        <td style="width: 10px;">{{trans('label.category')}}</td>
+        <td style="width: 10px;">{{trans('label.collection')}}</td>
+        <td style="width: 10px;">{{trans('label.title')}}</td>
         <td style="width: 10px;">{{trans('label.image')}}</td>
         {{--<td style="width: 10px;">{{trans('label.reported_by')}}</td>--}}
         <td style="width: 10px;">{{trans('label.created_at')}}</td>
@@ -10,7 +13,10 @@
     @if($reports)
         @foreach($reports as $report)
             <tr>
-                <td>{{$report->reportable_type}}</td>
+                {{--<td>{{$report->reportable_type}}</td>--}}
+                <td>{{ $report->reportable->collection->category->name }}</td>
+                <td>{{ $report->reportable->collection->title }}</td>
+                <td>{{ $report->reportable->title }}</td>
                 <td>
                     <a href="{{$report->reportable->getUrl('small')}}" target="_blank">
                         <img src="{{$report->reportable->getUrl('small')}}" alt="" width="100" height="100">
