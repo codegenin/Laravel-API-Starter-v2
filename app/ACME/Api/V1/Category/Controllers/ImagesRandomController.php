@@ -57,14 +57,14 @@ class ImagesRandomController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $shown = !empty(request()->shown) ? request()->shown : 0;
+        $hideIds = !empty(request()->hideIds) ? request()->hideIds : 0;
         
         $images = Media::whereHas('collection', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })->where('category_id', $category->id)
             ->visible()
             ->where('model_type', 'App\\Models\\Collection')
-            ->whereNotIn('media.id', explode(",", $shown))
+            ->whereNotIn('media.id', explode(",", $hideIds))
             ->inRandomOrder()
             ->paginate($this->items);
         
