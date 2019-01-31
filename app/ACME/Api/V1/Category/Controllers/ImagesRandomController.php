@@ -57,13 +57,22 @@ class ImagesRandomController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $images = Media::whereHas('collection', function ($query) use ($category) {
+        // Update the updated_at field
+        
+        
+        /*$images = Media::whereHas('collection', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })->where('category_id', $category->id)
             ->visible()
             ->where('model_type', 'App\\Models\\Collection')
             #->whereNotIn('id', $ids)
-            ->groupBy('id')
+            ->inRandomOrder()
+            ->paginate($this->items);*/
+        
+        $images = Media::with('collection')->where('category_id', $category->id)
+            ->visible()
+            ->where('model_type', 'App\\Models\\Collection')
+            #->whereNotIn('id', $ids)
             ->inRandomOrder()
             ->paginate($this->items);
         
