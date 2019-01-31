@@ -29,7 +29,7 @@ class UpdateCollectionController extends Controller
     public function run(StoreCollectionRequest $request)
     {
         $collection = $this->collectionRepository->find($request->id);
-
+        
         $collection->translateOrNew('en')->title       = $request->title;
         $collection->translateOrNew('fr')->title       = $request->fr_title;
         $collection->translateOrNew('en')->description = $request->description;
@@ -49,12 +49,14 @@ class UpdateCollectionController extends Controller
             sleep(2);
         }
         
-        if ($collection->title != $request->title) {
-            // Update the collection images
-            Media::where('model_id', $collection->id)->update([
-                'collection_name' => str_slug($request->title)
-            ]);
+        // Update the collection images
+        if($collection != $request->title) {
+            Media::where('model_id', $collection->id)
+                ->where('collection_name', '!=', 'collection')->update([
+                    'collection_name' => str_slug($request->title)
+                ]);
         }
+        
         
         return redirect()
             ->back()
