@@ -437,7 +437,7 @@
                 $.ajax({
                     url: "/admin/media/" + id + "/get",
                     beforeSend: function (xhr) {
-                        $('#edit-collection-image-form:input').val('Processing, please wait...');
+                        $(':input', '#edit-collection-image-form').val('Processing, please wait...');
                         $('#cover-image').attr('src', '');
                         $('#edit-tags').empty();
                         edit.html('<i class="fa fa-refresh fa-spin"></i>');
