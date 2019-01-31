@@ -16,6 +16,7 @@ use App\Models\Collection;
 use App\Models\Media;
 use App\Traits\CustomPaginationTrait;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
@@ -35,7 +36,6 @@ class ImagesRandomController extends ApiResponseController
      */
     public function __construct(CategoryRepository $categoryRepository)
     {
-        $this->middleware('web', []);
         $this->categoryRepository = $categoryRepository;
     }
     
@@ -57,22 +57,14 @@ class ImagesRandomController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        // Update the updated_at field
+        $shown = !empty(request()->shown) ? request()->shown : 0;
         
-        
-        /*$images = Media::whereHas('collection', function ($query) use ($category) {
+        $images = Media::whereHas('collection', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })->where('category_id', $category->id)
             ->visible()
             ->where('model_type', 'App\\Models\\Collection')
-            #->whereNotIn('id', $ids)
-            ->inRandomOrder()
-            ->paginate($this->items);*/
-        
-        $images = Media::with('collection')->where('category_id', $category->id)
-            ->visible()
-            ->where('model_type', 'App\\Models\\Collection')
-            #->whereNotIn('id', $ids)
+            ->whereNotIn('media.id', explode(",", $shown))
             ->inRandomOrder()
             ->paginate($this->items);
         

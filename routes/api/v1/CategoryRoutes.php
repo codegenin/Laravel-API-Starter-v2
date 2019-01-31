@@ -27,6 +27,6 @@ Route::group(['prefix' => 'category'], function () {
         'App\\ACME\\Api\\V1\\Category\\Controllers\\ImagesArchiveController@run');
     Route::get('{id}/recent-images',
         'App\\ACME\\Api\\V1\\Category\\Controllers\\ImagesRecentController@run');
-    Route::get('{id}/random-images',
+    Route::post('{id}/random-images',
         'App\\ACME\\Api\\V1\\Category\\Controllers\\ImagesRandomController@run');
 });

@@ -24,6 +24,7 @@ class MediaResource extends JsonResource
     {
         return [
             'id'                => Hashids::encode($this->id),
+            'int_id'            => $this->id,
             'title'             => $this->title_short ?: '',
             'title_long'        => $this->title ?: '',
             'description'       => StringHelper::cleanString($this->description) ?: '',
