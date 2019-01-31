@@ -50,7 +50,7 @@ class UpdateCollectionController extends Controller
         }
         
         // Update the collection images
-        if($collection != $request->title) {
+        if($collection->title != $request->title) {
             Media::where('model_id', $collection->id)
                 ->where('collection_name', '!=', 'collection')->update([
                     'collection_name' => str_slug($request->title)
