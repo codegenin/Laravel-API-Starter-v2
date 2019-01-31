@@ -63,6 +63,7 @@ class ImagesRandomController extends ApiResponseController
             ->visible()
             ->where('model_type', 'App\\Models\\Collection')
             #->whereNotIn('id', $ids)
+            ->groupBy('id')
             ->inRandomOrder()
             ->paginate($this->items);
         
