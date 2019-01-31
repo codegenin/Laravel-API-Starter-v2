@@ -6,6 +6,7 @@ use App\ACME\Api\V1\Media\Repositories\MediaRepository;
 use App\ACME\Api\V1\User\Repositories\UserRepository;
 use App\Http\Controllers\ApiResponseController;
 use App\Models\Admin;
+use App\Models\Report;
 use App\Notifications\Report\MediaReported;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -50,11 +51,12 @@ class ReportMediaController extends ApiResponseController
     {
         $media = $this->mediaRepository->findOrFail(Hashids::decode($id));
         
-        // Checks if the media has been liked already
-        if (auth()
-            ->user()
-            ->hasReported($media)) {
+        if(!$media) {
+            return $this->responseWithError(trans('report.record_not_found'));
+        }
         
+        // Checks if the media has been liked already
+        if (Report::where('reportable_id', $media->id)->exists()) {
             return $this->responseWithSuccess(trans('report.success_already'));
         }
     

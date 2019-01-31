@@ -59,13 +59,13 @@ trait ReportableTrait
     /**
      * Check if the user has reportedBy this Object
      *
-     * @param  int $user_id [if  null its added to the auth user]
+     * @param  int $id [if  null its added to the media id]
      * @return boolean
      */
-    public function isReported($user_id = null)
+    public function isReported($id = null)
     {
         return $this->reports()
-                    ->where('user_id', ($user_id) ? $user_id : Auth::id())
+                    ->where('reportable_id', $id)
                     ->exists();
     }
     
