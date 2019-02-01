@@ -26,7 +26,7 @@ class CreateMediaTranslationsTable extends Migration
                   ->index();
             $table->string('location')
                   ->nullable();
-            $table->string('medium')
+            $table->text('medium')
                   ->nullable();
             $table->timestamps();
             
