@@ -90,7 +90,7 @@ class ImagesRandomController extends ApiResponseController
             'status' => true,
             'data'   => MediaResource::collection($paginatedItems),
             'meta'   => [
-                'current_page' => $request->page,
+                'current_page' => intval($request->page),
                 'last_page'    => ceil($total / $this->items)
             ]
         ]);
