@@ -61,7 +61,7 @@ class ImagesRandomController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        if($request->page > 1) {
+        if($request->test) {
             print_r('IDS: - ' . $request->hideIds);
             echo '----------------';
             echo 'Page: - ' . $request->page;
