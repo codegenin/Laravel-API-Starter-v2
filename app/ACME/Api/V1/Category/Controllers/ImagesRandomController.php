@@ -3,6 +3,7 @@
 namespace App\ACME\Api\V1\Category\Controllers;
 
 use App\ACME\Api\V1\Category\Repositories\CategoryRepository;
+use App\ACME\Api\V1\Category\Requests\ImagesRandomRequest;
 use App\ACME\Api\V1\Category\Resource\AdminCategoryResource;
 use App\ACME\Api\V1\Category\Resource\CategoryResourceCollection;
 use App\ACME\Api\V1\Collection\Resource\CollectionResource;
@@ -50,14 +51,17 @@ class ImagesRandomController extends ApiResponseController
      *
      * @apiParam {string} id the encoded category id
      * @apiParam {int} [page] the page number
+     * @param ImagesRandomRequest $request
+     * @param                     $id
+     * @return MediaResourceCollection|mixed
      */
-    public function run($id)
+    public function run(ImagesRandomRequest $request, $id)
     {
         if (!$category = $this->categoryRepository->find(Hashids::decode($id))) {
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        $hideIds = !empty(request()->hideIds) ? request()->hideIds : 0;
+        $hideIds = !empty($request->hideIDs) ? $request->hideIds : 0;
         
         $images = Media::whereHas('collection', function ($query) use ($category) {
             $query->where('category_id', $category->id);
