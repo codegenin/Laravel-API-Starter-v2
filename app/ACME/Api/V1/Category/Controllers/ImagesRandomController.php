@@ -68,7 +68,7 @@ class ImagesRandomController extends ApiResponseController
             exit();
         }
         
-        $hideIds = !empty($request->hideIDs) ? $request->hideIds : 0;
+        $hideIds = !empty($request->hideIds) ? $request->hideIds : 0;
         
         $images = Media::whereHas('collection', function ($query) use ($category) {
             $query->where('category_id', $category->id);
