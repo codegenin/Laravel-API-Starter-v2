@@ -61,6 +61,11 @@ class ImagesRandomController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
+        print_r('IDS: - ' . $request->hideIDs);
+        echo '----------------';
+        echo 'Page: - ' . $request->page;
+        exit();
+        
         $hideIds = !empty($request->hideIDs) ? $request->hideIds : 0;
         
         $images = Media::whereHas('collection', function ($query) use ($category) {
