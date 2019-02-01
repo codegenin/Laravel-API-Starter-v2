@@ -61,25 +61,40 @@ class ImagesRandomController extends ApiResponseController
             return $this->responseWithError(trans('common.not.found'));
         }
         
-        if($request->test) {
-            print_r('IDS: - ' . $request->hideIds);
-            echo '----------------';
-            echo 'Page: - ' . $request->page;
-            exit();
-        }
-        
         $hideIds = !empty($request->hideIds) ? $request->hideIds : 0;
         
-        $images = Media::whereHas('collection', function ($query) use ($category) {
+        /*$images = Media::whereHas('collection', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })->where('category_id', $category->id)
             ->visible()
             ->where('model_type', 'App\\Models\\Collection')
             ->whereNotIn('media.id', explode(",", $hideIds))
             ->inRandomOrder()
-            ->paginate($this->items);
+            ->paginate($this->items);*/
         
-        return new MediaResourceCollection($images);
+        $images = Media::whereHas('collection', function ($query) use ($category) {
+            $query->where('category_id', $category->id);
+        })->where('category_id', $category->id)
+            ->visible()
+            ->where('model_type', 'App\\Models\\Collection');
+        
+        $total = $images->count();
+        
+        $paginatedItems = $images
+            ->whereNotIn('media.id', explode(",", $hideIds))
+            ->inRandomOrder()->take(50)->get();
+        
+        //return new MediaResourceCollection($images);
+        
+        return response()->json([
+            'status' => true,
+            'data'   => MediaResource::collection($paginatedItems),
+            'meta'   => [
+                'current_page' => $request->page,
+                'last_page'    => ceil($total / 2)
+            ]
+        ]);
+        //return new MediaResourceCollection($paginator);
         
     }
 }
