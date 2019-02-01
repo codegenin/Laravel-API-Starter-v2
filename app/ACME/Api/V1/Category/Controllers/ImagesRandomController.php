@@ -82,7 +82,7 @@ class ImagesRandomController extends ApiResponseController
         
         $paginatedItems = $images
             ->whereNotIn('media.id', explode(",", $hideIds))
-            ->inRandomOrder()->take(50)->get();
+            ->inRandomOrder()->take($this->items)->get();
         
         //return new MediaResourceCollection($images);
         
@@ -91,7 +91,7 @@ class ImagesRandomController extends ApiResponseController
             'data'   => MediaResource::collection($paginatedItems),
             'meta'   => [
                 'current_page' => $request->page,
-                'last_page'    => ceil($total / 2)
+                'last_page'    => ceil($total / $this->items)
             ]
         ]);
         //return new MediaResourceCollection($paginator);
