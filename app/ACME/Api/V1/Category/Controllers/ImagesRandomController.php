@@ -63,15 +63,6 @@ class ImagesRandomController extends ApiResponseController
         
         $hideIds = !empty($request->hideIds) ? $request->hideIds : 0;
         
-        /*$images = Media::whereHas('collection', function ($query) use ($category) {
-            $query->where('category_id', $category->id);
-        })->where('category_id', $category->id)
-            ->visible()
-            ->where('model_type', 'App\\Models\\Collection')
-            ->whereNotIn('media.id', explode(",", $hideIds))
-            ->inRandomOrder()
-            ->paginate($this->items);*/
-        
         $images = Media::whereHas('collection', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })->where('category_id', $category->id)
@@ -84,8 +75,6 @@ class ImagesRandomController extends ApiResponseController
             ->whereNotIn('media.id', explode(",", $hideIds))
             ->inRandomOrder()->take($this->items)->get();
         
-        //return new MediaResourceCollection($images);
-        
         return response()->json([
             'status' => true,
             'data'   => MediaResource::collection($paginatedItems),
@@ -94,7 +83,6 @@ class ImagesRandomController extends ApiResponseController
                 'last_page'    => ceil($total / $this->items)
             ]
         ]);
-        //return new MediaResourceCollection($paginator);
         
     }
 }
