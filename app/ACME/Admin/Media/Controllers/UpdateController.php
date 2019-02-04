@@ -27,7 +27,10 @@ class UpdateController extends Controller
             $media->translateOrNew('fr')->description = $request->fr_description;
             $media->translateOrNew('en')->time_period = $request->en_time_period;
             $media->translateOrNew('fr')->time_period = $request->fr_time_period;
-            $media->location                          = $request->location;
+            $media->translateOrNew('en')->medium      = $request->medium;
+            $media->translateOrNew('fr')->time_period = $request->fr_time_period;
+            $media->translateOrNew('en')->location    = $request->location;
+            $media->translateOrNew('fr')->location    = $request->fr_location;
             $media->artist                            = $request->artist;
             $media->syncTags($request->tags);
             $media->save();

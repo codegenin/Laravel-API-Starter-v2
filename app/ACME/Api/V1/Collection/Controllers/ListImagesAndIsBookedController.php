@@ -17,7 +17,7 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class ListImagesAndIsBookedController extends ApiResponseController
 {
-    use MediaTraits, CustomPaginationTrait;
+    use MediaTraits,    CustomPaginationTrait;
     
     /**
      * @var MediaRepository

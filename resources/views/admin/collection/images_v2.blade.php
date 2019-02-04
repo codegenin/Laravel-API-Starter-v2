@@ -437,7 +437,17 @@
                 $.ajax({
                     url: "/admin/media/" + id + "/get",
                     beforeSend: function (xhr) {
-                        $(':input', '#edit-collection-image-form').val('Processing, please wait...');
+                        $('#edit-media-title').val('Processing, please wait...');
+                        $('#edit-media-fr_title').val('Processing, please wait...');
+                        $('#edit-media-description').val('Processing, please wait...');
+                        $('#edit-media-fr_description').val('Processing, please wait...');
+                        $('#edit-media-location').val('Processing, please wait...');
+                        $('#edit-media-fr-location').val('Processing, please wait...');
+                        $('#edit-media-medium').val('Processing, please wait...');
+                        $('#edit-media-fr-medium').val('Processing, please wait...');
+                        $('#edit-en-time-period').val('Processing, please wait...');
+                        $('#edit-fr-time-period').val('Processing, please wait...');
+                        $('#edit-artist').val('Processing, please wait...');
                         $('#cover-image').attr('src', '');
                         $('#edit-tags').empty();
                         edit.html('<i class="fa fa-refresh fa-spin"></i>');
