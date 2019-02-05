@@ -38,7 +38,7 @@ class LoginController extends Controller
             
             Log::info("LOGGED_ADMIN: {$request->email} IP: " . IPHelper::get_client_ip_server());
             
-            return redirect()->intended(route('admin.dashboard'));
+            return redirect()->intended(route('admin.category.index'));
         }
         
         return redirect()

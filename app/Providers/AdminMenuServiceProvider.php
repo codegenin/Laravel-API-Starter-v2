@@ -45,11 +45,11 @@ class AdminMenuServiceProvider extends ServiceProvider
                 'url'  => LaravelLocalization::setLocale() . '/admin/users',
                 'icon' => 'users',
             ]);
-            $event->menu->add([
+            /*$event->menu->add([
                 'text' => 'Role Management',
                 'url'  => LaravelLocalization::setLocale() . '/admin/roles',
                 'icon' => 'key',
-            ]);
+            ]);*/
             /*$event->menu->add(trans('label.main_settings'));
             $event->menu->add([
                 'text' => trans('label.price_points'),
