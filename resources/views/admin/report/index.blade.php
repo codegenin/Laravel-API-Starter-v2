@@ -6,13 +6,13 @@
         {{--{{trans('label.categories')}}
         <small>Lists</small>--}}
     </h1>
-    <ol class="breadcrumb">
+    {{--<ol class="breadcrumb">
         <li>
             <button type="button" data-toggle="modal"
                     class="btn btn-success" data-target="#modal-new-report"> {{__('label.new_report')}}
             </button>
         </li>
-    </ol>
+    </ol>--}}
 @endsection
 
 @section('content')

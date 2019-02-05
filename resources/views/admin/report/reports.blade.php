@@ -8,7 +8,7 @@
         <td style="width: 10px;">{{trans('label.image')}}</td>
         {{--<td style="width: 10px;">{{trans('label.reported_by')}}</td>--}}
         <td style="width: 10px;">{{trans('label.created_at')}}</td>
-        <td style="width: 10px;">{{trans('label.actions')}}</td>
+        {{--<td style="width: 10px;">{{trans('label.actions')}}</td>--}}
     </tr>
     @if($reports)
         @foreach($reports as $report)
@@ -24,15 +24,15 @@
                 </td>
                 {{--<td>{{!empty($report->user) ? $report->user->email : ''}}</td>--}}
                 <td>{{$report->created_at}}</td>
-                <td>
-                    <div class="btn-group">
-                        {{--<a class="btn btn-warning edit" data-id="{{$report->id}}" title="{{trans('label.edit')}}">
-                            <i class="fa fa-pencil"></i>
-                        </a>--}}
-                        <a href="#" data-id="{{$report->reportable_id}}" title="{{trans('label.delete')}}"
-                           class="btn btn-danger delete"><i class="fa fa-remove"></i></a>
-                    </div>
-                </td>
+                {{--<td>--}}
+                    {{--<div class="btn-group">--}}
+                        {{--<a class="btn btn-warning edit" data-id="{{$report->id}}" title="{{trans('label.edit')}}">--}}
+                            {{--<i class="fa fa-pencil"></i>--}}
+                        {{--</a>--}}
+                        {{--<a href="#" data-id="{{$report->reportable_id}}" title="{{trans('label.delete')}}"--}}
+                           {{--class="btn btn-danger delete"><i class="fa fa-remove"></i></a>--}}
+                    {{--</div>--}}
+                {{--</td>--}}
             </tr>
         @endforeach
     @endif
