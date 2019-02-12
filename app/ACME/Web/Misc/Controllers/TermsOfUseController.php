@@ -7,8 +7,13 @@ use App\Http\Controllers\Controller;
 
 class TermsOfUseController extends Controller
 {
-    public function show()
+    public function english()
     {
-        return view('web.misc.terms_of_use');
+        return view('web.misc.terms_of_use_en');
+    }
+    
+    public function french()
+    {
+        return view('web.misc.terms_of_use_fr');
     }
 }

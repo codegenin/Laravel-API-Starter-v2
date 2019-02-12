@@ -42,10 +42,11 @@ Route::get('/', function () {
 
 
 ############# Terms and Policy ####################
-Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
-    Route::get('terms-of-use', 'App\\ACME\\Web\\Misc\\Controllers\\TermsOfUseController@show')
-        ->name('misc.terms_of_user');
-});
+Route::get('terms-of-use', 'App\\ACME\\Web\\Misc\\Controllers\\TermsOfUseController@english')
+    ->name('misc.terms_of_user_en');
+
+Route::get('fr/terms-of-use', 'App\\ACME\\Web\\Misc\\Controllers\\TermsOfUseController@french')
+    ->name('misc.terms_of_user_fr');
 
 Route::get('privacy-policy', 'App\\ACME\\Web\\Misc\\Controllers\\PrivacyPolicyController@show')
      ->name('misc.privacy_policy');
