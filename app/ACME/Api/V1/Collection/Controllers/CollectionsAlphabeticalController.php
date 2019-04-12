@@ -28,7 +28,8 @@ class CollectionsAlphabeticalController extends ApiResponseController
     /**
      * @apiGroup           Collection
      * @apiName            collectionsAlphabetical
-     * @api                {get} /api/collection/all-alphabetical-collections?category_id={category_id} List Alphabetical Collections
+     * @api                {get} /api/collection/all-alphabetical-collections?category_id={category_id} List
+     *                     Alphabetical Collections
      * @apiDescription     Retrieve all collections in alphabetically
      * @apiVersion         1.0.0
      *
@@ -41,7 +42,7 @@ class CollectionsAlphabeticalController extends ApiResponseController
     {
         $query = Collection::join('collection_translations as t', function ($join) {
             $join->on('collections.id', '=', 't.collection_id')
-                ->where('t.locale', '=', 'en');
+                ->where('t.locale', '=', app()->getLocale());
         })
             ->with('translations', 'category');
         
