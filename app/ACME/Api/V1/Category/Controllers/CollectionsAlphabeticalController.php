@@ -52,7 +52,7 @@ class CollectionsAlphabeticalController extends ApiResponseController
         
         $collection = Collection::join('collection_translations as t', function ($join) {
             $join->on('collections.id', '=', 't.collection_id')
-                ->where('t.locale', '=', 'en');
+                ->where('t.locale', '=', app()->getLocale());
         })
             ->where('category_id', $category->id)->visible()
             ->orderBy('t.title', 'asc')
